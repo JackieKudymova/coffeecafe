@@ -21,7 +21,7 @@ function MenuSection() {
   return (
     <section id="menu" className="bg-brown-bg pt-12 md:pt-[88px] pb-12 md:pb-24">
       <div className="px-6 md:px-28">
-        <h2 className="font-heading font-semibold text-cream text-[28px] md:text-[36px] leading-tight">
+        <h2 className="font-heading font-semibold text-cream text-[28px] md:text-[36px] leading-tight text-center md:text-left">
           Наше меню
         </h2>
 
@@ -37,7 +37,7 @@ function MenuSection() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <p className="text-cream font-normal text-base md:text-2xl mt-3 md:mt-6">
+              <p className="text-cream font-normal text-xl md:text-2xl mt-3 md:mt-6">
                 {category.title}
               </p>
             </div>
@@ -53,8 +53,8 @@ function MenuSection() {
               bg-brown-button text-brown-dark font-medium
               rounded-[10px] uppercase tracking-wider
               transition-colors hover:bg-brown-button/90
-              text-base py-4 px-10
-              md:text-lg md:w-[271px] md:h-[54px]
+              text-base py-[30px] w-full
+              md:text-lg md:py-0 md:w-[271px] md:h-[54px]
             "
           >
             Смотреть меню

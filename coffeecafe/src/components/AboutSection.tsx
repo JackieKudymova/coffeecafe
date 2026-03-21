@@ -41,8 +41,8 @@ function AboutSection() {
                 bg-brown-button text-brown-dark font-medium
                 rounded-[10px] uppercase tracking-wider
                 transition-colors hover:bg-brown-button/90
-                text-base py-4 px-10
-                md:text-lg md:w-[280px] md:h-[54px]
+                text-base py-[30px] w-full
+                md:text-lg md:py-0 md:w-[280px] md:h-[54px]
               "
             >
               Подробнее
