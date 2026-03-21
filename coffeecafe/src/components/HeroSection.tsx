@@ -18,9 +18,6 @@ function HeroSection() {
         />
       </picture>
 
-      {/* Градиент сверху — плавный переход от тёмного (safe-area) к изображению */}
-      <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-brown-bg to-transparent z-[1]" />
-
       {/* Контент */}
       <div className="relative z-10 px-4 md:px-28 w-full">
         <h1 className="font-heading font-semibold text-cream text-[34px] leading-[1.33] md:text-[48px] md:leading-[64px] tracking-[0.68px] md:tracking-[0.96px] text-center min-[480px]:text-left max-w-[358px] md:max-w-[616px] mx-auto min-[480px]:mx-0">

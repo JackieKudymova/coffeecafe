@@ -1,8 +1,8 @@
 /*
   MenuSection — секция «Наше меню».
-  4 карточки с фото категорий + кнопка «Смотреть меню».
-  Подписи категорий: Inter Regular 24px.
-  На мобилках — сетка 2x2.
+  Десктоп: 4 квадратных карточки 280×280, кнопка 271×54.
+  Мобилки: 2 колонки, увеличенные отступы от краёв.
+  Подписи: Inter Regular 24px.
 */
 
 import coffeeImg from '../assets/images/menu-coffee.png'
@@ -19,38 +19,42 @@ const menuCategories = [
 
 function MenuSection() {
   return (
-    <section id="menu" className="bg-brown-bg py-16 md:py-24">
-      <div className="px-4 md:px-28">
+    <section id="menu" className="bg-brown-bg pt-12 md:pt-[88px] pb-12 md:pb-24">
+      <div className="px-6 md:px-28">
         <h2 className="font-heading font-semibold text-cream text-[28px] md:text-[36px] leading-tight">
           Наше меню
         </h2>
 
-        {/* Сетка категорий: 2 колонки на мобилках, 4 на десктопе */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8 md:mt-12">
+        {/* Сетка: 2 колонки на мобилках, 4 на десктопе */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mt-8 md:mt-16">
           {menuCategories.map((category) => (
             <div key={category.title} className="text-center">
-              <img
-                src={category.image}
-                alt={category.title}
-                className="w-full rounded-[10px]"
-              />
-              <p className="text-cream font-normal text-base md:text-2xl mt-3">
+              {/* Квадратное фото */}
+              <div className="aspect-square overflow-hidden rounded-[10px]">
+                <img
+                  src={category.image}
+                  alt={category.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="text-cream font-normal text-base md:text-2xl mt-3 md:mt-6">
                 {category.title}
               </p>
             </div>
           ))}
         </div>
 
-        {/* Кнопка — с обводкой, как в макете */}
-        <div className="mt-10 md:mt-12 flex justify-center">
+        {/* Кнопка 271×54 по центру */}
+        <div className="mt-10 md:mt-16 flex justify-center">
           <a
             href="#menu-full"
             className="
-              inline-block bg-transparent border border-brown-button
-              text-brown-button font-medium rounded-[10px]
-              text-center uppercase tracking-wider
-              transition-colors hover:bg-brown-button hover:text-brown-dark
-              text-base md:text-lg py-4 px-16
+              inline-flex items-center justify-center
+              bg-brown-button text-brown-dark font-medium
+              rounded-[10px] uppercase tracking-wider
+              transition-colors hover:bg-brown-button/90
+              text-base py-4 px-10
+              md:text-lg md:w-[271px] md:h-[54px]
             "
           >
             Смотреть меню
