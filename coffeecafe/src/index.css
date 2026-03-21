@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+/*
+  @theme — конфигурация Tailwind v4 через CSS.
+  Здесь определяем кастомные цвета и шрифты проекта из макета Figma.
+  После этого можно использовать классы вроде text-cream, bg-brown-button, font-heading и т.д.
+*/
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Playfair Display', serif;
+
+  --color-cream: #faf6f0;
+  --color-cream-dark: #efe7dd;
+  --color-brown-button: #d2a679;
+  --color-brown-dark: #2a1c17;
+  --color-brown-bg: #1f1714;
+  --color-brown-footer: #140f0c;
+}
+
+@layer base {
+  body {
+    @apply m-0 font-sans antialiased bg-brown-bg;
+  }
+}
