@@ -22,3 +22,12 @@
     @apply m-0 font-sans antialiased bg-brown-bg;
   }
 }
+
+/* Скрываем скроллбар в каруселях */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
