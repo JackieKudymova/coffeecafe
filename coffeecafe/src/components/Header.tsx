@@ -30,13 +30,13 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
     <>
       {/* Шапка — всегда поверх контента */}
       <header className="absolute top-0 left-0 w-full z-20">
-        <div className="flex items-center justify-between px-4 md:px-28 py-4 md:py-6">
-          <a href="#" className="font-bold text-lg md:text-2xl leading-[29px] text-[#ebebeb]">
+        <div className="flex items-center justify-between px-4 lg:px-16 xl:px-28 py-4 lg:py-6">
+          <a href="#" className="font-bold text-lg lg:text-2xl leading-[29px] text-[#ebebeb]">
             ДомКофе
           </a>
 
           {/* Десктопная навигация */}
-          <nav className="hidden md:flex gap-4 lg:gap-8">
+          <nav className="hidden lg:flex gap-4 lg:gap-8">
             {desktopLinks.map((link) => (
               <a
                 key={link.label}
@@ -50,7 +50,7 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
 
           {/* Бургер-кнопка (только мобилки) */}
           <button
-            className="md:hidden text-cream"
+            className="lg:hidden text-cream"
             onClick={onToggleMenu}
             aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
           >
@@ -68,7 +68,7 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
       */}
       <div
         className={`
-          fixed inset-0 z-30 bg-brown-dark md:hidden
+          fixed inset-0 z-30 bg-brown-dark lg:hidden
           flex flex-col transition-opacity duration-300
           ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}
         `}

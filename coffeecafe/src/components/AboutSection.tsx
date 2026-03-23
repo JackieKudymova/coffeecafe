@@ -9,31 +9,31 @@ import aboutImg from '../assets/images/about.png'
 
 function AboutSection() {
   return (
-    <section id="about" className="bg-brown-bg pt-12 md:pt-24">
-      <div className="px-6 md:px-28 flex flex-col md:flex-row gap-8 md:gap-24 items-center">
+    <section id="about" className="bg-brown-bg pt-12 lg:pt-24">
+      <div className="px-6 lg:px-16 xl:px-28 flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-24 items-center lg:justify-center">
 
-        {/* Фото — 594×640 в макете */}
-        <div className="w-full md:w-auto md:shrink-0">
+        {/* Фото — уменьшено на lg, полный размер на xl */}
+        <div className="w-full lg:w-auto lg:shrink-0">
           <img
             src={aboutImg}
             alt="Бариста готовит кофе"
-            className="w-full h-[300px] object-cover md:h-auto md:object-contain rounded-[10px] md:w-[594px]"
+            className="w-full h-[300px] object-cover lg:h-auto lg:object-contain rounded-[10px] lg:w-[380px] xl:w-[594px]"
           />
         </div>
 
         {/* Текст */}
-        <div className="w-full md:max-w-[488px]">
-          <h2 className="font-heading font-semibold text-cream text-[28px] md:text-[36px] leading-tight">
+        <div className="w-full lg:max-w-[360px] xl:max-w-[488px]">
+          <h2 className="font-heading font-semibold text-cream text-[28px] lg:text-[36px] leading-tight">
             О нас
           </h2>
 
-          <p className="text-cream-dark text-base md:text-lg md:leading-[22px] mt-4 md:mt-20">
+          <p className="text-cream-dark text-base lg:text-lg lg:leading-[22px] mt-4 lg:mt-20">
             Наша кофейня - это уютное пространство, где можно насладиться
             ароматным кофе и провести время в спокойной атмосфере, поработать
             за ноутбуком или встретиться с друзьями
           </p>
 
-          <div className="mt-8 md:mt-16">
+          <div className="mt-8 lg:mt-16">
             <a
               href="#about-more"
               className="
@@ -42,7 +42,7 @@ function AboutSection() {
                 rounded-[10px] uppercase tracking-wider
                 transition-colors hover:bg-brown-button/90
                 text-base py-[30px] w-full
-                md:text-lg md:py-0 md:w-[280px] md:h-[54px]
+                lg:text-lg lg:py-0 lg:w-[280px] lg:h-[54px]
               "
             >
               Подробнее

@@ -4,6 +4,7 @@ import HeroSection from '../components/HeroSection'
 import AboutSection from '../components/AboutSection'
 import WhyUsSection from '../components/WhyUsSection'
 import MenuSection from '../components/MenuSection'
+import PromoSection from '../components/PromoSection'
 
 /*
   HomePage — главная страница.
@@ -17,12 +18,13 @@ function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <div className="bg-brown-bg">
+    <div className="bg-brown-bg min-w-[320px]">
       <Header isMenuOpen={isMenuOpen} onToggleMenu={() => setIsMenuOpen(!isMenuOpen)} />
       <HeroSection />
       <AboutSection />
       <WhyUsSection />
       <MenuSection />
+      <PromoSection />
     </div>
   )
 }
