@@ -6,6 +6,7 @@ import WhyUsSection from '../components/WhyUsSection'
 import MenuSection from '../components/MenuSection'
 import PromoSection from '../components/PromoSection'
 import GallerySection from '../components/GallerySection'
+import ReviewsSection from '../components/ReviewsSection'
 
 /*
   HomePage — главная страница.
@@ -27,6 +28,7 @@ function HomePage() {
       <MenuSection />
       <PromoSection />
       <GallerySection />
+      <ReviewsSection />
     </div>
   )
 }
