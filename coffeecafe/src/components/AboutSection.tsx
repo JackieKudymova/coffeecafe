@@ -10,19 +10,19 @@ import aboutImg from '../assets/images/about.png'
 function AboutSection() {
   return (
     <section id="about" className="bg-brown-bg pt-12 lg:pt-24">
-      <div className="px-6 lg:px-16 xl:px-28 flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-24 items-center lg:justify-center">
+      <div className="px-4 lg:px-16 xl:px-28 flex flex-col lg:flex-row gap-8 lg:gap-[5%] items-center">
 
-        {/* Фото — уменьшено на lg, полный размер на xl */}
-        <div className="w-full lg:w-auto lg:shrink-0">
+        {/* Фото — 48% ширины на десктопе, масштабируется пропорционально */}
+        <div className="w-full lg:w-[48%] lg:shrink-0">
           <img
             src={aboutImg}
             alt="Бариста готовит кофе"
-            className="w-full h-[300px] object-cover lg:h-auto lg:object-contain rounded-[10px] lg:w-[380px] xl:w-[594px]"
+            className="w-full h-[300px] object-cover lg:h-auto lg:object-contain rounded-[10px]"
           />
         </div>
 
-        {/* Текст */}
-        <div className="w-full lg:max-w-[360px] xl:max-w-[488px]">
+        {/* Текст — заполняет остаток */}
+        <div className="w-full lg:flex-1">
           <h2 className="font-heading font-semibold text-cream text-[28px] lg:text-[36px] leading-tight">
             О нас
           </h2>
