@@ -7,6 +7,7 @@ import MenuSection from '../components/MenuSection'
 import PromoSection from '../components/PromoSection'
 import GallerySection from '../components/GallerySection'
 import ReviewsSection from '../components/ReviewsSection'
+import Footer from '../components/Footer'
 
 /*
   HomePage — главная страница.
@@ -29,6 +30,7 @@ function HomePage() {
       <PromoSection />
       <GallerySection />
       <ReviewsSection />
+      <Footer />
     </div>
   )
 }
