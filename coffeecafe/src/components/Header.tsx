@@ -6,15 +6,15 @@
 
 /* Десктопная навигация включает "Главная", мобильная — нет (по макету) */
 const desktopLinks = [
-  { label: 'Главная', href: '#' },
-  { label: 'О нас', href: '#about' },
+  { label: 'Главная', href: '/' },
+  { label: 'О нас', href: '/about' },
   { label: 'Меню', href: '#menu' },
   { label: 'Новости и акции', href: '#news' },
   { label: 'Контакты', href: '#contacts' },
 ]
 
 const mobileLinks = [
-  { label: 'О нас', href: '#about' },
+  { label: 'О нас', href: '/about' },
   { label: 'Меню', href: '#menu' },
   { label: 'Новости и акции', href: '#news' },
   { label: 'Контакты', href: '#contacts' },
