@@ -35,7 +35,7 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
       <header className="absolute top-0 left-0 w-full z-20">
         <div className="flex items-center justify-between px-4 lg:px-16 xl:px-28 py-4 lg:py-6">
           {/* Логотип — SVG, адаптивный размер: 106×25 мобилка, 127×29 десктоп */}
-          <a href="#">
+          <a href="/">
             <img
               src={logo}
               alt="ДомКофе"
@@ -83,7 +83,7 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
       >
         {/* Верхняя строка: логотип + крестик */}
         <div className="flex items-center justify-between px-4 py-4">
-          <a href="#">
+          <a href="/">
             <img
               src={logo}
               alt="ДомКофе"
