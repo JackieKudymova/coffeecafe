@@ -11,14 +11,14 @@ import logo from '../assets/images/logo.svg'
 const desktopLinks = [
   { label: 'Главная', href: '/' },
   { label: 'О нас', href: '/about' },
-  { label: 'Меню', href: '#menu' },
+  { label: 'Меню', href: '/menu' },
   { label: 'Новости и акции', href: '#news' },
   { label: 'Контакты', href: '/contacts' },
 ]
 
 const mobileLinks = [
   { label: 'О нас', href: '/about' },
-  { label: 'Меню', href: '#menu' },
+  { label: 'Меню', href: '/menu' },
   { label: 'Новости и акции', href: '#news' },
   { label: 'Контакты', href: '/contacts' },
 ]

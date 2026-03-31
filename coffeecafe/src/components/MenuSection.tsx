@@ -47,7 +47,7 @@ function MenuSection() {
         {/* Кнопка 271×54 по центру */}
         <div className="mt-10 lg:mt-16 flex justify-center">
           <a
-            href="#menu-full"
+            href="/menu"
             className="
               inline-flex items-center justify-center
               bg-brown-button text-brown-dark font-medium
