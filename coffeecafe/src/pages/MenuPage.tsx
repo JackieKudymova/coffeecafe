@@ -31,7 +31,7 @@ function MenuPage() {
         onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
       />
 
-      <main className="px-4 lg:px-16 xl:px-28 pt-[112px] lg:pt-[149px] pb-12 lg:pb-24">
+      <main className="px-4 lg:px-16 xl:px-28 pt-[112px] lg:pt-[149px] pb-12 lg:pb-[105px]">
         {/* Заголовок */}
         <h1 className="font-heading font-semibold text-cream text-[28px] lg:text-[36px] leading-tight">
           Меню
@@ -61,7 +61,7 @@ function MenuPage() {
 
         {/* Сетка карточек: 1 колонка мобилка, 3 десктоп */}
         {activeCategory && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-x-8 lg:gap-y-10 mt-8 lg:mt-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-x-8 lg:gap-y-[50px] mt-8 lg:mt-10">
             {activeCategory.items.map((item) => (
               <MenuItemCard key={item.id} item={item} />
             ))}
@@ -87,14 +87,14 @@ function MenuItemCard({ item }: { item: MenuItem }) {
         />
       </div>
 
-      {/* Название позиции */}
-      <h3 className="text-cream font-normal text-lg lg:text-2xl mt-3 lg:mt-4">
+      {/* Название позиции. 30px от фото */}
+      <h3 className="text-cream font-normal text-lg lg:text-2xl mt-3 lg:mt-[20px]">
         {item.name}
       </h3>
 
-      {/* Варианты: 2 строки (объём + цена). Колонки 104px = шаг сетки страницы */}
+      {/* Варианты: 2 строки (объём + цена). 25px от названия, 15px между строками */}
       <div
-        className="mt-1 lg:mt-2 grid"
+        className="mt-[10px] lg:mt-[7px] grid gap-y-[3px]"
         style={{ gridTemplateColumns: `repeat(${item.variants.length}, 104px)` }}
       >
         {/* Строка 1: объёмы/вес */}
