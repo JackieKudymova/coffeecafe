@@ -36,6 +36,7 @@ function HeroSection() {
               text-center uppercase tracking-wider transition-colors
               hover:bg-brown-button/90
               text-base py-[30px] w-[358px]
+              lg:inline-flex lg:items-center lg:justify-center
               lg:text-lg lg:py-0 lg:w-[280px] lg:h-[54px]
             "
           >

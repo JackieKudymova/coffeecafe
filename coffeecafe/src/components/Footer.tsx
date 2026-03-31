@@ -4,6 +4,7 @@
   Мобилка: одна колонка по центру (лого, VK, контакты, копирайт). Без навигации и кнопки наверх.
 */
 
+import logo from '../assets/images/logo.svg'
 import vkIcon from '../assets/images/mingcute_vkontakte-fill.svg'
 import upIcon from '../assets/images/up.svg'
 
@@ -21,11 +22,11 @@ const navCol2 = [
 
 function Footer() {
   return (
-    <footer className="bg-brown-footer">
+    <footer className="bg-brown-footer overflow-hidden">
 
       {/* Мобилка: одна колонка по центру */}
       <div className="lg:hidden px-4 py-4 flex flex-col items-center text-center">
-        <span className="text-cream font-bold text-lg">ДомКофе</span>
+        <img src={logo} alt="ДомКофе" className="h-[22px] w-auto" />
 
         {/* Иконка VK — 24×24, по центру под логотипом */}
         <a href="#" aria-label="VK" className="mt-4">
@@ -54,9 +55,9 @@ function Footer() {
       <div className="hidden lg:block px-16 xl:px-28 pt-6 pb-6">
         <div className="grid grid-cols-12 gap-x-8">
 
-          {/* Колонка 1-3: Лого + VK */}
-          <div className="col-span-3 flex flex-col">
-            <span className="text-cream font-bold text-2xl">ДомКофе</span>
+          {/* Колонка 1-3: Лого + VK. items-start чтобы логотип не растягивался */}
+          <div className="col-span-3 flex flex-col items-start">
+            <img src={logo} alt="ДомКофе" className="h-[29px] w-auto" />
             {/* Иконка VK — 32×32, под логотипом с отступом 32px */}
             <a href="#" aria-label="VK" className="mt-8">
               <img src={vkIcon} alt="ВКонтакте" className="w-8 h-8" />

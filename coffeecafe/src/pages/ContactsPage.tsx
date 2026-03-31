@@ -138,32 +138,26 @@ function ContactForm({ className = '' }: { className?: string }) {
         />
       </label>
 
-      {/* Поле «Телефон». 16px от предыдущего инпута */}
+      {/* Поле «Телефон». Маска +7 (XXX) XXX-XX-XX */}
       <label className="block mt-4">
         <span className="text-cream-dark text-base lg:text-lg">Телефон</span>
-        <input
-          type="tel"
-          placeholder="+7 (   ) __ - ____"
-          className="
-            w-full mt-2 h-[51px] px-4 rounded-[10px]
-            bg-[#5d483c] text-cream placeholder-[#cfc6bb]
-            text-base outline-none
-          "
-        />
+        <PhoneInput />
       </label>
 
-      {/* Поле «Сообщение». 16px от предыдущего инпута */}
-      <label className="block mt-4">
+      {/* Поле «Сообщение». Обёртка с padding чтобы отступы не исчезали при вводе */}
+      <div className="block mt-4">
         <span className="text-cream-dark text-base lg:text-lg">Сообщение</span>
-        <textarea
-          placeholder="Введите ваше сообщение"
-          className="
-            w-full mt-2 h-[100px] px-4 py-3 rounded-[10px]
-            bg-[#5d483c] text-cream placeholder-[#cfc6bb]
-            text-base outline-none resize-none
-          "
-        />
-      </label>
+        <div className="mt-2 h-[100px] p-2 rounded-[10px] bg-[#5d483c] overflow-hidden">
+          <textarea
+            placeholder="Введите ваше сообщение"
+            className="
+              w-full h-full px-1 bg-transparent text-cream placeholder-[#cfc6bb]
+              text-base leading-[22px] outline-none resize-none
+              scrollbar-hide
+            "
+          />
+        </div>
+      </div>
 
       {/* Чекбокс согласия. 16px от textarea */}
       <label className="flex items-center gap-[14px] mt-4 cursor-pointer">
@@ -172,8 +166,12 @@ function ContactForm({ className = '' }: { className?: string }) {
           className="
             w-6 h-6 shrink-0 appearance-none rounded
             border-2 border-[#cfc6bb] bg-transparent
-            checked:bg-brown-button checked:border-brown-button
+            checked:border-brown-button relative
             cursor-pointer
+            checked:after:content-['✓'] checked:after:absolute
+            checked:after:inset-0 checked:after:flex checked:after:items-center
+            checked:after:justify-center checked:after:text-brown-button
+            checked:after:text-sm checked:after:font-bold
           "
         />
         <span className="text-[#cfc6bb] text-sm lg:text-base leading-[19px]">
@@ -195,6 +193,65 @@ function ContactForm({ className = '' }: { className?: string }) {
         Отправить
       </button>
     </div>
+  )
+}
+
+/*
+  PhoneInput — поле ввода телефона с российской маской +7 (XXX) XXX-XX-XX.
+  Автоматически подставляет +7, убирает лишние символы,
+  форматирует номер по мере ввода.
+*/
+function PhoneInput() {
+  const [value, setValue] = useState('+7')
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const raw = e.target.value
+
+    // Извлекаем только цифры из ввода
+    let digits = raw.replace(/\D/g, '')
+
+    // Если начинается с 7 или 8 — убираем код страны
+    if (digits.length > 0 && (digits[0] === '7' || digits[0] === '8')) {
+      digits = digits.slice(1)
+    }
+
+    // Ограничиваем до 10 цифр (номер без кода страны)
+    digits = digits.slice(0, 10)
+
+    // Если цифр нет — показываем только +7
+    if (digits.length === 0) {
+      setValue('+7')
+      return
+    }
+
+    // Форматируем по маске +7 (XXX) XXX-XX-XX
+    let formatted = '+7 ('
+    formatted += digits.slice(0, 3)
+    if (digits.length > 3) {
+      formatted += ') ' + digits.slice(3, 6)
+    }
+    if (digits.length > 6) {
+      formatted += '-' + digits.slice(6, 8)
+    }
+    if (digits.length > 8) {
+      formatted += '-' + digits.slice(8, 10)
+    }
+
+    setValue(formatted)
+  }
+
+  return (
+    <input
+      type="tel"
+      value={value}
+      onChange={handleChange}
+      placeholder="+7 (___) ___-__-__"
+      className="
+        w-full mt-2 h-[51px] px-4 rounded-[10px]
+        bg-[#5d483c] text-cream placeholder-[#cfc6bb]
+        text-base outline-none
+      "
+    />
   )
 }
 
