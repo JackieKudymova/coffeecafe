@@ -31,7 +31,7 @@ function MenuPage() {
         onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
       />
 
-      <main className="px-4 lg:px-16 xl:px-28 pt-[112px] lg:pt-[149px] pb-12 lg:pb-[105px]">
+      <main className="px-4 lg:px-16 xl:px-28 pt-[88px] lg:pt-[149px] pb-12 lg:pb-[105px]">
         {/* Заголовок */}
         <h1 className="font-heading font-semibold text-cream text-[28px] lg:text-[36px] leading-tight">
           Меню
@@ -39,13 +39,13 @@ function MenuPage() {
 
         {/* Табы разделов */}
         {categories.length > 0 && (
-          <div className="mt-6 lg:mt-12 flex overflow-x-auto scrollbar-hide">
+          <div className="mt-[30px] lg:mt-12 flex overflow-x-auto scrollbar-hide">
             {categories.map((cat, i) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveTab(i)}
                 className={`
-                  flex-1 min-w-[100px] pb-4 text-center text-base lg:text-2xl
+                  shrink-0 min-w-[130px] lg:flex-1 lg:min-w-0 pb-[7px] text-center text-lg lg:text-2xl lg:pb-4 px-4 lg:px-0
                   border-b-2 transition-colors cursor-pointer whitespace-nowrap
                   ${i === activeTab
                     ? 'text-cream font-medium border-[#c49a6c]'
