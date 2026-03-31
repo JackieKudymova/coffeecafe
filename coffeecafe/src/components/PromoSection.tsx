@@ -50,7 +50,7 @@ function PromoSection() {
             href={promo.link}
             className="inline-block bg-brown-button text-brown-dark font-medium rounded-[10px] text-center uppercase tracking-wider transition-colors hover:bg-brown-button/90
               text-base py-[30px] w-full
-              min-[480px]:text-lg min-[480px]:py-4 min-[480px]:w-[271px]"
+              min-[480px]:text-lg min-[480px]:py-0 min-[480px]:w-[280px] min-[480px]:h-[54px] min-[480px]:inline-flex min-[480px]:items-center min-[480px]:justify-center"
           >
             Подробнее
           </a>

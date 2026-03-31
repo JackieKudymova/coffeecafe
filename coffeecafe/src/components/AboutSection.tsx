@@ -1,6 +1,6 @@
 /*
   AboutSection — секция «О нас» на главной.
-  Десктоп: фото слева (594×640), текст + кнопка справа.
+  Десктоп: 12-колоночная сетка — фото (кол. 1-6), текст + кнопка (кол. 8-12).
   Мобилки: фото сверху, текст снизу.
   Кнопка «Подробнее»: 280×54px, Inter Medium 18px.
 */
@@ -10,30 +10,69 @@ import aboutImg from '../assets/images/about.png'
 function AboutSection() {
   return (
     <section id="about" className="bg-brown-bg pt-12 lg:pt-24">
-      <div className="px-4 lg:px-16 xl:px-28 flex flex-col lg:flex-row gap-8 lg:gap-[5%] items-center">
 
-        {/* Фото — 48% ширины на десктопе, масштабируется пропорционально */}
-        <div className="w-full lg:w-[48%] lg:shrink-0">
+      {/* Мобилка: обычный flex */}
+      <div className="lg:hidden px-4">
+        <img
+          src={aboutImg}
+          alt="Бариста готовит кофе"
+          className="w-full h-[300px] object-cover rounded-[10px]"
+        />
+
+        <h2 className="font-heading font-semibold text-cream text-[28px] leading-tight mt-8">
+          О нас
+        </h2>
+
+        <p className="text-cream-dark text-base mt-4">
+          Наша кофейня - это уютное пространство, где можно насладиться
+          ароматным кофе и провести время в спокойной атмосфере, поработать
+          за ноутбуком или встретиться с друзьями
+        </p>
+
+        <div className="mt-8">
+          <a
+            href="#about-more"
+            className="
+              inline-flex items-center justify-center
+              bg-brown-button text-brown-dark font-medium
+              rounded-[10px] uppercase tracking-wider
+              transition-colors hover:bg-brown-button/90
+              text-base py-[30px] w-full
+            "
+          >
+            Подробнее
+          </a>
+        </div>
+      </div>
+
+      {/*
+        Десктоп: flex-раскладка по размерам из Figma.
+        Фото 48.85% (594px из 1216), зазор 8.4% (102px), текст — остаток (488px).
+        Текст начинается с правого края 7-й колонки сетки (696px от левого края контента).
+      */}
+      <div className="hidden lg:flex px-16 xl:px-28">
+        {/* Фото — 594px при 1440, масштабируется пропорционально */}
+        <div className="w-[48.85%] shrink-0">
           <img
             src={aboutImg}
             alt="Бариста готовит кофе"
-            className="w-full h-[300px] object-cover lg:h-auto lg:object-contain rounded-[10px]"
+            className="w-full h-auto object-contain rounded-[10px]"
           />
         </div>
 
-        {/* Текст — заполняет остаток */}
-        <div className="w-full lg:flex-1">
-          <h2 className="font-heading font-semibold text-cream text-[28px] lg:text-[36px] leading-tight">
+        {/* Текст + кнопка — зазор 8.4% от ширины контента (102px при 1440) */}
+        <div className="ml-[8.4%] flex-1 flex flex-col justify-center">
+          <h2 className="font-heading font-semibold text-cream text-[36px] leading-tight">
             О нас
           </h2>
 
-          <p className="text-cream-dark text-base lg:text-lg lg:leading-[22px] mt-4 lg:mt-20">
+          <p className="text-cream-dark text-lg leading-[22px] mt-20">
             Наша кофейня - это уютное пространство, где можно насладиться
             ароматным кофе и провести время в спокойной атмосфере, поработать
             за ноутбуком или встретиться с друзьями
           </p>
 
-          <div className="mt-8 lg:mt-16">
+          <div className="mt-16">
             <a
               href="#about-more"
               className="
@@ -41,8 +80,7 @@ function AboutSection() {
                 bg-brown-button text-brown-dark font-medium
                 rounded-[10px] uppercase tracking-wider
                 transition-colors hover:bg-brown-button/90
-                text-base py-[30px] w-full
-                lg:text-lg lg:py-0 lg:w-[280px] lg:h-[54px]
+                text-lg w-[280px] h-[54px]
               "
             >
               Подробнее

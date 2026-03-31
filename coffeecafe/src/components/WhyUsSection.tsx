@@ -50,7 +50,7 @@ function WhyUsSection() {
                 <img src={feature.icon} alt={feature.title} className="w-12 h-12 lg:w-16 lg:h-16" />
               </div>
 
-              <h3 className="text-cream font-normal text-xl lg:text-base xl:text-2xl">
+              <h3 className="text-cream font-normal text-xl lg:text-lg xl:text-2xl whitespace-nowrap">
                 {feature.title}
               </h3>
 

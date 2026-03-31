@@ -55,7 +55,7 @@ function ReviewsSection() {
   }, [activeIndex])
 
   return (
-    <section className="py-6 lg:pt-12 lg:pb-24">
+    <section className="pt-6 pb-[45px] lg:pt-12 lg:pb-24">
       <div className="px-4 lg:px-16 xl:px-28">
         <h2 className="font-heading font-semibold text-cream text-[28px] leading-tight text-center min-[480px]:text-left lg:text-[36px] lg:leading-[48px]">
           Отзывы
@@ -84,7 +84,7 @@ function ReviewsSection() {
           </div>
 
           {/* Точки-индикаторы */}
-          <div className="flex justify-center gap-2 mt-6">
+          <div className="flex justify-center gap-2 mt-[35px]">
             {reviews.map((review, i) => (
               <button
                 key={review.name}

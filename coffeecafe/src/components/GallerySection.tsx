@@ -54,7 +54,7 @@ function GallerySection() {
   }, [activeIndex])
 
   return (
-    <section className="py-12 lg:pt-24 lg:pb-12">
+    <section className="pt-12 pb-6 lg:pt-24 lg:pb-12">
       <div className="px-4 lg:px-16 xl:px-28">
         <h2 className="font-heading font-semibold text-cream text-[28px] leading-tight text-center min-[480px]:text-left lg:text-[36px] lg:leading-[48px]">
           Ждем вас в гости

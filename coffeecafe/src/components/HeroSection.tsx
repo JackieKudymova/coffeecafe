@@ -20,7 +20,7 @@ function HeroSection() {
 
       {/* Контент */}
       <div className="relative z-10 px-4 lg:px-16 xl:px-28 w-full">
-        <h1 className="font-heading font-semibold text-cream text-[34px] leading-[1.33] lg:text-[48px] lg:leading-[64px] tracking-[0.68px] lg:tracking-[0.96px] text-center min-[480px]:text-left max-w-[358px] lg:max-w-[616px] mx-auto min-[480px]:mx-0">
+        <h1 className="font-heading font-semibold text-cream text-[34px] leading-[1.33] lg:text-[48px] lg:leading-[64px] tracking-[0.68px] lg:tracking-[0.96px] text-center min-[480px]:text-left max-w-[358px] lg:max-w-none mx-auto min-[480px]:mx-0">
           Больше, чем просто кофе
         </h1>
 
@@ -36,7 +36,7 @@ function HeroSection() {
               text-center uppercase tracking-wider transition-colors
               hover:bg-brown-button/90
               text-base py-[30px] w-[358px]
-              lg:text-lg lg:py-4 lg:w-[271px]
+              lg:text-lg lg:py-0 lg:w-[280px] lg:h-[54px]
             "
           >
             Смотреть меню

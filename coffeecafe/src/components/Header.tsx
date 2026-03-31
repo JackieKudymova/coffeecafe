@@ -2,7 +2,10 @@
   Header — шапка сайта.
   На мобилках при нажатии бургера открывается полноэкранное меню (overlay).
   На десктопе — обычная горизонтальная навигация.
+  Логотип — векторный SVG, масштабируется под разрешение.
 */
+
+import logo from '../assets/images/logo.svg'
 
 /* Десктопная навигация включает "Главная", мобильная — нет (по макету) */
 const desktopLinks = [
@@ -10,14 +13,14 @@ const desktopLinks = [
   { label: 'О нас', href: '/about' },
   { label: 'Меню', href: '#menu' },
   { label: 'Новости и акции', href: '#news' },
-  { label: 'Контакты', href: '#contacts' },
+  { label: 'Контакты', href: '/contacts' },
 ]
 
 const mobileLinks = [
   { label: 'О нас', href: '/about' },
   { label: 'Меню', href: '#menu' },
   { label: 'Новости и акции', href: '#news' },
-  { label: 'Контакты', href: '#contacts' },
+  { label: 'Контакты', href: '/contacts' },
 ]
 
 interface HeaderProps {
@@ -31,8 +34,13 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
       {/* Шапка — всегда поверх контента */}
       <header className="absolute top-0 left-0 w-full z-20">
         <div className="flex items-center justify-between px-4 lg:px-16 xl:px-28 py-4 lg:py-6">
-          <a href="#" className="font-bold text-lg lg:text-2xl leading-[29px] text-[#ebebeb]">
-            ДомКофе
+          {/* Логотип — SVG, адаптивный размер: 106×25 мобилка, 127×29 десктоп */}
+          <a href="#">
+            <img
+              src={logo}
+              alt="ДомКофе"
+              className="h-[25px] lg:h-[29px] w-auto"
+            />
           </a>
 
           {/* Десктопная навигация */}
@@ -75,8 +83,12 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
       >
         {/* Верхняя строка: логотип + крестик */}
         <div className="flex items-center justify-between px-4 py-4">
-          <a href="#" className="font-bold text-lg text-cream">
-            ДомКофе
+          <a href="#">
+            <img
+              src={logo}
+              alt="ДомКофе"
+              className="h-[25px] w-auto"
+            />
           </a>
           <button
             className="text-cream"

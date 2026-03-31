@@ -23,8 +23,8 @@ function AboutPage() {
         onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
       />
 
-      {/* Отступ от шапки: мобилка 64px, десктоп ~96px */}
-      <main className="px-4 lg:px-16 xl:px-28 pt-16 lg:pt-32 pb-12 lg:pb-24">
+      {/* Отступ от шапки: мобилка 64px, десктоп ~96px. Без pb — картинка лавки упирается в подвал */}
+      <main className="px-4 lg:px-16 xl:px-28 pt-[97px] lg:pt-32">
 
         {/* === Строка 1: Заголовок + вводный текст | Фото бариста === */}
         <div className="flex flex-col lg:flex-row lg:gap-12 xl:gap-24">
@@ -117,7 +117,7 @@ function AboutPage() {
           <img
             src={lavkaImg}
             alt="Интерьер кофейни"
-            className="w-full h-[240px] lg:h-[464px] object-cover rounded-[10px]"
+            className="w-full h-[240px] lg:h-[464px] object-cover rounded-t-[10px]"
           />
         </div>
       </main>
