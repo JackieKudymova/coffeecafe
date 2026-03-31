@@ -21,10 +21,10 @@ function ContactsPage() {
       />
 
       {/* Основной контент. Хедер absolute ~57px, поэтому pt включает его высоту + отступ */}
-      <main className="px-4 lg:px-16 xl:px-28 pt-[112px] lg:pt-[149px]">
+      <main className="px-4 lg:px-16 xl:px-28 pt-[92px] lg:pt-[149px]">
 
         {/* Мобилка: одна колонка */}
-        <div className="lg:hidden">
+        <div className="lg:hidden pb-[50px]">
           <h1 className="font-heading font-semibold text-cream text-[28px] leading-tight">
             Контакты
           </h1>
@@ -183,7 +183,7 @@ function ContactForm({ className = '' }: { className?: string }) {
       <button
         type="button"
         className="
-          w-full h-[54px] mt-6 rounded-[10px]
+          w-full h-[80px] lg:h-[54px] mt-6 rounded-[10px]
           bg-brown-button text-brown-dark font-medium
           text-base lg:text-lg uppercase tracking-wider
           transition-colors hover:bg-brown-button/90
