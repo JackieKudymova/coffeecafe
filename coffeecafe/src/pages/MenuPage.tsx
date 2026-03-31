@@ -45,7 +45,7 @@ function MenuPage() {
                 key={cat.id}
                 onClick={() => setActiveTab(i)}
                 className={`
-                  shrink-0 min-w-[130px] lg:flex-1 lg:min-w-0 pb-[7px] text-center text-lg lg:text-2xl lg:pb-4 px-4 lg:px-0
+                  shrink-0 min-w-[130px] min-[520px]:flex-1 min-[520px]:min-w-0 pb-[7px] text-center text-lg lg:text-2xl lg:pb-4 px-4 min-[520px]:px-0
                   border-b-2 transition-colors cursor-pointer whitespace-nowrap
                   ${i === activeTab
                     ? 'text-cream font-medium border-[#c49a6c]'
@@ -61,7 +61,7 @@ function MenuPage() {
 
         {/* Сетка карточек: 1 колонка мобилка, 3 десктоп */}
         {activeCategory && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-x-8 lg:gap-y-[50px] mt-8 lg:mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-x-8 lg:gap-y-[50px] mt-8 lg:mt-10">
             {activeCategory.items.map((item) => (
               <MenuItemCard key={item.id} item={item} />
             ))}
