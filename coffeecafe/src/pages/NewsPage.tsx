@@ -40,8 +40,8 @@ function NewsPage() {
           Новости и акции
         </h1>
 
-        {/* Сетка: как в макете HF_desktop_news_1 — 3 колонки, гориз. отступ 32px между карточками */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-x-8 lg:gap-y-[50px] mt-[42px] lg:mt-[50px]">
+        {/* Отступ от h1 до карточек; между карточками по вертикали на моб — 55px (HF_phone_news_1) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-[55px] gap-x-6 md:gap-x-8 md:gap-y-8 lg:gap-x-8 lg:gap-y-[50px] mt-[32px] lg:mt-[50px]">
           {items.map((article) => (
             <NewsCard key={article.id} article={article} />
           ))}
@@ -90,7 +90,7 @@ function NewsCard({ article }: { article: NewsArticle }) {
 
       <Link
         to={`/news/${encodeURIComponent(article.id)}`}
-        className="mt-auto mt-10 lg:mt-10 flex w-[calc(75%-12px)] min-h-[54px] shrink-0 items-center justify-center self-start rounded-[10px] bg-brown-button px-4 text-center text-lg font-medium uppercase tracking-wider text-brown-dark transition-opacity hover:opacity-90"
+        className="mt-[35px] flex w-full min-h-[80px] shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-4 text-center text-base font-medium uppercase tracking-wider text-brown-dark transition-opacity hover:opacity-90 lg:min-h-[54px] lg:w-[calc(75%-12px)] lg:self-start lg:text-lg"
       >
         Подробнее
       </Link>
