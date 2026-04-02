@@ -1,5 +1,7 @@
 /*
   NewsArticlePage — одна новость (полный текст).
+  Десктоп: HF_desktop_about news_1 — сетка 12 кол., фото 9 кол., текст 8 кол.;
+  порядок: заголовок статьи → дата → абзацы; кнопка «Назад».
   id в URL совпадает с полем id из API.
 */
 
@@ -43,7 +45,6 @@ function NewsArticlePage() {
   )
 }
 
-/* Отдельный экран с key=id — при смене id состояние загрузки сбрасывается без лишнего setState в эффекте */
 function NewsArticleBody({ id }: { id: string }) {
   const [article, setArticle] = useState<NewsArticle | null | undefined>(undefined)
 
@@ -71,38 +72,52 @@ function NewsArticleBody({ id }: { id: string }) {
   }
 
   return (
-    <article className="max-w-[800px] mx-auto lg:mx-0">
-      <div className="aspect-[3/2] overflow-hidden rounded-[10px] w-full max-w-full">
-        <img
-          src={article.image}
-          alt={article.title}
-          className="w-full h-full object-cover"
-        />
+    <article className="lg:grid lg:grid-cols-12 lg:gap-x-8">
+      {/* Раздел как в макете */}
+      <h2 className="font-heading font-semibold text-cream text-[28px] lg:text-[36px] leading-tight lg:col-span-12">
+        Новости и акции
+      </h2>
+
+      {/* Превью: 9/12 колонок (904px в макете при контенте 1216px) */}
+      <div className="mt-12 lg:col-span-9 w-full">
+        <div className="aspect-[904/560] overflow-hidden rounded-[10px]">
+          <img
+            src={article.image}
+            alt={article.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
 
-      <time
-        dateTime={article.publishedAt}
-        className="block text-cream-dark text-base mt-6 lg:mt-10"
-      >
-        {formatNewsDate(article.publishedAt)}
-      </time>
+      {/* Текст: 8/12 — уже блока фото; межстрочный интервал как в Figma (18px / ~22px) */}
+      <div className="mt-8 lg:col-span-8 flex flex-col">
+        <h1 className="text-cream text-2xl font-normal leading-[29px]">
+          {article.title}
+        </h1>
 
-      <h1 className="font-heading font-semibold text-cream text-[28px] lg:text-[36px] leading-tight mt-3 lg:mt-4">
-        {article.title}
-      </h1>
+        <time
+          dateTime={article.publishedAt}
+          className="mt-4 block text-news-date/90 text-base font-normal leading-[19px]"
+        >
+          {formatNewsDate(article.publishedAt)}
+        </time>
 
-      <div className="mt-6 lg:mt-10 space-y-4 text-cream-dark text-lg leading-relaxed">
-        {article.content.map((paragraph, i) => (
-          <p key={i}>{paragraph}</p>
-        ))}
+        {/* Тело статьи: Figma 130:1020 — Inter 18 / Regular, line-height 21.78px (#efe7dd) */}
+        <div className="mt-6 space-y-3 text-cream-dark text-[18px] font-normal leading-[21.78px]">
+          {article.content.map((paragraph, i) => (
+            <p key={i} className="m-0">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+
+        <Link
+          to="/news"
+          className="mt-10 inline-flex w-full max-w-[280px] min-h-[54px] shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-6 text-center text-lg font-medium text-brown-dark transition-opacity hover:opacity-90"
+        >
+          Назад
+        </Link>
       </div>
-
-      <Link
-        to="/news"
-        className="inline-block mt-10 lg:mt-12 text-brown-button text-lg font-medium uppercase tracking-wider hover:opacity-90"
-      >
-        ← Все новости
-      </Link>
     </article>
   )
 }
