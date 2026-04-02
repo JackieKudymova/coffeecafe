@@ -113,7 +113,7 @@ function NewsArticleBody({ id }: { id: string }) {
 
         <Link
           to="/news"
-          className="mt-[33px] lg:mt-10 inline-flex w-full max-w-none lg:max-w-[280px] min-h-[80px] lg:min-h-[54px] shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-6 text-center text-base font-medium uppercase tracking-wider text-brown-dark transition-opacity hover:opacity-90 lg:text-lg"
+          className="mt-[33px] lg:mt-10 inline-flex w-full shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-6 text-center font-medium uppercase tracking-wider text-brown-dark transition-opacity hover:opacity-90 max-[763px]:max-w-none max-[763px]:min-h-[80px] max-[763px]:text-base min-[764px]:max-w-[280px] min-[764px]:min-h-[54px] min-[764px]:text-lg"
         >
           Назад
         </Link>
