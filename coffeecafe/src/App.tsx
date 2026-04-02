@@ -3,6 +3,8 @@ import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
 import ContactsPage from './pages/ContactsPage'
 import MenuPage from './pages/MenuPage'
+import NewsPage from './pages/NewsPage'
+import NewsArticlePage from './pages/NewsArticlePage'
 
 /*
   App — корневой компонент приложения.
@@ -18,6 +20,8 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contacts" element={<ContactsPage />} />
         <Route path="/menu" element={<MenuPage />} />
+        <Route path="/news" element={<NewsPage />} />
+        <Route path="/news/:id" element={<NewsArticlePage />} />
       </Routes>
     </BrowserRouter>
   )

@@ -6,6 +6,7 @@
 
 import type { Promo } from '../types/promo'
 import coffeeNewsImage from '../assets/images/coffee_news.png'
+import { PROMO_NEWS_ID } from './mockNews'
 
 export const fallbackPromo: Promo = {
   id: 'default',
@@ -13,5 +14,5 @@ export const fallbackPromo: Promo = {
   description:
     'Начните день с чашки ароматного кофе. В утренние часы действует специальная цена на кофейные напитки',
   image: coffeeNewsImage,
-  link: '/news/morning-coffee',
+  link: `/news/${PROMO_NEWS_ID}`,
 }

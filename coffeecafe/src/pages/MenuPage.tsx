@@ -39,23 +39,26 @@ function MenuPage() {
 
         {/* Табы разделов */}
         {categories.length > 0 && (
-          <div className="mt-[30px] lg:mt-12 flex overflow-x-auto scrollbar-hide">
-            {categories.map((cat, i) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveTab(i)}
-                className={`
-                  shrink-0 min-w-[130px] min-[520px]:flex-1 min-[520px]:min-w-0 pb-[7px] text-center text-lg lg:text-2xl lg:pb-4 px-4 min-[520px]:px-0
-                  border-b-2 transition-colors cursor-pointer whitespace-nowrap
-                  ${i === activeTab
-                    ? 'text-cream font-medium border-[#c49a6c]'
-                    : 'text-cream font-normal border-[#4b372b] hover:text-cream/80'
-                  }
-                `}
-              >
-                {cat.name}
-              </button>
-            ))}
+          <div className="mt-[30px] lg:mt-12 overflow-x-auto scrollbar-hide">
+            {/* Одна сплошная линия на контейнере; gap только между подписями, не между сегментами border */}
+            <div className="flex w-max min-w-full min-[520px]:w-full gap-x-4 min-[520px]:gap-0 border-b-2 border-[#4b372b]">
+              {categories.map((cat, i) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveTab(i)}
+                  className={`
+                    shrink-0 min-w-[130px] min-[520px]:flex-1 min-[520px]:min-w-0 pb-[7px] text-center text-lg lg:text-2xl lg:pb-4 px-4 min-[520px]:px-0
+                    border-b-2 -mb-[2px] transition-colors cursor-pointer whitespace-nowrap relative z-0
+                    ${i === activeTab
+                      ? 'text-cream font-medium border-[#c49a6c] z-[1]'
+                      : 'text-cream font-normal border-transparent hover:text-cream/80'
+                    }
+                  `}
+                >
+                  {cat.name}
+                </button>
+              ))}
+            </div>
           </div>
         )}
 

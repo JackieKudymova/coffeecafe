@@ -15,6 +15,15 @@
   --color-brown-dark: #2a1c17;
   --color-brown-bg: #1f1714;
   --color-brown-footer: #140f0c;
+
+  /* Пагинация — фрейм HF_desktop_news_1 / UI-KIT */
+  --color-pagination-bg: #4b372b;
+  --color-pagination-bg-hover: #6d5240;
+  --color-pagination-bg-active: #5d483c;
+  --color-pagination-bg-disabled: #2a211c;
+  --color-pagination-text-disabled: #7a736d;
+  /* Дата в карточке новости */
+  --color-news-date: #a8a5a1;
 }
 
 @layer base {

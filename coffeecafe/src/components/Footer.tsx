@@ -16,7 +16,7 @@ const navCol1 = [
 
 const navCol2 = [
   { label: 'Политика конфиденциальности', href: '#' },
-  { label: 'Новости и акции', href: '#news' },
+  { label: 'Новости и акции', href: '/news' },
   { label: 'Контакты', href: '/contacts' },
 ]
 
