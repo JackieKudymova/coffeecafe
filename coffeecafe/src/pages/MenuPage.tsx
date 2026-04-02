@@ -31,7 +31,7 @@ function MenuPage() {
         onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
       />
 
-      <main className="px-4 lg:px-16 xl:px-28 pt-[88px] lg:pt-[149px] pb-12 lg:pb-[105px]">
+      <main className="px-4 lg:px-16 xl:px-28 pt-[88px] lg:pt-[149px] pb-12 lg:pb-[97px]">
         {/* Заголовок */}
         <h1 className="font-heading font-semibold text-cream text-[28px] lg:text-[36px] leading-tight">
           Меню

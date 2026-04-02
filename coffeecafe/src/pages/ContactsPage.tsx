@@ -9,6 +9,8 @@ import { useState } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import vkIcon from '../assets/images/mingcute_vkontakte-fill.svg'
+import defaultCheckboxIcon from '../assets/images/default-chckbox-vector.svg'
+import selectedCheckboxIcon from '../assets/images/selected-vector.svg'
 
 function ContactsPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -144,36 +146,41 @@ function ContactForm({ className = '' }: { className?: string }) {
         <PhoneInput />
       </label>
 
-      {/* Поле «Сообщение». Обёртка с padding чтобы отступы не исчезали при вводе */}
+      {/* Поле «Сообщение». Высота: 4 строки × 22px line-height + py-4 (32px) ≈ 120px; иначе нижняя строка обрезается */}
       <div className="block mt-4">
         <span className="text-cream-dark text-base lg:text-lg">Сообщение</span>
-        <div className="mt-2 h-[100px] p-2 rounded-[10px] bg-[#5d483c] overflow-hidden">
+        <div className="mt-2 h-[120px] px-4 py-4 rounded-[10px] bg-[#5d483c] overflow-hidden">
           <textarea
             placeholder="Введите ваше сообщение"
             className="
-              w-full h-full px-1 bg-transparent text-cream placeholder-[#cfc6bb]
-              text-base leading-[22px] outline-none resize-none
+              w-full h-full min-h-0 bg-transparent text-cream placeholder-[#cfc6bb]
+              text-base leading-[22px] outline-none resize-none overflow-y-auto
               scrollbar-hide
             "
           />
         </div>
       </div>
 
-      {/* Чекбокс согласия. 16px от textarea */}
+      {/* Чекбокс UI Kit: default — default-chckbox-vector.svg; checked — selected-vector.svg */}
       <label className="flex items-center gap-[14px] mt-4 cursor-pointer">
-        <input
-          type="checkbox"
-          className="
-            w-6 h-6 shrink-0 appearance-none rounded
-            border-2 border-[#cfc6bb] bg-transparent
-            checked:border-brown-button relative
-            cursor-pointer
-            checked:after:content-['✓'] checked:after:absolute
-            checked:after:inset-0 checked:after:flex checked:after:items-center
-            checked:after:justify-center checked:after:text-brown-button
-            checked:after:text-sm checked:after:font-bold
-          "
-        />
+        <span className="relative inline-flex h-6 w-6 shrink-0 rounded">
+          <input
+            type="checkbox"
+            className="peer sr-only outline-none focus:outline-none focus-visible:outline-none"
+          />
+          <img
+            src={defaultCheckboxIcon}
+            alt=""
+            className="absolute inset-0 h-full w-full object-contain peer-checked:hidden"
+            aria-hidden
+          />
+          <img
+            src={selectedCheckboxIcon}
+            alt=""
+            className="absolute inset-0 hidden h-full w-full object-contain peer-checked:block"
+            aria-hidden
+          />
+        </span>
         <span className="text-[#cfc6bb] text-sm lg:text-base leading-[19px]">
           Даю согласие на обработку персональных данных
         </span>
@@ -197,44 +204,48 @@ function ContactForm({ className = '' }: { className?: string }) {
 }
 
 /*
-  PhoneInput — поле ввода телефона с российской маской +7 (XXX) XXX-XX-XX.
-  Автоматически подставляет +7, убирает лишние символы,
-  форматирует номер по мере ввода.
+  PhoneInput — маска +7 (XXX) XXX-XX-XX. Пока нет цифр — value пустой, виден placeholder.
+  Ведущие 7/8 — один раз; одна 7/8 даёт +7 (; при стирании назад — value '', снова виден placeholder.
 */
+const PHONE_PLACEHOLDER_EXAMPLE = '+7 (900) 123-45-67'
+
 function PhoneInput() {
-  const [value, setValue] = useState('+7')
+  const [value, setValue] = useState('')
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const raw = e.target.value
+    const digitsOnly = raw.replace(/\D/g, '')
+    const isDeleting = raw.length < value.length
 
-    // Извлекаем только цифры из ввода
-    let digits = raw.replace(/\D/g, '')
-
-    // Если начинается с 7 или 8 — убираем код страны
-    if (digits.length > 0 && (digits[0] === '7' || digits[0] === '8')) {
-      digits = digits.slice(1)
+    let national = digitsOnly
+    if (national.length > 0 && (national[0] === '7' || national[0] === '8')) {
+      national = national.slice(1)
     }
+    national = national.slice(0, 10)
 
-    // Ограничиваем до 10 цифр (номер без кода страны)
-    digits = digits.slice(0, 10)
-
-    // Если цифр нет — показываем только +7
-    if (digits.length === 0) {
-      setValue('+7')
+    if (national.length === 0) {
+      if (digitsOnly.length === 1 && (digitsOnly[0] === '7' || digitsOnly[0] === '8')) {
+        if (isDeleting) {
+          setValue('')
+          return
+        }
+        setValue('+7 (')
+        return
+      }
+      setValue('')
       return
     }
 
-    // Форматируем по маске +7 (XXX) XXX-XX-XX
     let formatted = '+7 ('
-    formatted += digits.slice(0, 3)
-    if (digits.length > 3) {
-      formatted += ') ' + digits.slice(3, 6)
+    formatted += national.slice(0, 3)
+    if (national.length > 3) {
+      formatted += ') ' + national.slice(3, 6)
     }
-    if (digits.length > 6) {
-      formatted += '-' + digits.slice(6, 8)
+    if (national.length > 6) {
+      formatted += '-' + national.slice(6, 8)
     }
-    if (digits.length > 8) {
-      formatted += '-' + digits.slice(8, 10)
+    if (national.length > 8) {
+      formatted += '-' + national.slice(8, 10)
     }
 
     setValue(formatted)
@@ -243,9 +254,11 @@ function PhoneInput() {
   return (
     <input
       type="tel"
+      inputMode="tel"
+      autoComplete="tel"
       value={value}
       onChange={handleChange}
-      placeholder="+7 (___) ___-__-__"
+      placeholder={PHONE_PLACEHOLDER_EXAMPLE}
       className="
         w-full mt-2 h-[51px] px-4 rounded-[10px]
         bg-[#5d483c] text-cream placeholder-[#cfc6bb]
