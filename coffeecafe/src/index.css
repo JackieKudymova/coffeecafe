@@ -23,6 +23,15 @@
   }
 }
 
+/* Полноэкранные оверлеи на iOS Safari: один только 100vh даёт зазоры у краёв */
+@layer utilities {
+  .min-h-ios-screen {
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+  }
+}
+
 /* Скрываем скроллбар в каруселях */
 .scrollbar-hide {
   -ms-overflow-style: none;
