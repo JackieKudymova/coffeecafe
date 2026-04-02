@@ -1,7 +1,7 @@
 /*
   NewsArticlePage — одна новость (полный текст).
   Десктоп: HF_desktop_about news_1 — сетка 12 кол., фото 9 кол., текст 8 кол.;
-  порядок: заголовок статьи → дата → абзацы; кнопка «Назад».
+  Мобилка: HF_phone_about news_1 — отступы и кнопка 358×80 как в макете.
   id в URL совпадает с полем id из API.
 */
 
@@ -24,7 +24,7 @@ function NewsArticlePage() {
         onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
       />
 
-      <main className="px-4 lg:px-16 xl:px-28 pt-[88px] lg:pt-[149px] pb-12 lg:pb-[97px]">
+      <main className="px-4 lg:px-16 xl:px-28 pt-[88px] lg:pt-[149px] pb-[48px] lg:pb-[97px]">
         {!id && (
           <div className="max-w-2xl">
             <p className="text-cream text-lg">Новость не найдена.</p>
@@ -74,13 +74,13 @@ function NewsArticleBody({ id }: { id: string }) {
   return (
     <article className="lg:grid lg:grid-cols-12 lg:gap-x-8">
       {/* Раздел как в макете */}
-      <h2 className="font-heading font-semibold text-cream text-[28px] lg:text-[36px] leading-tight lg:col-span-12">
+      <h2 className="m-0 font-heading font-semibold text-cream text-[28px] lg:text-[36px] leading-tight lg:col-span-12">
         Новости и акции
       </h2>
 
-      {/* Превью: 9/12 колонок (904px в макете при контенте 1216px) */}
-      <div className="mt-12 lg:col-span-9 w-full">
-        <div className="aspect-[904/560] overflow-hidden rounded-[10px]">
+      {/* Превью: моб. слот 358×240; десктоп 9/12 кол. Отступы под замер: −4/−10px к «сырому» mt из‑за line-box заголовков. */}
+      <div className="mt-[32px] lg:mt-12 lg:col-span-9 w-full">
+        <div className="aspect-[358/240] lg:aspect-[904/560] overflow-hidden rounded-[10px]">
           <img
             src={article.image}
             alt={article.title}
@@ -89,21 +89,21 @@ function NewsArticleBody({ id }: { id: string }) {
         </div>
       </div>
 
-      {/* Текст: 8/12 — уже блока фото; межстрочный интервал как в Figma (18px / ~22px) */}
-      <div className="mt-8 lg:col-span-8 flex flex-col">
-        <h1 className="text-cream text-2xl font-normal leading-[29px]">
+      {/* Текст: моб. отступы по HF_phone_about news_1; десктоп 8 кол. */}
+      <div className="mt-[22px] lg:mt-8 lg:col-span-8 flex flex-col">
+        <h1 className="m-0 text-cream text-xl font-normal leading-[24px] lg:text-2xl lg:leading-[29px]">
           {article.title}
         </h1>
 
         <time
           dateTime={article.publishedAt}
-          className="mt-4 block text-news-date/90 text-base font-normal leading-[19px]"
+          className="mt-[10px] lg:mt-4 block text-news-date/90 text-[13px] font-normal leading-[15.73px] lg:text-base lg:leading-[19px]"
         >
           {formatNewsDate(article.publishedAt)}
         </time>
 
-        {/* Тело статьи: Figma 130:1020 — Inter 18 / Regular, line-height 21.78px (#efe7dd) */}
-        <div className="mt-6 space-y-3 text-cream-dark text-[18px] font-normal leading-[21.78px]">
+        {/* Десктоп: 130:1020 — 18px / 21.78px; моб.: 400:2390 — 16px / 19.36px */}
+        <div className="mt-[16px] lg:mt-6 space-y-3 text-cream-dark text-[16px] font-normal leading-[19.36px] lg:text-[18px] lg:leading-[21.78px]">
           {article.content.map((paragraph, i) => (
             <p key={i} className="m-0">
               {paragraph}
@@ -113,7 +113,7 @@ function NewsArticleBody({ id }: { id: string }) {
 
         <Link
           to="/news"
-          className="mt-10 inline-flex w-full max-w-[280px] min-h-[54px] shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-6 text-center text-lg font-medium text-brown-dark transition-opacity hover:opacity-90"
+          className="mt-[33px] lg:mt-10 inline-flex w-full max-w-none lg:max-w-[280px] min-h-[80px] lg:min-h-[54px] shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-6 text-center text-base font-medium uppercase tracking-wider text-brown-dark transition-opacity hover:opacity-90 lg:text-lg"
         >
           Назад
         </Link>
