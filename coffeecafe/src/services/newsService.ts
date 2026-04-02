@@ -7,8 +7,19 @@
 import type { NewsArticle } from '../types/news'
 import { mockNews } from '../data/mockNews'
 
-/** Сколько карточек на странице (должно совпадать с будущим query pageSize). */
+/** Сколько карточек по умолчанию (мобила и десктоп lg+). */
 export const NEWS_PAGE_SIZE = 3
+
+/** Планшет 768–1023px: 4 карточки на странице (по сетке). */
+export const NEWS_PAGE_SIZE_TABLET = 4
+
+/** Размер страницы в зависимости от ширины окна (SSR: 3). */
+export function getNewsPageSizeForViewport(): number {
+  if (typeof window === 'undefined') return NEWS_PAGE_SIZE
+  const w = window.innerWidth
+  if (w >= 768 && w < 1024) return NEWS_PAGE_SIZE_TABLET
+  return NEWS_PAGE_SIZE
+}
 
 export interface NewsPageResult {
   items: NewsArticle[]

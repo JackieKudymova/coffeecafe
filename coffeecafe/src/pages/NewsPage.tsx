@@ -4,29 +4,47 @@
   Карточка: порядок и отступы как в Figma HF_desktop_news_1 (фото → заголовок → текст → дата #a8a5a1 → кнопка на всю ширину).
 */
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Pagination from '../components/Pagination'
 import type { NewsArticle } from '../types/news'
-import { fetchNewsPage, NEWS_PAGE_SIZE } from '../services/newsService'
+import { fetchNewsPage, getNewsPageSizeForViewport } from '../services/newsService'
 import { formatNewsDate } from '../utils/formatNewsDate'
+import { useNewsCardRowHeights } from '../hooks/useNewsCardRowHeights'
 
 function NewsPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [items, setItems] = useState<NewsArticle[]>([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
+  const [pageSize, setPageSize] = useState(getNewsPageSizeForViewport)
+  const newsGridRef = useRef<HTMLDivElement>(null)
+
+  useNewsCardRowHeights(newsGridRef, items.length, page, pageSize)
 
   useEffect(() => {
-    fetchNewsPage(page, NEWS_PAGE_SIZE).then((res) => {
+    const onResize = () => {
+      const next = getNewsPageSizeForViewport()
+      setPageSize((prev) => {
+        if (next === prev) return prev
+        setPage(1)
+        return next
+      })
+    }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  useEffect(() => {
+    fetchNewsPage(page, pageSize).then((res) => {
       setItems(res.items)
       setTotal(res.total)
     })
-  }, [page])
+  }, [page, pageSize])
 
-  const totalPages = Math.max(1, Math.ceil(total / NEWS_PAGE_SIZE))
+  const totalPages = Math.max(1, Math.ceil(total / pageSize))
 
   return (
     <div className={isMenuOpen ? 'bg-brown-button min-w-[320px]' : 'bg-brown-bg min-w-[320px]'}>
@@ -41,7 +59,10 @@ function NewsPage() {
         </h1>
 
         {/* Отступ от h1 до карточек; между карточками по вертикали на моб — 55px (HF_phone_news_1) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-[55px] gap-x-6 md:gap-x-8 md:gap-y-8 lg:gap-x-8 lg:gap-y-[50px] mt-[32px] lg:mt-[50px]">
+        <div
+          ref={newsGridRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-[55px] gap-x-6 md:gap-x-8 md:gap-y-8 lg:gap-x-8 lg:gap-y-[50px] mt-[32px] lg:mt-[50px]"
+        >
           {items.map((article) => (
             <NewsCard key={article.id} article={article} />
           ))}
@@ -62,7 +83,7 @@ function NewsPage() {
 
 function NewsCard({ article }: { article: NewsArticle }) {
   return (
-    <article className="flex flex-col h-full">
+    <article className="flex flex-col h-full" data-news-card>
       {/* Превью 384×272 в макете → то же соотношение сторон */}
       <div className="aspect-[384/272] overflow-hidden rounded-[10px]">
         <img
@@ -72,12 +93,18 @@ function NewsCard({ article }: { article: NewsArticle }) {
         />
       </div>
 
-      {/* Отступы по фрейму: под фото → заголовок → текст → дата → кнопка */}
-      <h2 className="text-cream font-medium text-2xl leading-[1.2] mt-6 lg:mt-8">
+      {/* Высоты заголовка/анонса в ряду выравниваются в useNewsCardRowHeights */}
+      <h2
+        data-news-title
+        className="text-cream font-medium text-2xl leading-[1.2] mt-6 lg:mt-8 md:line-clamp-2"
+      >
         {article.title}
       </h2>
 
-      <p className="text-cream-dark text-lg font-normal leading-[22px] mt-[14px] lg:mt-[18px] line-clamp-3">
+      <p
+        data-news-excerpt
+        className="text-cream-dark text-lg font-normal leading-[22px] mt-[14px] lg:mt-[18px] line-clamp-3"
+      >
         {article.excerpt}
       </p>
 
