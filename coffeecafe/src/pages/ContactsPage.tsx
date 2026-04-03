@@ -19,8 +19,15 @@ import selectedCheckboxIcon from '../assets/images/selected-vector.svg'
 function ContactsPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [formSent, setFormSent] = useState(false)
+  /** Смена key сбрасывает поля обеих форм после закрытия «Спасибо» */
+  const [formResetKey, setFormResetKey] = useState(0)
   /** Совпадает с breakpoint `lg` в Tailwind — модалка только здесь, не на мобилке/планшете */
   const isDesktopLayout = useMediaQuery('(min-width: 1024px)')
+
+  function handleThanksClose() {
+    setFormSent(false)
+    setFormResetKey((k) => k + 1)
+  }
 
   return (
     <div className={isMenuOpen ? 'bg-brown-button min-w-[320px]' : 'bg-brown-bg min-w-[320px]'}>
@@ -73,6 +80,7 @@ function ContactsPage() {
 
           <div className="relative mt-10">
             <ContactForm
+              key={formResetKey}
               className={formSent ? 'invisible pointer-events-none' : ''}
               ariaHidden={formSent}
               onSuccess={() => setFormSent(true)}
@@ -81,7 +89,7 @@ function ContactsPage() {
               <div className="absolute inset-0 z-10">
                 <ContactThanksPanel
                   variant="inline"
-                  onClose={() => setFormSent(false)}
+                  onClose={handleThanksClose}
                 />
               </div>
             ) : null}
@@ -132,11 +140,14 @@ function ContactsPage() {
 
           {/* Колонки 7-12: форма всегда; модалка «Спасибо» — только оверлей (портал), без снятия формы с экрана */}
           <div className="col-span-6 relative">
-            <ContactForm onSuccess={() => setFormSent(true)} />
+            <ContactForm
+              key={formResetKey}
+              onSuccess={() => setFormSent(true)}
+            />
             {formSent && isDesktopLayout ? (
               <ContactThanksPanel
                 variant="modal"
-                onClose={() => setFormSent(false)}
+                onClose={handleThanksClose}
               />
             ) : null}
           </div>
@@ -194,16 +205,16 @@ function ContactForm({
       onSubmit={handleSubmit}
       noValidate
       aria-hidden={ariaHidden}
-      className={`bg-[#4b372b] rounded-[10px] p-8 lg:px-14 lg:pt-[48px] lg:pb-[48px] ${className}`}
+      className={`bg-[#4b372b] rounded-[10px] px-8 pt-[22px] pb-8 lg:px-14 lg:pt-[48px] lg:pb-[48px] ${className}`}
     >
-      <h2 className="text-cream font-normal text-2xl leading-snug lg:leading-normal">
+      <h2 className="text-cream font-normal text-2xl leading-[1.2] lg:leading-normal">
         Есть вопросы?
         <br className="min-[500px]:hidden" aria-hidden />
         {' '}
         Напишите нам
       </h2>
 
-      <label className="block mt-6 lg:mt-[24px]">
+      <label className="block mt-[13px] lg:mt-[24px]">
         <span
           className={`block text-base lg:text-lg leading-[22px] ${errors.name ? 'text-input-border-error' : 'text-cream-dark'}`}
         >
