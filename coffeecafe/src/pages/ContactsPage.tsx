@@ -1,19 +1,26 @@
 /*
   ContactsPage — страница «Контакты».
-  Десктоп: 12-колоночная сетка — контактная информация (кол. 1-6) + форма (кол. 7-12).
-  Мобилка: одна колонка — контакты сверху, форма снизу.
-  Форма пока без отправки — только визуал по макету.
+  Десктоп (lg, 1024px+): 12-колоночная сетка — контакты + форма; «Спасибо» — модалка (портал).
+  Мобилка/планшет: форма остаётся в разметке (скрыта при успехе), «Спасибо» — absolute inset-0,
+  те же ширина/высота, что у формы; без портала.
+  Важно: портал в body не наследует display:none у скрытой lg-сетки — модалку монтируем только
+  при min-width: 1024px, иначе на узком экране был бы дубль (inline + модалка сверху).
 */
 
 import { useState } from 'react'
+import { useMediaQuery } from '../hooks/useMediaQuery'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import ContactThanksPanel from '../components/ContactThanksPanel'
 import VkIcon from '../components/icons/VkIcon'
 import defaultCheckboxIcon from '../assets/images/default-chckbox-vector.svg'
 import selectedCheckboxIcon from '../assets/images/selected-vector.svg'
 
 function ContactsPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [formSent, setFormSent] = useState(false)
+  /** Совпадает с breakpoint `lg` в Tailwind — модалка только здесь, не на мобилке/планшете */
+  const isDesktopLayout = useMediaQuery('(min-width: 1024px)')
 
   return (
     <div className={isMenuOpen ? 'bg-brown-button min-w-[320px]' : 'bg-brown-bg min-w-[320px]'}>
@@ -64,8 +71,21 @@ function ContactsPage() {
             </div>
           </div>
 
-          {/* Форма — мобилка */}
-          <ContactForm className="mt-10" />
+          <div className="relative mt-10">
+            <ContactForm
+              className={formSent ? 'invisible pointer-events-none' : ''}
+              ariaHidden={formSent}
+              onSuccess={() => setFormSent(true)}
+            />
+            {formSent ? (
+              <div className="absolute inset-0 z-10">
+                <ContactThanksPanel
+                  variant="inline"
+                  onClose={() => setFormSent(false)}
+                />
+              </div>
+            ) : null}
+          </div>
         </div>
 
         {/* Десктоп: 12-колоночная сетка */}
@@ -110,9 +130,15 @@ function ContactsPage() {
             </div>
           </div>
 
-          {/* Колонки 7-12: форма обратной связи */}
-          <div className="col-span-6">
-            <ContactForm />
+          {/* Колонки 7-12: форма всегда; модалка «Спасибо» — только оверлей (портал), без снятия формы с экрана */}
+          <div className="col-span-6 relative">
+            <ContactForm onSuccess={() => setFormSent(true)} />
+            {formSent && isDesktopLayout ? (
+              <ContactThanksPanel
+                variant="modal"
+                onClose={() => setFormSent(false)}
+              />
+            ) : null}
           </div>
         </div>
       </main>
@@ -127,19 +153,73 @@ function ContactsPage() {
   Тёмный фон #4b372b, поля ввода #5d483c, placeholder #cfc6bb.
   Кнопка «Отправить» — стандартный стиль brown-button.
 */
-function ContactForm({ className = '' }: { className?: string }) {
+function ContactForm({
+  className = '',
+  onSuccess,
+  ariaHidden = false,
+}: {
+  className?: string
+  onSuccess: () => void
+  /** Скрыта визуально, но остаётся в потоке — для overlay «Спасибо» 1:1 по размеру */
+  ariaHidden?: boolean
+}) {
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [message, setMessage] = useState('')
+  const [consent, setConsent] = useState(false)
+  /** Ошибки полей (UI-KIT Error). Сообщение — необязательное поле, error к нему не применяем. */
+  const [errors, setErrors] = useState({
+    name: false,
+    phone: false,
+    consent: false,
+  })
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+
+    const next = {
+      name: !name.trim(),
+      phone: !isPhoneComplete(phone),
+      consent: !consent,
+    }
+    setErrors(next)
+
+    if (next.name || next.phone || next.consent) return
+
+    onSuccess()
+  }
+
   return (
-    <div className={`bg-[#4b372b] rounded-[10px] p-8 lg:px-14 lg:pt-[48px] lg:pb-[48px] ${className}`}>
-      <h2 className="text-cream font-normal text-xl lg:text-2xl whitespace-nowrap">
-        Есть вопросы? Напишите нам
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      aria-hidden={ariaHidden}
+      className={`bg-[#4b372b] rounded-[10px] p-8 lg:px-14 lg:pt-[48px] lg:pb-[48px] ${className}`}
+    >
+      <h2 className="text-cream font-normal text-2xl leading-snug lg:leading-normal">
+        Есть вопросы?
+        <br className="min-[500px]:hidden" aria-hidden />
+        {' '}
+        Напишите нам
       </h2>
 
-      {/* Поле «Имя». Отступы по Figma: label 24px от заголовка, input 8px от label */}
       <label className="block mt-6 lg:mt-[24px]">
-        <span className="text-cream-dark text-base lg:text-lg">Имя</span>
+        <span
+          className={`block text-base lg:text-lg leading-[22px] ${errors.name ? 'text-input-border-error' : 'text-cream-dark'}`}
+        >
+          {errors.name ? 'Укажите имя' : 'Имя'}
+        </span>
         <input
           type="text"
+          name="name"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value)
+            setErrors((prev) => ({ ...prev, name: false }))
+          }}
           placeholder="Как к вам обращаться?"
+          autoComplete="name"
+          aria-invalid={errors.name}
           className="
             w-full mt-2 h-[51px] px-4 rounded-[10px]
             bg-input-bg text-cream placeholder:text-placeholder
@@ -151,13 +231,22 @@ function ContactForm({ className = '' }: { className?: string }) {
         />
       </label>
 
-      {/* Поле «Телефон». Маска +7 (XXX) XXX-XX-XX */}
       <label className="block mt-4">
-        <span className="text-cream-dark text-base lg:text-lg">Телефон</span>
-        <PhoneInput />
+        <span
+          className={`block text-base lg:text-lg leading-[22px] ${errors.phone ? 'text-input-border-error' : 'text-cream-dark'}`}
+        >
+          {errors.phone ? 'Введите корректный номер телефона' : 'Телефон'}
+        </span>
+        <PhoneInput
+          value={phone}
+          invalid={errors.phone}
+          onChange={(v) => {
+            setPhone(v)
+            setErrors((prev) => ({ ...prev, phone: false }))
+          }}
+        />
       </label>
 
-      {/* Поле «Сообщение». Высота: 4 строки × 22px line-height + py-4 (32px) ≈ 120px; иначе нижняя строка обрезается */}
       <div className="block mt-4">
         <span className="text-cream-dark text-base lg:text-lg">Сообщение</span>
         <div
@@ -170,6 +259,9 @@ function ContactForm({ className = '' }: { className?: string }) {
           "
         >
           <textarea
+            name="message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             placeholder="Введите ваше сообщение"
             className="
               w-full h-full min-h-0 bg-transparent text-cream placeholder:text-placeholder
@@ -180,11 +272,21 @@ function ContactForm({ className = '' }: { className?: string }) {
         </div>
       </div>
 
-      {/* Чекбокс UI Kit: default — default-chckbox-vector.svg; checked — selected-vector.svg */}
       <label className="flex items-center gap-[14px] mt-4 cursor-pointer">
-        <span className="relative inline-flex h-6 w-6 shrink-0 rounded-sm transition-opacity hover:opacity-90">
+        <span
+          className={`
+            relative inline-flex h-6 w-6 shrink-0 rounded-sm transition-opacity hover:opacity-90
+            ${errors.consent ? 'ring-2 ring-input-border-error ring-offset-0' : ''}
+          `}
+        >
           <input
             type="checkbox"
+            checked={consent}
+            aria-invalid={errors.consent}
+            onChange={(e) => {
+              setConsent(e.target.checked)
+              setErrors((prev) => ({ ...prev, consent: false }))
+            }}
             className="peer sr-only outline-none focus:outline-none focus-visible:outline-none"
           />
           <img
@@ -200,14 +302,15 @@ function ContactForm({ className = '' }: { className?: string }) {
             aria-hidden
           />
         </span>
-        <span className="text-[#cfc6bb] text-sm lg:text-base leading-[19px]">
+        <span
+          className={`text-sm lg:text-base leading-[19px] ${errors.consent ? 'text-input-border-error' : 'text-[#cfc6bb]'}`}
+        >
           Даю согласие на обработку персональных данных
         </span>
       </label>
 
-      {/* Кнопка «Отправить». 24px от чекбокса */}
       <button
-        type="button"
+        type="submit"
         className="
           w-full h-[80px] lg:h-[54px] mt-6 rounded-[10px]
           bg-brown-button text-brown-dark font-medium
@@ -219,19 +322,32 @@ function ContactForm({ className = '' }: { className?: string }) {
       >
         Отправить
       </button>
-    </div>
+    </form>
   )
+}
+
+function isPhoneComplete(masked: string): boolean {
+  const digits = masked.replace(/\D/g, '')
+  if (digits.length === 11 && digits[0] === '7') return true
+  if (digits.length === 11 && digits[0] === '8') return true
+  return false
 }
 
 /*
   PhoneInput — маска +7 (XXX) XXX-XX-XX. Пока нет цифр — value пустой, виден placeholder.
-  Ведущие 7/8 — один раз; одна 7/8 даёт +7 (; при стирании назад — value '', снова виден placeholder.
+  Контролируемый: value и onChange с родителя.
 */
 const PHONE_PLACEHOLDER_EXAMPLE = '+7 (900) 123-45-67'
 
-function PhoneInput() {
-  const [value, setValue] = useState('')
-
+function PhoneInput({
+  value,
+  onChange,
+  invalid,
+}: {
+  value: string
+  onChange: (value: string) => void
+  invalid?: boolean
+}) {
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const raw = e.target.value
     const digitsOnly = raw.replace(/\D/g, '')
@@ -246,13 +362,13 @@ function PhoneInput() {
     if (national.length === 0) {
       if (digitsOnly.length === 1 && (digitsOnly[0] === '7' || digitsOnly[0] === '8')) {
         if (isDeleting) {
-          setValue('')
+          onChange('')
           return
         }
-        setValue('+7 (')
+        onChange('+7 (')
         return
       }
-      setValue('')
+      onChange('')
       return
     }
 
@@ -268,7 +384,7 @@ function PhoneInput() {
       formatted += '-' + national.slice(8, 10)
     }
 
-    setValue(formatted)
+    onChange(formatted)
   }
 
   return (
@@ -279,6 +395,7 @@ function PhoneInput() {
       value={value}
       onChange={handleChange}
       placeholder={PHONE_PLACEHOLDER_EXAMPLE}
+      aria-invalid={invalid === true}
       className="
         w-full mt-2 h-[51px] px-4 rounded-[10px]
         bg-input-bg text-cream placeholder:text-placeholder

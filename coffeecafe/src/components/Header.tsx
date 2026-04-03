@@ -119,7 +119,7 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
   return (
     <>
       {/* Шапка — всегда поверх контента */}
-      <header className="absolute top-0 left-0 w-full z-20">
+      <header className="absolute top-0 left-0 w-full z-50">
         <div className="flex items-center justify-between px-4 lg:px-16 xl:px-28 py-4 lg:py-6">
           {/* Логотип — SVG, адаптивный размер: 106×25 мобилка, 127×29 десктоп */}
           <a href="/">
