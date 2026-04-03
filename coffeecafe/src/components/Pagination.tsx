@@ -1,6 +1,6 @@
 /*
-  Пагинация: квадратные кнопки без скругления (UI-KIT), состояния default / hover / active.
-  «Назад» только если страница не первая, «Вперёд» — если не последняя (не disabled, а скрытие).
+  Пагинация: скругление 10px как HF_desktop_news_1 / UI-KIT; состояния default / hover / active / focus.
+  Стрелки «назад»/«вперёд» при недоступности скрыты (в ките есть disabled-ячейка — у нас намеренно без неё).
 */
 
 import type { ButtonHTMLAttributes } from 'react'
@@ -82,12 +82,13 @@ function PaginationButton({
       type="button"
       disabled={disabled}
       className={`
-        inline-flex size-10 shrink-0 items-center justify-center rounded-none p-0 text-center text-lg font-medium transition-colors
+        inline-flex size-10 shrink-0 items-center justify-center rounded-[10px] p-0 text-center text-lg font-medium transition-colors
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg
         ${disabled
           ? 'bg-pagination-bg-disabled text-pagination-text-disabled cursor-not-allowed'
           : isActive
             ? 'bg-pagination-bg-active text-cream cursor-default'
-            : 'bg-pagination-bg text-cream-dark hover:bg-pagination-bg-hover hover:text-cream cursor-pointer'
+            : 'bg-pagination-bg text-cream-dark hover:bg-pagination-bg-hover hover:text-cream active:bg-pagination-bg-active cursor-pointer'
         }
         ${className}
       `}

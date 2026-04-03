@@ -12,9 +12,19 @@
   --color-cream: #faf6f0;
   --color-cream-dark: #efe7dd;
   --color-brown-button: #d2a679;
+  /* UI-KIT buttons: Group 1473–1476 */
+  --color-brown-button-hover: #c49567;
+  --color-brown-button-active: #a68463;
   --color-brown-dark: #2a1c17;
   --color-brown-bg: #1f1714;
   --color-brown-footer: #140f0c;
+
+  /* Поля формы — UI-KIT Input (Frame 1895–1898) */
+  --color-input-bg: #5d483c;
+  --color-input-bg-hover: #6a5447;
+  --color-input-border-focus: #d2a679;
+  --color-input-border-error: #d96b5f;
+  --color-placeholder: #cfc6bb;
 
   /* Пагинация — фрейм HF_desktop_news_1 / UI-KIT */
   --color-pagination-bg: #4b372b;

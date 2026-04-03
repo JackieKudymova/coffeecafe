@@ -9,6 +9,7 @@
 
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
+import { NavLink } from 'react-router-dom'
 import logo from '../assets/images/logo.svg'
 
 /* Десктопная навигация включает "Главная", мобильная — нет (по макету) */
@@ -88,7 +89,8 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
           />
         </a>
         <button
-          className="text-cream"
+          type="button"
+          className="text-cream transition-colors hover:text-brown-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 rounded-sm"
           onClick={onToggleMenu}
           aria-label="Закрыть меню"
         >
@@ -101,14 +103,14 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
       {/* Пункты меню — по центру экрана */}
       <nav className="flex-1 flex flex-col items-center justify-center gap-8 min-h-0">
         {mobileLinks.map((link) => (
-          <a
+          <NavLink
             key={link.label}
-            href={link.href}
-            className="text-cream font-normal text-[28px] leading-[34px]"
+            to={link.href}
+            className="font-normal text-[28px] leading-[34px] text-cream transition-colors hover:text-brown-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brown-button rounded-sm"
             onClick={onToggleMenu}
           >
             {link.label}
-          </a>
+          </NavLink>
         ))}
       </nav>
     </div>
@@ -131,19 +133,21 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
           {/* Десктопная навигация */}
           <nav className="hidden lg:flex gap-4 lg:gap-8">
             {desktopLinks.map((link) => (
-              <a
+              <NavLink
                 key={link.label}
-                href={link.href}
-                className="text-cream font-medium text-sm lg:text-lg leading-[22px] hover:text-brown-button transition-colors"
+                to={link.href}
+                end={link.href === '/'}
+                className="font-medium text-sm lg:text-lg leading-[22px] text-cream transition-colors hover:text-brown-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
               >
                 {link.label}
-              </a>
+              </NavLink>
             ))}
           </nav>
 
           {/* Бургер-кнопка (только мобилки) */}
           <button
-            className="lg:hidden text-cream"
+            type="button"
+            className="lg:hidden text-cream transition-colors hover:text-brown-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 rounded-sm"
             onClick={onToggleMenu}
             aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
           >

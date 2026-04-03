@@ -113,7 +113,7 @@ function NewsArticleBody({ id }: { id: string }) {
 
         <Link
           to="/news"
-          className="mt-[33px] lg:mt-10 inline-flex w-full shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-6 text-center font-medium uppercase tracking-wider text-brown-dark transition-opacity hover:opacity-90 max-[763px]:max-w-none max-[763px]:min-h-[80px] max-[763px]:text-base min-[764px]:max-w-[280px] min-[764px]:min-h-[54px] min-[764px]:text-lg"
+          className="mt-[33px] lg:mt-10 inline-flex w-full shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-6 text-center font-medium uppercase tracking-wider text-brown-dark transition-colors hover:bg-brown-button-hover active:bg-brown-button-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg max-[763px]:max-w-none max-[763px]:min-h-[80px] max-[763px]:text-base min-[764px]:max-w-[280px] min-[764px]:min-h-[54px] min-[764px]:text-lg"
         >
           Назад
         </Link>

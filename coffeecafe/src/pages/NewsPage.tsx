@@ -117,7 +117,7 @@ function NewsCard({ article }: { article: NewsArticle }) {
 
       <Link
         to={`/news/${encodeURIComponent(article.id)}`}
-        className="mt-[35px] flex w-full min-h-[80px] shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-4 text-center text-base font-medium uppercase tracking-wider text-brown-dark transition-opacity hover:opacity-90 lg:min-h-[54px] lg:w-[calc(75%-12px)] lg:self-start lg:text-lg"
+        className="mt-[35px] flex w-full min-h-[80px] shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-4 text-center text-base font-medium uppercase tracking-wider text-brown-dark transition-colors hover:bg-brown-button-hover active:bg-brown-button-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg lg:min-h-[54px] lg:w-[calc(75%-12px)] lg:self-start lg:text-lg"
       >
         Подробнее
       </Link>

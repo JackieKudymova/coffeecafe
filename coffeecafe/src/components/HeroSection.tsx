@@ -34,7 +34,8 @@ function HeroSection() {
             className="
               bg-brown-button text-brown-dark font-medium rounded-[10px]
               text-center uppercase tracking-wider transition-colors
-              hover:bg-brown-button/90
+              hover:bg-brown-button-hover active:bg-brown-button-active
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
               text-base py-[30px] w-[358px]
               lg:inline-flex lg:items-center lg:justify-center
               lg:text-lg lg:py-0 lg:w-[280px] lg:h-[54px]

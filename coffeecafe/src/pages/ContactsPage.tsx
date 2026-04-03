@@ -8,7 +8,7 @@
 import { useState } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import vkIcon from '../assets/images/mingcute_vkontakte-fill.svg'
+import VkIcon from '../components/icons/VkIcon'
 import defaultCheckboxIcon from '../assets/images/default-chckbox-vector.svg'
 import selectedCheckboxIcon from '../assets/images/selected-vector.svg'
 
@@ -54,8 +54,12 @@ function ContactsPage() {
 
             <div>
               <span className="block">Соцсети:</span>
-              <a href="#" aria-label="VK" className="inline-block mt-[20px]">
-                <img src={vkIcon} alt="ВКонтакте" className="w-8 h-8" />
+              <a
+                href="#"
+                aria-label="ВКонтакте"
+                className="mt-[20px] inline-block text-cream transition-colors duration-150 ease-out hover:text-brown-button active:text-brown-button [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
+              >
+                <VkIcon className="h-8 w-8" />
               </a>
             </div>
           </div>
@@ -95,8 +99,12 @@ function ContactsPage() {
 
               <div>
                 <span className="block">Соцсети:</span>
-                <a href="#" aria-label="VK" className="inline-block mt-[20px]">
-                  <img src={vkIcon} alt="ВКонтакте" className="w-8 h-8" />
+                <a
+                  href="#"
+                  aria-label="ВКонтакте"
+                  className="mt-[20px] inline-block text-cream transition-colors duration-150 ease-out hover:text-brown-button active:text-brown-button [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
+                >
+                  <VkIcon className="h-8 w-8" />
                 </a>
               </div>
             </div>
@@ -134,8 +142,11 @@ function ContactForm({ className = '' }: { className?: string }) {
           placeholder="Как к вам обращаться?"
           className="
             w-full mt-2 h-[51px] px-4 rounded-[10px]
-            bg-[#5d483c] text-cream placeholder-[#cfc6bb]
-            text-base outline-none
+            bg-input-bg text-cream placeholder:text-placeholder
+            border-2 border-transparent text-base outline-none transition-colors
+            hover:bg-input-bg-hover
+            focus-visible:border-input-border-focus focus-visible:outline-none
+            aria-invalid:border-input-border-error
           "
         />
       </label>
@@ -149,11 +160,19 @@ function ContactForm({ className = '' }: { className?: string }) {
       {/* Поле «Сообщение». Высота: 4 строки × 22px line-height + py-4 (32px) ≈ 120px; иначе нижняя строка обрезается */}
       <div className="block mt-4">
         <span className="text-cream-dark text-base lg:text-lg">Сообщение</span>
-        <div className="mt-2 h-[120px] px-4 py-4 rounded-[10px] bg-[#5d483c] overflow-hidden">
+        <div
+          className="
+            mt-2 h-[120px] px-4 py-4 rounded-[10px] overflow-hidden
+            bg-input-bg border-2 border-transparent transition-colors
+            hover:bg-input-bg-hover
+            focus-within:border-input-border-focus
+            has-[[aria-invalid=true]]:border-input-border-error
+          "
+        >
           <textarea
             placeholder="Введите ваше сообщение"
             className="
-              w-full h-full min-h-0 bg-transparent text-cream placeholder-[#cfc6bb]
+              w-full h-full min-h-0 bg-transparent text-cream placeholder:text-placeholder
               text-base leading-[22px] outline-none resize-none overflow-y-auto
               scrollbar-hide
             "
@@ -163,7 +182,7 @@ function ContactForm({ className = '' }: { className?: string }) {
 
       {/* Чекбокс UI Kit: default — default-chckbox-vector.svg; checked — selected-vector.svg */}
       <label className="flex items-center gap-[14px] mt-4 cursor-pointer">
-        <span className="relative inline-flex h-6 w-6 shrink-0 rounded">
+        <span className="relative inline-flex h-6 w-6 shrink-0 rounded-sm transition-opacity hover:opacity-90">
           <input
             type="checkbox"
             className="peer sr-only outline-none focus:outline-none focus-visible:outline-none"
@@ -193,7 +212,8 @@ function ContactForm({ className = '' }: { className?: string }) {
           w-full h-[80px] lg:h-[54px] mt-6 rounded-[10px]
           bg-brown-button text-brown-dark font-medium
           text-base lg:text-lg uppercase tracking-wider
-          transition-colors hover:bg-brown-button/90
+          transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
+          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#4b372b]
           cursor-pointer
         "
       >
@@ -261,8 +281,11 @@ function PhoneInput() {
       placeholder={PHONE_PLACEHOLDER_EXAMPLE}
       className="
         w-full mt-2 h-[51px] px-4 rounded-[10px]
-        bg-[#5d483c] text-cream placeholder-[#cfc6bb]
-        text-base outline-none
+        bg-input-bg text-cream placeholder:text-placeholder
+        border-2 border-transparent text-base outline-none transition-colors
+        hover:bg-input-bg-hover
+        focus-visible:border-input-border-focus focus-visible:outline-none
+        aria-invalid:border-input-border-error
       "
     />
   )

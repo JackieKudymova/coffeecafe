@@ -49,9 +49,10 @@ function MenuPage() {
                   className={`
                     shrink-0 min-w-[130px] min-[520px]:flex-1 min-[520px]:min-w-0 pb-[7px] text-center text-lg lg:text-2xl lg:pb-4 px-4 min-[520px]:px-0
                     border-b-2 -mb-[2px] transition-colors cursor-pointer whitespace-nowrap relative z-0
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg rounded-sm
                     ${i === activeTab
                       ? 'text-cream font-medium border-[#c49a6c] z-[1]'
-                      : 'text-cream font-normal border-transparent hover:text-cream/80'
+                      : 'text-cream font-normal border-transparent hover:border-[#4b372b] hover:font-medium active:text-cream'
                     }
                   `}
                 >

@@ -52,7 +52,8 @@ function MenuSection() {
               inline-flex items-center justify-center
               bg-brown-button text-brown-dark font-medium
               rounded-[10px] uppercase tracking-wider
-              transition-colors hover:bg-brown-button/90
+              transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
               text-base py-[30px] w-full
               lg:text-lg lg:py-0 lg:w-[271px] lg:h-[54px]
             "
