@@ -184,8 +184,10 @@ function ContactForm({
     phone: false,
     consent: false,
   })
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
     const next = {
@@ -197,7 +199,35 @@ function ContactForm({
 
     if (next.name || next.phone || next.consent) return
 
-    onSuccess()
+    setSubmitError(null)
+    setIsSubmitting(true)
+    try {
+      const res = await fetch('/api/contacts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name.trim(),
+          phone: phone.trim(),
+          message: message.trim() ? message.trim() : null,
+        }),
+      })
+      if (!res.ok) {
+        let detail = 'Не удалось отправить сообщение'
+        try {
+          const errBody = (await res.json()) as { detail?: unknown }
+          if (typeof errBody.detail === 'string') detail = errBody.detail
+        } catch {
+          /* ignore */
+        }
+        setSubmitError(detail)
+        return
+      }
+      onSuccess()
+    } catch {
+      setSubmitError('Нет связи с сервером. Попробуйте позже.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -320,18 +350,25 @@ function ContactForm({
         </span>
       </label>
 
+      {submitError ? (
+        <p className="mt-4 text-sm text-input-border-error" role="alert">
+          {submitError}
+        </p>
+      ) : null}
+
       <button
         type="submit"
+        disabled={isSubmitting}
         className="
           w-full h-[80px] lg:h-[54px] mt-6 rounded-[10px]
           bg-brown-button text-brown-dark font-medium
           text-base lg:text-lg uppercase tracking-wider
           transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#4b372b]
-          cursor-pointer
+          cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed
         "
       >
-        Отправить
+        {isSubmitting ? 'Отправка…' : 'Отправить'}
       </button>
     </form>
   )

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
 import ContactsPage from './pages/ContactsPage'
@@ -6,12 +6,24 @@ import MenuPage from './pages/MenuPage'
 import NewsPage from './pages/NewsPage'
 import NewsArticlePage from './pages/NewsArticlePage'
 import NotFoundPage from './pages/NotFoundPage'
+import AdminLoginPage from './pages/admin/AdminLoginPage'
+import AdminDashboard from './pages/admin/AdminDashboard'
+import AdminCategories from './pages/admin/AdminCategories'
+import AdminItems from './pages/admin/AdminItems'
+import AdminNews from './pages/admin/AdminNews'
+import AdminMessages from './pages/admin/AdminMessages'
+import AdminLayout from './components/admin/AdminLayout'
+import { getAdminToken } from './services/adminService'
 
 /*
   App — корневой компонент приложения.
   BrowserRouter обеспечивает навигацию между страницами без перезагрузки.
-  Routes определяет какой компонент показывать для каждого URL.
 */
+
+function ProtectedAdmin() {
+  if (!getAdminToken()) return <Navigate to="/admin/login" replace />
+  return <Outlet />
+}
 
 function App() {
   return (
@@ -23,6 +35,16 @@ function App() {
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/news/:id" element={<NewsArticlePage />} />
+        <Route path="/admin/login" element={<AdminLoginPage />} />
+        <Route path="/admin" element={<ProtectedAdmin />}>
+          <Route element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="categories" element={<AdminCategories />} />
+            <Route path="items" element={<AdminItems />} />
+            <Route path="news" element={<AdminNews />} />
+            <Route path="messages" element={<AdminMessages />} />
+          </Route>
+        </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

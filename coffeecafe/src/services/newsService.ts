@@ -1,7 +1,5 @@
 /*
-  Сервис новостей: список с пагинацией и одна запись по id.
-
-  Сейчас данные из mockNews. Когда бэкенд будет готов — заменить на fetch к API.
+  Сервис новостей: список с пагинацией и одна запись по id (GET /api/news).
 */
 
 import type { NewsArticle } from '../types/news'
@@ -28,40 +26,31 @@ export interface NewsPageResult {
   pageSize: number
 }
 
-// const API_URL = '/api/news'
+const API_BASE = '/api/news'
 
 export async function fetchNewsPage(
   page: number,
   pageSize: number = NEWS_PAGE_SIZE,
 ): Promise<NewsPageResult> {
-  // --- Пока бэкенда нет ---
-  const total = mockNews.length
-  const start = (page - 1) * pageSize
-  const items = mockNews.slice(start, start + pageSize)
-  return Promise.resolve({ items, total, page, pageSize })
-
-  // --- Свой бэкенд ---
-  // try {
-  //   const res = await fetch(`${API_URL}?page=${page}&pageSize=${pageSize}`)
-  //   if (!res.ok) throw new Error('news')
-  //   return await res.json()
-  // } catch {
-  //   const total = mockNews.length
-  //   const start = (page - 1) * pageSize
-  //   return { items: mockNews.slice(start, start + pageSize), total, page, pageSize }
-  // }
+  try {
+    const res = await fetch(`${API_BASE}?page=${page}&pageSize=${pageSize}`)
+    if (!res.ok) throw new Error('news')
+    return await res.json()
+  } catch {
+    const total = mockNews.length
+    const start = (page - 1) * pageSize
+    const items = mockNews.slice(start, start + pageSize)
+    return { items, total, page, pageSize }
+  }
 }
 
 export async function fetchNewsById(id: string): Promise<NewsArticle | null> {
-  const found = mockNews.find((a) => a.id === id)
-  return Promise.resolve(found ?? null)
-
-  // try {
-  //   const res = await fetch(`${API_URL}/${id}`)
-  //   if (res.status === 404) return null
-  //   if (!res.ok) throw new Error('news')
-  //   return await res.json()
-  // } catch {
-  //   return mockNews.find((a) => a.id === id) ?? null
-  // }
+  try {
+    const res = await fetch(`${API_BASE}/${id}`)
+    if (res.status === 404) return null
+    if (!res.ok) throw new Error('news')
+    return await res.json()
+  } catch {
+    return mockNews.find((a) => a.id === id) ?? null
+  }
 }
