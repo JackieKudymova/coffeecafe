@@ -5,6 +5,7 @@ import ContactsPage from './pages/ContactsPage'
 import MenuPage from './pages/MenuPage'
 import NewsPage from './pages/NewsPage'
 import NewsArticlePage from './pages/NewsArticlePage'
+import NotFoundPage from './pages/NotFoundPage'
 
 /*
   App — корневой компонент приложения.
@@ -22,6 +23,7 @@ function App() {
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/news/:id" element={<NewsArticlePage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   )
