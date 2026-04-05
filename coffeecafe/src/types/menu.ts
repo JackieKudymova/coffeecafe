@@ -24,3 +24,7 @@ export interface MenuCategory {
   name: string
   items: MenuItem[]       // позиции в разделе
 }
+
+/** Deep-link на /menu: ?category=<id раздела>, напр. кофе */
+export const MENU_CATEGORY_QUERY_KEY = 'category'
+export const MENU_COFFEE_CATEGORY_ID = 'coffee'

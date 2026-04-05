@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom'
+import { useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
 import ContactsPage from './pages/ContactsPage'
@@ -20,6 +21,15 @@ import { getAdminToken } from './services/adminService'
   BrowserRouter обеспечивает навигацию между страницами без перезагрузки.
 */
 
+/** SPA не сбрасывает scroll при смене маршрута — без этого новая страница открывается с той же прокруткой, что была на прошлой. */
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+  return null
+}
+
 function ProtectedAdmin() {
   if (!getAdminToken()) return <Navigate to="/admin/login" replace />
   return <Outlet />
@@ -28,6 +38,7 @@ function ProtectedAdmin() {
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />

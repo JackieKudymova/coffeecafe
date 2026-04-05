@@ -59,3 +59,33 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/*
+  Долгое нажатие на мобилках: выделение текста на кнопках и коричневых CTA.
+  Не в @layer — иначе часть утилит/префлайта может перебить user-select.
+  -webkit-touch-callout: iOS, меню по long-press на ссылке.
+  ::selection — запасной вариант, если движок всё же показывает selection.
+*/
+button,
+[role='button'],
+[type='submit'],
+[type='reset'],
+a.bg-brown-button {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+button *,
+a.bg-brown-button * {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+button::selection,
+button *::selection,
+a.bg-brown-button::selection,
+a.bg-brown-button *::selection {
+  background-color: var(--color-brown-button);
+  color: var(--color-brown-dark);
+}

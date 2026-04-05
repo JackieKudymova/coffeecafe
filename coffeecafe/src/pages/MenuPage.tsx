@@ -6,21 +6,32 @@
 */
 
 import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import type { MenuCategory, MenuItem } from '../types/menu'
+import {
+  type MenuCategory,
+  type MenuItem,
+  MENU_CATEGORY_QUERY_KEY,
+} from '../types/menu'
 import { fetchMenu } from '../services/menuService'
 
 function MenuPage() {
+  const [searchParams] = useSearchParams()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [categories, setCategories] = useState<MenuCategory[]>([])
   const [activeTab, setActiveTab] = useState(0)
 
   useEffect(() => {
+    const categoryId = searchParams.get(MENU_CATEGORY_QUERY_KEY)
     fetchMenu().then((data) => {
       setCategories(data)
+      if (categoryId) {
+        const idx = data.findIndex((c) => c.id === categoryId)
+        if (idx >= 0) setActiveTab(idx)
+      }
     })
-  }, [])
+  }, [searchParams])
 
   const activeCategory = categories[activeTab]
 

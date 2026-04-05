@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom'
 import heroBg from '../assets/images/hero-bg.jpg'
 import heroBgMobile from '../assets/images/hero-bg-mobile.jpg'
+import { MENU_CATEGORY_QUERY_KEY, MENU_COFFEE_CATEGORY_ID } from '../types/menu'
 
 /*
   HeroSection — первый экран (hero-блок).
@@ -29,8 +31,8 @@ function HeroSection() {
         </p>
 
         <div className="mt-14 lg:mt-12 flex justify-center min-[480px]:justify-start">
-          <a
-            href="#menu"
+          <Link
+            to={`/menu?${MENU_CATEGORY_QUERY_KEY}=${MENU_COFFEE_CATEGORY_ID}`}
             className="
               bg-brown-button text-brown-dark font-medium rounded-[10px]
               text-center uppercase tracking-wider transition-colors
@@ -42,7 +44,7 @@ function HeroSection() {
             "
           >
             Смотреть меню
-          </a>
+          </Link>
         </div>
       </div>
     </section>

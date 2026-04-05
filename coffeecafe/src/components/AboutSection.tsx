@@ -5,6 +5,7 @@
   Кнопка «Подробнее»: 280×54px, Inter Medium 18px.
 */
 
+import { Link } from 'react-router-dom'
 import aboutImg from '../assets/images/about.png'
 
 function AboutSection() {
@@ -30,8 +31,8 @@ function AboutSection() {
         </p>
 
         <div className="mt-8">
-          <a
-            href="#about-more"
+          <Link
+            to="/about"
             className="
               inline-flex items-center justify-center
               bg-brown-button text-brown-dark font-medium
@@ -42,7 +43,7 @@ function AboutSection() {
             "
           >
             Подробнее
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -74,8 +75,8 @@ function AboutSection() {
           </p>
 
           <div className="mt-16">
-            <a
-              href="#about-more"
+            <Link
+              to="/about"
               className="
                 inline-flex items-center justify-center
                 bg-brown-button text-brown-dark font-medium
@@ -86,7 +87,7 @@ function AboutSection() {
               "
             >
               Подробнее
-            </a>
+            </Link>
           </div>
         </div>
       </div>

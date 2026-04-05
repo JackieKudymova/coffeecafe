@@ -5,7 +5,9 @@
   Подписи: Inter Regular 24px.
 */
 
+import { Link } from 'react-router-dom'
 import coffeeImg from '../assets/images/menu-coffee.png'
+import { MENU_CATEGORY_QUERY_KEY, MENU_COFFEE_CATEGORY_ID } from '../types/menu'
 import teaImg from '../assets/images/menu-tea.png'
 import dessertsImg from '../assets/images/menu-desserts.png'
 import bakeryImg from '../assets/images/menu-bakery.png'
@@ -46,8 +48,8 @@ function MenuSection() {
 
         {/* Кнопка 271×54 по центру */}
         <div className="mt-10 lg:mt-16 flex justify-center">
-          <a
-            href="/menu"
+          <Link
+            to={`/menu?${MENU_CATEGORY_QUERY_KEY}=${MENU_COFFEE_CATEGORY_ID}`}
             className="
               inline-flex items-center justify-center
               bg-brown-button text-brown-dark font-medium
@@ -59,7 +61,7 @@ function MenuSection() {
             "
           >
             Смотреть меню
-          </a>
+          </Link>
         </div>
       </div>
     </section>

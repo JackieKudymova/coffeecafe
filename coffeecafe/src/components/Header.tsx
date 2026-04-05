@@ -106,7 +106,16 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
           <NavLink
             key={link.label}
             to={link.href}
-            className="font-normal text-[28px] leading-[34px] text-cream transition-colors hover:text-brown-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brown-button rounded-sm"
+            className={({ isActive }) =>
+              [
+                'font-normal text-[28px] leading-[34px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brown-button rounded-sm',
+                isActive
+                  ? 'text-brown-button'
+                  : 'text-cream hover:text-brown-button',
+                /* тач: при удержании не белый, тот же акцент что и hover */
+                'active:text-brown-button',
+              ].join(' ')
+            }
             onClick={onToggleMenu}
           >
             {link.label}

@@ -1,14 +1,10 @@
 /*
   ContactsPage — страница «Контакты».
-  Десктоп (lg, 1024px+): 12-колоночная сетка — контакты + форма; «Спасибо» — модалка (портал).
-  Мобилка/планшет: форма остаётся в разметке (скрыта при успехе), «Спасибо» — absolute inset-0,
-  те же ширина/высота, что у формы; без портала.
-  Важно: портал в body не наследует display:none у скрытой lg-сетки — модалку монтируем только
-  при min-width: 1024px, иначе на узком экране был бы дубль (inline + модалка сверху).
+  Десктоп (lg+): 12-колоночная сетка — контакты + форма.
+  «Спасибо» после отправки — одна модалка (портал в body, поверх экрана) на всех ширинах.
 */
 
 import { useState } from 'react'
-import { useMediaQuery } from '../hooks/useMediaQuery'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import ContactThanksPanel from '../components/ContactThanksPanel'
@@ -21,8 +17,6 @@ function ContactsPage() {
   const [formSent, setFormSent] = useState(false)
   /** Смена key сбрасывает поля обеих форм после закрытия «Спасибо» */
   const [formResetKey, setFormResetKey] = useState(0)
-  /** Совпадает с breakpoint `lg` в Tailwind — модалка только здесь, не на мобилке/планшете */
-  const isDesktopLayout = useMediaQuery('(min-width: 1024px)')
 
   function handleThanksClose() {
     setFormSent(false)
@@ -78,21 +72,11 @@ function ContactsPage() {
             </div>
           </div>
 
-          <div className="relative mt-10">
+          <div className="mt-10">
             <ContactForm
               key={formResetKey}
-              className={formSent ? 'invisible pointer-events-none' : ''}
-              ariaHidden={formSent}
               onSuccess={() => setFormSent(true)}
             />
-            {formSent ? (
-              <div className="absolute inset-0 z-10">
-                <ContactThanksPanel
-                  variant="inline"
-                  onClose={handleThanksClose}
-                />
-              </div>
-            ) : null}
           </div>
         </div>
 
@@ -138,21 +122,19 @@ function ContactsPage() {
             </div>
           </div>
 
-          {/* Колонки 7-12: форма всегда; модалка «Спасибо» — только оверлей (портал), без снятия формы с экрана */}
-          <div className="col-span-6 relative">
+          {/* Колонки 7-12: форма; «Спасибо» — портал на уровне страницы */}
+          <div className="col-span-6">
             <ContactForm
               key={formResetKey}
               onSuccess={() => setFormSent(true)}
             />
-            {formSent && isDesktopLayout ? (
-              <ContactThanksPanel
-                variant="modal"
-                onClose={handleThanksClose}
-              />
-            ) : null}
           </div>
         </div>
       </main>
+
+      {formSent ? (
+        <ContactThanksPanel onClose={handleThanksClose} />
+      ) : null}
 
       <Footer />
     </div>
@@ -179,7 +161,11 @@ function ContactForm({
   const [message, setMessage] = useState('')
   const [consent, setConsent] = useState(false)
   /** Ошибки полей (UI-KIT Error). Сообщение — необязательное поле, error к нему не применяем. */
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useState<{
+    name: boolean
+    phone: false | 'empty' | 'incomplete'
+    consent: boolean
+  }>({
     name: false,
     phone: false,
     consent: false,
@@ -190,9 +176,17 @@ function ContactForm({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
+    const digits = phone.replace(/\D/g, '')
+    const phoneInvalid = !isPhoneComplete(phone)
+    const phoneErr: false | 'empty' | 'incomplete' = phoneInvalid
+      ? digits.length === 0
+        ? 'empty'
+        : 'incomplete'
+      : false
+
     const next = {
       name: !name.trim(),
-      phone: !isPhoneComplete(phone),
+      phone: phoneErr,
       consent: !consent,
     }
     setErrors(next)
@@ -276,11 +270,15 @@ function ContactForm({
         <span
           className={`block text-base lg:text-lg leading-[22px] ${errors.phone ? 'text-input-border-error' : 'text-cream-dark'}`}
         >
-          {errors.phone ? 'Введите корректный номер телефона' : 'Телефон'}
+          {errors.phone === 'empty'
+            ? 'Введите номер телефона'
+            : errors.phone === 'incomplete'
+              ? 'Введите корректный номер телефона'
+              : 'Телефон'}
         </span>
         <PhoneInput
           value={phone}
-          invalid={errors.phone}
+          invalid={Boolean(errors.phone)}
           onChange={(v) => {
             setPhone(v)
             setErrors((prev) => ({ ...prev, phone: false }))
@@ -314,12 +312,11 @@ function ContactForm({
       </div>
 
       <label className="flex items-center gap-[14px] mt-4 cursor-pointer">
-        <span
-          className={`
-            relative inline-flex h-6 w-6 shrink-0 rounded-sm transition-opacity hover:opacity-90
-            ${errors.consent ? 'ring-2 ring-input-border-error ring-offset-0' : ''}
-          `}
-        >
+        {/*
+          Ошибка: в default-chckbox-vector.svg уже есть серая обводка — внешний border давал «второе кольцо».
+          Если не отмечено и есть ошибка — показываем только рамку error без SVG.
+        */}
+        <span className="relative inline-flex h-6 w-6 shrink-0 rounded-sm transition-opacity hover:opacity-90">
           <input
             type="checkbox"
             checked={consent}
@@ -330,18 +327,26 @@ function ContactForm({
             }}
             className="peer sr-only outline-none focus:outline-none focus-visible:outline-none"
           />
-          <img
-            src={defaultCheckboxIcon}
-            alt=""
-            className="absolute inset-0 h-full w-full object-contain peer-checked:hidden"
-            aria-hidden
-          />
-          <img
-            src={selectedCheckboxIcon}
-            alt=""
-            className="absolute inset-0 hidden h-full w-full object-contain peer-checked:block"
-            aria-hidden
-          />
+          {consent ? (
+            <img
+              src={selectedCheckboxIcon}
+              alt=""
+              className="absolute inset-0 h-full w-full object-contain"
+              aria-hidden
+            />
+          ) : errors.consent ? (
+            <span
+              className="absolute inset-0 rounded-sm border-2 border-input-border-error bg-transparent pointer-events-none"
+              aria-hidden
+            />
+          ) : (
+            <img
+              src={defaultCheckboxIcon}
+              alt=""
+              className="absolute inset-0 h-full w-full object-contain"
+              aria-hidden
+            />
+          )}
         </span>
         <span
           className={`text-sm lg:text-base leading-[19px] ${errors.consent ? 'text-input-border-error' : 'text-[#cfc6bb]'}`}

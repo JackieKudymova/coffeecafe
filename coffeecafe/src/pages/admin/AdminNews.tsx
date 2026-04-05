@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   createNews,
   deleteNews,
@@ -15,6 +15,104 @@ function contentToText(lines: string[]): string {
 
 function textToContent(text: string): string[] {
   return text.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean)
+}
+
+/** Кнопка «три точки» и строгое контекстное меню (редактирование / удаление). */
+function NewsRowMenu({
+  row,
+  onEdit,
+  onDelete,
+}: {
+  row: NewsAdminRow
+  onEdit: (row: NewsAdminRow) => void
+  onDelete: (id: string) => void | Promise<void>
+}) {
+  const [open, setOpen] = useState(false)
+  const rootRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!open) return
+    function handlePointerDown(e: PointerEvent) {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
+        setOpen(false)
+      }
+    }
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('pointerdown', handlePointerDown)
+    document.addEventListener('keydown', handleKey)
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown)
+      document.removeEventListener('keydown', handleKey)
+    }
+  }, [open])
+
+  return (
+    <div className="relative flex justify-end" ref={rootRef}>
+      <button
+        type="button"
+        aria-label="Меню действий"
+        aria-haspopup="menu"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+        className="
+          flex h-9 w-9 shrink-0 items-center justify-center rounded-md
+          text-cream/75 transition-colors
+          hover:bg-white/[0.06] hover:text-cream
+          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/25
+        "
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+          <circle cx="12" cy="5" r="2" />
+          <circle cx="12" cy="12" r="2" />
+          <circle cx="12" cy="19" r="2" />
+        </svg>
+      </button>
+
+      {open ? (
+        <div
+          role="menu"
+          className="
+            absolute right-0 top-full z-30 mt-1 min-w-[200px]
+            rounded-md border border-cream/12 bg-[#1f1814]
+            py-1 shadow-[0_8px_24px_rgba(0,0,0,0.45)]
+          "
+        >
+          <button
+            type="button"
+            role="menuitem"
+            className="
+              flex w-full px-3 py-2.5 text-left text-sm font-normal tracking-normal text-cream/95
+              transition-colors hover:bg-white/[0.06]
+              focus-visible:bg-white/[0.06] focus-visible:outline-none
+            "
+            onClick={() => {
+              onEdit(row)
+              setOpen(false)
+            }}
+          >
+            Редактировать
+          </button>
+          <button
+            type="button"
+            role="menuitem"
+            className="
+              flex w-full px-3 py-2.5 text-left text-sm font-normal tracking-normal
+              text-[#c49a8f] transition-colors hover:bg-red-950/40 hover:text-[#e8b4a8]
+              focus-visible:bg-red-950/40 focus-visible:outline-none
+            "
+            onClick={() => {
+              void onDelete(row.id)
+              setOpen(false)
+            }}
+          >
+            Удалить
+          </button>
+        </div>
+      ) : null}
+    </div>
+  )
 }
 
 export default function AdminNews() {
@@ -227,7 +325,9 @@ export default function AdminNews() {
               <th className="p-3 font-medium">ID</th>
               <th className="p-3 font-medium">Заголовок</th>
               <th className="p-3 font-medium">Статус</th>
-              <th className="p-3 font-medium w-40">Действия</th>
+              <th className="p-3 font-medium w-14 text-right pr-4">
+                <span className="sr-only">Действия</span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -236,21 +336,8 @@ export default function AdminNews() {
                 <td className="p-3 text-cream">{row.id}</td>
                 <td className="p-3 text-cream">{row.title}</td>
                 <td className="p-3 text-cream-dark">{row.is_published ? 'опубликована' : 'черновик'}</td>
-                <td className="p-3 flex flex-wrap gap-2">
-                  <button
-                    type="button"
-                    onClick={() => startEdit(row)}
-                    className="px-3 py-1.5 rounded-[8px] bg-brown-button text-brown-dark text-xs font-medium uppercase"
-                  >
-                    Изменить
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => void remove(row.id)}
-                    className="px-3 py-1.5 rounded-[8px] border border-input-border-error text-input-border-error text-xs uppercase"
-                  >
-                    Удалить
-                  </button>
+                <td className="p-2 align-middle">
+                  <NewsRowMenu row={row} onEdit={startEdit} onDelete={remove} />
                 </td>
               </tr>
             ))}
