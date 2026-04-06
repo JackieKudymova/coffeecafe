@@ -51,7 +51,7 @@ function MenuPage() {
         {/* Табы разделов */}
         {categories.length > 0 && (
           <div className="mt-[30px] lg:mt-12 overflow-x-auto scrollbar-hide">
-            {/* Одна сплошная линия на контейнере; gap только между подписями, не между сегментами border */}
+            {/* Базовая линия — border контейнера; золотая полоска активного таба — span, на узком экране удлинена в половину gap-x-4 */}
             <div className="flex w-max min-w-full min-[520px]:w-full gap-x-4 min-[520px]:gap-0 border-b-2 border-[#4b372b]">
               {categories.map((cat, i) => (
                 <button
@@ -59,15 +59,26 @@ function MenuPage() {
                   onClick={() => setActiveTab(i)}
                   className={`
                     shrink-0 min-w-[130px] min-[520px]:flex-1 min-[520px]:min-w-0 pb-[7px] text-center text-lg lg:text-2xl lg:pb-4 px-4 min-[520px]:px-0
-                    border-b-2 -mb-[2px] transition-colors cursor-pointer whitespace-nowrap relative z-0
-                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg rounded-sm
+                    border-b-2 -mb-[2px] transition-colors cursor-pointer whitespace-nowrap relative z-0 rounded-none
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg
                     ${i === activeTab
-                      ? 'text-cream font-medium border-[#c49a6c] z-[1]'
+                      ? 'text-cream font-medium border-transparent z-[1]'
                       : 'text-cream font-normal border-transparent hover:border-[#4b372b] hover:font-medium active:text-cream'
                     }
                   `}
                 >
                   {cat.name}
+                  {i === activeTab && (
+                    <span
+                      aria-hidden
+                      className={[
+                        'pointer-events-none absolute -bottom-0.5 z-[1] h-0.5 bg-[#c49a6c]',
+                        'min-[520px]:left-0 min-[520px]:right-0',
+                        i > 0 ? 'max-[519px]:-left-2' : 'max-[519px]:left-0',
+                        i < categories.length - 1 ? 'max-[519px]:-right-2' : 'max-[519px]:right-0',
+                      ].join(' ')}
+                    />
+                  )}
                 </button>
               ))}
             </div>
