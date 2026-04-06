@@ -1,19 +1,23 @@
+/**
+ * Раздел «Категории меню» в админке отключён: маршрут /admin/categories и пункт в AdminSidebar не подключены.
+ * Чтобы снова включить: импорт AdminCategories в App.tsx, <Route path="categories" element={<AdminCategories />} />,
+ * NavLink в AdminSidebar на /admin/categories.
+ */
 import { useEffect, useState } from 'react'
 import {
-  createCategory,
   deleteCategory,
   fetchCategories,
   updateCategory,
   type CategoryRow,
 } from '../../services/adminService'
 import AdminTable from '../../components/admin/AdminTable'
+import AdminRowActionsMenu from '../../components/admin/AdminRowActionsMenu'
+import { adminInputClassName } from '../../components/admin/adminFieldStyles'
 
 export default function AdminCategories() {
   const [rows, setRows] = useState<CategoryRow[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [name, setName] = useState('')
-  const [sortOrder, setSortOrder] = useState(0)
 
   async function load() {
     setError(null)
@@ -31,51 +35,9 @@ export default function AdminCategories() {
     load()
   }, [])
 
-  async function handleCreate(e: React.FormEvent) {
-    e.preventDefault()
-    if (!name.trim()) return
-    try {
-      await createCategory(name.trim(), sortOrder)
-      setName('')
-      setSortOrder(0)
-      await load()
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Ошибка')
-    }
-  }
-
   return (
     <div>
       <h1 className="font-heading text-3xl text-cream mb-8">Категории меню</h1>
-
-      <form
-        onSubmit={handleCreate}
-        className="mb-8 flex flex-wrap items-end gap-4 rounded-[10px] bg-[#4b372b] border border-cream/15 p-4"
-      >
-        <label className="flex flex-col gap-1">
-          <span className="text-cream-dark text-sm">Название</span>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="h-11 px-3 rounded-[10px] bg-input-bg text-cream min-w-[200px]"
-          />
-        </label>
-        <label className="flex flex-col gap-1">
-          <span className="text-cream-dark text-sm">Порядок</span>
-          <input
-            type="number"
-            value={sortOrder}
-            onChange={(e) => setSortOrder(Number(e.target.value))}
-            className="h-11 w-24 px-3 rounded-[10px] bg-input-bg text-cream"
-          />
-        </label>
-        <button
-          type="submit"
-          className="h-11 px-6 rounded-[10px] bg-brown-button text-brown-dark font-medium uppercase tracking-wider text-sm"
-        >
-          Добавить
-        </button>
-      </form>
 
       {error ? <p className="text-input-border-error mb-4">{error}</p> : null}
       {loading ? (
@@ -87,7 +49,9 @@ export default function AdminCategories() {
               <th className="p-3 font-medium">ID</th>
               <th className="p-3 font-medium">Название</th>
               <th className="p-3 font-medium">Порядок</th>
-              <th className="p-3 font-medium w-40">Действия</th>
+              <th className="p-3 font-medium w-14 text-right pr-4">
+                <span className="sr-only">Действия</span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -100,6 +64,8 @@ export default function AdminCategories() {
     </div>
   )
 }
+
+const compactInput = `${adminInputClassName} !h-9 !mt-0 !px-2 !text-sm`
 
 function CategoryRowEditor({
   row,
@@ -141,7 +107,8 @@ function CategoryRowEditor({
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full max-w-xs h-9 px-2 rounded-[8px] bg-input-bg text-cream text-sm"
+          aria-label="Название категории"
+          className={`w-full max-w-xs rounded-[8px] ${compactInput}`}
         />
       </td>
       <td className="p-3">
@@ -149,24 +116,17 @@ function CategoryRowEditor({
           type="number"
           value={sort}
           onChange={(e) => setSort(Number(e.target.value))}
-          className="w-20 h-9 px-2 rounded-[8px] bg-input-bg text-cream text-sm"
+          aria-label="Порядок"
+          className={`w-20 rounded-[8px] ${compactInput}`}
         />
       </td>
-      <td className="p-3 flex flex-wrap gap-2">
-        <button
-          type="button"
-          onClick={() => void save()}
-          className="px-3 py-1.5 rounded-[8px] bg-brown-button text-brown-dark text-xs font-medium uppercase"
-        >
-          Сохранить
-        </button>
-        <button
-          type="button"
-          onClick={() => void remove()}
-          className="px-3 py-1.5 rounded-[8px] border border-input-border-error text-input-border-error text-xs uppercase"
-        >
-          Удалить
-        </button>
+      <td className="p-2 align-middle">
+        <AdminRowActionsMenu
+          items={[
+            { key: 'save', label: 'Сохранить', onClick: () => void save() },
+            { key: 'delete', label: 'Удалить', variant: 'danger', onClick: () => void remove() },
+          ]}
+        />
       </td>
     </tr>
   )

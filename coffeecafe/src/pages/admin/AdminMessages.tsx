@@ -1,16 +1,22 @@
 import { useCallback, useEffect, useState } from 'react'
-import {
-  deleteMessage,
-  fetchMessages,
-  markMessageRead,
-  type MessageRow,
-} from '../../services/adminService'
+import { useNavigate } from 'react-router-dom'
+import { fetchMessages, type MessageRow } from '../../services/adminService'
 import AdminTable from '../../components/admin/AdminTable'
+import AdminRowActionsMenu from '../../components/admin/AdminRowActionsMenu'
 import Pagination from '../../components/Pagination'
 
 const PAGE_SIZE = 10
 
+function sortMessagesByDate(items: MessageRow[]): MessageRow[] {
+  return [...items].sort((a, b) => {
+    const ta = a.created_at ? new Date(a.created_at).getTime() : 0
+    const tb = b.created_at ? new Date(b.created_at).getTime() : 0
+    return tb - ta
+  })
+}
+
 export default function AdminMessages() {
+  const navigate = useNavigate()
   const [page, setPage] = useState(1)
   const [total, setTotal] = useState(0)
   const [items, setItems] = useState<MessageRow[]>([])
@@ -19,17 +25,18 @@ export default function AdminMessages() {
 
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE))
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (opts?: { silent?: boolean }) => {
+    const silent = opts?.silent === true
     setError(null)
-    setLoading(true)
+    if (!silent) setLoading(true)
     try {
       const res = await fetchMessages(page, PAGE_SIZE)
-      setItems(res.items)
+      setItems(sortMessagesByDate(res.items))
       setTotal(res.total)
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Ошибка')
     } finally {
-      setLoading(false)
+      if (!silent) setLoading(false)
     }
   }, [page])
 
@@ -37,25 +44,8 @@ export default function AdminMessages() {
     load()
   }, [load])
 
-  async function markRead(id: string) {
-    setError(null)
-    try {
-      await markMessageRead(id)
-      await load()
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Ошибка')
-    }
-  }
-
-  async function remove(id: string) {
-    if (!confirm('Удалить обращение?')) return
-    setError(null)
-    try {
-      await deleteMessage(id)
-      await load()
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Ошибка')
-    }
+  function openDetail(row: MessageRow) {
+    navigate(`/admin/messages/${row.id}`)
   }
 
   return (
@@ -71,41 +61,50 @@ export default function AdminMessages() {
               <tr>
                 <th className="p-3 font-medium">Дата</th>
                 <th className="p-3 font-medium">Имя</th>
-                <th className="p-3 font-medium">Телефон</th>
-                <th className="p-3 font-medium">Сообщение</th>
+                <th className="p-3 font-medium min-w-[180px] whitespace-nowrap">Телефон</th>
+                <th className="p-3 font-medium min-w-0">Сообщение</th>
                 <th className="p-3 font-medium">Прочитано</th>
-                <th className="p-3 font-medium w-44">Действия</th>
+                <th className="p-3 font-medium w-14 text-right pr-4">
+                  <span className="sr-only">Действия</span>
+                </th>
               </tr>
             </thead>
             <tbody>
               {items.map((m) => (
-                <tr key={m.id} className="border-t border-cream/10">
+                <tr
+                  key={m.id}
+                  className="border-t border-cream/10 cursor-pointer hover:bg-white/[0.04] transition-colors"
+                  onClick={() => openDetail(m)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      openDetail(m)
+                    }
+                  }}
+                >
                   <td className="p-3 text-cream-dark text-sm whitespace-nowrap">
                     {m.created_at ? new Date(m.created_at).toLocaleString('ru-RU') : '—'}
                   </td>
                   <td className="p-3 text-cream">{m.name}</td>
-                  <td className="p-3 text-cream-dark">{m.phone}</td>
-                  <td className="p-3 text-cream-dark max-w-xs truncate" title={m.message ?? ''}>
+                  <td className="p-3 text-cream-dark whitespace-nowrap font-mono text-sm tracking-tight">
+                    {m.phone}
+                  </td>
+                  <td className="p-3 text-cream-dark max-w-xs min-w-0 truncate" title={m.message ?? ''}>
                     {m.message ?? '—'}
                   </td>
                   <td className="p-3 text-cream-dark">{m.is_read ? 'да' : 'нет'}</td>
-                  <td className="p-3 flex flex-wrap gap-2">
-                    {!m.is_read ? (
-                      <button
-                        type="button"
-                        onClick={() => void markRead(m.id)}
-                        className="px-3 py-1.5 rounded-[8px] bg-brown-button text-brown-dark text-xs font-medium uppercase"
-                      >
-                        Прочитано
-                      </button>
-                    ) : null}
-                    <button
-                      type="button"
-                      onClick={() => void remove(m.id)}
-                      className="px-3 py-1.5 rounded-[8px] border border-input-border-error text-input-border-error text-xs uppercase"
-                    >
-                      Удалить
-                    </button>
+                  <td className="p-2 align-middle">
+                    <AdminRowActionsMenu
+                      items={[
+                        {
+                          key: 'detail',
+                          label: 'Подробнее',
+                          onClick: () => openDetail(m),
+                        },
+                      ]}
+                    />
                   </td>
                 </tr>
               ))}

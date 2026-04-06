@@ -115,6 +115,7 @@ export interface MenuItemRow {
   sort_order: number
   is_visible: boolean
   variants: MenuVariantRow[]
+  createdAt?: string | null
 }
 
 export async function fetchItems(categoryId?: string): Promise<MenuItemRow[]> {
@@ -189,6 +190,7 @@ export interface NewsAdminRow {
   image: string | null
   is_published: boolean
   publishedAt: string | null
+  createdAt?: string | null
 }
 
 export async function fetchAdminNews(): Promise<NewsAdminRow[]> {
@@ -265,6 +267,24 @@ export async function markMessageRead(id: string): Promise<void> {
     headers: jsonHeaders(),
   })
   if (!res.ok) throw new Error(await parseError(res))
+}
+
+export async function fetchMessage(id: string): Promise<MessageRow> {
+  const res = await fetch(`/api/admin/messages/${id}`, {
+    headers: jsonHeaders(),
+  })
+  if (!res.ok) throw new Error(await parseError(res))
+  return res.json()
+}
+
+export async function patchMessageRead(id: string, isRead: boolean): Promise<MessageRow> {
+  const res = await fetch(`/api/admin/messages/${id}`, {
+    method: 'PATCH',
+    headers: jsonHeaders(),
+    body: JSON.stringify({ is_read: isRead }),
+  })
+  if (!res.ok) throw new Error(await parseError(res))
+  return res.json()
 }
 
 export async function deleteMessage(id: string): Promise<void> {

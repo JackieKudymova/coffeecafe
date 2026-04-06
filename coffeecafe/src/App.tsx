@@ -9,10 +9,11 @@ import NewsArticlePage from './pages/NewsArticlePage'
 import NotFoundPage from './pages/NotFoundPage'
 import AdminLoginPage from './pages/admin/AdminLoginPage'
 import AdminDashboard from './pages/admin/AdminDashboard'
-import AdminCategories from './pages/admin/AdminCategories'
+// Раздел «Категории меню» отключён (см. AdminCategories.tsx). Чтобы включить: импорт AdminCategories + Route path="categories" + пункт в AdminSidebar.
 import AdminItems from './pages/admin/AdminItems'
 import AdminNews from './pages/admin/AdminNews'
 import AdminMessages from './pages/admin/AdminMessages'
+import AdminMessageDetail from './pages/admin/AdminMessageDetail'
 import AdminLayout from './components/admin/AdminLayout'
 import { getAdminToken } from './services/adminService'
 
@@ -50,10 +51,10 @@ function App() {
         <Route path="/admin" element={<ProtectedAdmin />}>
           <Route element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
-            <Route path="categories" element={<AdminCategories />} />
             <Route path="items" element={<AdminItems />} />
             <Route path="news" element={<AdminNews />} />
             <Route path="messages" element={<AdminMessages />} />
+            <Route path="messages/:id" element={<AdminMessageDetail />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFoundPage />} />

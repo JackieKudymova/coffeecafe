@@ -103,7 +103,7 @@ function NewsCard({ article }: { article: NewsArticle }) {
 
       <p
         data-news-excerpt
-        className="text-cream-dark text-lg font-normal leading-[22px] mt-[14px] lg:mt-[18px] line-clamp-3"
+        className="text-cream-dark text-lg font-normal leading-[22px] mt-[14px] lg:mt-[18px] line-clamp-3 overflow-hidden"
       >
         {article.excerpt}
       </p>
