@@ -1,0 +1,26 @@
+.env
+*.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Вложенный сторонний репозиторий (не часть диплома)
+claude-talk-to-figma-mcp/
+
+# Локальные настройки IDE/агентов и черновики — не в репозитории
+.claude/
+.playwright-mcp/
+.mcp.json
+CLAUDE.md
+coffeecafe/.claude/
+coffeecafe/.playwright-mcp/
+coffeecafe/CLAUDE.md
+my-razdel3-1.md
+PLAN.md
+razdel3-1.md
+
+# Локальные заметки
+еу.txt
