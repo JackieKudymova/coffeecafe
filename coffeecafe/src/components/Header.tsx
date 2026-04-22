@@ -85,7 +85,7 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
           <img
             src={logo}
             alt="ДомКофе"
-            className="h-[25px] w-auto"
+            className="h-[25px] md:h-[27px] w-auto"
           />
         </a>
         <button
@@ -94,21 +94,22 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
           onClick={onToggleMenu}
           aria-label="Закрыть меню"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          {/* 24×24 мобилка, 35×35 планшет (по Figma Menu/Close_LG) */}
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="md:w-[35px] md:h-[35px]">
             <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </button>
       </div>
 
-      {/* Пункты меню — по центру экрана */}
-      <nav className="flex-1 flex flex-col items-center justify-center gap-8 min-h-0">
+      {/* Пункты меню — по центру экрана. Планшет (md:) — больше размер и отступ по Figma. */}
+      <nav className="flex-1 flex flex-col items-center justify-center gap-8 md:gap-12 min-h-0">
         {mobileLinks.map((link) => (
           <NavLink
             key={link.label}
             to={link.href}
             className={({ isActive }) =>
               [
-                'font-normal text-[28px] leading-[34px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brown-button rounded-sm',
+                'font-normal text-[28px] leading-[34px] md:text-[32px] md:leading-[39px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brown-button rounded-sm',
                 isActive
                   ? 'text-brown-button'
                   : 'text-cream hover:text-brown-button',
@@ -130,12 +131,12 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
       {/* Шапка — всегда поверх контента */}
       <header className="absolute top-0 left-0 w-full z-50">
         <div className="flex items-center justify-between px-4 lg:px-16 xl:px-28 py-4 lg:py-6">
-          {/* Логотип — SVG, адаптивный размер: 106×25 мобилка, 127×29 десктоп */}
+          {/* Логотип — SVG, адаптивный размер: 106×25 мобилка, 120×27 планшет, 127×29 десктоп */}
           <a href="/">
             <img
               src={logo}
               alt="ДомКофе"
-              className="h-[25px] lg:h-[29px] w-auto"
+              className="h-[25px] md:h-[27px] lg:h-[29px] w-auto"
             />
           </a>
 
@@ -160,7 +161,8 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
             onClick={onToggleMenu}
             aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            {/* 24×24 мобилка, 35×35 планшет (по Figma Menu/Close_LG) */}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="md:w-[35px] md:h-[35px]">
               <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
             </svg>
           </button>

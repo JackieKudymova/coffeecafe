@@ -42,15 +42,15 @@ function MenuPage() {
         onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
       />
 
-      <main className="px-4 lg:px-16 xl:px-28 pt-[88px] lg:pt-[149px] pb-12 lg:pb-[97px]">
+      <main className="px-4 lg:px-16 xl:px-28 pt-[88px] md:pt-[120px] lg:pt-[149px] pb-12 lg:pb-[97px]">
         {/* Заголовок */}
-        <h1 className="font-heading font-semibold text-cream text-[28px] lg:text-[36px] leading-tight">
+        <h1 className="font-heading font-semibold text-cream text-[28px] md:text-[32px] lg:text-[36px] leading-tight">
           Меню
         </h1>
 
         {/* Табы разделов */}
         {categories.length > 0 && (
-          <div className="mt-[30px] lg:mt-12 overflow-x-auto scrollbar-hide">
+          <div className="mt-[30px] md:mt-10 lg:mt-12 overflow-x-auto scrollbar-hide">
             {/* Базовая линия — border контейнера; золотая полоска активного таба — span, на узком экране удлинена в половину gap-x-4 */}
             <div className="flex w-max min-w-full min-[520px]:w-full gap-x-4 min-[520px]:gap-0 border-b-2 border-[#4b372b]">
               {categories.map((cat, i) => (
@@ -58,7 +58,7 @@ function MenuPage() {
                   key={cat.id}
                   onClick={() => setActiveTab(i)}
                   className={`
-                    shrink-0 min-w-[130px] min-[520px]:flex-1 min-[520px]:min-w-0 pb-[7px] text-center text-lg lg:text-2xl lg:pb-4 px-4 min-[520px]:px-0
+                    shrink-0 min-w-[130px] min-[520px]:flex-1 min-[520px]:min-w-0 pb-[7px] text-center text-lg md:text-[22px] lg:text-2xl md:pb-3 lg:pb-4 px-4 min-[520px]:px-0
                     border-b-2 -mb-[2px] transition-colors cursor-pointer whitespace-nowrap relative z-0 rounded-none
                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg
                     ${i === activeTab
@@ -114,24 +114,24 @@ function MenuItemCard({ item }: { item: MenuItem }) {
       </div>
 
       {/* Название позиции. 30px от фото */}
-      <h3 className="text-cream font-normal text-lg lg:text-2xl mt-3 lg:mt-[20px]">
+      <h3 className="text-cream font-normal text-lg md:text-[22px] lg:text-2xl mt-3 md:mt-4 lg:mt-[20px]">
         {item.name}
       </h3>
 
       {/* Варианты: 2 строки (объём + цена). 25px от названия, 15px между строками */}
       <div
-        className="mt-[10px] lg:mt-[7px] grid gap-y-[3px]"
+        className="mt-[10px] md:mt-2 lg:mt-[7px] grid gap-y-[3px]"
         style={{ gridTemplateColumns: `repeat(${item.variants.length}, 104px)` }}
       >
         {/* Строка 1: объёмы/вес */}
         {item.variants.map((v) => (
-          <span key={v.label} className="text-[#a8a5a1] text-sm lg:text-base whitespace-nowrap">
+          <span key={v.label} className="text-[#a8a5a1] text-sm md:text-[14px] lg:text-base whitespace-nowrap">
             {v.label}
           </span>
         ))}
         {/* Строка 2: цены */}
         {item.variants.map((v) => (
-          <span key={v.label + v.price} className="text-cream font-medium text-base lg:text-xl whitespace-nowrap">
+          <span key={v.label + v.price} className="text-cream font-medium text-base md:text-[22px] lg:text-xl whitespace-nowrap">
             {v.price} ₽
           </span>
         ))}

@@ -24,20 +24,21 @@ function Footer() {
   return (
     <footer className="bg-brown-footer overflow-hidden">
 
-      {/* Мобилка: одна колонка по центру */}
-      <div className="lg:hidden px-4 py-4 flex flex-col items-center text-center">
-        <img src={logo} alt="ДомКофе" className="h-[22px] w-auto" />
+      {/* Мобилка / планшет: одна колонка по центру. md: — размеры/отступы под iPad (820×415) */}
+      <div className="lg:hidden px-4 py-4 md:py-8 flex flex-col items-center text-center">
+        <img src={logo} alt="ДомКофе" className="h-[22px] md:h-[27px] w-auto" />
 
-        {/* Иконка VK — 24×24, по центру под логотипом */}
+        {/* Иконка VK — мобилка 24×24, планшет 32×32 */}
         <a
           href="#"
           aria-label="ВКонтакте"
-          className="mt-4 inline-block text-cream transition-colors duration-150 ease-out hover:text-brown-button active:text-brown-button [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
+          className="mt-4 md:mt-9 inline-block text-cream transition-colors duration-150 ease-out hover:text-brown-button active:text-brown-button [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
         >
-          <VkIcon className="h-6 w-6" />
+          <VkIcon className="h-6 w-6 md:h-8 md:w-8" />
         </a>
 
-        <div className="mt-4 flex flex-col gap-1 text-cream text-base">
+        {/* Контактный текст: мобилка 16, планшет 17 (p-tablet) */}
+        <div className="mt-4 md:mt-8 flex flex-col gap-1 text-cream text-base md:text-[17px] md:leading-[21px]">
           <span className="font-normal">Адрес:</span>
           <span>г. Санкт-Петербург, ул. Лесная, 12</span>
           <span className="font-normal mt-2">Телефон:</span>
@@ -46,7 +47,8 @@ function Footer() {
           <span>domcoffee@gmail.ru</span>
         </div>
 
-        <p className="text-cream text-[13px] mt-6">
+        {/* © мобилка 13, планшет 14 (ps-tablet) */}
+        <p className="text-cream text-[13px] md:text-[14px] md:leading-[17px] mt-6 md:mt-8">
           © 2026 ДомКофе. Все права защищены
         </p>
       </div>

@@ -34,6 +34,37 @@
   --color-pagination-text-disabled: #7a736d;
   /* Дата в карточке новости */
   --color-news-date: #a8a5a1;
+
+  /*
+    ---- Планшетная типошкала (из macets_ipad в Figma) ----
+    Используется ТОЛЬКО через префикс md: (активно на 768–1023 px).
+    Мобильные/десктопные размеры остаются в компонентах как были.
+  */
+
+  /* H1 — hero главной (Playfair SemiBold) */
+  --text-h1-tablet: 40px;
+  --text-h1-tablet--line-height: 1.333;
+  --text-h1-tablet--letter-spacing: 0.02em;
+
+  /* H2 — заголовки блоков и страниц (Playfair SemiBold) */
+  --text-h2-tablet: 32px;
+  --text-h2-tablet--line-height: 1.333;
+
+  /* H3 — подзаголовки и названия элементов (Inter Regular: «Наша философия:», имена позиций, заголовки новостей) */
+  --text-h3-tablet: 22px;
+  --text-h3-tablet--line-height: 1.21;
+
+  /* P — основной абзац (Inter Regular) */
+  --text-p-tablet: 17px;
+  --text-p-tablet--line-height: 1.21;
+
+  /* PS — мелкий вспомогательный (даты, миллилитры, копирайт) */
+  --text-ps-tablet: 14px;
+  --text-ps-tablet--line-height: 1.21;
+
+  /* Button — текст в кнопке (Inter Medium) */
+  --text-btn-tablet: 16px;
+  --text-btn-tablet--line-height: 1.21;
 }
 
 @layer base {

@@ -53,7 +53,7 @@ function NewsPage() {
         onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
       />
 
-      <main className="px-4 lg:px-16 xl:px-28 pt-[88px] lg:pt-[149px] pb-12 lg:pb-[97px]">
+      <main className="px-4 lg:px-16 xl:px-28 pt-[88px] lg:pt-[149px] pb-12 md:pb-14 lg:pb-[97px]">
         <h1 className="font-heading font-semibold text-cream text-[28px] lg:text-[36px] leading-tight">
           Новости и акции
         </h1>
@@ -61,7 +61,7 @@ function NewsPage() {
         {/* Отступ от h1 до карточек; между карточками по вертикали на моб — 55px (HF_phone_news_1) */}
         <div
           ref={newsGridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-[55px] gap-x-6 md:gap-x-8 md:gap-y-8 lg:gap-x-8 lg:gap-y-[50px] mt-[32px] lg:mt-[50px]"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-[55px] gap-x-6 md:gap-x-4 md:gap-y-10 lg:gap-x-8 lg:gap-y-[50px] mt-[32px] lg:mt-[50px]"
         >
           {items.map((article) => (
             <NewsCard key={article.id} article={article} />
@@ -84,8 +84,8 @@ function NewsPage() {
 function NewsCard({ article }: { article: NewsArticle }) {
   return (
     <article className="flex flex-col h-full" data-news-card>
-      {/* Превью 384×272 в макете → то же соотношение сторон */}
-      <div className="aspect-[384/272] overflow-hidden rounded-[10px]">
+      {/* Превью 384×272 в макете → то же соотношение сторон. Планшет: 386×240 */}
+      <div className="aspect-[384/272] md:aspect-[386/240] lg:aspect-[384/272] overflow-hidden rounded-[10px]">
         <img
           src={article.image}
           alt={article.title}
@@ -96,28 +96,28 @@ function NewsCard({ article }: { article: NewsArticle }) {
       {/* Высоты заголовка/анонса в ряду выравниваются в useNewsCardRowHeights */}
       <h2
         data-news-title
-        className="text-cream font-medium text-2xl leading-[1.2] mt-6 lg:mt-8 md:line-clamp-2"
+        className="text-cream font-medium text-2xl md:text-[22px] lg:text-2xl leading-[1.2] mt-6 lg:mt-8 md:line-clamp-2"
       >
         {article.title}
       </h2>
 
       <p
         data-news-excerpt
-        className="text-cream-dark text-lg font-normal leading-[22px] mt-[14px] lg:mt-[18px] line-clamp-3 overflow-hidden"
+        className="text-cream-dark text-lg md:text-[17px] lg:text-lg font-normal leading-[22px] md:leading-[21px] lg:leading-[22px] mt-[14px] md:mt-4 lg:mt-[18px] line-clamp-3 overflow-hidden"
       >
         {article.excerpt}
       </p>
 
       <time
         dateTime={article.publishedAt}
-        className="block text-news-date/90 text-base font-normal leading-[19px] mt-6 lg:mt-8"
+        className="block text-news-date/90 text-base md:text-[14px] lg:text-base font-normal leading-[19px] mt-6 md:mt-4 lg:mt-8"
       >
         {formatNewsDate(article.publishedAt)}
       </time>
 
       <Link
         to={`/news/${encodeURIComponent(article.id)}`}
-        className="mt-[35px] flex w-full min-h-[80px] shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-4 text-center text-base font-medium uppercase tracking-wider text-brown-dark transition-colors hover:bg-brown-button-hover active:bg-brown-button-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg lg:min-h-[54px] lg:w-[calc(75%-12px)] lg:self-start lg:text-lg"
+        className="mt-[35px] md:mt-6 lg:mt-[35px] flex w-full min-h-[80px] md:min-h-[67px] shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-4 text-center text-base font-medium uppercase tracking-wider text-brown-dark transition-colors hover:bg-brown-button-hover active:bg-brown-button-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg lg:min-h-[54px] lg:w-[calc(75%-12px)] lg:self-start lg:text-lg"
       >
         Подробнее
       </Link>

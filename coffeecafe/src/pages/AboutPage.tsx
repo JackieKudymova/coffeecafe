@@ -31,11 +31,11 @@ function AboutPage() {
 
           {/* Левая колонка: заголовок + текст */}
           <div className="lg:w-[38%] lg:shrink-0">
-            <h1 className="font-heading font-semibold text-cream text-[28px] lg:text-[32px] xl:text-[36px] leading-tight">
+            <h1 className="font-heading font-semibold text-cream text-[28px] md:text-[32px] lg:text-[32px] xl:text-[36px] leading-tight">
               О нас
             </h1>
 
-            <p className="text-cream-dark text-base lg:text-base xl:text-lg xl:leading-[22px] mt-8 lg:mt-12">
+            <p className="text-cream-dark text-base md:text-[17px] md:leading-[21px] lg:text-base lg:leading-normal xl:text-lg xl:leading-[22px] mt-8 lg:mt-12">
               ДомКофе - небольшая городская кофейня, куда можно зайти за чашкой
               хорошего кофе и сделать паузу в течение дня. Мы стараемся создать
               приятную атмосферу, в которой гости могут встретиться с друзьями,
@@ -50,7 +50,7 @@ function AboutPage() {
             <img
               src={baristaImg}
               alt="Бариста за работой"
-              className="w-full h-[240px] lg:h-[312px] object-cover rounded-[10px]"
+              className="w-full h-[240px] md:h-[312px] lg:h-[312px] object-cover rounded-[10px]"
             />
           </div>
         </div>
@@ -69,7 +69,7 @@ function AboutPage() {
 
           {/* Два текстовых блока */}
           <div className="lg:flex-1">
-            <p className="text-cream-dark text-base lg:text-base xl:text-lg xl:leading-[22px]">
+            <p className="text-cream-dark text-base md:text-[17px] md:leading-[21px] lg:text-base lg:leading-normal xl:text-lg xl:leading-[22px]">
               Наши бариста постоянно совершенствуют свои навыки, пробуют новые
               способы приготовления кофе и внимательно следят за качеством
               каждого напитка. Благодаря их опыту и вниманию к деталям гости
@@ -77,7 +77,7 @@ function AboutPage() {
               кофе.
             </p>
 
-            <p className="text-cream-dark text-base lg:text-base xl:text-lg xl:leading-[22px] mt-4 lg:mt-6 xl:mt-8">
+            <p className="text-cream-dark text-base md:text-[17px] md:leading-[21px] lg:text-base lg:leading-normal xl:text-lg xl:leading-[22px] mt-4 lg:mt-6 xl:mt-8">
               ДомКофе - это команда людей, которые искренне любят своё дело.
               Мы стараемся создавать атмосферу, в которой приятно проводить
               время, и уделяем внимание качеству напитков и ингредиентов. Для
@@ -88,22 +88,22 @@ function AboutPage() {
           </div>
         </div>
 
-        {/* === Фото кофе — ТОЛЬКО на мобилке (перед философией) === */}
+        {/* === Фото кофе — ТОЛЬКО на мобилке/планшете (перед философией) === */}
         <div className="mt-8 lg:hidden">
           <img
             src={coffeeImg}
             alt="Приготовление кофе"
-            className="w-full h-[240px] object-cover rounded-[10px]"
+            className="w-full h-[240px] md:h-[312px] object-cover rounded-[10px]"
           />
         </div>
 
         {/* === Наша философия === */}
         <div className="mt-8 lg:mt-16 xl:mt-20">
-          <h2 className="text-cream font-normal text-xl lg:text-[22px] xl:text-2xl">
+          <h2 className="text-cream font-normal text-xl md:text-[22px] lg:text-[22px] xl:text-2xl">
             Наша философия:
           </h2>
 
-          <p className="text-cream-dark text-base lg:text-base xl:text-lg xl:leading-[22px] mt-4 lg:mt-6 lg:max-w-[592px]">
+          <p className="text-cream-dark text-base md:text-[17px] md:leading-[21px] lg:text-base lg:leading-normal xl:text-lg xl:leading-[22px] mt-4 lg:mt-6 lg:max-w-[592px]">
             Мы верим, что кофейня - это больше, чем просто место, где готовят
             кофе. Это пространство для встреч, отдыха и небольших пауз в
             течение дня. Поэтому мы уделяем внимание качеству ингредиентов,
@@ -117,7 +117,7 @@ function AboutPage() {
           <img
             src={lavkaImg}
             alt="Интерьер кофейни"
-            className="w-full h-[240px] lg:h-[464px] object-cover rounded-t-[10px]"
+            className="w-full h-[240px] md:h-[280px] lg:h-[464px] object-cover rounded-t-[10px]"
           />
         </div>
       </main>

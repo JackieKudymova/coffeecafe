@@ -57,7 +57,7 @@ function ReviewsSection() {
   return (
     <section className="pt-6 pb-[45px] lg:pt-12 lg:pb-24">
       <div className="px-4 lg:px-16 xl:px-28">
-        <h2 className="font-heading font-semibold text-cream text-[28px] leading-tight text-center min-[480px]:text-left lg:text-[36px] lg:leading-[48px]">
+        <h2 className="font-heading font-semibold text-cream text-[28px] md:text-[32px] leading-tight text-center min-[480px]:text-left lg:text-[36px] lg:leading-[48px]">
           Отзывы
         </h2>
       </div>
@@ -77,8 +77,8 @@ function ReviewsSection() {
                   alt={review.name}
                   className="w-16 h-16 rounded-full object-cover"
                 />
-                <h3 className="text-cream font-normal text-xl mt-6">{review.name}</h3>
-                <p className="text-cream-dark text-base leading-[19px] mt-4 max-w-[280px]">{review.text}</p>
+                <h3 className="text-cream font-normal text-xl md:text-[22px] mt-6">{review.name}</h3>
+                <p className="text-cream-dark text-base md:text-[17px] leading-[19px] md:leading-[21px] mt-4 max-w-[280px] md:max-w-[303px]">{review.text}</p>
               </div>
             ))}
           </div>

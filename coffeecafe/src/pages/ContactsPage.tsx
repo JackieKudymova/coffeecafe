@@ -33,13 +33,13 @@ function ContactsPage() {
       {/* Основной контент. Хедер absolute ~57px, поэтому pt включает его высоту + отступ */}
       <main className="px-4 lg:px-16 xl:px-28 pt-[92px] lg:pt-[149px]">
 
-        {/* Мобилка: одна колонка */}
-        <div className="lg:hidden pb-[50px]">
-          <h1 className="font-heading font-semibold text-cream text-[28px] leading-tight">
+        {/* Мобилка + планшет: одна колонка */}
+        <div className="lg:hidden pb-[50px] md:pb-14">
+          <h1 className="font-heading font-semibold text-cream text-[28px] md:text-[32px] leading-tight">
             Контакты
           </h1>
 
-          <div className="text-cream-dark text-base leading-[19px] mt-10 space-y-6">
+          <div className="text-cream-dark text-base md:text-[17px] leading-[19px] md:leading-[21px] mt-10 md:mt-8 space-y-6 md:space-y-5">
             <p>
               Мы находимся в центре города, в тихом дворике. Напишите нам или
               позвоните, если хотите забронировать стол или задать вопрос.
@@ -67,12 +67,12 @@ function ContactsPage() {
                 aria-label="ВКонтакте"
                 className="mt-[20px] inline-block text-cream transition-colors duration-150 ease-out hover:text-brown-button active:text-brown-button [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
               >
-                <VkIcon className="h-8 w-8" />
+                <VkIcon className="h-6 w-6 md:h-8 md:w-8" />
               </a>
             </div>
           </div>
 
-          <div className="mt-10">
+          <div className="mt-10 md:mt-10">
             <ContactForm
               key={formResetKey}
               onSuccess={() => setFormSent(true)}
@@ -229,18 +229,18 @@ function ContactForm({
       onSubmit={handleSubmit}
       noValidate
       aria-hidden={ariaHidden}
-      className={`bg-[#4b372b] rounded-[10px] px-8 pt-[22px] pb-8 lg:px-14 lg:pt-[48px] lg:pb-[48px] ${className}`}
+      className={`bg-[#4b372b] rounded-[10px] px-6 py-6 md:px-6 md:pt-10 md:pb-10 lg:px-14 lg:pt-[48px] lg:pb-[48px] ${className}`}
     >
-      <h2 className="text-cream font-normal text-2xl leading-[1.2] lg:leading-normal">
+      <h2 className="text-cream font-normal text-xl md:text-[22px] lg:text-2xl leading-[1.2] lg:leading-normal">
         Есть вопросы?
         <br className="min-[500px]:hidden" aria-hidden />
         {' '}
         Напишите нам
       </h2>
 
-      <label className="block mt-[13px] lg:mt-[24px]">
+      <label className="block mt-4 md:mt-6 lg:mt-[24px]">
         <span
-          className={`block text-base lg:text-lg leading-[22px] ${errors.name ? 'text-input-border-error' : 'text-cream-dark'}`}
+          className={`block text-base md:text-[17px] lg:text-lg leading-[22px] ${errors.name ? 'text-input-border-error' : 'text-cream-dark'}`}
         >
           {errors.name ? 'Укажите имя' : 'Имя'}
         </span>
@@ -256,9 +256,9 @@ function ContactForm({
           autoComplete="name"
           aria-invalid={errors.name}
           className="
-            w-full mt-2 h-[51px] px-4 rounded-[10px]
-            bg-input-bg text-cream placeholder:text-placeholder
-            border-2 border-transparent text-base outline-none transition-colors
+            w-full mt-2 h-8 md:h-[49px] lg:h-[51px] px-4 rounded-[10px]
+            bg-input-bg text-cream placeholder:text-placeholder placeholder:text-[13px] md:placeholder:text-base
+            border-2 border-transparent text-[13px] md:text-base outline-none transition-colors
             hover:bg-input-bg-hover
             focus-visible:border-input-border-focus focus-visible:outline-none
             aria-invalid:border-input-border-error
@@ -266,9 +266,9 @@ function ContactForm({
         />
       </label>
 
-      <label className="block mt-4">
+      <label className="block mt-4 md:mt-6 lg:mt-4">
         <span
-          className={`block text-base lg:text-lg leading-[22px] ${errors.phone ? 'text-input-border-error' : 'text-cream-dark'}`}
+          className={`block text-base md:text-[17px] lg:text-lg leading-[22px] ${errors.phone ? 'text-input-border-error' : 'text-cream-dark'}`}
         >
           {errors.phone === 'empty'
             ? 'Введите номер телефона'
@@ -286,11 +286,11 @@ function ContactForm({
         />
       </label>
 
-      <div className="block mt-4">
-        <span className="text-cream-dark text-base lg:text-lg">Сообщение</span>
+      <div className="block mt-4 md:mt-6 lg:mt-4">
+        <span className="text-cream-dark text-base md:text-[17px] lg:text-lg">Сообщение</span>
         <div
           className="
-            mt-2 h-[120px] px-4 py-4 rounded-[10px] overflow-hidden
+            mt-2 h-[76px] md:h-[100px] lg:h-[120px] px-4 py-2 md:py-4 rounded-[10px] overflow-hidden
             bg-input-bg border-2 border-transparent transition-colors
             hover:bg-input-bg-hover
             focus-within:border-input-border-focus
@@ -303,20 +303,20 @@ function ContactForm({
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Введите ваше сообщение"
             className="
-              w-full h-full min-h-0 bg-transparent text-cream placeholder:text-placeholder
-              text-base leading-[22px] outline-none resize-none overflow-y-auto
+              w-full h-full min-h-0 bg-transparent text-cream placeholder:text-placeholder placeholder:text-[13px] md:placeholder:text-base
+              text-[13px] md:text-base leading-[16px] md:leading-[22px] outline-none resize-none overflow-y-auto
               scrollbar-hide
             "
           />
         </div>
       </div>
 
-      <label className="flex items-center gap-[14px] mt-4 cursor-pointer">
+      <label className="flex items-center gap-4 md:gap-[14px] mt-5 md:mt-4 cursor-pointer">
         {/*
           Ошибка: в default-chckbox-vector.svg уже есть серая обводка — внешний border давал «второе кольцо».
           Если не отмечено и есть ошибка — показываем только рамку error без SVG.
         */}
-        <span className="relative inline-flex h-6 w-6 shrink-0 rounded-sm transition-opacity hover:opacity-90">
+        <span className="relative inline-flex h-4 w-4 md:h-6 md:w-6 shrink-0 rounded-sm transition-opacity hover:opacity-90">
           <input
             type="checkbox"
             checked={consent}
@@ -349,7 +349,7 @@ function ContactForm({
           )}
         </span>
         <span
-          className={`text-sm lg:text-base leading-[19px] ${errors.consent ? 'text-input-border-error' : 'text-[#cfc6bb]'}`}
+          className={`text-[13px] md:text-sm lg:text-base leading-[15.73px] md:leading-[19px] ${errors.consent ? 'text-input-border-error' : 'text-[#cfc6bb]'}`}
         >
           Даю согласие на обработку персональных данных
         </span>
@@ -365,7 +365,7 @@ function ContactForm({
         type="submit"
         disabled={isSubmitting}
         className="
-          w-full h-[80px] lg:h-[54px] mt-6 rounded-[10px]
+          w-full py-6 md:py-0 md:h-[67px] lg:h-[54px] mt-6 md:mt-10 lg:mt-6 rounded-[10px]
           bg-brown-button text-brown-dark font-medium
           text-base lg:text-lg uppercase tracking-wider
           transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
@@ -450,9 +450,9 @@ function PhoneInput({
       placeholder={PHONE_PLACEHOLDER_EXAMPLE}
       aria-invalid={invalid === true}
       className="
-        w-full mt-2 h-[51px] px-4 rounded-[10px]
-        bg-input-bg text-cream placeholder:text-placeholder
-        border-2 border-transparent text-base outline-none transition-colors
+        w-full mt-2 h-8 md:h-[49px] lg:h-[51px] px-4 rounded-[10px]
+        bg-input-bg text-cream placeholder:text-placeholder placeholder:text-[13px] md:placeholder:text-base
+        border-2 border-transparent text-[13px] md:text-base outline-none transition-colors
         hover:bg-input-bg-hover
         focus-visible:border-input-border-focus focus-visible:outline-none
         aria-invalid:border-input-border-error

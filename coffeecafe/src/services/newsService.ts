@@ -8,8 +8,8 @@ import { mockNews } from '../data/mockNews'
 /** Сколько карточек по умолчанию (мобила и десктоп lg+). */
 export const NEWS_PAGE_SIZE = 3
 
-/** Планшет 768–1023px: 4 карточки на странице (по сетке). */
-export const NEWS_PAGE_SIZE_TABLET = 4
+/** Планшет 768–1023px: 3 карточки на странице (по макету: 2 в ряд + 1). */
+export const NEWS_PAGE_SIZE_TABLET = 3
 
 /** Размер страницы в зависимости от ширины окна (SSR: 3). */
 export function getNewsPageSizeForViewport(): number {

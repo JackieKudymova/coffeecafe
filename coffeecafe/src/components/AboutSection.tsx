@@ -12,19 +12,19 @@ function AboutSection() {
   return (
     <section id="about" className="bg-brown-bg pt-12 lg:pt-24">
 
-      {/* Мобилка: обычный flex */}
+      {/* Мобилка / планшет: обычный flex. md: — размеры из iPad-макета */}
       <div className="lg:hidden px-4">
         <img
           src={aboutImg}
           alt="Бариста готовит кофе"
-          className="w-full h-[300px] object-cover rounded-[10px]"
+          className="w-full h-[300px] md:h-[338px] object-cover rounded-[10px]"
         />
 
-        <h2 className="font-heading font-semibold text-cream text-[28px] leading-tight mt-8">
+        <h2 className="font-heading font-semibold text-cream text-[28px] md:text-[32px] leading-tight mt-8">
           О нас
         </h2>
 
-        <p className="text-cream-dark text-base mt-4">
+        <p className="text-cream-dark text-base md:text-[17px] md:leading-[21px] mt-4">
           Наша кофейня - это уютное пространство, где можно насладиться
           ароматным кофе и провести время в спокойной атмосфере, поработать
           за ноутбуком или встретиться с друзьями
@@ -40,6 +40,7 @@ function AboutSection() {
               transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
               text-base py-[30px] w-full
+              md:py-0 md:w-[386px] md:h-[67px]
             "
           >
             Подробнее

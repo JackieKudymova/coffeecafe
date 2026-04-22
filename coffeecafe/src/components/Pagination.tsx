@@ -82,7 +82,7 @@ function PaginationButton({
       type="button"
       disabled={disabled}
       className={`
-        inline-flex size-10 shrink-0 items-center justify-center rounded-[10px] p-0 text-center text-lg font-medium transition-colors
+        inline-flex size-10 md:h-[35px] lg:h-10 shrink-0 items-center justify-center rounded-[10px] p-0 text-center text-lg md:text-base lg:text-lg font-medium transition-colors
         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg
         ${disabled
           ? 'bg-pagination-bg-disabled text-pagination-text-disabled cursor-not-allowed'

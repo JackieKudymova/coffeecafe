@@ -56,7 +56,7 @@ function GallerySection() {
   return (
     <section className="pt-12 pb-6 lg:pt-24 lg:pb-12">
       <div className="px-4 lg:px-16 xl:px-28">
-        <h2 className="font-heading font-semibold text-cream text-[28px] leading-tight text-center min-[480px]:text-left lg:text-[36px] lg:leading-[48px]">
+        <h2 className="font-heading font-semibold text-cream text-[28px] md:text-[32px] leading-tight text-center min-[480px]:text-left lg:text-[36px] lg:leading-[48px]">
           Ждем вас в гости
         </h2>
       </div>
@@ -100,14 +100,14 @@ function GallerySection() {
         </div>
       </div>
 
-      {/* 480–1024px: сетка 2×3 */}
+      {/* 480–1024px: сетка 2×3. На планшете (md+) карточки 386×480, gap 16 (как в Figma) */}
       <div className="hidden min-[480px]:grid lg:hidden grid-cols-2 gap-4 mt-8 px-4">
         {photos.map((photo) => (
           <img
             key={photo.alt}
             src={photo.src}
             alt={photo.alt}
-            className="w-full aspect-[1/1] object-cover rounded-[10px]"
+            className="w-full aspect-[1/1] md:aspect-[386/480] object-cover rounded-[10px]"
           />
         ))}
       </div>

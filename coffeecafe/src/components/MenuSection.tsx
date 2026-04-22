@@ -22,32 +22,32 @@ const menuCategories = [
 function MenuSection() {
   return (
     <section id="menu" className="bg-brown-bg pt-12 lg:pt-[88px] pb-12 lg:pb-24">
-      <div className="px-6 lg:px-16 xl:px-28">
-        <h2 className="font-heading font-semibold text-cream text-[28px] lg:text-[36px] leading-tight text-center lg:text-left">
+      <div className="px-6 md:px-4 lg:px-16 xl:px-28">
+        <h2 className="font-heading font-semibold text-cream text-[28px] md:text-[32px] lg:text-[36px] leading-tight text-center md:text-left">
           Наше меню
         </h2>
 
-        {/* Сетка: 2 колонки на мобилках, 4 на десктопе */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 mt-8 lg:mt-16">
+        {/* Сетка: 2 колонки на мобилках, 2 на планшете, 4 на десктопе */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mt-8 md:mt-10 lg:mt-16">
           {menuCategories.map((category) => (
             <div key={category.title} className="text-center">
-              {/* Квадратное фото */}
-              <div className="aspect-square overflow-hidden rounded-[10px]">
+              {/* Квадратное фото; на планшете 316px высота под макет */}
+              <div className="aspect-square md:aspect-auto md:h-[316px] overflow-hidden rounded-[10px]">
                 <img
                   src={category.image}
                   alt={category.title}
                   className="w-full h-full object-cover"
                 />
               </div>
-              <p className="text-cream font-normal text-xl lg:text-2xl mt-3 lg:mt-6">
+              <p className="text-cream font-normal text-xl md:text-[22px] lg:text-2xl mt-3 md:mt-4 lg:mt-6">
                 {category.title}
               </p>
             </div>
           ))}
         </div>
 
-        {/* Кнопка 271×54 по центру */}
-        <div className="mt-10 lg:mt-16 flex justify-center">
+        {/* Кнопка 271×54 по центру; планшет — 386×67 */}
+        <div className="mt-10 md:mt-12 lg:mt-16 flex justify-center">
           <Link
             to={`/menu?${MENU_CATEGORY_QUERY_KEY}=${MENU_COFFEE_CATEGORY_ID}`}
             className="
@@ -57,7 +57,8 @@ function MenuSection() {
               transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
               text-base py-[30px] w-full
-              lg:text-lg lg:py-0 lg:w-[271px] lg:h-[54px]
+              md:py-0 md:w-[386px] md:h-[67px]
+              lg:text-lg lg:w-[271px] lg:h-[54px]
             "
           >
             Смотреть меню

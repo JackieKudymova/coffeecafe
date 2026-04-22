@@ -22,11 +22,11 @@ function HeroSection() {
 
       {/* Контент */}
       <div className="relative z-10 px-4 lg:px-16 xl:px-28 w-full">
-        <h1 className="font-heading font-semibold text-cream text-[34px] leading-[1.33] lg:text-[48px] lg:leading-[64px] tracking-[0.68px] lg:tracking-[0.96px] text-center min-[480px]:text-left max-w-[358px] lg:max-w-none mx-auto min-[480px]:mx-0">
+        <h1 className="font-heading font-semibold text-cream text-[34px] leading-[1.33] md:text-[40px] md:leading-[53px] lg:text-[48px] lg:leading-[64px] tracking-[0.68px] md:tracking-[0.8px] lg:tracking-[0.96px] text-center min-[480px]:text-left max-w-[358px] md:max-w-none mx-auto min-[480px]:mx-0">
           Больше, чем просто кофе
         </h1>
 
-        <p className="text-cream-dark font-normal text-base lg:text-lg leading-[19px] lg:leading-[22px] mt-6 lg:mt-3 text-center min-[480px]:text-left max-w-[310px] lg:max-w-[475px] mx-auto min-[480px]:mx-0">
+        <p className="text-cream-dark font-normal text-base md:text-[17px] lg:text-lg leading-[19px] md:leading-[21px] lg:leading-[22px] mt-6 lg:mt-3 text-center min-[480px]:text-left max-w-[310px] md:max-w-[475px] mx-auto min-[480px]:mx-0">
           Уютное пространство для отдыха, общения и работы
         </p>
 
@@ -39,6 +39,7 @@ function HeroSection() {
               hover:bg-brown-button-hover active:bg-brown-button-active
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
               text-base py-[30px] w-[358px]
+              md:inline-flex md:items-center md:justify-center md:py-0 md:w-[386px] md:h-[67px]
               lg:inline-flex lg:items-center lg:justify-center
               lg:text-lg lg:py-0 lg:w-[280px] lg:h-[54px]
             "
