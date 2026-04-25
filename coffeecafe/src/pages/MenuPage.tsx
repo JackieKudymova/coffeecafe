@@ -42,7 +42,7 @@ function MenuPage() {
         onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
       />
 
-      <main className="px-4 lg:px-16 xl:px-28 pt-[88px] md:pt-[120px] lg:pt-[149px] pb-12 lg:pb-[97px]">
+      <main className="px-4 lg:px-16 xl:px-28 pt-[88px] md:pt-[97px] lg:pt-[149px] pb-12 lg:pb-[97px]">
         {/* Заголовок */}
         <h1 className="font-heading font-semibold text-cream text-[28px] md:text-[32px] lg:text-[36px] leading-tight">
           Меню
@@ -50,7 +50,7 @@ function MenuPage() {
 
         {/* Табы разделов */}
         {categories.length > 0 && (
-          <div className="mt-[30px] md:mt-10 lg:mt-12 overflow-x-auto scrollbar-hide">
+          <div className="mt-[30px] md:mt-8 lg:mt-12 overflow-x-auto scrollbar-hide">
             {/* Базовая линия — border контейнера; золотая полоска активного таба — span, на узком экране удлинена в половину gap-x-4 */}
             <div className="flex w-max min-w-full min-[520px]:w-full gap-x-4 min-[520px]:gap-0 border-b-2 border-[#4b372b]">
               {categories.map((cat, i) => (
@@ -85,9 +85,10 @@ function MenuPage() {
           </div>
         )}
 
-        {/* Сетка карточек: 1 колонка мобилка, 3 десктоп */}
+        {/* Сетка карточек: 1 колонка мобилка, 2 планшет, 3 десктоп.
+            Планшет (md): по Figma Hf_ipad_menu — gap 16px по горизонтали, 32px по вертикали. */}
         {activeCategory && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-x-8 lg:gap-y-[50px] mt-8 lg:mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-4 md:gap-y-8 lg:gap-x-8 lg:gap-y-[50px] mt-8 lg:mt-10">
             {activeCategory.items.map((item) => (
               <MenuItemCard key={item.id} item={item} />
             ))}

@@ -27,8 +27,9 @@ function MenuSection() {
           Наше меню
         </h2>
 
-        {/* Сетка: 2 колонки на мобилках, 2 на планшете, 4 на десктопе */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mt-8 md:mt-10 lg:mt-16">
+        {/* Сетка: 2 колонки на мобилках, 2 на планшете, 4 на десктопе.
+            Планшет (md): по Figma Hf_ipad_main — gap 16px по горизонтали, 24px по вертикали. */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-x-4 md:gap-y-6 lg:gap-8 mt-8 md:mt-10 lg:mt-16">
           {menuCategories.map((category) => (
             <div key={category.title} className="text-center">
               {/* Квадратное фото; на планшете 316px высота под макет */}

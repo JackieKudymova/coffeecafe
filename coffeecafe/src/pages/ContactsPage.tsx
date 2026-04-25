@@ -31,7 +31,7 @@ function ContactsPage() {
       />
 
       {/* Основной контент. Хедер absolute ~57px, поэтому pt включает его высоту + отступ */}
-      <main className="px-4 lg:px-16 xl:px-28 pt-[92px] lg:pt-[149px]">
+      <main className="px-4 lg:px-16 xl:px-28 pt-[92px] md:pt-[73px] lg:pt-[149px]">
 
         {/* Мобилка + планшет: одна колонка */}
         <div className="lg:hidden pb-[50px] md:pb-14">
