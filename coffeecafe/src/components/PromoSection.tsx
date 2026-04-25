@@ -49,8 +49,8 @@ function PromoSection() {
           <a
             href={promo.link}
             className="inline-block bg-brown-button text-brown-dark font-medium rounded-[10px] text-center uppercase tracking-wider transition-colors hover:bg-brown-button-hover active:bg-brown-button-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
-              text-base py-[30px] w-full
-              min-[480px]:text-lg min-[480px]:py-0 min-[480px]:w-[280px] min-[480px]:h-[54px] min-[480px]:inline-flex min-[480px]:items-center min-[480px]:justify-center
+              text-base leading-[19px] py-6 w-full
+              min-[480px]:text-lg min-[480px]:leading-normal min-[480px]:py-0 min-[480px]:w-[280px] min-[480px]:h-[54px] min-[480px]:inline-flex min-[480px]:items-center min-[480px]:justify-center
               md:text-base md:w-[386px] md:h-[67px] lg:text-lg lg:w-[280px] lg:h-[54px]"
           >
             Подробнее

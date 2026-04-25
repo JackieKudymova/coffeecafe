@@ -39,8 +39,8 @@ function AboutSection() {
               rounded-[10px] uppercase tracking-wider
               transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
-              text-base py-[30px] w-full
-              md:py-0 md:w-[386px] md:h-[67px]
+              text-base min-h-[67px] w-full
+              md:min-h-[67px] md:w-[386px] md:h-[67px]
             "
           >
             Подробнее

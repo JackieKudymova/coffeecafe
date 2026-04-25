@@ -90,14 +90,14 @@ function NewsArticleBody({ id }: { id: string }) {
       </div>
 
       {/* Текст: моб. отступы по HF_phone_about news_1; десктоп 8 кол. */}
-      <div className="mt-[22px] lg:mt-8 lg:col-span-8 flex flex-col">
+      <div className="mt-[24px] lg:mt-8 lg:col-span-8 flex flex-col">
         <h1 className="m-0 text-cream text-xl md:text-[22px] font-normal leading-[24px] md:leading-[26.4px] lg:text-2xl lg:leading-[29px]">
           {article.title}
         </h1>
 
         <time
           dateTime={article.publishedAt}
-          className="mt-[10px] lg:mt-4 block text-news-date/90 text-base md:text-[14px] font-normal leading-[19px] md:leading-[17px] lg:text-base lg:leading-[19px]"
+          className="mt-[8px] lg:mt-4 block text-news-date/90 text-[13px] md:text-[14px] font-normal leading-[16px] md:leading-[17px] lg:text-base lg:leading-[19px]"
         >
           {formatNewsDate(article.publishedAt)}
         </time>
@@ -113,7 +113,7 @@ function NewsArticleBody({ id }: { id: string }) {
 
         <Link
           to="/news"
-          className="mt-[33px] lg:mt-10 inline-flex w-full min-h-[80px] text-base shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-6 text-center font-medium uppercase tracking-wider text-brown-dark transition-colors hover:bg-brown-button-hover active:bg-brown-button-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg md:max-w-[386px] md:min-h-[67px] lg:max-w-[280px] lg:min-h-[54px] lg:text-lg"
+          className="mt-[33px] lg:mt-10 inline-flex w-full min-h-[67px] text-base shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-6 text-center font-medium uppercase tracking-wider text-brown-dark transition-colors hover:bg-brown-button-hover active:bg-brown-button-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg md:max-w-[386px] md:min-h-[67px] lg:max-w-[280px] lg:min-h-[54px] lg:text-lg"
         >
           Назад
         </Link>

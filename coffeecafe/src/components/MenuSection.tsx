@@ -22,7 +22,7 @@ const menuCategories = [
 function MenuSection() {
   return (
     <section id="menu" className="bg-brown-bg pt-12 lg:pt-[88px] pb-12 lg:pb-24">
-      <div className="px-6 md:px-4 lg:px-16 xl:px-28">
+      <div className="px-4 lg:px-16 xl:px-28">
         <h2 className="font-heading font-semibold text-cream text-[28px] md:text-[32px] lg:text-[36px] leading-tight text-center md:text-left">
           Наше меню
         </h2>
@@ -56,8 +56,8 @@ function MenuSection() {
               rounded-[10px] uppercase tracking-wider
               transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
-              text-base py-[30px] w-full
-              md:py-0 md:w-[386px] md:h-[67px]
+              text-base min-h-[67px] w-full
+              md:min-h-[67px] md:w-[386px] md:h-[67px]
               lg:text-lg lg:w-[271px] lg:h-[54px]
             "
           >

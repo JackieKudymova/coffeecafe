@@ -40,7 +40,7 @@ function ThanksCard({ onClose }: { onClose: () => void }) {
           type="button"
           onClick={onClose}
           className="
-            inline-flex h-[80px] w-full max-w-[326px] items-center justify-center rounded-[10px]
+            inline-flex h-[67px] w-full max-w-[326px] items-center justify-center rounded-[10px]
             bg-brown-button font-medium text-brown-dark text-base uppercase tracking-wider
             lg:h-[54px] lg:max-w-[280px] lg:text-lg
             transition-colors hover:bg-brown-button-hover active:bg-brown-button-active

@@ -119,19 +119,20 @@ function MenuItemCard({ item }: { item: MenuItem }) {
       </h3>
 
       {/* Варианты: 2 строки (объём + цена). 25px от названия, 15px между строками */}
+      {/* На мобилке колонки 55px + gap 8px (как в Figma), на md+ — 104px без gap-x */}
       <div
-        className="mt-[10px] md:mt-2 lg:mt-[7px] grid gap-y-[3px]"
-        style={{ gridTemplateColumns: `repeat(${item.variants.length}, 104px)` }}
+        className="mt-[10px] md:mt-2 lg:mt-[7px] grid gap-y-[3px] gap-x-2 md:gap-x-0 [grid-template-columns:repeat(var(--cols),55px)] md:[grid-template-columns:repeat(var(--cols),104px)]"
+        style={{ ['--cols' as string]: item.variants.length } as React.CSSProperties}
       >
         {/* Строка 1: объёмы/вес */}
         {item.variants.map((v) => (
-          <span key={v.label} className="text-[#a8a5a1] text-sm md:text-[14px] lg:text-base whitespace-nowrap">
+          <span key={v.label} className="text-[#a8a5a1] text-[13px] md:text-[14px] lg:text-base whitespace-nowrap">
             {v.label}
           </span>
         ))}
         {/* Строка 2: цены */}
         {item.variants.map((v) => (
-          <span key={v.label + v.price} className="text-cream font-medium text-base md:text-[22px] lg:text-xl whitespace-nowrap">
+          <span key={v.label + v.price} className="text-cream font-medium text-[20px] md:text-[22px] lg:text-xl whitespace-nowrap">
             {v.price} ₽
           </span>
         ))}

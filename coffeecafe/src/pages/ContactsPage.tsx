@@ -65,7 +65,7 @@ function ContactsPage() {
               <a
                 href="#"
                 aria-label="ВКонтакте"
-                className="mt-[20px] inline-block text-cream transition-colors duration-150 ease-out hover:text-brown-button active:text-brown-button [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
+                className="mt-2 md:mt-[20px] inline-block text-cream transition-colors duration-150 ease-out hover:text-brown-button active:text-brown-button [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
               >
                 <VkIcon className="h-6 w-6 md:h-8 md:w-8" />
               </a>
@@ -311,12 +311,12 @@ function ContactForm({
         </div>
       </div>
 
-      <label className="flex items-center gap-4 md:gap-[14px] mt-5 md:mt-4 cursor-pointer">
+      <label className="flex items-start md:items-center gap-4 md:gap-[14px] mt-4 cursor-pointer">
         {/*
           Ошибка: в default-chckbox-vector.svg уже есть серая обводка — внешний border давал «второе кольцо».
           Если не отмечено и есть ошибка — показываем только рамку error без SVG.
         */}
-        <span className="relative inline-flex h-4 w-4 md:h-6 md:w-6 shrink-0 rounded-sm transition-opacity hover:opacity-90">
+        <span className="relative inline-flex h-4 w-4 md:h-6 md:w-6 shrink-0 rounded-sm transition-opacity hover:opacity-90 mt-[2px] md:mt-0">
           <input
             type="checkbox"
             checked={consent}
@@ -365,7 +365,10 @@ function ContactForm({
         type="submit"
         disabled={isSubmitting}
         className="
-          w-full py-6 md:py-0 md:h-[67px] lg:h-[54px] mt-6 md:mt-10 lg:mt-6 rounded-[10px]
+          flex items-center justify-center
+          -mx-2 w-[calc(100%+16px)] h-[80px]
+          md:mx-0 md:w-full md:h-[67px] lg:h-[54px]
+          mt-[33px] md:mt-10 lg:mt-6 rounded-[10px]
           bg-brown-button text-brown-dark font-medium
           text-base lg:text-lg uppercase tracking-wider
           transition-colors hover:bg-brown-button-hover active:bg-brown-button-active

@@ -38,8 +38,8 @@ function HeroSection() {
               text-center uppercase tracking-wider transition-colors
               hover:bg-brown-button-hover active:bg-brown-button-active
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
-              text-base py-[30px] w-[358px]
-              md:inline-flex md:items-center md:justify-center md:py-0 md:w-[386px] md:h-[67px]
+              text-base leading-[19px] py-6 w-[358px]
+              md:inline-flex md:items-center md:justify-center md:py-0 md:leading-normal md:w-[386px] md:h-[67px]
               lg:inline-flex lg:items-center lg:justify-center
               lg:text-lg lg:py-0 lg:w-[280px] lg:h-[54px]
             "
