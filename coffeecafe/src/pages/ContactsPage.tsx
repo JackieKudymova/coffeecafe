@@ -366,8 +366,8 @@ function ContactForm({
         disabled={isSubmitting}
         className="
           flex items-center justify-center
-          -mx-2 w-[calc(100%+16px)] h-[80px]
-          md:mx-0 md:w-full md:h-[67px] lg:h-[54px]
+          -mx-2 w-[calc(100%+16px)] h-[67px]
+          md:mx-0 md:w-full lg:h-[54px]
           mt-[33px] md:mt-10 lg:mt-6 rounded-[10px]
           bg-brown-button text-brown-dark font-medium
           text-base lg:text-lg uppercase tracking-wider
