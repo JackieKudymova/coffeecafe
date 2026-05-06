@@ -41,6 +41,10 @@ async def get_public_menu(db: AsyncSession = Depends(get_db)):
                     name=item.name,
                     image=item.image,
                     variants=vars_out,
+                    ingredients=item.ingredients,
+                    allergen_milk=item.allergen_milk,
+                    allergen_gluten=item.allergen_gluten,
+                    allergen_egg=item.allergen_egg,
                 )
             )
         out.append(

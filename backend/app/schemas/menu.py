@@ -15,6 +15,10 @@ class MenuItemOut(BaseModel):
     name: str
     image: str | None = None
     variants: list[MenuVariantOut]
+    ingredients: str | None = None
+    allergen_milk: bool = False
+    allergen_gluten: bool = False
+    allergen_egg: bool = False
 
 
 class MenuCategoryOut(BaseModel):
@@ -39,6 +43,10 @@ class MenuItemCreate(BaseModel):
     sort_order: int = 0
     is_visible: bool = True
     variants: list[MenuVariantIn] = Field(default_factory=list)
+    ingredients: str | None = None
+    allergen_milk: bool = False
+    allergen_gluten: bool = False
+    allergen_egg: bool = False
 
 
 class MenuItemUpdate(BaseModel):
@@ -48,6 +56,10 @@ class MenuItemUpdate(BaseModel):
     sort_order: int | None = None
     is_visible: bool | None = None
     variants: list[MenuVariantIn] | None = None
+    ingredients: str | None = None
+    allergen_milk: bool | None = None
+    allergen_gluten: bool | None = None
+    allergen_egg: bool | None = None
 
 
 class MenuItemAdminOut(BaseModel):
@@ -60,6 +72,10 @@ class MenuItemAdminOut(BaseModel):
     sort_order: int
     is_visible: bool
     variants: list[MenuVariantOut]
+    ingredients: str | None = None
+    allergen_milk: bool = False
+    allergen_gluten: bool = False
+    allergen_egg: bool = False
     createdAt: str | None = None  # ISO, дата добавления записи
 
 

@@ -29,6 +29,10 @@ def _item_out(item: MenuItem) -> MenuItemAdminOut:
         sort_order=item.sort_order,
         is_visible=item.is_visible,
         variants=[MenuVariantOut(label=v.label, price=v.price) for v in vars_sorted],
+        ingredients=item.ingredients,
+        allergen_milk=item.allergen_milk,
+        allergen_gluten=item.allergen_gluten,
+        allergen_egg=item.allergen_egg,
         createdAt=created_str,
     )
 
@@ -64,6 +68,10 @@ async def create_item(
         image=body.image,
         sort_order=body.sort_order,
         is_visible=body.is_visible,
+        ingredients=(body.ingredients.strip() if body.ingredients else None) or None,
+        allergen_milk=body.allergen_milk,
+        allergen_gluten=body.allergen_gluten,
+        allergen_egg=body.allergen_egg,
     )
     db.add(item)
     await db.flush()
@@ -112,6 +120,15 @@ async def update_item(
         item.sort_order = body.sort_order
     if body.is_visible is not None:
         item.is_visible = body.is_visible
+    if body.ingredients is not None:
+        s = body.ingredients.strip()
+        item.ingredients = s if s else None
+    if body.allergen_milk is not None:
+        item.allergen_milk = body.allergen_milk
+    if body.allergen_gluten is not None:
+        item.allergen_gluten = body.allergen_gluten
+    if body.allergen_egg is not None:
+        item.allergen_egg = body.allergen_egg
     if body.variants is not None:
         await db.execute(delete(MenuVariant).where(MenuVariant.item_id == item.id))
         await db.flush()

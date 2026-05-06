@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import TYPE_CHECKING
 
-from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, String, func
+from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, String, Text, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import Base
@@ -22,6 +22,12 @@ class MenuItem(Base):
     image: Mapped[str | None] = mapped_column(String(500), nullable=True)
     sort_order: Mapped[int] = mapped_column(Integer, nullable=False, server_default="0")
     is_visible: Mapped[bool] = mapped_column(Boolean, nullable=False, server_default="true")
+    # Состав показывается на сайте при наведении (десктоп) / тапе (мобилка) поверх фото.
+    ingredients: Mapped[str | None] = mapped_column(Text, nullable=True)
+    # Аллергены — три булевых флага. Иконки выводятся столбиком снизу вверх.
+    allergen_milk: Mapped[bool] = mapped_column(Boolean, nullable=False, server_default="false")
+    allergen_gluten: Mapped[bool] = mapped_column(Boolean, nullable=False, server_default="false")
+    allergen_egg: Mapped[bool] = mapped_column(Boolean, nullable=False, server_default="false")
     created_at: Mapped[datetime | None] = mapped_column(DateTime, server_default=func.now())
     updated_at: Mapped[datetime | None] = mapped_column(
         DateTime, server_default=func.now(), onupdate=func.now()
