@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.config import get_settings
 from app.routers.admin import admin_router
-from app.routers import contacts, menu, news, promo
+from app.routers import auth, contacts, menu, news, promo
 
 settings = get_settings()
 
@@ -30,6 +30,7 @@ app.include_router(menu.router, prefix="/api")
 app.include_router(news.router, prefix="/api")
 app.include_router(promo.router, prefix="/api")
 app.include_router(contacts.router, prefix="/api")
+app.include_router(auth.router, prefix="/api")
 
 # Админка: /api/admin/...
 app.include_router(admin_router, prefix="/api/admin")
