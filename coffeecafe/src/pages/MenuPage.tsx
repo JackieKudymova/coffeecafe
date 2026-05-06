@@ -15,6 +15,9 @@ import {
   MENU_CATEGORY_QUERY_KEY,
 } from '../types/menu'
 import { fetchMenu } from '../services/menuService'
+import milkIcon from '../assets/images/Milk Bottle.png'
+import glutenIcon from '../assets/images/Gluten.png'
+import eggIcon from '../assets/images/Egg.png'
 
 function MenuPage() {
   const [searchParams] = useSearchParams()
@@ -101,17 +104,76 @@ function MenuPage() {
   )
 }
 
-/* Карточка позиции меню */
+/*
+  Карточка позиции меню.
+  Десктоп: при наведении на фото показывается состав (если он есть).
+  Планшет/мобилка: переключение по тапу на фото — touch-устройства не умеют
+  hover, поэтому используем onClick.
+  Иконки-аллергены — отдельная колонка в правом нижнем углу карточки
+  (по макету Figma: ниже фото, справа от блока с ценами/названием).
+  Заполняются СНИЗУ ВВЕРХ: при одной иконке она внизу, добавление следующей
+  ставит её ВЫШЕ предыдущей; порядок при всех трёх — milk → gluten → egg.
+*/
 function MenuItemCard({ item }: { item: MenuItem }) {
+  /** Открыт ли поп-ап «состав» по тапу (мобилка/планшет). На десктопе используется hover через CSS. */
+  const [tapOpen, setTapOpen] = useState(false)
+
+  // Порядок сверху вниз: молоко → глютен → яйца (по макету Figma).
+  // «Заполнение снизу вверх» получается за счёт абсолютного позиционирования
+  // колонки у нижнего края карточки: при одной иконке она в самом низу,
+  // при двух — добавленная встаёт ниже, и т.д.
+  const allergens: { src: string; alt: string }[] = []
+  if (item.allergen_milk) allergens.push({ src: milkIcon, alt: 'Молоко' })
+  if (item.allergen_gluten) allergens.push({ src: glutenIcon, alt: 'Глютен' })
+  if (item.allergen_egg) allergens.push({ src: eggIcon, alt: 'Яйца' })
+
+  const hasIngredients = Boolean(item.ingredients && item.ingredients.trim())
+
   return (
-    <div>
-      {/* Изображение — пропорция 3:2, скруглённые углы */}
-      <div className="aspect-[3/2] overflow-hidden rounded-[10px]">
+    <div className="relative">
+      {/*
+        Изображение — пропорция 3:2, скруглённые углы.
+        group/photo нужен, чтобы на десктопе менять видимость состава по hover.
+        На тач-устройствах состав показывается через состояние tapOpen.
+      */}
+      <div
+        className="group/photo relative aspect-[3/2] overflow-hidden rounded-[10px]"
+        onClick={() => {
+          if (hasIngredients) setTapOpen((v) => !v)
+        }}
+      >
         <img
           src={item.image}
           alt={item.name}
           className="w-full h-full object-cover"
         />
+
+        {/*
+          Поп-ап «Состав». По макету Figma (Hf_ipad_menu → Slot → Inside):
+          — фон #cfc6bb (кремовый), текст brown-dark (#2a1c17);
+          — сверху заголовок «Состав:» (22px), под ним список ингредиентов (17px)
+            по левому краю, переносы строк сохраняются (whitespace-pre-line);
+          — внутренний отступ 16px (p-4).
+          Виден на десктопе по hover, на мобилке/планшете — по tapOpen.
+        */}
+        {hasIngredients && (
+          <div
+            className={`
+              absolute inset-0 bg-[#cfc6bb] flex flex-col gap-2 p-4
+              overflow-y-auto transition-opacity duration-200
+              ${tapOpen ? 'opacity-100' : 'opacity-0'}
+              lg:opacity-0 lg:group-hover/photo:opacity-100
+            `}
+            aria-hidden={!tapOpen}
+          >
+            <span className="text-brown-dark text-lg md:text-[22px] leading-[1.2]">
+              Состав:
+            </span>
+            <p className="text-brown-dark text-sm md:text-[17px] leading-[1.25] whitespace-pre-line">
+              {item.ingredients}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Название позиции. 30px от фото */}
@@ -138,6 +200,26 @@ function MenuItemCard({ item }: { item: MenuItem }) {
           </span>
         ))}
       </div>
+
+      {/*
+        Иконки-аллергены: столбик в правом нижнем углу карточки (по макету).
+        Размер 24×24 (десктоп/планшет), 20×20 (мобилка); расстояние между иконками 11px.
+        absolute + bottom-0/right-0 даёт «прилипание» к нижнему правому углу карточки —
+        одна иконка оказывается в самом низу, при добавлении следующая встаёт сверху.
+      */}
+      {allergens.length > 0 && (
+        <div className="absolute bottom-0 right-0 flex flex-col gap-[11px] pointer-events-none">
+          {allergens.map((a) => (
+            <img
+              key={a.alt}
+              src={a.src}
+              alt={a.alt}
+              title={a.alt}
+              className="w-5 h-5 md:w-6 md:h-6 lg:w-6 lg:h-6 object-contain"
+            />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

@@ -16,6 +16,12 @@ export interface MenuItem {
   name: string
   image: string           // URL картинки
   variants: MenuVariant[] // от 1 до N вариантов размера/веса
+  /** Состав — показывается на сайте поверх фото при наведении/тапе. */
+  ingredients?: string | null
+  /** Аллергены: по одному флагу на каждый. От 0 до 3 иконок. */
+  allergen_milk?: boolean
+  allergen_gluten?: boolean
+  allergen_egg?: boolean
 }
 
 /* Раздел меню (напр. "Кофе") */
