@@ -4,6 +4,7 @@ import HeroSection from '../components/HeroSection'
 import AboutSection from '../components/AboutSection'
 import WhyUsSection from '../components/WhyUsSection'
 import MenuSection from '../components/MenuSection'
+import AuthPromoSection from '../components/AuthPromoSection'
 import PromoSection from '../components/PromoSection'
 import GallerySection from '../components/GallerySection'
 import ReviewsSection from '../components/ReviewsSection'
@@ -27,6 +28,7 @@ function HomePage() {
       <AboutSection />
       <WhyUsSection />
       <MenuSection />
+      <AuthPromoSection />
       <PromoSection />
       <GallerySection />
       <ReviewsSection />

@@ -9,19 +9,14 @@
 
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import logo from '../assets/images/logo.svg'
+import userIcon from '../assets/images/User Male.png'
+import { getUserToken } from '../services/authService'
 
 /* Десктопная навигация включает "Главная", мобильная — нет (по макету) */
 const desktopLinks = [
   { label: 'Главная', href: '/' },
-  { label: 'О нас', href: '/about' },
-  { label: 'Меню', href: '/menu' },
-  { label: 'Новости и акции', href: '/news' },
-  { label: 'Контакты', href: '/contacts' },
-]
-
-const mobileLinks = [
   { label: 'О нас', href: '/about' },
   { label: 'Меню', href: '/menu' },
   { label: 'Новости и акции', href: '/news' },
@@ -34,6 +29,23 @@ interface HeaderProps {
 }
 
 function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
+  /*
+    Куда ведёт «Личный кабинет»: если уже есть токен — сразу в /lk,
+    иначе — на страницу входа. useLocation триггерит ре-рендер при смене
+    маршрута, чтобы после логина (navigate('/lk')) кнопка обновилась.
+  */
+  useLocation()
+  const lkHref = getUserToken() ? '/lk' : '/login'
+
+  /* На планшете/мобилке «Личный кабинет» — пункт меню (иконки в header нет, по макету). */
+  const mobileLinks = [
+    { label: 'О нас', href: '/about' },
+    { label: 'Меню', href: '/menu' },
+    { label: 'Новости и акции', href: '/news' },
+    { label: 'Контакты', href: '/contacts' },
+    { label: 'Личный кабинет', href: lkHref },
+  ]
+
   useEffect(() => {
     if (!isMenuOpen) return
 
@@ -130,9 +142,19 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
     <>
       {/* Шапка — всегда поверх контента */}
       <header className="absolute top-0 left-0 w-full z-50">
-        <div className="flex items-center justify-between px-4 lg:px-16 xl:px-28 py-4 lg:py-6">
+        {/*
+          Мобилки/планшет: flex c justify-between (логотип слева, бургер справа).
+          Десктоп: 3 колонки (логотип слева — меню по центру — иконка ЛК справа),
+          по макету HF_desktop_main.hero.header.
+        */}
+        {/*
+          Десктоп: 3 колонки 1fr-auto-1fr — крайние равны, средняя по контенту,
+          поэтому меню стоит ровно по центру фрейма (как в Figma 380:1298) и
+          не сжимается, что иначе ломало бы перенос «О нас».
+        */}
+        <div className="flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] px-4 lg:px-16 xl:px-28 py-4 lg:py-6">
           {/* Логотип — SVG, адаптивный размер: 106×25 мобилка, 120×27 планшет, 127×29 десктоп */}
-          <a href="/">
+          <a href="/" className="lg:justify-self-start">
             <img
               src={logo}
               alt="ДомКофе"
@@ -140,8 +162,8 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
             />
           </a>
 
-          {/* Десктопная навигация */}
-          <nav className="hidden lg:flex gap-4 lg:gap-8">
+          {/* Десктопная навигация — центральная колонка */}
+          <nav className="hidden lg:flex gap-4 lg:gap-8 lg:justify-self-center">
             {desktopLinks.map((link) => (
               <NavLink
                 key={link.label}
@@ -154,7 +176,33 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
             ))}
           </nav>
 
-          {/* Бургер-кнопка (только мобилки) */}
+          {/*
+            Иконка «Личный кабинет» → /login, правая колонка.
+            Состояния — как у пунктов меню (text-cream → hover/active: text-brown-button).
+            Используем CSS-маску, чтобы цвет PNG-иконки управлялся через bg-current.
+          */}
+          <NavLink
+            to={lkHref}
+            aria-label="Личный кабинет"
+            className="hidden lg:inline-flex shrink-0 lg:justify-self-end text-cream transition-colors hover:text-brown-button active:text-brown-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
+          >
+            <span
+              aria-hidden
+              className="block h-7 w-7 bg-current"
+              style={{
+                WebkitMaskImage: `url(${userIcon})`,
+                maskImage: `url(${userIcon})`,
+                WebkitMaskRepeat: 'no-repeat',
+                maskRepeat: 'no-repeat',
+                WebkitMaskPosition: 'center',
+                maskPosition: 'center',
+                WebkitMaskSize: 'contain',
+                maskSize: 'contain',
+              }}
+            />
+          </NavLink>
+
+          {/* Бургер-кнопка (только мобилки/планшет) */}
           <button
             type="button"
             className="lg:hidden text-cream transition-colors hover:text-brown-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 rounded-sm"
