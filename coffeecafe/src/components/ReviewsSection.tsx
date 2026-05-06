@@ -118,6 +118,39 @@ function ReviewsSection() {
           </div>
         ))}
       </div>
+
+      {/*
+        Призыв оставить отзыв в Яндекс Картах + кнопка-ссылка.
+        Внешняя ссылка — обычный <a> с target="_blank" и rel="noopener noreferrer".
+        Размеры по фреймам Figma:
+          мобилка  — HF_phone_main.Group 1722.reviews: текст 20/24, кнопка 358×67
+          планшет  — фрейма нет, по аналогии: текст 17/21, кнопка 386×67 (как hero)
+          десктоп  — HF_desktop_main.reviews: текст 24/29, кнопка 280×56
+      */}
+      <div className="px-4 lg:px-16 xl:px-28 mt-12 lg:mt-[72px] flex flex-col items-center text-center">
+        <p className="text-cream font-normal text-xl md:text-[17px] lg:text-2xl leading-[24px] md:leading-[21px] lg:leading-[29px] max-w-[358px] md:max-w-[386px] lg:max-w-[454px]">
+          Оставьте свой отзыв в Яндекс Картах!
+        </p>
+        <a
+          href="https://yandex.ru/maps/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            inline-flex items-center justify-center
+            mt-8 lg:mt-9
+            bg-brown-button text-brown-dark font-medium rounded-[10px]
+            uppercase tracking-wider transition-colors
+            hover:bg-brown-button-hover active:bg-brown-button-active
+            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
+            text-base lg:text-lg
+            w-[358px] h-[67px]
+            md:w-[386px] md:h-[67px]
+            lg:w-[280px] lg:h-[56px]
+          "
+        >
+          Перейти
+        </a>
+      </div>
     </section>
   )
 }

@@ -11,6 +11,7 @@ import ContactThanksPanel from '../components/ContactThanksPanel'
 import VkIcon from '../components/icons/VkIcon'
 import defaultCheckboxIcon from '../assets/images/default-chckbox-vector.svg'
 import selectedCheckboxIcon from '../assets/images/selected-vector.svg'
+import mapImg from '../assets/images/map.png'
 
 function ContactsPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -30,8 +31,11 @@ function ContactsPage() {
         onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
       />
 
-      {/* Основной контент. Хедер absolute ~57px, поэтому pt включает его высоту + отступ */}
-      <main className="px-4 lg:px-16 xl:px-28 pt-[92px] md:pt-[73px] lg:pt-[149px]">
+      {/*
+        Основной контент. Хедер absolute, поэтому pt считается от верха страницы.
+        По макетам Figma: 92px моб, 97px планшет (Hf_ipad_contacts), 149px десктоп.
+      */}
+      <main className="px-4 lg:px-16 xl:px-28 pt-[92px] md:pt-[97px] lg:pt-[149px]">
 
         {/* Мобилка + планшет: одна колонка */}
         <div className="lg:hidden pb-[50px] md:pb-14">
@@ -39,7 +43,7 @@ function ContactsPage() {
             Контакты
           </h1>
 
-          <div className="text-cream-dark text-base md:text-[17px] leading-[19px] md:leading-[21px] mt-10 md:mt-8 space-y-6 md:space-y-5">
+          <div className="text-cream-dark text-base md:text-[17px] leading-[19px] md:leading-[21px] mt-8 space-y-6 md:space-y-5">
             <p>
               Мы находимся в центре города, в тихом дворике. Напишите нам или
               позвоните, если хотите забронировать стол или задать вопрос.
@@ -72,7 +76,19 @@ function ContactsPage() {
             </div>
           </div>
 
-          <div className="mt-10 md:mt-10">
+          {/*
+            Карта рядом с контактами.
+            Размеры по фрейму Figma:
+              мобилка  — HF_phone_main.body.image 75: 358×220, gap 16 от иконки соцсети
+              планшет  — Hf_ipad_contacts.image 75: 784×262, занимает всю ширину контента
+          */}
+          <img
+            src={mapImg}
+            alt="Карта расположения кофейни"
+            className="block w-full h-[220px] md:h-[262px] object-cover rounded-[10px] mt-4"
+          />
+
+          <div className="mt-4 md:mt-6">
             <ContactForm
               key={formResetKey}
               onSuccess={() => setFormSent(true)}
@@ -82,8 +98,18 @@ function ContactsPage() {
 
         {/* Десктоп: 12-колоночная сетка */}
         <div className="hidden lg:grid grid-cols-12 gap-x-8 pb-[95px]">
-          {/* Колонки 1-6: контактная информация. pt-[10px] — заголовок ниже формы по макету */}
-          <div className="col-span-6 pt-[10px]">
+          {/*
+            Колонки 1-6: заголовок + контактная информация + карта.
+            По фрейму HF_desktop_contacts.body.Group 1780: h1 и форма стартуют с одного y.
+            Внутри блока:
+              h1 → 48px → текст (308px) → 16px → VK 32×32 → 16px → карта 584×225.
+            flex-col: на ширинах >1440 форма (фикс. паддинги) короче, чем «h1+текст+карта»,
+            и наоборот, текст занимает меньше высоты (меньше переносов), поэтому колонка
+            оказывается короче формы. Карта получает flex-1 + min-h-[225px] и растягивается
+            по высоте, закрывая пустое место до низа формы. На 1440 колонка ровно высотой
+            формы — карта остаётся 225px (макет Figma).
+          */}
+          <div className="col-span-6 flex flex-col">
             <h1 className="font-heading font-semibold text-cream text-[36px] leading-tight">
               Контакты
             </h1>
@@ -114,11 +140,26 @@ function ContactsPage() {
                 <a
                   href="#"
                   aria-label="ВКонтакте"
-                  className="mt-[20px] inline-block text-cream transition-colors duration-150 ease-out hover:text-brown-button active:text-brown-button [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
+                  className="mt-4 inline-block text-cream transition-colors duration-150 ease-out hover:text-brown-button active:text-brown-button [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
                 >
                   <VkIcon className="h-8 w-8" />
                 </a>
               </div>
+            </div>
+
+            {/*
+              Карта: HF_desktop_contacts.Group 1771.image 75 — 584×225, rounded-10.
+              Обёртка flex-1 + min-h-[225px]: на 1440 — ровно 225 (нет свободного места
+                в колонке), на >1440 — растягивается до низа колонки = низа формы.
+              <img> внутри h-full object-cover — картинка следует за высотой обёртки
+                без искажений (обрезается, не растягивается).
+            */}
+            <div className="mt-4 flex-1 min-h-[225px] basis-[225px]">
+              <img
+                src={mapImg}
+                alt="Карта расположения кофейни"
+                className="block w-full h-full object-cover rounded-[10px]"
+              />
             </div>
           </div>
 
@@ -229,9 +270,10 @@ function ContactForm({
       onSubmit={handleSubmit}
       noValidate
       aria-hidden={ariaHidden}
-      className={`bg-[#4b372b] rounded-[10px] px-6 py-6 md:px-6 md:pt-10 md:pb-10 lg:px-14 lg:pt-[48px] lg:pb-[48px] ${className}`}
+      className={`bg-[#4b372b] rounded-[10px] px-6 py-6 md:px-6 md:pt-10 md:pb-10 lg:px-14 lg:pt-[96px] lg:pb-[96px] ${className}`}
     >
-      <h2 className="text-cream font-normal text-xl md:text-[22px] lg:text-2xl leading-[1.2] lg:leading-normal">
+      {/* Title fs 24 / lh 29 — по Figma HF_desktop_contacts.body.Group 1780.Group 1395 */}
+      <h2 className="text-cream font-normal text-xl md:text-[22px] lg:text-2xl leading-[1.2]">
         Есть вопросы?
         <br className="min-[500px]:hidden" aria-hidden />
         {' '}
@@ -290,7 +332,7 @@ function ContactForm({
         <span className="text-cream-dark text-base md:text-[17px] lg:text-lg">Сообщение</span>
         <div
           className="
-            mt-2 h-[76px] md:h-[100px] lg:h-[120px] px-4 py-2 md:py-4 rounded-[10px] overflow-hidden
+            mt-2 h-[76px] md:h-[100px] lg:h-[107px] px-4 py-2 md:py-4 rounded-[10px] overflow-hidden
             bg-input-bg border-2 border-transparent transition-colors
             hover:bg-input-bg-hover
             focus-within:border-input-border-focus

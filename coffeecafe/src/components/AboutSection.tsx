@@ -49,13 +49,13 @@ function AboutSection() {
       </div>
 
       {/*
-        Десктоп: flex-раскладка по размерам из Figma.
-        Фото 48.85% (594px из 1216), зазор 8.4% (102px), текст — остаток (488px).
-        Текст начинается с правого края 7-й колонки сетки (696px от левого края контента).
+        Десктоп: 12-колоночная сетка 1fr с gap-8 (по фрейму HF_desktop_main.about us).
+        Фото — col 1-6 (592px при 1440), текст с кнопкой — col 7-12 (тоже 592px),
+        зазор между ними 32px. Текст по вертикальному центру картинки.
       */}
-      <div className="hidden lg:flex px-16 xl:px-28">
-        {/* Фото — 594px при 1440, масштабируется пропорционально */}
-        <div className="w-[48.85%] shrink-0">
+      <div className="hidden lg:grid lg:grid-cols-12 gap-8 px-16 xl:px-28">
+        {/* Фото — 6 колонок из 12 */}
+        <div className="col-span-6">
           <img
             src={aboutImg}
             alt="Бариста готовит кофе"
@@ -63,19 +63,27 @@ function AboutSection() {
           />
         </div>
 
-        {/* Текст + кнопка — зазор 8.4% от ширины контента (102px при 1440) */}
-        <div className="ml-[8.4%] flex-1 flex flex-col justify-center">
+        {/* Текст + кнопка — оставшиеся 6 колонок, по вертикальному центру картинки */}
+        <div className="col-span-6 self-center">
           <h2 className="font-heading font-semibold text-cream text-[36px] leading-tight">
             О нас
           </h2>
 
-          <p className="text-cream-dark text-lg leading-[22px] mt-20">
+          {/*
+            По фрейму: gap h1→p ~29px, p→button ~56px.
+            max-w-[592px] + tracking-[-0.005em] — зафиксированная ширина параграфа
+            из Figma, чтобы перенос строк не зависел от ширины окна (на широких
+            экранах колонка тянется, и без max-width текст переносится иначе).
+            Лёгкий минусовой трекинг компенсирует разницу шейпинга Inter
+            между Figma и браузерами.
+          */}
+          <p className="text-cream-dark text-lg leading-[22px] tracking-[-0.005em] mt-7 max-w-[588px]">
             Наша кофейня - это уютное пространство, где можно насладиться
             ароматным кофе и провести время в спокойной атмосфере, поработать
             за ноутбуком или встретиться с друзьями
           </p>
 
-          <div className="mt-16">
+          <div className="mt-14">
             <Link
               to="/about"
               className="
@@ -84,7 +92,7 @@ function AboutSection() {
                 rounded-[10px] uppercase tracking-wider
                 transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
-                text-lg w-[280px] h-[54px]
+                text-lg w-[339px] h-[54px]
               "
             >
               Подробнее
