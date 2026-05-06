@@ -7,6 +7,11 @@ import MenuPage from './pages/MenuPage'
 import NewsPage from './pages/NewsPage'
 import NewsArticlePage from './pages/NewsArticlePage'
 import NotFoundPage from './pages/NotFoundPage'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import ResetPasswordPage from './pages/ResetPasswordPage'
+import ResetPasswordConfirmPage from './pages/ResetPasswordConfirmPage'
+import LkPage from './pages/LkPage'
 import AdminLoginPage from './pages/admin/AdminLoginPage'
 import AdminDashboard from './pages/admin/AdminDashboard'
 // Раздел «Категории меню» отключён (см. AdminCategories.tsx). Чтобы включить: импорт AdminCategories + Route path="categories" + пункт в AdminSidebar.
@@ -16,6 +21,7 @@ import AdminMessages from './pages/admin/AdminMessages'
 import AdminMessageDetail from './pages/admin/AdminMessageDetail'
 import AdminLayout from './components/admin/AdminLayout'
 import { getAdminToken } from './services/adminService'
+import { getUserToken } from './services/authService'
 
 /*
   App — корневой компонент приложения.
@@ -36,6 +42,17 @@ function ProtectedAdmin() {
   return <Outlet />
 }
 
+function ProtectedUser() {
+  if (!getUserToken()) return <Navigate to="/login" replace />
+  return <Outlet />
+}
+
+/* Если пользователь уже залогинен — нечего показывать /login и /register, кидаем в /lk. */
+function GuestOnly() {
+  if (getUserToken()) return <Navigate to="/lk" replace />
+  return <Outlet />
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -47,6 +64,15 @@ function App() {
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/news/:id" element={<NewsArticlePage />} />
+        <Route element={<GuestOnly />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/reset-password/confirm" element={<ResetPasswordConfirmPage />} />
+        </Route>
+        <Route path="/lk" element={<ProtectedUser />}>
+          <Route index element={<LkPage />} />
+        </Route>
         <Route path="/admin/login" element={<AdminLoginPage />} />
         <Route path="/admin" element={<ProtectedAdmin />}>
           <Route element={<AdminLayout />}>
