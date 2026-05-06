@@ -9,6 +9,7 @@ import {
 import AdminTable from '../../components/admin/AdminTable'
 import AdminTextField from '../../components/admin/AdminTextField'
 import AdminTextArea from '../../components/admin/AdminTextArea'
+import AdminCheckbox from '../../components/admin/AdminCheckbox'
 import AdminImageUpload from '../../components/admin/AdminImageUpload'
 import AdminRowActionsMenu from '../../components/admin/AdminRowActionsMenu'
 import AdminConfirmDialog from '../../components/admin/AdminConfirmDialog'
@@ -235,15 +236,11 @@ export default function AdminNews() {
             error={errImage}
             label={errImage ? 'Загрузите изображение' : 'Изображение'}
           />
-          <label className="flex items-center gap-2 text-cream">
-            <input
-              type="checkbox"
-              checked={isPublished}
-              onChange={(e) => setIsPublished(e.target.checked)}
-              className="h-4 w-4 rounded border-cream/30 bg-input-bg text-brown-button focus:ring-input-border-focus"
-            />
-            Опубликовано
-          </label>
+          <AdminCheckbox
+            checked={isPublished}
+            onChange={setIsPublished}
+            label="Опубликовано"
+          />
           <div className="flex gap-3 pt-2">
             <button
               type="submit"

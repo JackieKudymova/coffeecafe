@@ -115,7 +115,24 @@ export interface MenuItemRow {
   sort_order: number
   is_visible: boolean
   variants: MenuVariantRow[]
+  ingredients?: string | null
+  allergen_milk?: boolean
+  allergen_gluten?: boolean
+  allergen_egg?: boolean
   createdAt?: string | null
+}
+
+export interface MenuItemWriteBody {
+  category_id: number
+  name: string
+  image: string | null
+  sort_order: number
+  is_visible: boolean
+  variants: { label: string; price: number; sort_order: number }[]
+  ingredients: string | null
+  allergen_milk: boolean
+  allergen_gluten: boolean
+  allergen_egg: boolean
 }
 
 export async function fetchItems(categoryId?: string): Promise<MenuItemRow[]> {
@@ -125,14 +142,7 @@ export async function fetchItems(categoryId?: string): Promise<MenuItemRow[]> {
   return res.json()
 }
 
-export async function createItem(payload: {
-  category_id: number
-  name: string
-  image: string | null
-  sort_order: number
-  is_visible: boolean
-  variants: { label: string; price: number; sort_order: number }[]
-}): Promise<MenuItemRow> {
+export async function createItem(payload: MenuItemWriteBody): Promise<MenuItemRow> {
   const res = await fetch('/api/admin/items', {
     method: 'POST',
     headers: jsonHeaders(),
@@ -144,14 +154,7 @@ export async function createItem(payload: {
 
 export async function updateItem(
   id: string,
-  payload: {
-    category_id?: number
-    name?: string
-    image?: string | null
-    sort_order?: number
-    is_visible?: boolean
-    variants?: { label: string; price: number; sort_order: number }[]
-  },
+  payload: Partial<MenuItemWriteBody>,
 ): Promise<MenuItemRow> {
   const res = await fetch(`/api/admin/items/${id}`, {
     method: 'PUT',

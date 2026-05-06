@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { fetchMessage, patchMessageRead, type MessageRow } from '../../services/adminService'
+import AdminCheckbox from '../../components/admin/AdminCheckbox'
 
 function DetailField({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -64,17 +65,15 @@ export default function AdminMessageDetail() {
         <p className="text-cream-dark">Загрузка…</p>
       ) : row ? (
         <div className="rounded-[10px] border border-cream/15 bg-[#4b372b] p-6 space-y-4">
-          <label className="flex items-center gap-2 text-cream cursor-pointer select-none">
-            <input
-              type="checkbox"
+          <div className="flex items-center gap-3">
+            <AdminCheckbox
               checked={row.is_read}
               disabled={savingRead}
-              onChange={(e) => void onReadChange(e.target.checked)}
-              className="h-4 w-4 rounded border-cream/30 bg-input-bg text-brown-button focus:ring-input-border-focus disabled:opacity-60"
+              onChange={(v) => void onReadChange(v)}
+              label={<span className="text-sm">Прочитано</span>}
             />
-            <span className="text-sm">Прочитано</span>
             {savingRead ? <span className="text-xs text-cream-dark">Сохранение…</span> : null}
-          </label>
+          </div>
 
           <div className="space-y-4 pt-2">
             <DetailField label="Дата">

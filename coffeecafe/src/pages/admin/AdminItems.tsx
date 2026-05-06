@@ -12,6 +12,7 @@ import AdminTable from '../../components/admin/AdminTable'
 import AdminTextField from '../../components/admin/AdminTextField'
 import AdminSelect from '../../components/admin/AdminSelect'
 import AdminTextArea from '../../components/admin/AdminTextArea'
+import AdminCheckbox from '../../components/admin/AdminCheckbox'
 import AdminImageUpload from '../../components/admin/AdminImageUpload'
 import AdminRowActionsMenu from '../../components/admin/AdminRowActionsMenu'
 import AdminConfirmDialog from '../../components/admin/AdminConfirmDialog'
@@ -58,6 +59,10 @@ export default function AdminItems() {
   const [isVisible, setIsVisible] = useState(true)
   const [imagePath, setImagePath] = useState<string | null>(null)
   const [variantsText, setVariantsText] = useState('200 мл | 150')
+  const [ingredients, setIngredients] = useState('')
+  const [allergenMilk, setAllergenMilk] = useState(false)
+  const [allergenGluten, setAllergenGluten] = useState(false)
+  const [allergenEgg, setAllergenEgg] = useState(false)
 
   const [errName, setErrName] = useState(false)
   const [errCategory, setErrCategory] = useState(false)
@@ -107,6 +112,10 @@ export default function AdminItems() {
     setIsVisible(true)
     setImagePath(null)
     setVariantsText('200 мл | 150')
+    setIngredients('')
+    setAllergenMilk(false)
+    setAllergenGluten(false)
+    setAllergenEgg(false)
     clearFieldErrors()
     if (categories.length) setCategoryId(categories[0].id)
   }
@@ -120,6 +129,10 @@ export default function AdminItems() {
     setIsVisible(row.is_visible)
     setImagePath(row.image)
     setVariantsText(variantsToText(row.variants))
+    setIngredients(row.ingredients ?? '')
+    setAllergenMilk(Boolean(row.allergen_milk))
+    setAllergenGluten(Boolean(row.allergen_gluten))
+    setAllergenEgg(Boolean(row.allergen_egg))
     clearFieldErrors()
   }
 
@@ -149,6 +162,7 @@ export default function AdminItems() {
       return
     }
 
+    const ingredientsTrim = ingredients.trim()
     try {
       if (editingId === 'new') {
         await createItem({
@@ -158,6 +172,10 @@ export default function AdminItems() {
           sort_order: sortOrder,
           is_visible: isVisible,
           variants,
+          ingredients: ingredientsTrim || null,
+          allergen_milk: allergenMilk,
+          allergen_gluten: allergenGluten,
+          allergen_egg: allergenEgg,
         })
       } else if (editingId) {
         await updateItem(editingId, {
@@ -167,6 +185,10 @@ export default function AdminItems() {
           sort_order: sortOrder,
           is_visible: isVisible,
           variants,
+          ingredients: ingredientsTrim || null,
+          allergen_milk: allergenMilk,
+          allergen_gluten: allergenGluten,
+          allergen_egg: allergenEgg,
         })
       }
       cancelEdit()
@@ -271,15 +293,12 @@ export default function AdminItems() {
               onChange={(e) => setSortOrder(Number(e.target.value))}
               className="max-w-[8rem]"
             />
-            <label className="flex items-center gap-2 text-cream sm:mt-8">
-              <input
-                type="checkbox"
-                checked={isVisible}
-                onChange={(e) => setIsVisible(e.target.checked)}
-                className="h-4 w-4 rounded border-cream/30 bg-input-bg"
-              />
-              Видна на сайте
-            </label>
+            <AdminCheckbox
+              className="sm:mt-8"
+              checked={isVisible}
+              onChange={setIsVisible}
+              label="Видна на сайте"
+            />
           </div>
           <AdminImageUpload
             kind="menu"
@@ -307,6 +326,24 @@ export default function AdminItems() {
             rows={5}
             className="font-mono text-sm"
           />
+          {/* Состав — отображается на сайте поверх фото при наведении/тапе. Может быть пустым.
+              Каждый ингредиент с новой строки — переносы сохраняются на сайте. */}
+          <AdminTextArea
+            label="Состав (каждый ингредиент с новой строки)"
+            value={ingredients}
+            onChange={(e) => setIngredients(e.target.value)}
+            rows={4}
+            placeholder={'Например:\nЭспрессо\nМолоко\nКакао'}
+          />
+          {/* Аллергены — 3 чекбокса. На сайте появляются иконкой в углу фото; заполнение снизу вверх. */}
+          <fieldset>
+            <legend className="block text-sm text-cream-dark mb-2">Аллергены</legend>
+            <div className="flex flex-wrap gap-x-6 gap-y-2">
+              <AdminCheckbox checked={allergenMilk} onChange={setAllergenMilk} label="Молоко" />
+              <AdminCheckbox checked={allergenGluten} onChange={setAllergenGluten} label="Глютен" />
+              <AdminCheckbox checked={allergenEgg} onChange={setAllergenEgg} label="Яйца" />
+            </div>
+          </fieldset>
           <div className="flex gap-3 pt-2">
             <button
               type="submit"
