@@ -17,7 +17,7 @@ export default {
       /* Шрифты проекта */
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        heading: ['Playfair Display', 'serif'],
+        heading: ['Nunito', 'Inter', 'sans-serif'],
       },
     },
   },

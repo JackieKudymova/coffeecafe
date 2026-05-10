@@ -1,32 +1,38 @@
 @import "tailwindcss";
 
 /*
-  @theme — конфигурация Tailwind v4 через CSS.
+  @theme - конфигурация Tailwind v4 через CSS.
   Здесь определяем кастомные цвета и шрифты проекта из макета Figma.
   После этого можно использовать классы вроде text-cream, bg-brown-button, font-heading и т.д.
 */
 @theme {
   --font-sans: 'Inter', sans-serif;
-  --font-heading: 'Playfair Display', serif;
+  /*
+    Заголовочный шрифт - Nunito (Google Fonts, SIL Open Font License).
+    В макете использован проприетарный SN Pro от Stripe, у которого
+    нет публичной версии с кириллицей. Nunito - бесплатный открытый
+    шрифт с полной поддержкой кириллицы и аналогичным округлым гротеском.
+  */
+  --font-heading: 'Nunito', sans-serif;
 
   --color-cream: #faf6f0;
   --color-cream-dark: #efe7dd;
   --color-brown-button: #d2a679;
-  /* UI-KIT buttons: Group 1473–1476 */
+  /* UI-KIT buttons: Group 1473-1476 */
   --color-brown-button-hover: #c49567;
   --color-brown-button-active: #a68463;
   --color-brown-dark: #2a1c17;
   --color-brown-bg: #1f1714;
   --color-brown-footer: #140f0c;
 
-  /* Поля формы — UI-KIT Input (Frame 1895–1898) */
+  /* Поля формы - UI-KIT Input (Frame 1895-1898) */
   --color-input-bg: #5d483c;
   --color-input-bg-hover: #6a5447;
   --color-input-border-focus: #d2a679;
   --color-input-border-error: #d96b5f;
   --color-placeholder: #cfc6bb;
 
-  /* Пагинация — фрейм HF_desktop_news_1 / UI-KIT */
+  /* Пагинация - фрейм HF_desktop_news_1 / UI-KIT */
   --color-pagination-bg: #4b372b;
   --color-pagination-bg-hover: #6d5240;
   --color-pagination-bg-active: #5d483c;
@@ -37,32 +43,32 @@
 
   /*
     ---- Планшетная типошкала (из macets_ipad в Figma) ----
-    Используется ТОЛЬКО через префикс md: (активно на 768–1023 px).
+    Используется ТОЛЬКО через префикс md: (активно на 768-1023 px).
     Мобильные/десктопные размеры остаются в компонентах как были.
   */
 
-  /* H1 — hero главной (Playfair SemiBold) */
+  /* H1 - hero главной (Playfair SemiBold) */
   --text-h1-tablet: 40px;
   --text-h1-tablet--line-height: 1.333;
   --text-h1-tablet--letter-spacing: 0.02em;
 
-  /* H2 — заголовки блоков и страниц (Playfair SemiBold) */
+  /* H2 - заголовки блоков и страниц (Playfair SemiBold) */
   --text-h2-tablet: 32px;
   --text-h2-tablet--line-height: 1.333;
 
-  /* H3 — подзаголовки и названия элементов (Inter Regular: «Наша философия:», имена позиций, заголовки новостей) */
+  /* H3 - подзаголовки и названия элементов (Inter Regular: «Наша философия:», имена позиций, заголовки новостей) */
   --text-h3-tablet: 22px;
   --text-h3-tablet--line-height: 1.21;
 
-  /* P — основной абзац (Inter Regular) */
+  /* P - основной абзац (Inter Regular) */
   --text-p-tablet: 17px;
   --text-p-tablet--line-height: 1.21;
 
-  /* PS — мелкий вспомогательный (даты, миллилитры, копирайт) */
+  /* PS - мелкий вспомогательный (даты, миллилитры, копирайт) */
   --text-ps-tablet: 14px;
   --text-ps-tablet--line-height: 1.21;
 
-  /* Button — текст в кнопке (Inter Medium) */
+  /* Button - текст в кнопке (Inter Medium) */
   --text-btn-tablet: 16px;
   --text-btn-tablet--line-height: 1.21;
 }
@@ -93,9 +99,9 @@
 
 /*
   Долгое нажатие на мобилках: выделение текста на кнопках и коричневых CTA.
-  Не в @layer — иначе часть утилит/префлайта может перебить user-select.
+  Не в @layer - иначе часть утилит/префлайта может перебить user-select.
   -webkit-touch-callout: iOS, меню по long-press на ссылке.
-  ::selection — запасной вариант, если движок всё же показывает selection.
+  ::selection - запасной вариант, если движок всё же показывает selection.
 */
 button,
 [role='button'],
