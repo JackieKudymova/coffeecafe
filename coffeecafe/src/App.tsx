@@ -19,6 +19,7 @@ import AdminItems from './pages/admin/AdminItems'
 import AdminNews from './pages/admin/AdminNews'
 import AdminMessages from './pages/admin/AdminMessages'
 import AdminMessageDetail from './pages/admin/AdminMessageDetail'
+import AdminUsers from './pages/admin/AdminUsers'
 import AdminLayout from './components/admin/AdminLayout'
 import { getAdminToken } from './services/adminService'
 import { getUserToken } from './services/authService'
@@ -81,6 +82,7 @@ function App() {
             <Route path="news" element={<AdminNews />} />
             <Route path="messages" element={<AdminMessages />} />
             <Route path="messages/:id" element={<AdminMessageDetail />} />
+            <Route path="users" element={<AdminUsers />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFoundPage />} />

@@ -51,6 +51,9 @@ export default function AdminSidebar({ mobileOpen, onMobileClose }: Props) {
         <NavLink to="/admin/messages" className={navClassName} onClick={onMobileClose}>
           Обращения
         </NavLink>
+        <NavLink to="/admin/users" className={navClassName} onClick={onMobileClose}>
+          Пользователи
+        </NavLink>
       </nav>
       <button
         type="button"

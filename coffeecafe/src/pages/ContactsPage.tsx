@@ -35,7 +35,7 @@ function ContactsPage() {
         Основной контент. Хедер absolute, поэтому pt считается от верха страницы.
         По макетам Figma: 92px моб, 97px планшет (Hf_ipad_contacts), 149px десктоп.
       */}
-      <main className="px-4 lg:px-16 xl:px-28 pt-[92px] md:pt-[97px] lg:pt-[149px]">
+      <main className="px-4 lg:px-16 xl:px-28 pt-[92px] md:pt-[97px] lg:pt-[173px]">
 
         {/* Мобилка + планшет: одна колонка */}
         <div className="lg:hidden pb-[50px] md:pb-14">
@@ -163,10 +163,13 @@ function ContactsPage() {
             </div>
           </div>
 
-          {/* Колонки 7-12: форма; «Спасибо» - портал на уровне страницы */}
-          <div className="col-span-6">
+          {/* Колонки 7-12: форма; «Спасибо» - портал на уровне страницы.
+              flex h-full + ContactForm.flex-1: форма растягивается до низа ряда
+              сетки, чтобы её нижний край совпал с низом карты в левой колонке. */}
+          <div className="col-span-6 flex flex-col">
             <ContactForm
               key={formResetKey}
+              className="flex-1"
               onSuccess={() => setFormSent(true)}
             />
           </div>

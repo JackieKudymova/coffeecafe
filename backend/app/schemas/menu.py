@@ -38,7 +38,8 @@ class MenuVariantIn(BaseModel):
 
 class MenuItemCreate(BaseModel):
     category_id: int
-    name: str = Field(..., max_length=200)
+    # Лимит 40 символов: при больших значениях текст вылезает за карточку меню на фронте.
+    name: str = Field(..., max_length=40)
     image: str | None = Field(None, max_length=500)
     sort_order: int = 0
     is_visible: bool = True
@@ -51,7 +52,7 @@ class MenuItemCreate(BaseModel):
 
 class MenuItemUpdate(BaseModel):
     category_id: int | None = None
-    name: str | None = Field(None, max_length=200)
+    name: str | None = Field(None, max_length=40)
     image: str | None = Field(None, max_length=500)
     sort_order: int | None = None
     is_visible: bool | None = None

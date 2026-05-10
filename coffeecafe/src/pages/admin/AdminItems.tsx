@@ -77,17 +77,22 @@ export default function AdminItems() {
     setCategoryId((prev) => prev || (c.length ? c[0].id : ''))
   }, [])
 
+  /**
+   * Загружаем все позиции один раз и фильтруем на клиенте.
+   * Так в форме редактирования всегда известно количество позиций
+   * в любой выбранной категории - это нужно для валидации «Порядок» (1..N / 1..N+1).
+   */
   const loadItems = useCallback(async () => {
     setError(null)
     try {
-      const data = await fetchItems(filterCat || undefined)
+      const data = await fetchItems()
       setItems(sortItemsByCreated(data))
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Ошибка')
     } finally {
       setLoading(false)
     }
-  }, [filterCat])
+  }, [])
 
   useEffect(() => {
     loadCats().catch(() => {})
@@ -96,6 +101,17 @@ export default function AdminItems() {
   useEffect(() => {
     loadItems()
   }, [loadItems])
+
+  // Сколько позиций уже в выбранной для формы категории (без учёта самой редактируемой).
+  const itemsInSelectedCategory = items.filter((it) => it.category_id === categoryId)
+  const countInCategory =
+    editingId && editingId !== 'new'
+      ? itemsInSelectedCategory.filter((it) => it.id !== editingId).length
+      : itemsInSelectedCategory.length
+  // При создании - можно встать на любую позицию от 1 до N+1, при редактировании - 1..N (где N включает текущий item).
+  const orderMin = 1
+  const orderMax = editingId === 'new' ? countInCategory + 1 : countInCategory + 1
+  // countInCategory + 1 в обоих случаях, потому что при редактировании N = countInCategory (другие) + 1 (сам item) = countInCategory + 1.
 
   function clearFieldErrors() {
     setErrName(false)
@@ -108,7 +124,10 @@ export default function AdminItems() {
     setError(null)
     setEditingId('new')
     setName('')
-    setSortOrder(0)
+    // По умолчанию ставим в конец списка выбранной категории.
+    const defaultCat = categoryId || (categories.length ? categories[0].id : '')
+    const nDefault = items.filter((it) => it.category_id === defaultCat).length
+    setSortOrder(nDefault + 1)
     setIsVisible(true)
     setImagePath(null)
     setVariantsText('200 мл | 150')
@@ -162,6 +181,10 @@ export default function AdminItems() {
       return
     }
 
+    // Зажимаем порядковый номер в допустимом диапазоне.
+    // Если пользователь ввёл что-то некорректное - ставим в конец списка.
+    const safeOrder = Math.min(Math.max(sortOrder || orderMax, orderMin), orderMax)
+
     const ingredientsTrim = ingredients.trim()
     try {
       if (editingId === 'new') {
@@ -169,7 +192,7 @@ export default function AdminItems() {
           category_id: cid,
           name: name.trim(),
           image: imagePath,
-          sort_order: sortOrder,
+          sort_order: safeOrder,
           is_visible: isVisible,
           variants,
           ingredients: ingredientsTrim || null,
@@ -182,7 +205,7 @@ export default function AdminItems() {
           category_id: cid,
           name: name.trim(),
           image: imagePath,
-          sort_order: sortOrder,
+          sort_order: safeOrder,
           is_visible: isVisible,
           variants,
           ingredients: ingredientsTrim || null,
@@ -262,15 +285,20 @@ export default function AdminItems() {
             {editingId === 'new' ? 'Новая позиция' : 'Редактирование'}
           </p>
           <div className="grid gap-4 sm:grid-cols-2">
-            <AdminTextField
-              label={errName ? 'Введите название' : 'Название'}
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value)
-                setErrName(false)
-              }}
-              error={errName}
-            />
+            <div>
+              <AdminTextField
+                label={errName ? 'Введите название' : 'Название'}
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value)
+                  setErrName(false)
+                }}
+                error={errName}
+                maxLength={40}
+              />
+              {/* Счётчик символов: показывает оставшееся количество, чтобы заголовки не вылезали за карточки на сайте. */}
+              <p className="mt-1 text-xs text-cream-dark">{name.length}/40</p>
+            </div>
             <AdminSelect
               label={errCategory ? 'Выберите категорию' : 'Категория'}
               value={categoryId}
@@ -286,13 +314,21 @@ export default function AdminItems() {
                 </option>
               ))}
             </AdminSelect>
-            <AdminTextField
-              label="Порядок"
-              type="number"
-              value={sortOrder}
-              onChange={(e) => setSortOrder(Number(e.target.value))}
-              className="max-w-[8rem]"
-            />
+            <div>
+              <AdminTextField
+                label="Порядок"
+                type="number"
+                min={orderMin}
+                max={orderMax}
+                value={sortOrder}
+                onChange={(e) => setSortOrder(Number(e.target.value))}
+                className="max-w-[8rem]"
+              />
+              {/* Подсказка: при создании - 1..N+1, при редактировании - 1..N (N = позиций в категории). */}
+              <p className="mt-1 text-xs text-cream-dark">
+                от {orderMin} до {orderMax}
+              </p>
+            </div>
             <AdminCheckbox
               className="sm:mt-8"
               checked={isVisible}
@@ -387,7 +423,8 @@ export default function AdminItems() {
               </tr>
             </thead>
             <tbody>
-              {items.map((row) => (
+              {/* Фильтрация по категории - на клиенте, потому что fetchItems грузит все позиции сразу. */}
+              {(filterCat ? items.filter((it) => it.category_id === filterCat) : items).map((row) => (
                 <tr
                   key={row.id}
                   className="border-t border-cream/10 cursor-pointer hover:bg-white/[0.04] transition-colors"
