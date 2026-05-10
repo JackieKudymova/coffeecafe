@@ -60,7 +60,7 @@ function ResetPasswordPage() {
           className="
             w-full max-w-[592px] md:max-w-[788px] lg:max-w-[592px]
             bg-[#4b372b] rounded-[10px]
-            px-6 py-8 md:px-10 md:py-10 lg:px-14 lg:py-10
+            px-4 py-8 md:px-6 md:py-10 lg:px-14 lg:py-12
           "
         >
           <h1 className="text-cream text-center font-normal text-xl md:text-[22px] lg:text-2xl leading-[1.2]">
@@ -99,11 +99,11 @@ function ResetPasswordPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} noValidate>
-              <p className="text-cream-dark text-base md:text-[17px] lg:text-lg leading-[22px] mt-4 md:mt-6 lg:mt-6 text-center">
+              <p className="text-cream-dark text-base md:text-[17px] lg:text-lg leading-[22px] mt-6 text-center">
                 Введите email, на который вы регистрировались - мы отправим ссылку для сброса пароля
               </p>
 
-              <label className="block mt-6 md:mt-8 lg:mt-8">
+              <label className="block mt-8 md:mt-10 lg:mt-8">
                 <span
                   className={`block text-base md:text-[17px] lg:text-lg leading-[22px] ${
                     emailError ? 'text-input-border-error' : 'text-cream-dark'
@@ -148,8 +148,8 @@ function ResetPasswordPage() {
                 disabled={isSubmitting}
                 className="
                   flex items-center justify-center
-                  w-full h-[67px] md:h-[60px] lg:h-[54px]
-                  mt-6 md:mt-8 lg:mt-6 rounded-[10px]
+                  w-full h-[67px] lg:h-[54px]
+                  mt-8 rounded-[10px]
                   bg-brown-button text-brown-dark font-medium
                   text-base lg:text-lg uppercase tracking-wider
                   transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
@@ -160,7 +160,7 @@ function ResetPasswordPage() {
                 {isSubmitting ? 'Отправляем...' : 'Отправить'}
               </button>
 
-              <div className="mt-4 md:mt-6 text-center md:text-left">
+              <div className="mt-6 md:mt-8 lg:mt-8 text-center md:text-left">
                 <Link
                   to="/login"
                   className="text-cream text-[13px] md:text-base lg:text-base leading-[22px] transition-colors hover:text-brown-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 rounded-sm"
