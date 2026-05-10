@@ -71,7 +71,7 @@ function LoginPage() {
           className="
             w-full max-w-[592px] md:max-w-[788px] lg:max-w-[592px]
             bg-[#4b372b] rounded-[10px]
-            px-6 py-8 md:px-10 md:py-10 lg:px-14 lg:py-10
+            px-4 py-8 md:px-6 md:py-10 lg:px-14 lg:py-12
           "
         >
           <h1 className="text-cream text-center font-normal text-xl md:text-[22px] lg:text-2xl leading-[1.2]">
@@ -79,7 +79,7 @@ function LoginPage() {
           </h1>
 
           {/* Email */}
-          <label className="block mt-6 md:mt-8 lg:mt-8">
+          <label className="block mt-8">
             <span
               className={`block text-base md:text-[17px] lg:text-lg leading-[22px] ${
                 errors.email ? 'text-input-border-error' : 'text-cream-dark'
@@ -114,7 +114,7 @@ function LoginPage() {
           </label>
 
           {/* Пароль */}
-          <label className="block mt-4 md:mt-6 lg:mt-4">
+          <label className="block mt-4">
             <span
               className={`block text-base md:text-[17px] lg:text-lg leading-[22px] ${
                 errors.password ? 'text-input-border-error' : 'text-cream-dark'
@@ -155,8 +155,8 @@ function LoginPage() {
             disabled={isSubmitting}
             className="
               flex items-center justify-center
-              w-full h-[67px] md:h-[60px] lg:h-[54px]
-              mt-6 md:mt-8 lg:mt-6 rounded-[10px]
+              w-full h-[67px] lg:h-[54px]
+              mt-8 rounded-[10px]
               bg-brown-button text-brown-dark font-medium
               text-base lg:text-lg uppercase tracking-wider
               transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
@@ -171,7 +171,7 @@ function LoginPage() {
             Нижние ссылки.
             Мобилка - стопкой и левее, планшет/десктоп - двумя краями (по макету).
           */}
-          <div className="mt-4 md:mt-6 flex flex-col gap-2 md:flex-row md:justify-between">
+          <div className="mt-6 md:mt-8 flex flex-col gap-2 md:flex-row md:justify-between">
             <Link
               to="/register"
               className="text-cream text-[13px] md:text-base lg:text-base leading-[22px] transition-colors hover:text-brown-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 rounded-sm"

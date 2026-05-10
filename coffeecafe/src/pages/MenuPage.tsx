@@ -210,7 +210,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
             `}
             aria-hidden={!tapOpen}
           >
-            <span className="text-center text-brown-dark text-[20px] md:text-[22px] lg:text-2xl leading-[1.2]">
+            <span className="text-brown-dark text-[20px] md:text-[22px] lg:text-2xl leading-[1.2]">
               Состав:
             </span>
             <ul className="mt-4 flex flex-col gap-3">
