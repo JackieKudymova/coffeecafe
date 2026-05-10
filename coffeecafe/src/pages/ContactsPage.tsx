@@ -35,7 +35,7 @@ function ContactsPage() {
         Основной контент. Хедер absolute, поэтому pt считается от верха страницы.
         По макетам Figma: 92px моб, 97px планшет (Hf_ipad_contacts), 149px десктоп.
       */}
-      <main className="px-4 lg:px-16 xl:px-28 pt-[92px] md:pt-[97px] lg:pt-[173px]">
+      <main className="px-4 lg:px-16 xl:px-28 pt-[92px] md:pt-[97px] lg:pt-[153px]">
 
         {/* Мобилка + планшет: одна колонка */}
         <div className="lg:hidden pb-[50px] md:pb-14">
