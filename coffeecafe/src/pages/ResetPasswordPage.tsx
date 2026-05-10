@@ -160,7 +160,7 @@ function ResetPasswordPage() {
                 {isSubmitting ? 'Отправляем...' : 'Отправить'}
               </button>
 
-              <div className="mt-6 md:mt-8 lg:mt-8 text-center md:text-left">
+              <div className="mt-6 md:mt-8 lg:mt-8 text-left">
                 <Link
                   to="/login"
                   className="text-cream text-[13px] md:text-base lg:text-base leading-[22px] transition-colors hover:text-brown-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 rounded-sm"
