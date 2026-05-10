@@ -24,6 +24,13 @@ export interface MenuItem {
   allergen_egg?: boolean
 }
 
+/**
+ * Ключи аллергенов для фильтра «Без молока / Без глютена / Без яиц».
+ * Совпадают по имени с суффиксами полей allergen_milk / allergen_gluten / allergen_egg
+ * в MenuItem - удобно строить ключ доступа динамически.
+ */
+export type Allergen = 'milk' | 'gluten' | 'egg'
+
 /* Раздел меню (напр. "Кофе") */
 export interface MenuCategory {
   id: string

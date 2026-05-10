@@ -1,17 +1,24 @@
 /*
   MenuPage - страница «Меню».
-  Полное меню кофейни с табами по разделам.
+  Полное меню кофейни с табами по разделам и фильтром по аллергенам.
   Данные загружаются через menuService (сейчас моковые, потом из API).
   Количество разделов, позиций и вариантов размеров - динамическое.
+
+  Фильтр по аллергенам (AllergenFilter):
+    Если пользователь выбирает «Без молока», скрываем все товары, у которых
+    флаг allergen_milk = true. Логика «И» - товар проходит фильтр, только
+    если ни одного из выбранных аллергенов в нём нет.
 */
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import AllergenFilter from '../components/AllergenFilter'
 import {
   type MenuCategory,
   type MenuItem,
+  type Allergen,
   MENU_CATEGORY_QUERY_KEY,
 } from '../types/menu'
 import { fetchMenu } from '../services/menuService'
@@ -24,6 +31,8 @@ function MenuPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [categories, setCategories] = useState<MenuCategory[]>([])
   const [activeTab, setActiveTab] = useState(0)
+  /** Выбранные аллергены для фильтра «Без молока / без глютена / без яиц». */
+  const [allergens, setAllergens] = useState<Allergen[]>([])
 
   useEffect(() => {
     const categoryId = searchParams.get(MENU_CATEGORY_QUERY_KEY)
@@ -37,6 +46,29 @@ function MenuPage() {
   }, [searchParams])
 
   const activeCategory = categories[activeTab]
+
+  /** Тоггл выбора чекбокса фильтра. */
+  function toggleAllergen(key: Allergen) {
+    setAllergens((prev) =>
+      prev.includes(key) ? prev.filter((a) => a !== key) : [...prev, key],
+    )
+  }
+
+  /**
+   * Видимые позиции активной категории с учётом фильтра.
+   * Если allergens пуст - показываем всё. Иначе скрываем позиции, у которых
+   * хоть один из выбранных allergen_* = true.
+   */
+  const visibleItems = useMemo<MenuItem[]>(() => {
+    if (!activeCategory) return []
+    if (allergens.length === 0) return activeCategory.items
+    return activeCategory.items.filter((item) => {
+      if (allergens.includes('milk') && item.allergen_milk) return false
+      if (allergens.includes('gluten') && item.allergen_gluten) return false
+      if (allergens.includes('egg') && item.allergen_egg) return false
+      return true
+    })
+  }, [activeCategory, allergens])
 
   return (
     <div className={isMenuOpen ? 'bg-brown-button min-w-[320px]' : 'bg-brown-bg min-w-[320px]'}>
@@ -88,11 +120,20 @@ function MenuPage() {
           </div>
         )}
 
+        {/* Фильтр по аллергенам — между табами и сеткой карточек.
+            Отступ от табов: мобилка 24px / планшет 32px / десктоп 33px (по макету Figma). */}
+        {categories.length > 0 && (
+          <div className="mt-6 md:mt-8 lg:mt-[33px]">
+            <AllergenFilter selected={allergens} onToggle={toggleAllergen} />
+          </div>
+        )}
+
         {/* Сетка карточек: 1 колонка мобилка, 2 планшет, 3 десктоп.
+            Отступ от фильтра: мобилка 32px / планшет 40px / десктоп 39px (по макету).
             Планшет (md): по Figma Hf_ipad_menu - gap 16px по горизонтали, 32px по вертикали. */}
         {activeCategory && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-4 md:gap-y-8 lg:gap-x-8 lg:gap-y-[50px] mt-8 lg:mt-10">
-            {activeCategory.items.map((item) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-4 md:gap-y-8 lg:gap-x-8 lg:gap-y-[50px] mt-8 md:mt-10 lg:mt-[39px]">
+            {visibleItems.map((item) => (
               <MenuItemCard key={item.id} item={item} />
             ))}
           </div>
