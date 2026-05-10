@@ -22,16 +22,28 @@ function ThanksCard({ onClose }: { onClose: () => void }) {
       aria-modal="true"
       aria-labelledby="contact-thanks-title"
     >
+      {/*
+        Заголовок по макету:
+          - КАПСЛОК на всех BP (uppercase),
+          - на мобилке перенос строки после «СПАСИБО» (br виден только на мобилке),
+          - на планшете и десктопе - в одну строку (whitespace-nowrap начиная с md).
+        Размеры/leading/tracking - точные значения из Figma (24/32/36, ls 0.02em).
+      */}
       <h2
         id="contact-thanks-title"
         className="
-          text-center font-heading font-normal tracking-tight whitespace-nowrap
-          text-[28px] leading-[36px]
-          md:text-[32px] md:leading-[42px]
-          lg:text-[36px] lg:leading-[48px]
+          text-center font-heading font-semibold uppercase tracking-[0.02em]
+          md:whitespace-nowrap
+          text-[24px] leading-[32.74px]
+          md:text-[32px] md:leading-[43.65px]
+          lg:text-[36px] lg:leading-[49.1px]
         "
       >
-        Спасибо за обращение!
+        Спасибо
+        {/* Перенос строки только на мобилке; на md+ заменяется обычным пробелом. */}
+        <br className="md:hidden" />
+        <span className="hidden md:inline"> </span>
+        за обращение!
       </h2>
       <p className="mt-4 md:mt-6 text-center text-base leading-[19px] md:text-[17px] md:leading-[21px] lg:text-lg lg:leading-[22px]">
         Ваше обращение принято и скоро наш сотрудник свяжется с вами!
