@@ -190,29 +190,50 @@ function MenuItemCard({ item }: { item: MenuItem }) {
         />
 
         {/*
-          Поп-ап «Состав». По макету Figma (Hf_ipad_menu → Slot → Inside):
-          - фон #cfc6bb (кремовый), текст brown-dark (#2a1c17);
-          - сверху заголовок «Состав:» (22px), под ним список ингредиентов (17px)
-            по левому краю, переносы строк сохраняются (whitespace-pre-line);
-          - внутренний отступ 16px (p-4).
-          Виден на десктопе по hover, на мобилке/планшете - по tapOpen.
+          Поп-ап «Состав». По макетам Figma:
+            мобилка HF_phone_menu_1 → Inside (844:2739):  заголовок 20px / пункты 17px, точка 14px
+            планшет Hf_ipad_menu  → Inside (964:8289):    заголовок 22px / пункты 17px, точка 14px
+            десктоп HF_desktop_menu → Inside (Frame 1954): заголовок 24px / пункты 18px, точка 16px
+          Фон #cfc6bb, текст #2a1c17, скругление 10px, заголовок по центру,
+          пункты — список с маркером-точкой (tabler:point-filled).
+          Видим на десктопе по hover, на мобилке/планшете — по tapOpen.
+          Ингредиенты могут приходить через \n (мок-данные) или через ", " (бэкенд) -
+          поддерживаем оба разделителя.
         */}
         {hasIngredients && (
           <div
             className={`
-              absolute inset-0 bg-[#cfc6bb] flex flex-col gap-2 p-4
+              absolute inset-0 bg-[#cfc6bb] rounded-[10px] flex flex-col p-4 lg:p-6
               overflow-y-auto transition-opacity duration-200
               ${tapOpen ? 'opacity-100' : 'opacity-0'}
               lg:opacity-0 lg:group-hover/photo:opacity-100
             `}
             aria-hidden={!tapOpen}
           >
-            <span className="text-brown-dark text-lg md:text-[22px] leading-[1.2]">
+            <span className="text-center text-brown-dark text-[20px] md:text-[22px] lg:text-2xl leading-[1.2]">
               Состав:
             </span>
-            <p className="text-brown-dark text-sm md:text-[17px] leading-[1.25] whitespace-pre-line">
-              {item.ingredients}
-            </p>
+            <ul className="mt-4 flex flex-col gap-3">
+              {(item.ingredients ?? '')
+                .split(/\r?\n|,/)
+                .map((s) => s.trim())
+                .filter(Boolean)
+                .map((line, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    {/* tabler:point-filled - точка-маркер; 14px на мобилке/планшете, 16px на десктопе */}
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 24 24"
+                      className="mt-[5px] md:mt-[5px] lg:mt-[6px] shrink-0 w-[14px] h-[14px] lg:w-4 lg:h-4 fill-brown-dark"
+                    >
+                      <circle cx="12" cy="12" r="6" />
+                    </svg>
+                    <span className="text-brown-dark text-[17px] lg:text-[18px] leading-[1.2]">
+                      {line}
+                    </span>
+                  </li>
+                ))}
+            </ul>
           </div>
         )}
       </div>
