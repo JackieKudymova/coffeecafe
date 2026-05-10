@@ -297,3 +297,26 @@ export async function deleteMessage(id: string): Promise<void> {
   })
   if (!res.ok) throw new Error(await parseError(res))
 }
+
+export interface UserAdminRow {
+  id: number
+  name: string
+  email: string
+  client_code: string
+  discount: number
+  created_at: string | null
+}
+
+export async function fetchUsers(
+  page: number,
+  pageSize: number,
+  q: string,
+): Promise<{ items: UserAdminRow[]; total: number; page: number; pageSize: number }> {
+  const params = new URLSearchParams({ page: String(page), pageSize: String(pageSize) })
+  if (q.trim()) params.set('q', q.trim())
+  const res = await fetch(`/api/admin/users?${params.toString()}`, {
+    headers: jsonHeaders(),
+  })
+  if (!res.ok) throw new Error(await parseError(res))
+  return res.json()
+}

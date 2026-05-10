@@ -25,7 +25,7 @@ import { useState } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-import baristaImg from '../assets/images/about_us_barista.png'
+import freelancersImg from '../assets/images/about_us_freelancers.png'
 import coffeeImg from '../assets/images/abous_us_coffee.png'
 import lavkaImg from '../assets/images/about_us_lavka.png'
 
@@ -57,8 +57,8 @@ function AboutPage() {
             друзьями, побыть в моменте.
           </p>
           <img
-            src={coffeeImg}
-            alt="Латте-арт в чашке кофе"
+            src={freelancersImg}
+            alt="Гости в кофейне за работой"
             className="w-full h-[240px] md:h-[280px] object-cover rounded-[10px] mt-4"
           />
 
@@ -71,8 +71,8 @@ function AboutPage() {
             качественных ингредиентов для вкусных и комфортных визитов.
           </p>
           <img
-            src={baristaImg}
-            alt="Бариста за приготовлением кофе"
+            src={coffeeImg}
+            alt="Латте-арт в чашке кофе"
             className="w-full h-[240px] md:h-[280px] object-cover rounded-[10px] mt-4"
           />
 
@@ -125,8 +125,8 @@ function AboutPage() {
               </p>
               {/* Большой gap 143px - чтобы фото визуально опустилось ниже текста (по макету) */}
               <img
-                src={baristaImg}
-                alt="Бариста за приготовлением кофе"
+                src={freelancersImg}
+                alt="Гости в кофейне за работой"
                 className="w-full h-[456px] object-cover rounded-[10px] mt-[143px]"
               />
             </div>

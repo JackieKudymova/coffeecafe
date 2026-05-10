@@ -196,15 +196,21 @@ export default function AdminNews() {
           className="mb-8 rounded-[10px] border border-cream/15 bg-[#4b372b] p-6 space-y-4"
         >
           <p className="text-cream font-medium">{editingId === 'new' ? 'Новая новость' : 'Редактирование'}</p>
-          <AdminTextField
-            label={errTitle ? 'Введите заголовок' : 'Заголовок'}
-            value={title}
-            onChange={(e) => {
-              setTitle(e.target.value)
-              setErrTitle(false)
-            }}
-            error={errTitle}
-          />
+          <div>
+            <AdminTextField
+              label={errTitle ? 'Введите заголовок' : 'Заголовок'}
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value)
+                setErrTitle(false)
+              }}
+              error={errTitle}
+              maxLength={60}
+            />
+            {/* Лимит 60 символов: длинные заголовки уходят за экран на карточках новостей. */}
+            <p className="mt-1 text-xs text-cream-dark">{title.length}/60</p>
+          </div>
+          {/* На описании лимита нет: на карточке всё равно обрежется line-clamp-3. */}
           <AdminTextArea
             label={errExcerpt ? 'Введите краткое описание' : 'Краткое описание (карточка)'}
             value={excerpt}

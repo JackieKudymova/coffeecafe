@@ -22,7 +22,9 @@ class NewsPageResult(BaseModel):
 
 
 class NewsCreate(BaseModel):
-    title: str = Field(..., max_length=300)
+    # Лимит 60 символов: длинные заголовки уходят за экран на карточках новостей.
+    title: str = Field(..., max_length=60)
+    # На excerpt лимит не ставим: на карточке всё равно обрежется `line-clamp-3`.
     excerpt: str
     content: list[str]  # абзацы
     image: str | None = Field(None, max_length=500)
@@ -31,7 +33,7 @@ class NewsCreate(BaseModel):
 
 
 class NewsUpdate(BaseModel):
-    title: str | None = Field(None, max_length=300)
+    title: str | None = Field(None, max_length=60)
     excerpt: str | None = None
     content: list[str] | None = None
     image: str | None = Field(None, max_length=500)
