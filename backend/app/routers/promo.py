@@ -14,10 +14,11 @@ router = APIRouter(tags=["promo"])
 
 @router.get("/promos/latest", response_model=PromoOut)
 async def latest_promo(db: AsyncSession = Depends(get_db)):
+    # «Последняя» новость = самая недавно созданная опубликованная (id - автоинкремент).
     r = await db.execute(
         select(News)
         .where(News.is_published.is_(True))
-        .order_by(News.published_at.desc().nulls_last(), News.id.desc())
+        .order_by(News.id.desc())
         .limit(1)
     )
     n = r.scalar_one_or_none()

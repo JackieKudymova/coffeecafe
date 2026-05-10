@@ -37,7 +37,7 @@ function PromoSection() {
 
       {/* Контент */}
       <div className="relative z-10 px-4 lg:px-16 xl:px-28 w-full">
-        <h2 className="font-heading font-normal text-cream text-[24px] leading-tight md:text-[32px] md:leading-tight lg:text-[36px] lg:leading-[48px] uppercase">
+        <h2 className="font-heading font-normal text-cream text-[24px] leading-[33px] md:text-[32px] md:leading-tight lg:text-[36px] lg:leading-[48px] uppercase">
           {promo.title}
         </h2>
 

@@ -294,17 +294,23 @@ export default function AdminItems() {
                   setErrName(false)
                 }}
                 error={errName}
-                maxLength={40}
+                maxLength={25}
               />
               {/* Счётчик символов: показывает оставшееся количество, чтобы заголовки не вылезали за карточки на сайте. */}
-              <p className="mt-1 text-xs text-cream-dark">{name.length}/40</p>
+              <p className="mt-1 text-xs text-cream-dark">{name.length}/25</p>
             </div>
             <AdminSelect
               label={errCategory ? 'Выберите категорию' : 'Категория'}
               value={categoryId}
               onChange={(e) => {
-                setCategoryId(e.target.value)
+                const newCat = e.target.value
+                setCategoryId(newCat)
                 setErrCategory(false)
+                // При создании новой позиции автоматически предлагаем порядок «в конец» выбранной категории.
+                if (editingId === 'new') {
+                  const n = items.filter((it) => it.category_id === newCat).length
+                  setSortOrder(n + 1)
+                }
               }}
               error={errCategory}
             >

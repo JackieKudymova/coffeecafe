@@ -10,6 +10,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { userRegister } from '../services/authService'
+import defaultCheckboxIcon from '../assets/images/default-chckbox-vector.svg'
+import selectedCheckboxIcon from '../assets/images/selected-vector.svg'
 
 /** Минимальная длина пароля. Бэкенд проверяет это же. */
 const MIN_PASSWORD_LENGTH = 6
@@ -210,41 +212,44 @@ function RegisterPage() {
             Так контрол доступен с клавиатуры и для скринридеров, но выглядит по макету.
             По макету чекбокс выровнен по левому краю формы на всех брейкпоинтах.
           */}
-          <label className="mt-6 md:mt-8 lg:mt-6 flex items-start justify-start gap-3 cursor-pointer select-none">
-            <input
-              type="checkbox"
-              name="consent"
-              checked={consent}
-              onChange={(e) => {
-                setConsent(e.target.checked)
-                setErrors((prev) => ({ ...prev, consent: false }))
-              }}
-              className="peer sr-only"
-              aria-invalid={errors.consent}
-            />
-            <span
-              className={`
-                mt-0.5 shrink-0 inline-flex items-center justify-center
-                w-5 h-5 md:w-6 md:h-6 rounded-[4px]
-                border-2 transition-colors
-                ${errors.consent ? 'border-input-border-error' : 'border-cream-dark'}
-                peer-checked:bg-brown-button peer-checked:border-brown-button
-                peer-focus-visible:ring-2 peer-focus-visible:ring-cream/50 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-[#4b372b]
-              `}
-            >
-              {/* Галочка - тонкий SVG, белый, проявляется только при checked. */}
-              <svg
-                viewBox="0 0 16 16"
-                fill="none"
-                className={`w-3 h-3 md:w-4 md:h-4 text-brown-dark ${consent ? 'opacity-100' : 'opacity-0'}`}
-                aria-hidden="true"
-              >
-                <path d="M3 8.5L6.5 12L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+          <label className="mt-4 flex items-start md:items-center gap-4 cursor-pointer">
+            {/* Чекбокс - SVG из ассетов (как в форме обратной связи), размеры по макету: 16/20/24px. */}
+            <span className="relative inline-flex h-4 w-4 md:h-5 md:w-5 lg:h-6 lg:w-6 shrink-0 rounded-sm transition-opacity hover:opacity-90 mt-[2px] md:mt-0">
+              <input
+                type="checkbox"
+                name="consent"
+                checked={consent}
+                aria-invalid={errors.consent}
+                onChange={(e) => {
+                  setConsent(e.target.checked)
+                  setErrors((prev) => ({ ...prev, consent: false }))
+                }}
+                className="peer sr-only outline-none focus:outline-none focus-visible:outline-none"
+              />
+              {consent ? (
+                <img
+                  src={selectedCheckboxIcon}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-contain"
+                  aria-hidden
+                />
+              ) : errors.consent ? (
+                <span
+                  className="absolute inset-0 rounded-sm border-2 border-input-border-error bg-transparent pointer-events-none"
+                  aria-hidden
+                />
+              ) : (
+                <img
+                  src={defaultCheckboxIcon}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-contain"
+                  aria-hidden
+                />
+              )}
             </span>
             <span
-              className={`text-[13px] md:text-sm lg:text-base leading-[22px] ${
-                errors.consent ? 'text-input-border-error' : 'text-cream-dark'
+              className={`text-[13px] md:text-sm lg:text-base leading-[15.73px] md:leading-[17px] lg:leading-[19px] ${
+                errors.consent ? 'text-input-border-error' : 'text-[#cfc6bb]'
               }`}
             >
               Даю согласие на обработку персональных данных
@@ -257,7 +262,7 @@ function RegisterPage() {
             className="
               flex items-center justify-center
               w-full h-[67px] md:h-[60px] lg:h-[54px]
-              mt-6 md:mt-8 lg:mt-6 rounded-[10px]
+              mt-8 rounded-[10px]
               bg-brown-button text-brown-dark font-medium
               text-base lg:text-lg uppercase tracking-wider
               transition-colors hover:bg-brown-button-hover active:bg-brown-button-active

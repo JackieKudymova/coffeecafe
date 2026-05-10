@@ -205,10 +205,10 @@ export default function AdminNews() {
                 setErrTitle(false)
               }}
               error={errTitle}
-              maxLength={60}
+              maxLength={30}
             />
-            {/* Лимит 60 символов: длинные заголовки уходят за экран на карточках новостей. */}
-            <p className="mt-1 text-xs text-cream-dark">{title.length}/60</p>
+            {/* Лимит 30 символов: длинные заголовки уходят за экран на карточках новостей. */}
+            <p className="mt-1 text-xs text-cream-dark">{title.length}/30</p>
           </div>
           {/* На описании лимита нет: на карточке всё равно обрежется line-clamp-3. */}
           <AdminTextArea
