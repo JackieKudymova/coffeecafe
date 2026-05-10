@@ -50,8 +50,13 @@ function LkPage() {
         onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
       />
 
-      {/* Карточки нет - текст и код просто по центру тёмного фона страницы (по макету). */}
-      <main className="px-4 lg:px-16 xl:px-28 pt-[120px] md:pt-[160px] lg:pt-[180px] pb-[60px] md:pb-[80px] lg:pb-[120px] flex flex-col items-center text-center">
+      {/*
+        Карточки нет - текст и код просто по центру тёмного фона страницы (по макету).
+        min-h = высота нашего header + body макета (730/755/797), pt очищает абсолютный header,
+        flex justify-center центрирует контент вертикально между header и footer - так
+        отступы сверху/снизу контента совпадают с макетом независимо от высоты блока.
+      */}
+      <main className="px-4 lg:px-16 xl:px-28 pt-[57px] md:pt-[67px] lg:pt-[77px] min-h-[787px] md:min-h-[822px] lg:min-h-[874px] flex flex-col items-center justify-center text-center">
         <h1 className="font-heading font-normal text-cream text-[24px] md:text-[40px] lg:text-[36px] leading-tight uppercase">
           Личный кабинет
         </h1>
@@ -78,14 +83,15 @@ function LkPage() {
             </p>
 
             {/*
-              На мобилке/планшете - широкая кнопка во всю ширину контейнера,
-              на десктопе - компактная по макету (~340px по центру).
+              По макету ширина кнопки равна ширине условного контента (358/386/393).
+              На мобилке - во всю ширину контейнера; на планшете/десктопе - фиксированная,
+              чтобы не растягивалась.
             */}
             <button
               type="button"
               onClick={handleLogout}
               className="
-                w-full lg:w-[340px] h-[67px] md:h-[60px] lg:h-[54px]
+                w-full md:w-[386px] lg:w-[340px] h-[67px] md:h-[60px] lg:h-[54px]
                 mt-10 md:mt-14 lg:mt-12 rounded-[10px]
                 bg-brown-button text-brown-dark font-medium
                 text-base lg:text-lg uppercase tracking-wider

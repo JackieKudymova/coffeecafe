@@ -198,7 +198,7 @@ function RegisterPage() {
           </label>
 
           {submitError && (
-            <p className="text-input-border-error text-[13px] md:text-base lg:text-base leading-[22px] mt-4 text-center">
+            <p className="text-input-border-error text-[13px] md:text-base lg:text-base leading-[22px] mt-4">
               {submitError}
             </p>
           )}
@@ -208,12 +208,9 @@ function RegisterPage() {
             Стандартный input скрыт визуально (sr-only), а квадратик отрисован соседним span -
             через peer-checked: подсвечиваем рамку и фон, и показываем галочку.
             Так контрол доступен с клавиатуры и для скринридеров, но выглядит по макету.
+            По макету чекбокс выровнен по левому краю формы на всех брейкпоинтах.
           */}
-          {/*
-            На мобилке чекбокс по левому краю формы, на планшете и десктопе - центрирован
-            (так в макете). Меняем justify через брейкпоинты.
-          */}
-          <label className="mt-6 md:mt-8 lg:mt-6 flex items-start justify-start md:justify-center gap-3 cursor-pointer select-none">
+          <label className="mt-6 md:mt-8 lg:mt-6 flex items-start justify-start gap-3 cursor-pointer select-none">
             <input
               type="checkbox"
               name="consent"

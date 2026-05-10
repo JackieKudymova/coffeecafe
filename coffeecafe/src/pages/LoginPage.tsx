@@ -150,7 +150,7 @@ function LoginPage() {
           </label>
 
           {submitError && (
-            <p className="text-input-border-error text-[13px] md:text-base lg:text-base leading-[22px] mt-4 text-center">
+            <p className="text-input-border-error text-[13px] md:text-base lg:text-base leading-[22px] mt-4">
               {submitError}
             </p>
           )}
