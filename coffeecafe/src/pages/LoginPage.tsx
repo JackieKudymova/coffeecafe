@@ -63,8 +63,13 @@ function LoginPage() {
         onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
       />
 
-      {/* Хедер absolute ~57px - pt включает его + воздух */}
-      <main className="px-4 lg:px-16 xl:px-28 pt-[140px] md:pt-[160px] lg:pt-[180px] pb-[60px] md:pb-[80px] lg:pb-[120px] flex justify-center">
+      {/*
+        Высота main = высота header + body из макета (1101/1213/1182 - footer 330/415/332).
+        pt очищает абсолютный header (57/67/77), а flex items-center центрирует карточку
+        вертикально в свободном пространстве - так отступы сверху/снизу карточки совпадают
+        с макетом независимо от её высоты.
+      */}
+      <main className="px-4 lg:px-16 xl:px-28 pt-[57px] md:pt-[67px] lg:pt-[77px] min-h-[787px] md:min-h-[822px] lg:min-h-[874px] flex items-center justify-center">
         <form
           onSubmit={handleSubmit}
           noValidate
