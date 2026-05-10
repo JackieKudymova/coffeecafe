@@ -72,7 +72,7 @@ function ResetPasswordPage() {
             <div className="mt-6 md:mt-8 lg:mt-8 text-center">
               <p className="text-cream-dark text-base md:text-[17px] lg:text-lg leading-[22px]">
                 Если такой email зарегистрирован, мы отправили на него инструкцию
-                для сброса пароля.
+                для сброса пароля
               </p>
 
               {devLink && (
@@ -99,8 +99,8 @@ function ResetPasswordPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} noValidate>
-              <p className="text-cream-dark text-[13px] md:text-base lg:text-base leading-[22px] mt-4 md:mt-6 lg:mt-6 text-center">
-                Введите email, на который вы регистрировались - мы отправим ссылку для сброса пароля.
+              <p className="text-cream-dark text-base md:text-[17px] lg:text-lg leading-[22px] mt-4 md:mt-6 lg:mt-6 text-center">
+                Введите email, на который вы регистрировались - мы отправим ссылку для сброса пароля
               </p>
 
               <label className="block mt-6 md:mt-8 lg:mt-8">

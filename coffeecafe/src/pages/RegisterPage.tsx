@@ -20,15 +20,19 @@ function RegisterPage() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  /** Согласие на обработку персональных данных. Без него регистрация не идёт. */
+  const [consent, setConsent] = useState(false)
   /** Ошибки полей. У email два варианта (пусто/невалид), у пароля - пусто/слишком короткий. */
   const [errors, setErrors] = useState<{
     name: boolean
     email: false | 'empty' | 'invalid'
     password: false | 'empty' | 'short'
+    consent: boolean
   }>({
     name: false,
     email: false,
     password: false,
+    consent: false,
   })
   /** Общая ошибка от API (например, «email уже занят»). */
   const [submitError, setSubmitError] = useState<string | null>(null)
@@ -54,10 +58,11 @@ function RegisterPage() {
       name: !name.trim(),
       email: emailErr,
       password: passwordErr,
+      consent: !consent,
     }
     setErrors(next)
 
-    if (next.name || next.email || next.password) return
+    if (next.name || next.email || next.password || next.consent) return
 
     try {
       setIsSubmitting(true)
@@ -198,6 +203,57 @@ function RegisterPage() {
             </p>
           )}
 
+          {/*
+            Чекбокс согласия на обработку персональных данных.
+            Стандартный input скрыт визуально (sr-only), а квадратик отрисован соседним span -
+            через peer-checked: подсвечиваем рамку и фон, и показываем галочку.
+            Так контрол доступен с клавиатуры и для скринридеров, но выглядит по макету.
+          */}
+          {/*
+            На мобилке чекбокс по левому краю формы, на планшете и десктопе - центрирован
+            (так в макете). Меняем justify через брейкпоинты.
+          */}
+          <label className="mt-6 md:mt-8 lg:mt-6 flex items-start justify-start md:justify-center gap-3 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              name="consent"
+              checked={consent}
+              onChange={(e) => {
+                setConsent(e.target.checked)
+                setErrors((prev) => ({ ...prev, consent: false }))
+              }}
+              className="peer sr-only"
+              aria-invalid={errors.consent}
+            />
+            <span
+              className={`
+                mt-0.5 shrink-0 inline-flex items-center justify-center
+                w-5 h-5 md:w-6 md:h-6 rounded-[4px]
+                border-2 transition-colors
+                ${errors.consent ? 'border-input-border-error' : 'border-cream-dark'}
+                peer-checked:bg-brown-button peer-checked:border-brown-button
+                peer-focus-visible:ring-2 peer-focus-visible:ring-cream/50 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-[#4b372b]
+              `}
+            >
+              {/* Галочка - тонкий SVG, белый, проявляется только при checked. */}
+              <svg
+                viewBox="0 0 16 16"
+                fill="none"
+                className={`w-3 h-3 md:w-4 md:h-4 text-brown-dark ${consent ? 'opacity-100' : 'opacity-0'}`}
+                aria-hidden="true"
+              >
+                <path d="M3 8.5L6.5 12L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+            <span
+              className={`text-[13px] md:text-sm lg:text-base leading-[22px] ${
+                errors.consent ? 'text-input-border-error' : 'text-cream-dark'
+              }`}
+            >
+              Даю согласие на обработку персональных данных
+            </span>
+          </label>
+
           <button
             type="submit"
             disabled={isSubmitting}
@@ -212,7 +268,7 @@ function RegisterPage() {
               cursor-pointer disabled:opacity-60 disabled:cursor-wait
             "
           >
-            {isSubmitting ? 'Создаём...' : 'Создать аккаунт'}
+            {isSubmitting ? 'Регистрируем...' : 'Зарегистрироваться'}
           </button>
 
           {/*

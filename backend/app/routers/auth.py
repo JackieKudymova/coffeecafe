@@ -61,9 +61,15 @@ async def register(body: UserRegisterRequest, db: AsyncSession = Depends(get_db)
 
 @router.post("/login", response_model=TokenResponse)
 async def login(body: UserLoginRequest, db: AsyncSession = Depends(get_db)):
+    # Различаем «нет такого email» и «email есть, но пароль не подходит» —
+    # фронт показывает разные сообщения. Это удобнее для UX, плюс
+    # перебор аккаунтов от этого экрана нас не защищает (есть отдельный
+    # сброс пароля с равномерным ответом для известного и неизвестного email).
     user = await get_user_by_email(db, body.email)
-    if user is None or not verify_password(body.password, user.password_hash):
-        raise HTTPException(status_code=401, detail="Неверный email или пароль")
+    if user is None:
+        raise HTTPException(status_code=404, detail="такого аккаунта нет")
+    if not verify_password(body.password, user.password_hash):
+        raise HTTPException(status_code=401, detail="неверный email или пароль")
     return TokenResponse(access_token=create_user_token(user.id))
 
 

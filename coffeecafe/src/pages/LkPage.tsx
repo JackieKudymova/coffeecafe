@@ -74,7 +74,7 @@ function LkPage() {
             </div>
 
             <p className="text-cream-dark text-sm md:text-base lg:text-base mt-6 md:mt-8 lg:mt-8">
-              Покажите номер на кассе для получения скидки
+              *Покажите номер на кассе для получения скидки
             </p>
 
             {/*
