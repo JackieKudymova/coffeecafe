@@ -1,9 +1,9 @@
 /*
-  Header — шапка сайта.
+  Header - шапка сайта.
   На мобилках при нажатии бургера открывается полноэкранное меню (overlay).
-  На десктопе — обычная горизонтальная навигация.
-  Логотип — векторный SVG, масштабируется под разрешение.
-  Меню рендерится через createPortal в document.body + блокировка скролла — иначе на iOS Safari
+  На десктопе - обычная горизонтальная навигация.
+  Логотип - векторный SVG, масштабируется под разрешение.
+  Меню рендерится через createPortal в document.body + блокировка скролла - иначе на iOS Safari
   видны зазоры и прокручивается страница под оверлеем.
 */
 
@@ -14,7 +14,7 @@ import logo from '../assets/images/logo.svg'
 import userIcon from '../assets/images/User Male.png'
 import { getUserToken } from '../services/authService'
 
-/* Десктопная навигация включает "Главная", мобильная — нет (по макету) */
+/* Десктопная навигация включает "Главная", мобильная - нет (по макету) */
 const desktopLinks = [
   { label: 'Главная', href: '/' },
   { label: 'О нас', href: '/about' },
@@ -30,14 +30,14 @@ interface HeaderProps {
 
 function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
   /*
-    Куда ведёт «Личный кабинет»: если уже есть токен — сразу в /lk,
-    иначе — на страницу входа. useLocation триггерит ре-рендер при смене
+    Куда ведёт «Личный кабинет»: если уже есть токен - сразу в /lk,
+    иначе - на страницу входа. useLocation триггерит ре-рендер при смене
     маршрута, чтобы после логина (navigate('/lk')) кнопка обновилась.
   */
   useLocation()
   const lkHref = getUserToken() ? '/lk' : '/login'
 
-  /* На планшете/мобилке «Личный кабинет» — пункт меню (иконки в header нет, по макету). */
+  /* На планшете/мобилке «Личный кабинет» - пункт меню (иконки в header нет, по макету). */
   const mobileLinks = [
     { label: 'О нас', href: '/about' },
     { label: 'Меню', href: '/menu' },
@@ -113,7 +113,7 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
         </button>
       </div>
 
-      {/* Пункты меню — по центру экрана. Планшет (md:) — больше размер и отступ по Figma. */}
+      {/* Пункты меню - по центру экрана. Планшет (md:) - больше размер и отступ по Figma. */}
       <nav className="flex-1 flex flex-col items-center justify-center gap-8 md:gap-12 min-h-0">
         {mobileLinks.map((link) => (
           <NavLink
@@ -121,7 +121,7 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
             to={link.href}
             className={({ isActive }) =>
               [
-                'font-normal text-[28px] leading-[34px] md:text-[32px] md:leading-[39px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brown-button rounded-sm',
+                'font-normal text-[24px] leading-[29px] md:text-[32px] md:leading-[39px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brown-button rounded-sm',
                 isActive
                   ? 'text-brown-button'
                   : 'text-cream hover:text-brown-button',
@@ -140,21 +140,20 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
 
   return (
     <>
-      {/* Шапка — всегда поверх контента */}
+      {/* Шапка - всегда поверх контента */}
       <header className="absolute top-0 left-0 w-full z-50">
         {/*
-          Мобилки/планшет: flex c justify-between (логотип слева, бургер справа).
-          Десктоп: 3 колонки (логотип слева — меню по центру — иконка ЛК справа),
-          по макету HF_desktop_main.hero.header.
+          Везде flex c justify-between.
+          Мобилки/планшет: логотип слева, бургер справа.
+          Десктоп: логотип - меню - иконка ЛК; justify-between делит свободное место
+          поровну между этими тремя элементами, поэтому меню стоит между логотипом и
+          иконкой (как в макете HF_desktop_about us.header - по 258 px с каждой стороны),
+          а не по геометрическому центру фрейма (логотип 127 px шире иконки 28 px,
+          поэтому 1fr-auto-1fr давал бы видимое смещение).
         */}
-        {/*
-          Десктоп: 3 колонки 1fr-auto-1fr — крайние равны, средняя по контенту,
-          поэтому меню стоит ровно по центру фрейма (как в Figma 380:1298) и
-          не сжимается, что иначе ломало бы перенос «О нас».
-        */}
-        <div className="flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] px-4 lg:px-16 xl:px-28 py-4 lg:py-6">
-          {/* Логотип — SVG, адаптивный размер: 106×25 мобилка, 120×27 планшет, 127×29 десктоп */}
-          <a href="/" className="lg:justify-self-start">
+        <div className="flex items-center justify-between px-4 lg:px-16 xl:px-28 py-4 lg:py-6">
+          {/* Логотип - SVG, адаптивный размер: 106×25 мобилка, 120×27 планшет, 127×29 десктоп */}
+          <a href="/">
             <img
               src={logo}
               alt="ДомКофе"
@@ -162,8 +161,8 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
             />
           </a>
 
-          {/* Десктопная навигация — центральная колонка */}
-          <nav className="hidden lg:flex gap-4 lg:gap-8 lg:justify-self-center">
+          {/* Десктопная навигация - между логотипом и иконкой */}
+          <nav className="hidden lg:flex gap-4 lg:gap-8">
             {desktopLinks.map((link) => (
               <NavLink
                 key={link.label}
@@ -178,13 +177,13 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
 
           {/*
             Иконка «Личный кабинет» → /login, правая колонка.
-            Состояния — как у пунктов меню (text-cream → hover/active: text-brown-button).
+            Состояния - как у пунктов меню (text-cream → hover/active: text-brown-button).
             Используем CSS-маску, чтобы цвет PNG-иконки управлялся через bg-current.
           */}
           <NavLink
             to={lkHref}
             aria-label="Личный кабинет"
-            className="hidden lg:inline-flex shrink-0 lg:justify-self-end text-cream transition-colors hover:text-brown-button active:text-brown-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
+            className="hidden lg:inline-flex shrink-0 text-cream transition-colors hover:text-brown-button active:text-brown-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
           >
             <span
               aria-hidden

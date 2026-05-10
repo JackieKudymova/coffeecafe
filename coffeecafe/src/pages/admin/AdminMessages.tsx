@@ -85,14 +85,14 @@ export default function AdminMessages() {
                   }}
                 >
                   <td className="p-3 text-cream-dark text-sm whitespace-nowrap">
-                    {m.created_at ? new Date(m.created_at).toLocaleString('ru-RU') : '—'}
+                    {m.created_at ? new Date(m.created_at).toLocaleString('ru-RU') : '-'}
                   </td>
                   <td className="p-3 text-cream">{m.name}</td>
                   <td className="p-3 text-cream-dark whitespace-nowrap font-mono text-sm tracking-tight">
                     {m.phone}
                   </td>
                   <td className="p-3 text-cream-dark max-w-xs min-w-0 truncate" title={m.message ?? ''}>
-                    {m.message ?? '—'}
+                    {m.message ?? '-'}
                   </td>
                   <td className="p-3 text-cream-dark">{m.is_read ? 'да' : 'нет'}</td>
                   <td className="p-2 align-middle">

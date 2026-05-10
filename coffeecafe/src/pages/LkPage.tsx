@@ -1,8 +1,8 @@
 /*
-  LkPage — личный кабинет клиента.
+  LkPage - личный кабинет клиента.
   Показывает имя, скидку и 6-значный ID клиента (по нему дают скидку на кассе).
-  Данные тянем из /api/auth/me. Маршрут защищён ProtectedUser в App.tsx —
-  без токена сюда не зайти, поэтому 401 здесь — это уже истёкший токен,
+  Данные тянем из /api/auth/me. Маршрут защищён ProtectedUser в App.tsx -
+  без токена сюда не зайти, поэтому 401 здесь - это уже истёкший токен,
   обрабатываем сбросом и редиректом на /login.
 */
 
@@ -26,7 +26,7 @@ function LkPage() {
         if (!cancelled) setUser(data)
       })
       .catch((err) => {
-        // Токен невалидный/истёк — чистим и на логин.
+        // Токен невалидный/истёк - чистим и на логин.
         clearUserToken()
         if (!cancelled) {
           setError(err instanceof Error ? err.message : 'Не удалось загрузить профиль')
@@ -50,16 +50,16 @@ function LkPage() {
         onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
       />
 
-      {/* Карточки нет — текст и код просто по центру тёмного фона страницы (по макету). */}
+      {/* Карточки нет - текст и код просто по центру тёмного фона страницы (по макету). */}
       <main className="px-4 lg:px-16 xl:px-28 pt-[120px] md:pt-[160px] lg:pt-[180px] pb-[60px] md:pb-[80px] lg:pb-[120px] flex flex-col items-center text-center">
-        <h1 className="font-heading font-semibold text-cream text-[28px] md:text-[40px] lg:text-[36px] leading-tight">
+        <h1 className="font-heading font-normal text-cream text-[24px] md:text-[40px] lg:text-[36px] leading-tight uppercase">
           Личный кабинет
         </h1>
 
         {user ? (
           <>
             <p className="text-cream text-[20px] md:text-[24px] lg:text-2xl mt-10 md:mt-14 lg:mt-16">
-              {user.name}, ваша скидка – {user.discount}%
+              {user.name}, ваша скидка - {user.discount}%
             </p>
 
             <p className="text-cream text-base md:text-[17px] lg:text-lg mt-4 md:mt-6 lg:mt-8">
@@ -78,8 +78,8 @@ function LkPage() {
             </p>
 
             {/*
-              На мобилке/планшете — широкая кнопка во всю ширину контейнера,
-              на десктопе — компактная по макету (~340px по центру).
+              На мобилке/планшете - широкая кнопка во всю ширину контейнера,
+              на десктопе - компактная по макету (~340px по центру).
             */}
             <button
               type="button"

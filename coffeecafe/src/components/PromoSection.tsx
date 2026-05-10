@@ -1,9 +1,9 @@
 /*
-  PromoSection — блок последней акции.
+  PromoSection - блок последней акции.
 
   Получает данные через promoService (сейчас моковые, потом с бэкенда).
-  Если картинка есть — показывает её фоном с затемнением.
-  Если нет — просто тёмный фон.
+  Если картинка есть - показывает её фоном с затемнением.
+  Если нет - просто тёмный фон.
 */
 
 import { useEffect, useState } from 'react'
@@ -17,7 +17,7 @@ function PromoSection() {
     fetchLatestPromo().then(setPromo)
   }, [])
 
-  // Пока данные не загрузились — ничего не показываем
+  // Пока данные не загрузились - ничего не показываем
   if (!promo) return null
 
   return (
@@ -32,12 +32,12 @@ function PromoSection() {
         />
       )}
 
-      {/* Затемняющий overlay — 60% чёрного поверх фото */}
+      {/* Затемняющий overlay - 60% чёрного поверх фото */}
       <div className="absolute inset-0 bg-black/60" />
 
       {/* Контент */}
       <div className="relative z-10 px-4 lg:px-16 xl:px-28 w-full">
-        <h2 className="font-heading font-semibold text-cream text-[28px] leading-tight md:text-[32px] md:leading-tight lg:text-[36px] lg:leading-[48px]">
+        <h2 className="font-heading font-normal text-cream text-[24px] leading-tight md:text-[32px] md:leading-tight lg:text-[36px] lg:leading-[48px] uppercase">
           {promo.title}
         </h2>
 

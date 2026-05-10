@@ -1,5 +1,5 @@
 /*
-  Иконка VK — заливка currentColor (hover и active — тот же акцент brown-button, что в макете).
+  Иконка VK - заливка currentColor (hover и active - тот же акцент brown-button, что в макете).
 */
 
 import { useId } from 'react'

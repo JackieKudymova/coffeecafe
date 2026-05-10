@@ -11,9 +11,9 @@ import ReviewsSection from '../components/ReviewsSection'
 import Footer from '../components/Footer'
 
 /*
-  HomePage — главная страница.
+  HomePage - главная страница.
   Состояние меню (isMenuOpen) хранится здесь и передаётся в Header и HeroSection.
-  Это паттерн React "подъём состояния" (lifting state up) —
+  Это паттерн React "подъём состояния" (lifting state up) -
   когда нескольким компонентам нужен доступ к одному состоянию,
   оно хранится в их общем родителе.
 */
@@ -25,10 +25,10 @@ function HomePage() {
     <div className="bg-brown-bg min-w-[320px]">
       <Header isMenuOpen={isMenuOpen} onToggleMenu={() => setIsMenuOpen(!isMenuOpen)} />
       <HeroSection />
+      <AuthPromoSection />
       <AboutSection />
       <WhyUsSection />
       <MenuSection />
-      <AuthPromoSection />
       <PromoSection />
       <GallerySection />
       <ReviewsSection />

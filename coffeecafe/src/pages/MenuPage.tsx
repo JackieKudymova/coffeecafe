@@ -1,8 +1,8 @@
 /*
-  MenuPage — страница «Меню».
+  MenuPage - страница «Меню».
   Полное меню кофейни с табами по разделам.
   Данные загружаются через menuService (сейчас моковые, потом из API).
-  Количество разделов, позиций и вариантов размеров — динамическое.
+  Количество разделов, позиций и вариантов размеров - динамическое.
 */
 
 import { useState, useEffect } from 'react'
@@ -47,14 +47,14 @@ function MenuPage() {
 
       <main className="px-4 lg:px-16 xl:px-28 pt-[88px] md:pt-[97px] lg:pt-[149px] pb-12 lg:pb-[97px]">
         {/* Заголовок */}
-        <h1 className="font-heading font-semibold text-cream text-[28px] md:text-[32px] lg:text-[36px] leading-tight">
+        <h1 className="font-heading font-normal text-cream text-[24px] md:text-[32px] lg:text-[36px] leading-tight uppercase">
           Меню
         </h1>
 
         {/* Табы разделов */}
         {categories.length > 0 && (
           <div className="mt-[30px] md:mt-8 lg:mt-12 overflow-x-auto scrollbar-hide">
-            {/* Базовая линия — border контейнера; золотая полоска активного таба — span, на узком экране удлинена в половину gap-x-4 */}
+            {/* Базовая линия - border контейнера; золотая полоска активного таба - span, на узком экране удлинена в половину gap-x-4 */}
             <div className="flex w-max min-w-full min-[520px]:w-full gap-x-4 min-[520px]:gap-0 border-b-2 border-[#4b372b]">
               {categories.map((cat, i) => (
                 <button
@@ -89,7 +89,7 @@ function MenuPage() {
         )}
 
         {/* Сетка карточек: 1 колонка мобилка, 2 планшет, 3 десктоп.
-            Планшет (md): по Figma Hf_ipad_menu — gap 16px по горизонтали, 32px по вертикали. */}
+            Планшет (md): по Figma Hf_ipad_menu - gap 16px по горизонтали, 32px по вертикали. */}
         {activeCategory && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-4 md:gap-y-8 lg:gap-x-8 lg:gap-y-[50px] mt-8 lg:mt-10">
             {activeCategory.items.map((item) => (
@@ -107,12 +107,12 @@ function MenuPage() {
 /*
   Карточка позиции меню.
   Десктоп: при наведении на фото показывается состав (если он есть).
-  Планшет/мобилка: переключение по тапу на фото — touch-устройства не умеют
+  Планшет/мобилка: переключение по тапу на фото - touch-устройства не умеют
   hover, поэтому используем onClick.
-  Иконки-аллергены — отдельная колонка в правом нижнем углу карточки
+  Иконки-аллергены - отдельная колонка в правом нижнем углу карточки
   (по макету Figma: ниже фото, справа от блока с ценами/названием).
   Заполняются СНИЗУ ВВЕРХ: при одной иконке она внизу, добавление следующей
-  ставит её ВЫШЕ предыдущей; порядок при всех трёх — milk → gluten → egg.
+  ставит её ВЫШЕ предыдущей; порядок при всех трёх - milk → gluten → egg.
 */
 function MenuItemCard({ item }: { item: MenuItem }) {
   /** Открыт ли поп-ап «состав» по тапу (мобилка/планшет). На десктопе используется hover через CSS. */
@@ -121,7 +121,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
   // Порядок сверху вниз: молоко → глютен → яйца (по макету Figma).
   // «Заполнение снизу вверх» получается за счёт абсолютного позиционирования
   // колонки у нижнего края карточки: при одной иконке она в самом низу,
-  // при двух — добавленная встаёт ниже, и т.д.
+  // при двух - добавленная встаёт ниже, и т.д.
   const allergens: { src: string; alt: string }[] = []
   if (item.allergen_milk) allergens.push({ src: milkIcon, alt: 'Молоко' })
   if (item.allergen_gluten) allergens.push({ src: glutenIcon, alt: 'Глютен' })
@@ -132,7 +132,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
   return (
     <div className="relative">
       {/*
-        Изображение — пропорция 3:2, скруглённые углы.
+        Изображение - пропорция 3:2, скруглённые углы.
         group/photo нужен, чтобы на десктопе менять видимость состава по hover.
         На тач-устройствах состав показывается через состояние tapOpen.
       */}
@@ -150,11 +150,11 @@ function MenuItemCard({ item }: { item: MenuItem }) {
 
         {/*
           Поп-ап «Состав». По макету Figma (Hf_ipad_menu → Slot → Inside):
-          — фон #cfc6bb (кремовый), текст brown-dark (#2a1c17);
-          — сверху заголовок «Состав:» (22px), под ним список ингредиентов (17px)
+          - фон #cfc6bb (кремовый), текст brown-dark (#2a1c17);
+          - сверху заголовок «Состав:» (22px), под ним список ингредиентов (17px)
             по левому краю, переносы строк сохраняются (whitespace-pre-line);
-          — внутренний отступ 16px (p-4).
-          Виден на десктопе по hover, на мобилке/планшете — по tapOpen.
+          - внутренний отступ 16px (p-4).
+          Виден на десктопе по hover, на мобилке/планшете - по tapOpen.
         */}
         {hasIngredients && (
           <div
@@ -182,7 +182,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
       </h3>
 
       {/* Варианты: 2 строки (объём + цена). 25px от названия, 15px между строками */}
-      {/* На мобилке колонки 55px + gap 8px (как в Figma), на md+ — 104px без gap-x */}
+      {/* На мобилке колонки 55px + gap 8px (как в Figma), на md+ - 104px без gap-x */}
       <div
         className="mt-[10px] md:mt-2 lg:mt-[7px] grid gap-y-[3px] gap-x-2 md:gap-x-0 [grid-template-columns:repeat(var(--cols),55px)] md:[grid-template-columns:repeat(var(--cols),104px)]"
         style={{ ['--cols' as string]: item.variants.length } as React.CSSProperties}
@@ -204,7 +204,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
       {/*
         Иконки-аллергены: столбик в правом нижнем углу карточки (по макету).
         Размер 24×24 (десктоп/планшет), 20×20 (мобилка); расстояние между иконками 11px.
-        absolute + bottom-0/right-0 даёт «прилипание» к нижнему правому углу карточки —
+        absolute + bottom-0/right-0 даёт «прилипание» к нижнему правому углу карточки -
         одна иконка оказывается в самом низу, при добавлении следующая встаёт сверху.
       */}
       {allergens.length > 0 && (

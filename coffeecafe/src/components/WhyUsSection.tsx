@@ -1,5 +1,5 @@
 /*
-  WhyUsSection — секция «Почему мы».
+  WhyUsSection - секция «Почему мы».
   Десктоп (lg+): 4 карточки в ряд, иконки 64×64.
   Мобилки: 1 колонка, иконки 48×48.
   Заголовки: Inter Regular 24px, описания: Inter Regular 18px.
@@ -37,7 +37,7 @@ function WhyUsSection() {
   return (
     <section className="bg-brown-bg pt-12 lg:pt-24">
       <div className="px-6 md:px-4 lg:px-16 xl:px-28">
-        <h2 className="font-heading font-semibold text-cream text-[28px] md:text-[32px] lg:text-[36px] leading-tight text-center md:text-left">
+        <h2 className="font-heading font-normal text-cream text-[24px] md:text-[32px] lg:text-[36px] leading-tight text-center md:text-left uppercase">
           Почему мы
         </h2>
 

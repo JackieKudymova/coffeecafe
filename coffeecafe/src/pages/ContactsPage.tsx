@@ -1,7 +1,7 @@
 /*
-  ContactsPage — страница «Контакты».
-  Десктоп (lg+): 12-колоночная сетка — контакты + форма.
-  «Спасибо» после отправки — одна модалка (портал в body, поверх экрана) на всех ширинах.
+  ContactsPage - страница «Контакты».
+  Десктоп (lg+): 12-колоночная сетка - контакты + форма.
+  «Спасибо» после отправки - одна модалка (портал в body, поверх экрана) на всех ширинах.
 */
 
 import { useState } from 'react'
@@ -39,7 +39,7 @@ function ContactsPage() {
 
         {/* Мобилка + планшет: одна колонка */}
         <div className="lg:hidden pb-[50px] md:pb-14">
-          <h1 className="font-heading font-semibold text-cream text-[28px] md:text-[32px] leading-tight">
+          <h1 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-tight">
             Контакты
           </h1>
 
@@ -79,8 +79,8 @@ function ContactsPage() {
           {/*
             Карта рядом с контактами.
             Размеры по фрейму Figma:
-              мобилка  — HF_phone_main.body.image 75: 358×220, gap 16 от иконки соцсети
-              планшет  — Hf_ipad_contacts.image 75: 784×262, занимает всю ширину контента
+              мобилка  - HF_phone_main.body.image 75: 358×220, gap 16 от иконки соцсети
+              планшет  - Hf_ipad_contacts.image 75: 784×262, занимает всю ширину контента
           */}
           <img
             src={mapImg}
@@ -107,10 +107,10 @@ function ContactsPage() {
             и наоборот, текст занимает меньше высоты (меньше переносов), поэтому колонка
             оказывается короче формы. Карта получает flex-1 + min-h-[225px] и растягивается
             по высоте, закрывая пустое место до низа формы. На 1440 колонка ровно высотой
-            формы — карта остаётся 225px (макет Figma).
+            формы - карта остаётся 225px (макет Figma).
           */}
           <div className="col-span-6 flex flex-col">
-            <h1 className="font-heading font-semibold text-cream text-[36px] leading-tight">
+            <h1 className="font-heading font-normal text-cream text-[36px] leading-tight uppercase">
               Контакты
             </h1>
 
@@ -148,10 +148,10 @@ function ContactsPage() {
             </div>
 
             {/*
-              Карта: HF_desktop_contacts.Group 1771.image 75 — 584×225, rounded-10.
-              Обёртка flex-1 + min-h-[225px]: на 1440 — ровно 225 (нет свободного места
-                в колонке), на >1440 — растягивается до низа колонки = низа формы.
-              <img> внутри h-full object-cover — картинка следует за высотой обёртки
+              Карта: HF_desktop_contacts.Group 1771.image 75 - 584×225, rounded-10.
+              Обёртка flex-1 + min-h-[225px]: на 1440 - ровно 225 (нет свободного места
+                в колонке), на >1440 - растягивается до низа колонки = низа формы.
+              <img> внутри h-full object-cover - картинка следует за высотой обёртки
                 без искажений (обрезается, не растягивается).
             */}
             <div className="mt-4 flex-1 min-h-[225px] basis-[225px]">
@@ -163,7 +163,7 @@ function ContactsPage() {
             </div>
           </div>
 
-          {/* Колонки 7-12: форма; «Спасибо» — портал на уровне страницы */}
+          {/* Колонки 7-12: форма; «Спасибо» - портал на уровне страницы */}
           <div className="col-span-6">
             <ContactForm
               key={formResetKey}
@@ -183,9 +183,9 @@ function ContactsPage() {
 }
 
 /*
-  ContactForm — карточка с формой обратной связи.
+  ContactForm - карточка с формой обратной связи.
   Тёмный фон #4b372b, поля ввода #5d483c, placeholder #cfc6bb.
-  Кнопка «Отправить» — стандартный стиль brown-button.
+  Кнопка «Отправить» - стандартный стиль brown-button.
 */
 function ContactForm({
   className = '',
@@ -194,14 +194,14 @@ function ContactForm({
 }: {
   className?: string
   onSuccess: () => void
-  /** Скрыта визуально, но остаётся в потоке — для overlay «Спасибо» 1:1 по размеру */
+  /** Скрыта визуально, но остаётся в потоке - для overlay «Спасибо» 1:1 по размеру */
   ariaHidden?: boolean
 }) {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [message, setMessage] = useState('')
   const [consent, setConsent] = useState(false)
-  /** Ошибки полей (UI-KIT Error). Сообщение — необязательное поле, error к нему не применяем. */
+  /** Ошибки полей (UI-KIT Error). Сообщение - необязательное поле, error к нему не применяем. */
   const [errors, setErrors] = useState<{
     name: boolean
     phone: false | 'empty' | 'incomplete'
@@ -272,7 +272,7 @@ function ContactForm({
       aria-hidden={ariaHidden}
       className={`bg-[#4b372b] rounded-[10px] px-6 py-6 md:px-6 md:pt-10 md:pb-10 lg:px-14 lg:pt-[96px] lg:pb-[96px] ${className}`}
     >
-      {/* Title fs 24 / lh 29 — по Figma HF_desktop_contacts.body.Group 1780.Group 1395 */}
+      {/* Title fs 24 / lh 29 - по Figma HF_desktop_contacts.body.Group 1780.Group 1395 */}
       <h2 className="text-cream font-normal text-xl md:text-[22px] lg:text-2xl leading-[1.2]">
         Есть вопросы?
         <br className="min-[500px]:hidden" aria-hidden />
@@ -355,8 +355,8 @@ function ContactForm({
 
       <label className="flex items-start md:items-center gap-4 md:gap-[14px] mt-4 cursor-pointer">
         {/*
-          Ошибка: в default-chckbox-vector.svg уже есть серая обводка — внешний border давал «второе кольцо».
-          Если не отмечено и есть ошибка — показываем только рамку error без SVG.
+          Ошибка: в default-chckbox-vector.svg уже есть серая обводка - внешний border давал «второе кольцо».
+          Если не отмечено и есть ошибка - показываем только рамку error без SVG.
         */}
         <span className="relative inline-flex h-4 w-4 md:h-6 md:w-6 shrink-0 rounded-sm transition-opacity hover:opacity-90 mt-[2px] md:mt-0">
           <input
@@ -432,7 +432,7 @@ function isPhoneComplete(masked: string): boolean {
 }
 
 /*
-  PhoneInput — маска +7 (XXX) XXX-XX-XX. Пока нет цифр — value пустой, виден placeholder.
+  PhoneInput - маска +7 (XXX) XXX-XX-XX. Пока нет цифр - value пустой, виден placeholder.
   Контролируемый: value и onChange с родителя.
 */
 const PHONE_PLACEHOLDER_EXAMPLE = '+7 (900) 123-45-67'

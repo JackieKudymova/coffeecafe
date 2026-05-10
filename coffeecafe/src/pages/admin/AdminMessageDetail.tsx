@@ -77,7 +77,7 @@ export default function AdminMessageDetail() {
 
           <div className="space-y-4 pt-2">
             <DetailField label="Дата">
-              {row.created_at ? new Date(row.created_at).toLocaleString('ru-RU') : '—'}
+              {row.created_at ? new Date(row.created_at).toLocaleString('ru-RU') : '-'}
             </DetailField>
             <DetailField label="Имя">{row.name}</DetailField>
             <DetailField label="Телефон">
@@ -86,7 +86,7 @@ export default function AdminMessageDetail() {
             <div>
               <span className="block text-sm text-cream-dark leading-[22px]">Сообщение</span>
               <div className="mt-2 min-h-[120px] rounded-[10px] border-2 border-transparent bg-input-bg px-4 py-3 text-base leading-[22px] text-cream whitespace-pre-wrap break-words">
-                {row.message?.trim() ? row.message : '—'}
+                {row.message?.trim() ? row.message : '-'}
               </div>
             </div>
           </div>

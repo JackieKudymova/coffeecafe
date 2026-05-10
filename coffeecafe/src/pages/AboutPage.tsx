@@ -1,8 +1,24 @@
 /*
-  AboutPage — страница «О нас».
-  Десктоп (xl 1280+): фото и текст по колонкам, размеры по макету Figma.
-  Промежуточный (lg 1024–1280): уменьшенные шрифты, процентные пропорции.
-  Мобилки (<1024): одна колонка, всё по порядку.
+  AboutPage - страница «О нас» (новая версия по макетам Figma).
+  Макеты:
+    - HF_desktop_about us (1440x1782): 2 колонки + полноширинный баннер
+        ЛЕВАЯ:  «О нас» (Nunito 36/49) → подзаголовок «ДомКофе - твоя пауза»
+                (Inter 24/29) → параграф (Inter 18/22) → большое фото 592×456
+        ПРАВАЯ: фото 592×287 → подзаголовок «Кофе и выпечка...» → параграф
+                → подзаголовок «Внимание к деталям» → параграф
+    - Hf_ipad_about us (820x1795): однопотоково - h1, 3 раздела с фото 788×280
+      между ними, баннер; шрифты Nunito 32 / Inter 22 / Inter 17.
+    - HF_phone_about_us (390x1666): однопотоково - h1, 3 раздела с фото 358×240,
+      баннер; шрифты Nunito 24 / Inter 20 / Inter 16.
+
+  Внизу всех макетов - баннер с фото-фоном (opacity 0.5) и надписью
+  «ДомКофе - пауза в ритме города» (Nunito) по центру. Баннер примыкает
+  к подвалу без отступа.
+
+  Изображения:
+    coffeeImg  = unsplash:ZwzB7C8lPDI (латте-арт)  - десктоп правая колонка / моб./план. раздел 1
+    baristaImg = unsplash:UBoH66BA48c (бариста)    - десктоп левая колонка / моб./план. раздел 2
+    lavkaImg   = unsplash:Kwdp-0pok-I (интерьер)   - баннер
 */
 
 import { useState } from 'react'
@@ -23,102 +39,137 @@ function AboutPage() {
         onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
       />
 
-      {/* Отступ от шапки: мобилка 64px, десктоп ~96px. Без pb — картинка лавки упирается в подвал */}
-      <main className="px-4 lg:px-16 xl:px-28 pt-[97px] lg:pt-32">
+      {/* pb-0 - баннер примыкает к футеру по макету */}
+      <main className="px-4 lg:px-16 xl:px-28 pt-[88px] md:pt-[98px] lg:pt-[149px] pb-0">
 
-        {/* === Строка 1: Заголовок + вводный текст | Фото бариста === */}
-        <div className="flex flex-col lg:flex-row lg:gap-12 xl:gap-24">
+        {/* === Мобилка / планшет: однопотоково === */}
+        <div className="lg:hidden">
+          <h1 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-[33px] md:leading-[44px] uppercase">
+            О нас
+          </h1>
 
-          {/* Левая колонка: заголовок + текст */}
-          <div className="lg:w-[38%] lg:shrink-0">
-            <h1 className="font-heading font-semibold text-cream text-[28px] md:text-[32px] lg:text-[32px] xl:text-[36px] leading-tight">
-              О нас
-            </h1>
-
-            <p className="text-cream-dark text-base md:text-[17px] md:leading-[21px] lg:text-base lg:leading-normal xl:text-lg xl:leading-[22px] mt-8 lg:mt-12">
-              ДомКофе - небольшая городская кофейня, куда можно зайти за чашкой
-              хорошего кофе и сделать паузу в течение дня. Мы стараемся создать
-              приятную атмосферу, в которой гости могут встретиться с друзьями,
-              поработать за ноутбуком или просто провести немного времени за
-              любимым напитком. В нашем меню - классические кофейные напитки,
-              чай, десерты и свежая выпечка.
-            </p>
-          </div>
-
-          {/* Правая колонка: фото бариста (на одной линии с заголовком) */}
-          <div className="mt-6 lg:mt-0 lg:w-[48%] lg:ml-auto">
-            <img
-              src={baristaImg}
-              alt="Бариста за работой"
-              className="w-full h-[240px] md:h-[312px] lg:h-[312px] object-cover rounded-[10px]"
-            />
-          </div>
-        </div>
-
-        {/* === Строка 2: Фото кофе (десктоп) | Два текстовых блока (текст по центру) === */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-8 xl:gap-12 mt-6 lg:mt-20 xl:mt-24">
-
-          {/* Фото кофе — ТОЛЬКО на десктопе */}
-          <div className="lg:w-[48%] lg:shrink-0 hidden lg:block">
-            <img
-              src={coffeeImg}
-              alt="Приготовление кофе"
-              className="w-full h-[400px] object-cover rounded-[10px]"
-            />
-          </div>
-
-          {/* Два текстовых блока */}
-          <div className="lg:flex-1">
-            <p className="text-cream-dark text-base md:text-[17px] md:leading-[21px] lg:text-base lg:leading-normal xl:text-lg xl:leading-[22px]">
-              Наши бариста постоянно совершенствуют свои навыки, пробуют новые
-              способы приготовления кофе и внимательно следят за качеством
-              каждого напитка. Благодаря их опыту и вниманию к деталям гости
-              могут наслаждаться насыщенным вкусом и ароматом свежесваренного
-              кофе.
-            </p>
-
-            <p className="text-cream-dark text-base md:text-[17px] md:leading-[21px] lg:text-base lg:leading-normal xl:text-lg xl:leading-[22px] mt-4 lg:mt-6 xl:mt-8">
-              ДомКофе - это команда людей, которые искренне любят своё дело.
-              Мы стараемся создавать атмосферу, в которой приятно проводить
-              время, и уделяем внимание качеству напитков и ингредиентов. Для
-              нас важно, чтобы каждый гость чувствовал себя комфортно, а визит
-              в кофейню оставлял только приятные впечатления. Мы всегда рады
-              помочь вам выбрать напиток по вкусу.
-            </p>
-          </div>
-        </div>
-
-        {/* === Фото кофе — ТОЛЬКО на мобилке/планшете (перед философией) === */}
-        <div className="mt-8 lg:hidden">
+          {/* Раздел 1: ДомКофе - твоя пауза + параграф + фото латте-арт */}
+          <h2 className="text-cream font-normal text-xl md:text-[22px] leading-[24px] md:leading-[27px] mt-[35px] md:mt-[30px]">
+            ДомКофе - твоя пауза в ритме города
+          </h2>
+          <p className="text-cream-dark text-base md:text-[17px] leading-[19px] md:leading-[21px] mt-4">
+            Здесь берут кофе на ходу или остаются поработать, встретиться с
+            друзьями, побыть в моменте.
+          </p>
           <img
             src={coffeeImg}
-            alt="Приготовление кофе"
-            className="w-full h-[240px] md:h-[312px] object-cover rounded-[10px]"
+            alt="Латте-арт в чашке кофе"
+            className="w-full h-[240px] md:h-[280px] object-cover rounded-[10px] mt-4"
           />
-        </div>
 
-        {/* === Наша философия === */}
-        <div className="mt-8 lg:mt-16 xl:mt-20">
-          <h2 className="text-cream font-normal text-xl md:text-[22px] lg:text-[22px] xl:text-2xl">
-            Наша философия:
+          {/* Раздел 2: Кофе и выпечка + параграф + фото барист */}
+          <h2 className="text-cream font-normal text-xl md:text-[22px] leading-[24px] md:leading-[27px] mt-6 md:mt-8">
+            Кофе и выпечка, к которым возвращаются
           </h2>
-
-          <p className="text-cream-dark text-base md:text-[17px] md:leading-[21px] lg:text-base lg:leading-normal xl:text-lg xl:leading-[22px] mt-4 lg:mt-6 lg:max-w-[592px]">
-            Мы верим, что кофейня - это больше, чем просто место, где готовят
-            кофе. Это пространство для встреч, отдыха и небольших пауз в
-            течение дня. Поэтому мы уделяем внимание качеству ингредиентов,
-            атмосфере и сервису, чтобы каждое посещение оставляло приятное
-            впечатление.
+          <p className="text-cream-dark text-base md:text-[17px] leading-[19px] md:leading-[21px] mt-4">
+            У нас меню с кофе, чаем, десертами и свежей выпечкой из
+            качественных ингредиентов для вкусных и комфортных визитов.
           </p>
+          <img
+            src={baristaImg}
+            alt="Бариста за приготовлением кофе"
+            className="w-full h-[240px] md:h-[280px] object-cover rounded-[10px] mt-4"
+          />
+
+          {/* Раздел 3: Внимание к деталям (без отдельного фото - дальше баннер).
+              ВАЖНО: в Figma на мобилке и планшете текст параграфа отличается. */}
+          <h2 className="text-cream font-normal text-xl md:text-[22px] leading-[24px] md:leading-[27px] mt-6 md:mt-8">
+            Внимание к деталям
+          </h2>
+          {/* Мобилка (HF_phone_about_us): сокращённая версия */}
+          <p className="md:hidden text-cream-dark text-base leading-[19px] mt-4">
+            Мы внимательно ведём каждый этап приготовления и делаем кофе с
+            заботой - о вкусе и вашем комфорте у нас.
+          </p>
+          {/* Планшет (Hf_ipad_about us): полная версия */}
+          <p className="hidden md:block text-cream-dark md:text-[17px] md:leading-[21px] mt-4">
+            Мы внимательно относимся к каждому этапу приготовления и стараемся
+            создавать атмосферу, в которой приятно проводить время.
+          </p>
+
+          {/* Баннер: 358×240 (моб) / 788×280 (план), фото 50% opacity + надпись по центру */}
+          <div className="relative mt-6 md:mt-4">
+            <img
+              src={lavkaImg}
+              alt="Интерьер кофейни"
+              className="w-full h-[240px] md:h-[280px] object-cover opacity-50"
+            />
+            <div className="absolute inset-0 flex items-center justify-center px-4">
+              <p className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-[33px] md:leading-[44px] text-center uppercase max-w-[289px] md:max-w-[597px]">
+                ДомКофе - пауза в ритме города
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* === Широкое фото лавки === */}
-        <div className="mt-10 lg:mt-16 xl:mt-20">
-          <img
-            src={lavkaImg}
-            alt="Интерьер кофейни"
-            className="w-full h-[240px] md:h-[280px] lg:h-[464px] object-cover rounded-t-[10px]"
-          />
+        {/* === Десктоп (lg+): 2 колонки + полноширинный баннер === */}
+        <div className="hidden lg:block">
+          <div className="flex gap-8">
+
+            {/* Левая колонка: h1 «О нас» + раздел 1 + большое фото бариста */}
+            <div className="flex-1">
+              <h1 className="font-heading font-normal text-cream text-[36px] leading-[49px] uppercase">
+                О нас
+              </h1>
+              <h2 className="text-cream font-normal text-2xl leading-[29px] mt-[46px]">
+                ДомКофе - твоя пауза в ритме города
+              </h2>
+              <p className="text-cream-dark text-lg leading-[22px] mt-6">
+                Здесь берут кофе на ходу или остаются поработать, встретиться
+                с друзьями, побыть в моменте.
+              </p>
+              {/* Большой gap 143px - чтобы фото визуально опустилось ниже текста (по макету) */}
+              <img
+                src={baristaImg}
+                alt="Бариста за приготовлением кофе"
+                className="w-full h-[456px] object-cover rounded-[10px] mt-[143px]"
+              />
+            </div>
+
+            {/* Правая колонка: фото латте-арт + 2 подраздела */}
+            <div className="flex-1">
+              <img
+                src={coffeeImg}
+                alt="Латте-арт в чашке кофе"
+                className="w-full h-[287px] object-cover rounded-[10px]"
+              />
+              {/* Большой gap 151px - чтобы текст опустился ниже фото и выровнялся с левым (по макету) */}
+              <h2 className="text-cream font-normal text-2xl leading-[29px] mt-[151px]">
+                Кофе и выпечка, к которым возвращаются
+              </h2>
+              <p className="text-cream-dark text-lg leading-[22px] mt-6">
+                У нас меню с кофе, чаем, десертами и свежей выпечкой из
+                качественных ингредиентов для вкусных и комфортных визитов.
+              </p>
+              <h2 className="text-cream font-normal text-2xl leading-[29px] mt-8">
+                Внимание к деталям
+              </h2>
+              <p className="text-cream-dark text-lg leading-[22px] mt-6">
+                Мы внимательно относимся к каждому этапу приготовления и
+                стараемся создавать атмосферу, в которой приятно проводить
+                время.
+              </p>
+            </div>
+          </div>
+
+          {/* Баннер во всю ширину контента (1216×462), 48px от низа левой колонки */}
+          <div className="relative mt-12">
+            <img
+              src={lavkaImg}
+              alt="Интерьер кофейни"
+              className="w-full h-[462px] object-cover opacity-50"
+            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <p className="font-heading font-normal text-cream text-[36px] leading-[49px] text-center uppercase max-w-[672px]">
+                ДомКофе - пауза в ритме города
+              </p>
+            </div>
+          </div>
         </div>
       </main>
 

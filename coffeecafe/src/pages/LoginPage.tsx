@@ -1,7 +1,7 @@
 /*
-  LoginPage — страница «Вход в личный кабинет».
+  LoginPage - страница «Вход в личный кабинет».
   Карточка по центру: Email, Пароль, кнопка «Войти», ссылки на регистрацию и восстановление пароля.
-  По успеху — JWT в localStorage и переход в /lk.
+  По успеху - JWT в localStorage и переход в /lk.
 */
 
 import { useState } from 'react'
@@ -63,7 +63,7 @@ function LoginPage() {
         onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
       />
 
-      {/* Хедер absolute ~57px — pt включает его + воздух */}
+      {/* Хедер absolute ~57px - pt включает его + воздух */}
       <main className="px-4 lg:px-16 xl:px-28 pt-[140px] md:pt-[160px] lg:pt-[180px] pb-[60px] md:pb-[80px] lg:pb-[120px] flex justify-center">
         <form
           onSubmit={handleSubmit}
@@ -169,7 +169,7 @@ function LoginPage() {
 
           {/*
             Нижние ссылки.
-            Мобилка — стопкой и левее, планшет/десктоп — двумя краями (по макету).
+            Мобилка - стопкой и левее, планшет/десктоп - двумя краями (по макету).
           */}
           <div className="mt-4 md:mt-6 flex flex-col gap-2 md:flex-row md:justify-between">
             <Link

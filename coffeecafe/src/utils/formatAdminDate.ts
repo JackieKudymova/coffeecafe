@@ -1,8 +1,8 @@
 /** Дата/время для таблиц админки (ISO с бэкенда). */
 export function formatAdminDateTime(iso: string | null | undefined): string {
-  if (!iso) return '—'
+  if (!iso) return '-'
   const d = new Date(iso)
-  if (Number.isNaN(d.getTime())) return '—'
+  if (Number.isNaN(d.getTime())) return '-'
   return d.toLocaleString('ru-RU', {
     day: '2-digit',
     month: '2-digit',

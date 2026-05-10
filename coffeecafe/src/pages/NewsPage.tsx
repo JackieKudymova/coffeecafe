@@ -1,5 +1,5 @@
 /*
-  NewsPage — список новостей с пагинацией.
+  NewsPage - список новостей с пагинацией.
   Данные через newsService (моки → позже API).
   Карточка: порядок и отступы как в Figma HF_desktop_news_1 (фото → заголовок → текст → дата #a8a5a1 → кнопка на всю ширину).
 */
@@ -54,11 +54,11 @@ function NewsPage() {
       />
 
       <main className="px-4 lg:px-16 xl:px-28 pt-[88px] lg:pt-[149px] pb-12 md:pb-14 lg:pb-[97px]">
-        <h1 className="font-heading font-semibold text-cream text-[28px] lg:text-[36px] leading-tight">
+        <h1 className="font-heading font-normal text-cream text-[24px] lg:text-[36px] leading-tight uppercase">
           Новости и акции
         </h1>
 
-        {/* Отступ от h1 до карточек; между карточками по вертикали на моб — 55px (HF_phone_news_1) */}
+        {/* Отступ от h1 до карточек; между карточками по вертикали на моб - 55px (HF_phone_news_1) */}
         <div
           ref={newsGridRef}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-[55px] gap-x-6 md:gap-x-4 md:gap-y-10 lg:gap-x-8 lg:gap-y-[50px] mt-[32px] lg:mt-[50px]"

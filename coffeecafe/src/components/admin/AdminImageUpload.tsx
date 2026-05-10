@@ -79,7 +79,7 @@ export default function AdminImageUpload({
             <img src={previewSrc} alt="" className="h-full w-full object-cover" />
           ) : (
             <span className="px-4">
-              Нет фото — нажмите здесь или выберите файл кнопкой ниже
+              Нет фото - нажмите здесь или выберите файл кнопкой ниже
             </span>
           )}
         </label>

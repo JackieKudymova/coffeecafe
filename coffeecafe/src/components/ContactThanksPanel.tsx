@@ -1,7 +1,7 @@
 /*
   Экран «Спасибо» после отправки формы на странице контактов.
   Всегда: портал в document.body, fixed поверх вьюпорта (как раньше на десктопе).
-  Клик по свободной области или Escape — закрытие; без затемнения фона (bg-transparent).
+  Клик по свободной области или Escape - закрытие; без затемнения фона (bg-transparent).
 
   Отступы карточки как у старого inline-варианта: px-4 на узких экранах, иначе заголовок
   визуально уже, чем «внутри формы», хотя внешняя ширина та же.
@@ -17,7 +17,7 @@ interface ContactThanksPanelProps {
 function ThanksCard({ onClose }: { onClose: () => void }) {
   return (
     <div
-      className="w-full max-w-[567px] rounded-[10px] bg-[#cfc6bb] text-brown-dark px-4 py-8 min-[430px]:px-8 min-[430px]:py-12 lg:px-14 lg:py-12"
+      className="w-full max-w-[358px] md:max-w-[567px] lg:max-w-[579px] rounded-[10px] bg-[#cfc6bb] text-brown-dark px-4 py-14 md:px-14 md:py-12 lg:px-12 lg:py-12"
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-thanks-title"
@@ -25,23 +25,25 @@ function ThanksCard({ onClose }: { onClose: () => void }) {
       <h2
         id="contact-thanks-title"
         className="
-          text-center font-heading font-semibold tracking-tight whitespace-nowrap
-          text-[28px] leading-[37px]
+          text-center font-heading font-normal tracking-tight whitespace-nowrap
+          text-[28px] leading-[36px]
+          md:text-[32px] md:leading-[42px]
           lg:text-[36px] lg:leading-[48px]
         "
       >
         Спасибо за обращение!
       </h2>
-      <p className="mt-4 text-center text-base leading-[19px] lg:mt-6 lg:text-lg lg:leading-[22px]">
+      <p className="mt-4 md:mt-6 text-center text-base leading-[19px] md:text-[17px] md:leading-[21px] lg:text-lg lg:leading-[22px]">
         Ваше обращение принято и скоро наш сотрудник свяжется с вами!
       </p>
-      <div className="mt-10 flex justify-center lg:mt-12">
+      <div className="mt-[34px] md:mt-12 flex justify-center">
         <button
           type="button"
           onClick={onClose}
           className="
             inline-flex h-[67px] w-full max-w-[326px] items-center justify-center rounded-[10px]
             bg-brown-button font-medium text-brown-dark text-base uppercase tracking-wider
+            md:max-w-[386px]
             lg:h-[54px] lg:max-w-[280px] lg:text-lg
             transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brown-dark/30
@@ -70,7 +72,7 @@ function ContactThanksPanel({ onClose }: ContactThanksPanelProps) {
       onClick={onClose}
     >
       <div className="flex min-h-full items-center justify-center">
-        <div onClick={(e) => e.stopPropagation()} className="w-full max-w-[567px]">
+        <div onClick={(e) => e.stopPropagation()} className="w-full max-w-[358px] md:max-w-[567px] lg:max-w-[579px]">
           <ThanksCard onClose={onClose} />
         </div>
       </div>

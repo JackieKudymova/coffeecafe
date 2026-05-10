@@ -1,5 +1,5 @@
 /*
-  Footer — подвал сайта.
+  Footer - подвал сайта.
   Десктоп: 4 колонки (лого+VK, контакты, навигация×2) + копирайт + кнопка наверх.
   Мобилка: одна колонка по центру (лого, VK, контакты, копирайт). Без навигации и кнопки наверх.
 */
@@ -24,11 +24,11 @@ function Footer() {
   return (
     <footer className="bg-brown-footer overflow-hidden">
 
-      {/* Мобилка / планшет: одна колонка по центру. md: — размеры/отступы под iPad (820×415) */}
+      {/* Мобилка / планшет: одна колонка по центру. md: - размеры/отступы под iPad (820×415) */}
       <div className="lg:hidden px-4 py-4 md:py-8 flex flex-col items-center text-center">
         <img src={logo} alt="ДомКофе" className="h-[22px] md:h-[27px] w-auto" />
 
-        {/* Иконка VK — мобилка 24×24, планшет 32×32 */}
+        {/* Иконка VK - мобилка 24×24, планшет 32×32 */}
         <a
           href="#"
           aria-label="ВКонтакте"
@@ -64,7 +64,7 @@ function Footer() {
           {/* Колонка 1-3: Лого + VK. items-start чтобы логотип не растягивался */}
           <div className="col-span-3 flex flex-col items-start">
             <img src={logo} alt="ДомКофе" className="h-[29px] w-auto" />
-            {/* Иконка VK — 32×32, под логотипом с отступом 32px */}
+            {/* Иконка VK - 32×32, под логотипом с отступом 32px */}
             <a
               href="#"
               aria-label="ВКонтакте"
@@ -97,7 +97,7 @@ function Footer() {
             ))}
           </nav>
 
-          {/* Колонка 10-12: Навигация 2. overflow-visible — текст может выходить за границу колонки */}
+          {/* Колонка 10-12: Навигация 2. overflow-visible - текст может выходить за границу колонки */}
           <nav className="col-start-10 col-span-3 flex flex-col gap-8 text-cream font-medium text-lg whitespace-nowrap overflow-visible">
             {navCol2.map((link) =>
               link.href.startsWith('/') ? (
@@ -121,12 +121,12 @@ function Footer() {
           </nav>
         </div>
 
-        {/* Нижняя строка: копирайт + кнопка наверх. items-end — выровнены по низу как в макете */}
+        {/* Нижняя строка: копирайт + кнопка наверх. items-end - выровнены по низу как в макете */}
         <div className="flex justify-between items-end mt-12">
           <p className="text-cream text-base">
             © 2026 ДомКофе. Все права защищены
           </p>
-          {/* Кнопка «Наверх» 48×48 — UI-KIT Up: круг #d2a679 → hover #c49567 → active #a68463 (не opacity) */}
+          {/* Кнопка «Наверх» 48×48 - UI-KIT Up: круг #d2a679 → hover #c49567 → active #a68463 (не opacity) */}
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

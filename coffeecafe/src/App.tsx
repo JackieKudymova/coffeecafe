@@ -24,11 +24,11 @@ import { getAdminToken } from './services/adminService'
 import { getUserToken } from './services/authService'
 
 /*
-  App — корневой компонент приложения.
+  App - корневой компонент приложения.
   BrowserRouter обеспечивает навигацию между страницами без перезагрузки.
 */
 
-/** SPA не сбрасывает scroll при смене маршрута — без этого новая страница открывается с той же прокруткой, что была на прошлой. */
+/** SPA не сбрасывает scroll при смене маршрута - без этого новая страница открывается с той же прокруткой, что была на прошлой. */
 function ScrollToTop() {
   const { pathname } = useLocation()
   useEffect(() => {
@@ -47,7 +47,7 @@ function ProtectedUser() {
   return <Outlet />
 }
 
-/* Если пользователь уже залогинен — нечего показывать /login и /register, кидаем в /lk. */
+/* Если пользователь уже залогинен - нечего показывать /login и /register, кидаем в /lk. */
 function GuestOnly() {
   if (getUserToken()) return <Navigate to="/lk" replace />
   return <Outlet />

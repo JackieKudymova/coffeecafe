@@ -58,7 +58,7 @@ export default function AdminLayout() {
 
   return (
     <div className="min-h-screen bg-brown-bg">
-      {/* Мобилка: шапка с бургером — как на сайте, слева сверху */}
+      {/* Мобилка: шапка с бургером - как на сайте, слева сверху */}
       <header className="lg:hidden fixed top-0 left-0 right-0 z-[120] flex h-14 items-center gap-3 border-b border-cream/10 bg-[#3d2d24] px-4">
         <button
           type="button"

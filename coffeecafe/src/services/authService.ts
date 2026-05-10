@@ -1,5 +1,5 @@
 /**
- * Запросы к /api/auth/* — личный кабинет клиента.
+ * Запросы к /api/auth/* - личный кабинет клиента.
  * JWT хранится в localStorage отдельно от админского.
  */
 
@@ -72,7 +72,7 @@ export async function userMe(): Promise<UserMe> {
 
 export async function userLogout(): Promise<void> {
   // Серверу токен «не нужен», но дёргаем эндпоинт для симметрии (и под будущий blacklist).
-  // Игнорируем 401 — если токен уже истёк, всё равно чистим локалку.
+  // Игнорируем 401 - если токен уже истёк, всё равно чистим локалку.
   try {
     await fetch('/api/auth/logout', { method: 'POST', headers: jsonHeaders() })
   } catch {
@@ -83,7 +83,7 @@ export async function userLogout(): Promise<void> {
 
 export interface ResetPasswordResult {
   ok: boolean
-  /** Возвращается только в dev-режиме (когда SMTP не настроен на бэке) — для удобства тестов. */
+  /** Возвращается только в dev-режиме (когда SMTP не настроен на бэке) - для удобства тестов. */
   dev_reset_link?: string | null
 }
 

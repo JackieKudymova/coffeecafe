@@ -41,7 +41,7 @@ export default function AdminSidebar({ mobileOpen, onMobileClose }: Props) {
         <NavLink to="/admin" end className={navClassName} onClick={onMobileClose}>
           Дашборд
         </NavLink>
-        {/* «Категории меню» отключены — см. App.tsx и AdminCategories.tsx */}
+        {/* «Категории меню» отключены - см. App.tsx и AdminCategories.tsx */}
         <NavLink to="/admin/items" className={navClassName} onClick={onMobileClose}>
           Позиции меню
         </NavLink>

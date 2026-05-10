@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-/** Совпадение с CSS media query. Для SSR/первого кадра — false, затем актуальное значение. */
+/** Совпадение с CSS media query. Для SSR/первого кадра - false, затем актуальное значение. */
 export function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState(false)
 

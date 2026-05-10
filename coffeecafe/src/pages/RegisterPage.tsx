@@ -1,8 +1,8 @@
 /*
-  RegisterPage — страница «Регистрация».
+  RegisterPage - страница «Регистрация».
   Карточка по центру: Имя, Email, Пароль, кнопка «Создать аккаунт».
-  По успеху — JWT в localStorage и переход в /lk.
-  Состояния полей и кнопки — как в форме контактов (см. ContactsPage).
+  По успеху - JWT в localStorage и переход в /lk.
+  Состояния полей и кнопки - как в форме контактов (см. ContactsPage).
 */
 
 import { useState } from 'react'
@@ -20,7 +20,7 @@ function RegisterPage() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  /** Ошибки полей. У email два варианта (пусто/невалид), у пароля — пусто/слишком короткий. */
+  /** Ошибки полей. У email два варианта (пусто/невалид), у пароля - пусто/слишком короткий. */
   const [errors, setErrors] = useState<{
     name: boolean
     email: false | 'empty' | 'invalid'
@@ -216,7 +216,7 @@ function RegisterPage() {
           </button>
 
           {/*
-            Нижняя ссылка «Войти» — слева, по аналогии с LoginPage (там «Зарегистрироваться»).
+            Нижняя ссылка «Войти» - слева, по аналогии с LoginPage (там «Зарегистрироваться»).
           */}
           <div className="mt-4 md:mt-6">
             <Link

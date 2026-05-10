@@ -1,7 +1,7 @@
 /*
-  NewsArticlePage — одна новость (полный текст).
-  Десктоп: HF_desktop_about news_1 — сетка 12 кол., фото 9 кол., текст 8 кол.;
-  Мобилка: HF_phone_about news_1 — отступы и кнопка 358×80 как в макете.
+  NewsArticlePage - одна новость (полный текст).
+  Десктоп: HF_desktop_about news_1 - сетка 12 кол., фото 9 кол., текст 8 кол.;
+  Мобилка: HF_phone_about news_1 - отступы и кнопка 358×80 как в макете.
   id в URL совпадает с полем id из API.
 */
 
@@ -74,7 +74,7 @@ function NewsArticleBody({ id }: { id: string }) {
   return (
     <article className="lg:grid lg:grid-cols-12 lg:gap-x-8">
       {/* Раздел как в макете */}
-      <h2 className="m-0 font-heading font-semibold text-cream text-[28px] lg:text-[36px] leading-tight lg:col-span-12">
+      <h2 className="m-0 font-heading font-normal text-cream text-[24px] lg:text-[36px] leading-tight lg:col-span-12 uppercase">
         Новости и акции
       </h2>
 
@@ -102,7 +102,7 @@ function NewsArticleBody({ id }: { id: string }) {
           {formatNewsDate(article.publishedAt)}
         </time>
 
-        {/* Десктоп: 130:1020 — 18px / 21.78px; моб.: 400:2390 — 16px / 19.36px */}
+        {/* Десктоп: 130:1020 - 18px / 21.78px; моб.: 400:2390 - 16px / 19.36px */}
         <div className="mt-[16px] lg:mt-6 space-y-3 text-cream-dark text-[16px] md:text-[17px] font-normal leading-[19.36px] md:leading-[21px] lg:text-[18px] lg:leading-[21.78px]">
           {article.content.map((paragraph, i) => (
             <p key={i} className="m-0">

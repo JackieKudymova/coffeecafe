@@ -1,5 +1,5 @@
 /*
-  ReviewsSection — блок «Отзывы».
+  ReviewsSection - блок «Отзывы».
   Десктоп (lg+): 3 карточки в ряд.
   До десктопа: карусель scroll-snap с точками + автопрокрутка.
 */
@@ -55,9 +55,9 @@ function ReviewsSection() {
   }, [activeIndex])
 
   return (
-    <section className="pt-6 pb-[45px] lg:pt-12 lg:pb-24">
+    <section className="pt-6 pb-[45px] md:pb-[56px] lg:pt-12 lg:pb-24">
       <div className="px-4 lg:px-16 xl:px-28">
-        <h2 className="font-heading font-semibold text-cream text-[28px] md:text-[32px] leading-tight text-center min-[480px]:text-left lg:text-[36px] lg:leading-[48px]">
+        <h2 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-tight text-center min-[480px]:text-left lg:text-[36px] lg:leading-[48px] uppercase">
           Отзывы
         </h2>
       </div>
@@ -121,14 +121,19 @@ function ReviewsSection() {
 
       {/*
         Призыв оставить отзыв в Яндекс Картах + кнопка-ссылка.
-        Внешняя ссылка — обычный <a> с target="_blank" и rel="noopener noreferrer".
+        Внешняя ссылка - обычный <a> с target="_blank" и rel="noopener noreferrer".
         Размеры по фреймам Figma:
-          мобилка  — HF_phone_main.Group 1722.reviews: текст 20/24, кнопка 358×67
-          планшет  — фрейма нет, по аналогии: текст 17/21, кнопка 386×67 (как hero)
-          десктоп  — HF_desktop_main.reviews: текст 24/29, кнопка 280×56
+          мобилка  - HF_phone_main.Group 1722.reviews: текст 20/24, кнопка 358×67
+          планшет  - фрейма нет, по аналогии: текст 17/21, кнопка 386×67 (как hero)
+          десктоп  - HF_desktop_main.reviews: текст 24/29, кнопка 280×56
       */}
       <div className="px-4 lg:px-16 xl:px-28 mt-12 lg:mt-[72px] flex flex-col items-center text-center">
-        <p className="text-cream font-normal text-xl md:text-[17px] lg:text-2xl leading-[24px] md:leading-[21px] lg:leading-[29px] max-w-[358px] md:max-w-[386px] lg:max-w-[454px]">
+        {/*
+          Планшет (Hf_ipad_main, узел 951:6759): Inter Regular 22/26.625, ширина 416px,
+          совпадает со шрифтом имени в карточке отзыва (узел 679:4436). До правки
+          было 17/21 — это расходилось с макетом.
+        */}
+        <p className="text-cream font-normal text-xl md:text-[22px] lg:text-2xl leading-[24px] md:leading-[27px] lg:leading-[29px] max-w-[358px] md:max-w-[420px] lg:max-w-[454px]">
           Оставьте свой отзыв в Яндекс Картах!
         </p>
         <a
@@ -137,13 +142,13 @@ function ReviewsSection() {
           rel="noopener noreferrer"
           className="
             inline-flex items-center justify-center
-            mt-8 lg:mt-9
+            mt-8 md:mt-10 lg:mt-9
             bg-brown-button text-brown-dark font-medium rounded-[10px]
             uppercase tracking-wider transition-colors
             hover:bg-brown-button-hover active:bg-brown-button-active
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
             text-base lg:text-lg
-            w-[358px] h-[67px]
+            w-full h-[67px]
             md:w-[386px] md:h-[67px]
             lg:w-[280px] lg:h-[56px]
           "

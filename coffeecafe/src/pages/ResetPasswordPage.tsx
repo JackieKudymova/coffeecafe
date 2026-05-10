@@ -1,10 +1,10 @@
 /*
-  ResetPasswordPage — страница «Восстановление пароля».
-  Простой однополевый flow: пользователь вводит email — мы (когда подключим backend) отправляем
+  ResetPasswordPage - страница «Восстановление пароля».
+  Простой однополевый flow: пользователь вводит email - мы (когда подключим backend) отправляем
   на эту почту ссылку для сброса. Показываем успех в той же карточке, без редиректа,
   чтобы человек видел подтверждение действия.
 
-  Сообщение «Если такой email зарегистрирован…» намеренно нейтральное — не палит,
+  Сообщение «Если такой email зарегистрирован…» намеренно нейтральное - не палит,
   есть аккаунт с таким email или нет (стандартная практика безопасности).
 */
 
@@ -21,7 +21,7 @@ function ResetPasswordPage() {
   const [submitError, setSubmitError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-  /** В dev-режиме (без SMTP) бэк возвращает прямую ссылку — показываем для удобства тестов. */
+  /** В dev-режиме (без SMTP) бэк возвращает прямую ссылку - показываем для удобства тестов. */
   const [devLink, setDevLink] = useState<string | null>(null)
 
   async function handleSubmit(e: React.FormEvent) {
@@ -68,7 +68,7 @@ function ResetPasswordPage() {
           </h1>
 
           {submitted ? (
-            /* Успех — оставляем карточку, заменяем содержимое подтверждением. */
+            /* Успех - оставляем карточку, заменяем содержимое подтверждением. */
             <div className="mt-6 md:mt-8 lg:mt-8 text-center">
               <p className="text-cream-dark text-base md:text-[17px] lg:text-lg leading-[22px]">
                 Если такой email зарегистрирован, мы отправили на него инструкцию
@@ -76,7 +76,7 @@ function ResetPasswordPage() {
               </p>
 
               {devLink && (
-                /* Только в dev: SMTP не настроен — показываем ссылку прямо в UI, чтоб можно было протестировать flow. */
+                /* Только в dev: SMTP не настроен - показываем ссылку прямо в UI, чтоб можно было протестировать flow. */
                 <p className="text-cream-dark/70 text-[13px] md:text-base leading-[22px] mt-4 break-all">
                   <span className="block text-cream-dark mb-1">DEV-ссылка (SMTP не настроен):</span>
                   <a href={devLink} className="text-brown-button underline">{devLink}</a>
@@ -100,7 +100,7 @@ function ResetPasswordPage() {
           ) : (
             <form onSubmit={handleSubmit} noValidate>
               <p className="text-cream-dark text-[13px] md:text-base lg:text-base leading-[22px] mt-4 md:mt-6 lg:mt-6 text-center">
-                Введите email, на который вы регистрировались – мы отправим ссылку для сброса пароля.
+                Введите email, на который вы регистрировались - мы отправим ссылку для сброса пароля.
               </p>
 
               <label className="block mt-6 md:mt-8 lg:mt-8">

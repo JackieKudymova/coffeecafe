@@ -1,5 +1,5 @@
 /*
-  NotFoundPage — страница 404.
+  NotFoundPage - страница 404.
   Макет: Figma HF_404 (1440×840) и HF_404 mobile (390×767).
   Фон страницы #1f1714; блок контента по центру, max 384px; футер как на остальных страницах.
 */
@@ -13,7 +13,7 @@ function NotFoundPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   /*
-    Внешний wrapper тянется на всю высоту вьюпорта (min-h-screen) и красится в цвет футера —
+    Внешний wrapper тянется на всю высоту вьюпорта (min-h-screen) и красится в цвет футера -
     это убирает видимую полосу под футером на экранах выше 767 px (макет HF_404 mobile).
     Внутренний content-wrapper держит цвет контентной части (brown-bg или brown-button при меню).
   */
@@ -26,7 +26,7 @@ function NotFoundPage() {
         />
 
         {/*
-          Десктоп: колонка по центру по горизонтали (items-center); сверху отступ ~170px по HF_404 — не убирать.
+          Десктоп: колонка по центру по горизонтали (items-center); сверху отступ ~170px по HF_404 - не убирать.
           Мобилка: обычный поток; от подзаголовка до кнопки 48px (mt-12), от кнопки до футера 111px (pb).
         */}
         <main
@@ -37,7 +37,7 @@ function NotFoundPage() {
           "
         >
         <div className="mx-auto w-full max-w-[384px] text-center lg:pb-5">
-          <h1 className="font-heading text-[28px] font-semibold leading-[37px] text-cream lg:text-[36px] lg:leading-[48px]">
+          <h1 className="font-heading text-[24px] font-normal leading-[31px] text-cream lg:text-[36px] lg:leading-[48px] uppercase">
             Ошибка 404
           </h1>
           <p className="mt-4 text-base font-normal leading-[19px] text-cream-dark lg:mt-8 lg:text-lg lg:leading-[22px]">

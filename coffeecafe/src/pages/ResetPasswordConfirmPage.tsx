@@ -1,11 +1,11 @@
 /*
-  ResetPasswordConfirmPage — страница «Установка нового пароля».
+  ResetPasswordConfirmPage - страница «Установка нового пароля».
   Сюда пользователь попадает по ссылке из письма: /reset-password/confirm?token=...
 
   Поля: «Новый пароль» + «Повторите пароль» (вторая итерация добавит отправку на бэкенд).
-  Если токен в URL отсутствует — формы нет, показываем сообщение об ошибке и ссылку на восстановление.
+  Если токен в URL отсутствует - формы нет, показываем сообщение об ошибке и ссылку на восстановление.
 
-  Карточка/инпуты/кнопка — те же, что на LoginPage / ResetPasswordPage (визуальная преемственность).
+  Карточка/инпуты/кнопка - те же, что на LoginPage / ResetPasswordPage (визуальная преемственность).
 */
 
 import { useState } from 'react'
@@ -22,15 +22,15 @@ function ResetPasswordConfirmPage() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
 
-  /** Токен из URL. Если его нет — пользователь пришёл сюда напрямую, без письма. */
+  /** Токен из URL. Если его нет - пользователь пришёл сюда напрямую, без письма. */
   const token = searchParams.get('token')
 
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
   /**
    * Ошибки полей.
-   * password: 'empty' — пусто, 'short' — короче 6 символов.
-   * confirm: 'empty' — пусто, 'mismatch' — не совпадает с первым.
+   * password: 'empty' - пусто, 'short' - короче 6 символов.
+   * confirm: 'empty' - пусто, 'mismatch' - не совпадает с первым.
    */
   const [errors, setErrors] = useState<{
     password: false | 'empty' | 'short'
@@ -68,7 +68,7 @@ function ResetPasswordConfirmPage() {
     try {
       setIsSubmitting(true)
       await userConfirmPasswordReset(token, password)
-      // По успеху бэк выдал JWT — пользователь уже залогинен, ведём в ЛК.
+      // По успеху бэк выдал JWT - пользователь уже залогинен, ведём в ЛК.
       navigate('/lk', { replace: true })
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : 'Не удалось сохранить пароль')
@@ -97,7 +97,7 @@ function ResetPasswordConfirmPage() {
           </h1>
 
           {!token ? (
-            /* Нет токена — пользователь пришёл по «голому» URL без параметра. */
+            /* Нет токена - пользователь пришёл по «голому» URL без параметра. */
             <div className="mt-6 md:mt-8 lg:mt-8 text-center">
               <p className="text-cream-dark text-base md:text-[17px] lg:text-lg leading-[22px]">
                 Ссылка для сброса пароля недействительна или устарела.
