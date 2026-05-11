@@ -52,7 +52,7 @@ export default function AdminUsers() {
 
   return (
     <div>
-      <h1 className="font-heading text-3xl text-cream mb-8">Пользователи</h1>
+      <h1 className="font-heading text-[36px] leading-[49px] tracking-[0.02em] text-cream uppercase mb-8">Пользователи</h1>
 
       <form
         onSubmit={applySearch}

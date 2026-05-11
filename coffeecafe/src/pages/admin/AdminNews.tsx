@@ -172,7 +172,7 @@ export default function AdminNews() {
 
   return (
     <div>
-      <h1 className="font-heading text-3xl text-cream mb-8">Новости и акции</h1>
+      <h1 className="font-heading text-[36px] leading-[49px] tracking-[0.02em] text-cream uppercase mb-8">Новости и акции</h1>
 
       {!editingId ? (
         <button
@@ -195,7 +195,7 @@ export default function AdminNews() {
           noValidate
           className="mb-8 rounded-[10px] border border-cream/15 bg-[#4b372b] p-6 space-y-4"
         >
-          <p className="text-cream font-medium">{editingId === 'new' ? 'Новая новость' : 'Редактирование'}</p>
+          <p className="text-cream text-2xl leading-[29px]">{editingId === 'new' ? 'Новая новость' : 'Редактирование'}</p>
           <div>
             <AdminTextField
               label={errTitle ? 'Введите заголовок' : 'Заголовок'}
@@ -205,10 +205,10 @@ export default function AdminNews() {
                 setErrTitle(false)
               }}
               error={errTitle}
-              maxLength={30}
+              maxLength={26}
             />
-            {/* Лимит 30 символов: длинные заголовки уходят за экран на карточках новостей. */}
-            <p className="mt-1 text-xs text-cream-dark">{title.length}/30</p>
+            {/* Лимит 26 символов: длинные заголовки уходят за экран на карточках новостей. */}
+            <p className="mt-1 text-xs text-cream-dark">{title.length}/26</p>
           </div>
           {/* На описании лимита нет: на карточке всё равно обрежется line-clamp-3. */}
           <AdminTextArea

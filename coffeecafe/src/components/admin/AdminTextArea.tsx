@@ -11,7 +11,7 @@ export default function AdminTextArea({ label, error, shellClassName, className,
   return (
     <div className="block">
       <span
-        className={`block text-sm leading-[22px] ${error ? 'text-input-border-error' : 'text-cream-dark'}`}
+        className={`block text-base md:text-[17px] lg:text-lg leading-[22px] ${error ? 'text-input-border-error' : 'text-cream-dark'}`}
       >
         {label}
       </span>

@@ -219,12 +219,12 @@ function MenuItemCard({ item }: { item: MenuItem }) {
                 .map((s) => s.trim())
                 .filter(Boolean)
                 .map((line, i) => (
-                  <li key={i} className="flex items-start gap-2">
+                  <li key={i} className="flex items-center gap-2">
                     {/* tabler:point-filled - точка-маркер; 14px на мобилке/планшете, 16px на десктопе */}
                     <svg
                       aria-hidden="true"
                       viewBox="0 0 24 24"
-                      className="mt-[5px] md:mt-[5px] lg:mt-[6px] shrink-0 w-[14px] h-[14px] lg:w-4 lg:h-4 fill-brown-dark"
+                      className="shrink-0 w-[14px] h-[14px] lg:w-4 lg:h-4 fill-brown-dark"
                     >
                       <circle cx="12" cy="12" r="6" />
                     </svg>

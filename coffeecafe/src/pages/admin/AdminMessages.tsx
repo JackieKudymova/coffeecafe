@@ -50,7 +50,7 @@ export default function AdminMessages() {
 
   return (
     <div>
-      <h1 className="font-heading text-3xl text-cream mb-8">Обращения</h1>
+      <h1 className="font-heading text-[36px] leading-[49px] tracking-[0.02em] text-cream uppercase mb-8">Обращения</h1>
       {error ? <p className="text-input-border-error mb-4">{error}</p> : null}
       {loading ? (
         <p className="text-cream-dark">Загрузка…</p>

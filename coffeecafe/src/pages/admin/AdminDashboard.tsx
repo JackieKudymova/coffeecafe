@@ -37,7 +37,7 @@ export default function AdminDashboard() {
 
   return (
     <div>
-      <h1 className="font-heading text-3xl text-cream mb-8">Дашборд</h1>
+      <h1 className="font-heading text-[36px] leading-[49px] tracking-[0.02em] text-cream uppercase mb-8">Дашборд</h1>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <StatCard title="Позиций в меню" value={stats.menu_items_count} />
         <StatCard title="Опубликованных новостей" value={stats.published_news_count} />

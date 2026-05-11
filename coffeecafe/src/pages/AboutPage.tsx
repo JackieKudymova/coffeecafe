@@ -111,7 +111,7 @@ function AboutPage() {
         <div className="hidden lg:block">
           <div className="flex gap-8">
 
-            {/* Левая колонка: h1 «О нас» + раздел 1 + большое фото бариста */}
+            {/* Левая колонка: h1 «О нас» + раздел 1 + большое фото латте-арт */}
             <div className="flex-1">
               <h1 className="font-heading font-normal text-cream text-[36px] leading-[49px] uppercase">
                 О нас
@@ -125,17 +125,17 @@ function AboutPage() {
               </p>
               {/* Большой gap 143px - чтобы фото визуально опустилось ниже текста (по макету) */}
               <img
-                src={freelancersImg}
-                alt="Гости в кофейне за работой"
+                src={coffeeImg}
+                alt="Латте-арт в чашке кофе"
                 className="w-full h-[456px] object-cover rounded-[10px] mt-[143px]"
               />
             </div>
 
-            {/* Правая колонка: фото латте-арт + 2 подраздела */}
+            {/* Правая колонка: фото гостей + 2 подраздела */}
             <div className="flex-1">
               <img
-                src={coffeeImg}
-                alt="Латте-арт в чашке кофе"
+                src={freelancersImg}
+                alt="Гости в кофейне за работой"
                 className="w-full h-[287px] object-cover rounded-[10px]"
               />
               {/* Большой gap 151px - чтобы текст опустился ниже фото и выровнялся с левым (по макету) */}

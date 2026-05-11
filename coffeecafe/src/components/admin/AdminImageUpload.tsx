@@ -49,7 +49,7 @@ export default function AdminImageUpload({
   return (
     <div>
       <span
-        className={`block text-sm mb-2 leading-[22px] ${error ? 'text-input-border-error' : 'text-cream-dark'}`}
+        className={`block text-base md:text-[17px] lg:text-lg mb-2 leading-[22px] ${error ? 'text-input-border-error' : 'text-cream-dark'}`}
       >
         {label}
       </span>
@@ -104,7 +104,7 @@ export default function AdminImageUpload({
             disabled={uploading}
             onClick={() => onChange(null)}
             className="
-              h-11 rounded-[10px] border border-cream/30 px-6 text-sm text-cream transition-colors
+              h-11 rounded-[10px] border border-cream/30 px-6 text-sm font-medium uppercase tracking-wider text-cream transition-colors
               hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/25
               disabled:opacity-60
             "

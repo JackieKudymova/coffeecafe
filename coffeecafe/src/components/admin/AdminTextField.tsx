@@ -19,7 +19,7 @@ export default function AdminTextField({
   return (
     <label className={`block ${containerClassName ?? ''}`}>
       <span
-        className={`block text-sm leading-[22px] ${error ? 'text-input-border-error' : 'text-cream-dark'} ${labelClassName ?? ''}`}
+        className={`block text-base md:text-[17px] lg:text-lg leading-[22px] ${error ? 'text-input-border-error' : 'text-cream-dark'} ${labelClassName ?? ''}`}
       >
         {label}
       </span>

@@ -242,12 +242,12 @@ export default function AdminItems() {
 
   return (
     <div>
-      <h1 className="font-heading text-3xl text-cream mb-8">Позиции меню</h1>
+      <h1 className="font-heading text-[36px] leading-[49px] tracking-[0.02em] text-cream uppercase mb-8">Позиции меню</h1>
 
       {!editingId ? (
         <div className="flex flex-wrap items-end gap-4 mb-6">
           <label className="block">
-            <span className="block text-sm text-cream-dark">Категория</span>
+            <span className="block text-base md:text-[17px] lg:text-lg leading-[22px] text-cream-dark">Категория</span>
             <select
               value={filterCat}
               onChange={(e) => setFilterCat(e.target.value)}
@@ -281,7 +281,7 @@ export default function AdminItems() {
           noValidate
           className="mb-8 rounded-[10px] border border-cream/15 bg-[#4b372b] p-6 space-y-4"
         >
-          <p className="text-cream font-medium">
+          <p className="text-cream text-2xl leading-[29px]">
             {editingId === 'new' ? 'Новая позиция' : 'Редактирование'}
           </p>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -366,7 +366,6 @@ export default function AdminItems() {
             }}
             error={errVariants}
             rows={5}
-            className="font-mono text-sm"
           />
           {/* Состав - отображается на сайте поверх фото при наведении/тапе. Может быть пустым.
               Каждый ингредиент с новой строки - переносы сохраняются на сайте. */}

@@ -37,7 +37,13 @@ function PromoSection() {
 
       {/* Контент */}
       <div className="relative z-10 px-4 lg:px-16 xl:px-28 w-full">
-        <h2 className="font-heading font-normal text-cream text-[24px] leading-[33px] md:text-[32px] md:leading-tight lg:text-[36px] lg:leading-[48px] uppercase">
+        {/*
+          break-words - чтобы длинный заголовок без пробелов переносился
+          на следующую строку, а не уходил под overflow-hidden секции.
+          mt-6 на параграфе = ровно 24px от низа заголовка независимо
+          от того, в одну он строку или в две (по макету Figma).
+        */}
+        <h2 className="font-heading font-normal text-cream text-[24px] leading-[33px] md:text-[32px] md:leading-tight lg:text-[36px] lg:leading-[48px] uppercase break-words">
           {promo.title}
         </h2>
 

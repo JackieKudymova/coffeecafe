@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { clearAdminToken } from '../../services/adminService'
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
-  `block rounded-[10px] px-4 py-3 text-base transition-colors ${
+  `block rounded-[10px] px-4 py-3 text-lg leading-[22px] transition-colors ${
     isActive
       ? 'bg-brown-button text-brown-dark font-medium'
       : 'text-cream-dark hover:bg-[#5d483c] hover:text-cream'
@@ -36,7 +36,7 @@ export default function AdminSidebar({ mobileOpen, onMobileClose }: Props) {
         ${mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}
     >
-      <p className="mb-6 hidden px-4 font-heading text-xl text-cream lg:block">Админка</p>
+      <p className="mb-6 hidden px-4 font-heading text-2xl leading-[29px] text-cream lg:block">Админка</p>
       <nav className="scrollbar-hide flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto">
         <NavLink to="/admin" end className={navClassName} onClick={onMobileClose}>
           Дашборд
