@@ -36,7 +36,7 @@ export default function AdminSidebar({ mobileOpen, onMobileClose }: Props) {
         ${mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}
     >
-      <p className="mb-6 hidden px-4 font-heading text-2xl leading-[29px] text-cream lg:block">Админка</p>
+      <p className="mb-6 hidden px-4 text-2xl leading-[29px] text-cream lg:block">Админка</p>
       <nav className="scrollbar-hide flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto">
         <NavLink to="/admin" end className={navClassName} onClick={onMobileClose}>
           Дашборд

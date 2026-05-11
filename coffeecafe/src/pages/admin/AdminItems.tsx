@@ -378,7 +378,7 @@ export default function AdminItems() {
           />
           {/* Аллергены - 3 чекбокса. На сайте появляются иконкой в углу фото; заполнение снизу вверх. */}
           <fieldset>
-            <legend className="block text-sm text-cream-dark mb-2">Аллергены</legend>
+            <legend className="block text-base md:text-[17px] lg:text-lg leading-[22px] text-cream-dark mb-2">Аллергены</legend>
             <div className="flex flex-wrap gap-x-6 gap-y-2">
               <AdminCheckbox checked={allergenMilk} onChange={setAllergenMilk} label="Молоко" />
               <AdminCheckbox checked={allergenGluten} onChange={setAllergenGluten} label="Глютен" />
