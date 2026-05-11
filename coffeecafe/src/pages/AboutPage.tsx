@@ -25,7 +25,7 @@ import { useState } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-import freelancersImg from '../assets/images/about_us_freelancers.png'
+import freelancersImg from '../assets/images/about_us_freelancers.jpg'
 import coffeeImg from '../assets/images/abous_us_coffee.png'
 import lavkaImg from '../assets/images/about_us_lavka.png'
 
@@ -59,7 +59,7 @@ function AboutPage() {
           <img
             src={freelancersImg}
             alt="Гости в кофейне за работой"
-            className="w-full h-[240px] md:h-[280px] object-cover rounded-[10px] mt-4"
+            className="w-full h-[240px] md:h-[280px] object-cover object-top rounded-[10px] mt-4"
           />
 
           {/* Раздел 2: Кофе и выпечка + параграф + фото барист */}
@@ -136,7 +136,7 @@ function AboutPage() {
               <img
                 src={freelancersImg}
                 alt="Гости в кофейне за работой"
-                className="w-full h-[287px] object-cover rounded-[10px]"
+                className="w-full h-[287px] object-cover object-top rounded-[10px]"
               />
               {/* Большой gap 151px - чтобы текст опустился ниже фото и выровнялся с левым (по макету) */}
               <h2 className="text-cream font-normal text-2xl leading-[29px] mt-[151px]">
