@@ -51,7 +51,7 @@ function ContactsPage() {
 
             <div>
               <span className="block">Адрес:</span>
-              <span>г. Санкт-Петербург, ул. Лесная, 12</span>
+              <a href="https://yandex.ru/maps/?text=Санкт-Петербург%2C+ул.+Лесная%2C+12" target="_blank" rel="noopener noreferrer" className="hover:text-brown-button active:text-brown-button transition-colors [-webkit-tap-highlight-color:transparent]">г. Санкт-Петербург, ул. Лесная, 12</a>
             </div>
 
             <div>
@@ -124,7 +124,7 @@ function ContactsPage() {
 
               <div>
                 <span className="block">Адрес:</span>
-                <span>г. Санкт-Петербург, ул. Лесная, 12</span>
+                <a href="https://yandex.ru/maps/?text=Санкт-Петербург%2C+ул.+Лесная%2C+12" target="_blank" rel="noopener noreferrer" className="hover:text-brown-button active:text-brown-button transition-colors">г. Санкт-Петербург, ул. Лесная, 12</a>
               </div>
 
               <div>

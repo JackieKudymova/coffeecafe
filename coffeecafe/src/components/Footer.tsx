@@ -42,7 +42,7 @@ function Footer() {
         {/* Контактный текст: мобилка 16, планшет 17 (p-tablet) */}
         <div className="mt-4 md:mt-8 flex flex-col gap-1 text-cream text-base md:text-[17px] md:leading-[21px]">
           <span className="font-normal">Адрес:</span>
-          <span>г. Санкт-Петербург, ул. Лесная, 12</span>
+          <a href="https://yandex.ru/maps/?text=Санкт-Петербург%2C+ул.+Лесная%2C+12" target="_blank" rel="noopener noreferrer" className="hover:text-brown-button active:text-brown-button transition-colors [-webkit-tap-highlight-color:transparent]">г. Санкт-Петербург, ул. Лесная, 12</a>
           <span className="font-normal mt-2">Телефон:</span>
           <a href="tel:+79522889099" className="hover:text-brown-button active:text-brown-button transition-colors [-webkit-tap-highlight-color:transparent]">8 952 288 90 99</a>
           <span className="font-normal mt-2">Почта:</span>
@@ -81,7 +81,7 @@ function Footer() {
           {/* Колонка 4-7: Контакты. Между меткой и значением 8px, между группами 16px */}
           <div className="col-span-4 flex flex-col text-cream font-medium text-lg">
             <span>Адрес:</span>
-            <span className="mt-2">г. Санкт-Петербург, ул. Лесная, 12</span>
+            <a href="https://yandex.ru/maps/?text=Санкт-Петербург%2C+ул.+Лесная%2C+12" target="_blank" rel="noopener noreferrer" className="mt-2 hover:text-brown-button active:text-brown-button transition-colors">г. Санкт-Петербург, ул. Лесная, 12</a>
             <span className="mt-4">Телефон:</span>
             <a href="tel:+79522889099" className="mt-2 hover:text-brown-button active:text-brown-button transition-colors">8 952 288 90 99</a>
             <span className="mt-4">Почта:</span>
