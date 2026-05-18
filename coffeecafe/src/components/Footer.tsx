@@ -30,7 +30,9 @@ function Footer() {
 
         {/* Иконка VK - мобилка 24×24, планшет 32×32 */}
         <a
-          href="#"
+          href="https://vk.com"
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label="ВКонтакте"
           className="mt-4 md:mt-9 inline-block text-cream transition-colors duration-150 ease-out hover:text-brown-button active:text-brown-button [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
         >
@@ -66,7 +68,9 @@ function Footer() {
             <img src={logo} alt="ДомКофе" className="h-[29px] w-auto" />
             {/* Иконка VK - 32×32, под логотипом с отступом 32px */}
             <a
-              href="#"
+              href="https://vk.com"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="ВКонтакте"
               className="mt-8 inline-block text-cream transition-colors duration-150 ease-out hover:text-brown-button active:text-brown-button [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
             >
