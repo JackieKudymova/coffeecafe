@@ -8,6 +8,7 @@
 
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { QRCode } from 'react-qr-code'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { clearUserToken, userLogout, userMe, type UserMe } from '../services/authService'
@@ -56,7 +57,8 @@ function LkPage() {
         flex justify-center центрирует контент вертикально между header и footer - так
         отступы сверху/снизу контента совпадают с макетом независимо от высоты блока.
       */}
-      <main className="px-4 lg:px-16 xl:px-28 pt-[57px] md:pt-[67px] lg:pt-[77px] min-h-[787px] md:min-h-[822px] lg:min-h-[874px] flex flex-col items-center justify-center text-center">
+      <main className="px-4 lg:px-16 xl:px-28 pt-[57px] md:pt-[67px] lg:pt-[77px] min-h-[calc(100vh-57px)] md:min-h-screen lg:min-h-screen flex flex-col items-center justify-center text-center">
+        <div className="w-full flex flex-col items-center">
         <h1 className="font-heading font-normal text-cream text-[24px] md:text-[40px] lg:text-[36px] leading-tight uppercase">
           Личный кабинет
         </h1>
@@ -67,26 +69,23 @@ function LkPage() {
               {user.name}, ваша скидка - {user.discount}%
             </p>
 
-            <p className="text-cream text-base md:text-[17px] lg:text-lg mt-4 md:mt-6 lg:mt-8">
-              Ваш ID клиента
+            <p className="text-cream text-base md:text-[17px] lg:text-lg mt-6 md:mt-6 lg:mt-8">
+              Ваш QR-код для скидки
             </p>
 
-            {/* 6-значный код в небольшом коричневом боксе (тон input-bg). */}
-            <div className="bg-input-bg rounded-[10px] px-10 py-3 mt-3 md:mt-4 lg:mt-4">
-              <span className="text-cream text-[20px] md:text-[24px] lg:text-2xl tracking-wider">
-                {user.client_code}
-              </span>
+            <div className="bg-white rounded-[10px] p-4 mt-3 md:mt-4 lg:mt-4">
+              <QRCode
+                value={user.client_code}
+                size={180}
+                bgColor="#ffffff"
+                fgColor="#2a1c17"
+              />
             </div>
 
             <p className="text-cream-dark text-sm md:text-base lg:text-base mt-6 md:mt-8 lg:mt-8">
-              *Покажите номер на кассе для получения скидки
+              *Покажите QR-код на кассе для получения скидки
             </p>
 
-            {/*
-              По макету ширина кнопки равна ширине условного контента (358/386/393).
-              На мобилке - во всю ширину контейнера; на планшете/десктопе - фиксированная,
-              чтобы не растягивалась.
-            */}
             <button
               type="button"
               onClick={handleLogout}
@@ -108,6 +107,7 @@ function LkPage() {
         ) : (
           <p className="text-cream-dark mt-10">Загружаем профиль…</p>
         )}
+        </div>
       </main>
 
       <Footer />

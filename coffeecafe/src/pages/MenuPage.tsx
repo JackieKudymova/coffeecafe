@@ -85,7 +85,7 @@ function MenuPage() {
 
         {/* Табы разделов */}
         {categories.length > 0 && (
-          <div className="mt-[30px] md:mt-8 lg:mt-12 overflow-x-auto scrollbar-hide">
+          <div className="mt-8 md:mt-8 lg:mt-12 overflow-x-auto scrollbar-hide">
             {/* Базовая линия - border контейнера; золотая полоска активного таба - span, на узком экране удлинена в половину gap-x-4 */}
             <div className="flex w-max min-w-full min-[520px]:w-full gap-x-4 min-[520px]:gap-0 border-b-2 border-[#4b372b]">
               {categories.map((cat, i) => (
@@ -93,7 +93,7 @@ function MenuPage() {
                   key={cat.id}
                   onClick={() => setActiveTab(i)}
                   className={`
-                    shrink-0 min-w-[130px] min-[520px]:flex-1 min-[520px]:min-w-0 pb-[7px] text-center text-lg md:text-[22px] lg:text-2xl md:pb-3 lg:pb-4 px-4 min-[520px]:px-0
+                    shrink-0 min-w-[130px] min-[520px]:flex-1 min-[520px]:min-w-0 pb-[7px] text-center text-[20px] md:text-[22px] lg:text-2xl md:pb-3 lg:pb-4 px-4 min-[520px]:px-0
                     border-b-2 -mb-[2px] transition-colors cursor-pointer whitespace-nowrap relative z-0 rounded-none
                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg
                     ${i === activeTab
@@ -224,11 +224,11 @@ function MenuItemCard({ item }: { item: MenuItem }) {
                     <svg
                       aria-hidden="true"
                       viewBox="0 0 24 24"
-                      className="shrink-0 w-[14px] h-[14px] lg:w-4 lg:h-4 fill-brown-dark"
+                      className="shrink-0 w-[13px] h-[13px] lg:w-4 lg:h-4 fill-brown-dark"
                     >
                       <circle cx="12" cy="12" r="6" />
                     </svg>
-                    <span className="text-brown-dark text-[17px] lg:text-[18px] leading-[1.2]">
+                    <span className="text-brown-dark text-[16px] lg:text-[18px] leading-[1.2]">
                       {line}
                     </span>
                   </li>
@@ -239,7 +239,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
       </div>
 
       {/* Название позиции. 30px от фото */}
-      <h3 className="text-cream font-normal text-lg md:text-[22px] lg:text-2xl mt-3 md:mt-4 lg:mt-[20px]">
+      <h3 className="text-cream font-normal text-[20px] md:text-[22px] lg:text-2xl mt-3 md:mt-4 lg:mt-[20px]">
         {item.name}
       </h3>
 
@@ -257,7 +257,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
         ))}
         {/* Строка 2: цены */}
         {item.variants.map((v) => (
-          <span key={v.label + v.price} className="text-cream font-medium text-[20px] md:text-[22px] lg:text-xl whitespace-nowrap">
+          <span key={v.label + v.price} className="text-cream font-medium text-[20px] md:text-[22px] lg:text-2xl whitespace-nowrap">
             {v.price} ₽
           </span>
         ))}
@@ -277,7 +277,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
               src={a.src}
               alt={a.alt}
               title={a.alt}
-              className="w-5 h-5 md:w-6 md:h-6 lg:w-6 lg:h-6 object-contain"
+              className="w-[18px] h-[18px] md:w-5 md:h-5 lg:w-6 lg:h-6 object-contain"
             />
           ))}
         </div>

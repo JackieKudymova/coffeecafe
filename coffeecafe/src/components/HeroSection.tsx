@@ -9,7 +9,7 @@ import { MENU_CATEGORY_QUERY_KEY, MENU_COFFEE_CATEGORY_ID } from '../types/menu'
 
 function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex flex-col overflow-hidden">
       {/* Адаптивное фоновое изображение */}
       <picture>
         <source media="(max-width: 767px)" srcSet={heroBgMobile} />
@@ -20,17 +20,20 @@ function HeroSection() {
         />
       </picture>
 
-      {/* Контент */}
-      <div className="relative z-10 px-4 lg:px-16 xl:px-28 w-full">
+      {/* Пустышка высотой шапки — отодвигает область контента вниз */}
+      <div className="h-[57px] md:h-[67px] lg:h-[77px] shrink-0" />
+
+      {/* Контент — центрируется в пространстве под шапкой */}
+      <div className="relative z-10 px-4 lg:px-16 xl:px-28 w-full flex-1 flex flex-col justify-center">
         <h1 className="font-heading font-normal text-cream text-[34px] leading-[1.33] md:text-[40px] md:leading-[53px] lg:text-[48px] lg:leading-[64px] tracking-[0.68px] md:tracking-[0.8px] lg:tracking-[0.96px] uppercase text-center min-[480px]:text-left max-w-[358px] md:max-w-none mx-auto min-[480px]:mx-0">
           Больше, чем просто кофе
         </h1>
 
-        <p className="text-cream-dark font-normal text-base md:text-[17px] lg:text-lg leading-[19px] md:leading-[21px] lg:leading-[22px] mt-6 lg:mt-3 text-center min-[480px]:text-left max-w-[310px] md:max-w-[475px] mx-auto min-[480px]:mx-0">
+        <p className="text-cream-dark font-normal text-base md:text-[17px] lg:text-lg leading-[19px] md:leading-[21px] lg:leading-[22px] mt-6 lg:mt-6 text-center min-[480px]:text-left max-w-[310px] md:max-w-[475px] mx-auto min-[480px]:mx-0">
           Уютное пространство для отдыха, общения и работы
         </p>
 
-        <div className="mt-14 lg:mt-12 flex justify-center min-[480px]:justify-start">
+        <div className="mt-14 lg:mt-16 flex justify-center min-[480px]:justify-start">
           <Link
             to={`/menu?${MENU_CATEGORY_QUERY_KEY}=${MENU_COFFEE_CATEGORY_ID}`}
             className="

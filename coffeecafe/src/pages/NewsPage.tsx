@@ -96,28 +96,28 @@ function NewsCard({ article }: { article: NewsArticle }) {
       {/* Высоты заголовка/анонса в ряду выравниваются в useNewsCardRowHeights */}
       <h2
         data-news-title
-        className="text-cream font-medium text-2xl md:text-[22px] lg:text-2xl leading-[1.2] mt-6 lg:mt-8 md:line-clamp-2"
+        className="text-cream font-medium text-[20px] md:text-[22px] lg:text-2xl leading-[1.2] mt-6 lg:mt-8 md:line-clamp-2"
       >
         {article.title}
       </h2>
 
       <p
         data-news-excerpt
-        className="text-cream-dark text-lg md:text-[17px] lg:text-lg font-normal leading-[22px] md:leading-[21px] lg:leading-[22px] mt-[14px] md:mt-4 lg:mt-[18px] line-clamp-3 overflow-hidden"
+        className="text-cream-dark text-base md:text-[17px] lg:text-lg font-normal leading-[22px] md:leading-[21px] lg:leading-[22px] mt-4 md:mt-4 lg:mt-[18px] line-clamp-3 overflow-hidden"
       >
         {article.excerpt}
       </p>
 
       <time
         dateTime={article.publishedAt}
-        className="block text-news-date/90 text-base md:text-[14px] lg:text-base font-normal leading-[19px] mt-6 md:mt-4 lg:mt-8"
+        className="block text-news-date/90 text-[13px] md:text-[14px] lg:text-base font-normal leading-[19px] mt-6 md:mt-4 lg:mt-8"
       >
         {formatNewsDate(article.publishedAt)}
       </time>
 
       <Link
         to={`/news/${encodeURIComponent(article.id)}`}
-        className="mt-[35px] md:mt-6 lg:mt-[35px] flex w-full min-h-[67px] shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-4 text-center text-base font-medium uppercase tracking-wider text-brown-dark transition-colors hover:bg-brown-button-hover active:bg-brown-button-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg lg:min-h-[54px] lg:w-[calc(75%-12px)] lg:self-start lg:text-lg"
+        className="mt-8 md:mt-6 lg:mt-[35px] flex w-full min-h-[67px] shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-4 text-center text-base font-medium uppercase tracking-wider text-brown-dark transition-colors hover:bg-brown-button-hover active:bg-brown-button-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg lg:min-h-[54px] lg:w-[calc(75%-12px)] lg:self-start lg:text-lg"
       >
         Подробнее
       </Link>

@@ -97,13 +97,13 @@ function NewsArticleBody({ id }: { id: string }) {
 
         <time
           dateTime={article.publishedAt}
-          className="mt-[8px] lg:mt-4 block text-news-date/90 text-[13px] md:text-[14px] font-normal leading-[16px] md:leading-[17px] lg:text-base lg:leading-[19px]"
+          className="mt-3 lg:mt-4 block text-news-date/90 text-[13px] md:text-[14px] font-normal leading-[16px] md:leading-[17px] lg:text-base lg:leading-[19px]"
         >
           {formatNewsDate(article.publishedAt)}
         </time>
 
         {/* Десктоп: 130:1020 - 18px / 21.78px; моб.: 400:2390 - 16px / 19.36px */}
-        <div className="mt-[16px] lg:mt-6 space-y-3 text-cream-dark text-[16px] md:text-[17px] font-normal leading-[19.36px] md:leading-[21px] lg:text-[18px] lg:leading-[21.78px]">
+        <div className="mt-5 lg:mt-6 space-y-3 text-cream-dark text-[16px] md:text-[17px] font-normal leading-[19.36px] md:leading-[21px] lg:text-[18px] lg:leading-[21.78px]">
           {article.content.map((paragraph, i) => (
             <p key={i} className="m-0">
               {paragraph}

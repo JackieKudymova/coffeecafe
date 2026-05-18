@@ -55,7 +55,7 @@ function ResetPasswordPage() {
         onToggleMenu={() => setIsMenuOpen(!isMenuOpen)}
       />
 
-      <main className="px-4 lg:px-16 xl:px-28 pt-[57px] md:pt-[67px] lg:pt-[77px] min-h-[787px] md:min-h-[822px] lg:min-h-[874px] flex items-center justify-center">
+      <main className="px-4 lg:px-16 xl:px-28 pt-[57px] md:pt-[67px] lg:pt-[77px] min-h-[calc(100vh-57px)] md:min-h-[calc(100vh-67px)] lg:min-h-[calc(100vh-77px)] flex items-center justify-center">
         <div
           className="
             w-full max-w-[592px] md:max-w-[788px] lg:max-w-[592px]

@@ -37,7 +37,7 @@ function AllergenFilter({ selected, onToggle }: Props) {
         return (
           <label
             key={key}
-            className="flex items-center gap-x-2 cursor-pointer select-none text-cream-dark text-sm lg:text-base leading-none"
+            className="flex items-center gap-x-2 cursor-pointer select-none text-cream-dark text-[13px] lg:text-base leading-none"
           >
             <span className="relative inline-flex h-4 w-4 md:h-[17px] md:w-[17px] lg:h-[19px] lg:w-[19px] shrink-0 transition-opacity hover:opacity-90">
               <input

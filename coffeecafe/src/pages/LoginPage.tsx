@@ -69,7 +69,7 @@ function LoginPage() {
         вертикально в свободном пространстве - так отступы сверху/снизу карточки совпадают
         с макетом независимо от её высоты.
       */}
-      <main className="px-4 lg:px-16 xl:px-28 pt-[57px] md:pt-[67px] lg:pt-[77px] min-h-[787px] md:min-h-[822px] lg:min-h-[874px] flex items-center justify-center">
+      <main className="px-4 lg:px-16 xl:px-28 pt-[57px] md:pt-[67px] lg:pt-[77px] min-h-[calc(100vh-57px)] md:min-h-[calc(100vh-67px)] lg:min-h-[calc(100vh-77px)] flex items-center justify-center">
         <form
           onSubmit={handleSubmit}
           noValidate
@@ -176,7 +176,7 @@ function LoginPage() {
             Нижние ссылки.
             Мобилка - стопкой и левее, планшет/десктоп - двумя краями (по макету).
           */}
-          <div className="mt-6 md:mt-8 flex flex-col gap-2 md:flex-row md:justify-between">
+          <div className="mt-6 md:mt-8 flex flex-col gap-4 md:flex-row md:justify-between">
             <Link
               to="/register"
               className="text-cream text-[13px] md:text-base lg:text-base leading-[22px] transition-colors hover:text-brown-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 rounded-sm"

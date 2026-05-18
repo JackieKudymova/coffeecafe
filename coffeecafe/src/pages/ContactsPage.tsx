@@ -56,18 +56,20 @@ function ContactsPage() {
 
             <div>
               <span className="block">Телефон:</span>
-              <span>8 952 288 90 99</span>
+              <a href="tel:+79522889099" className="hover:text-brown-button active:text-brown-button transition-colors [-webkit-tap-highlight-color:transparent]">8 952 288 90 99</a>
             </div>
 
             <div>
               <span className="block">Почта:</span>
-              <span>domcoffee@gmail.ru</span>
+              <a href="mailto:domcoffee@gmail.ru" className="hover:text-brown-button active:text-brown-button transition-colors [-webkit-tap-highlight-color:transparent]">domcoffee@gmail.ru</a>
             </div>
 
             <div>
               <span className="block">Соцсети:</span>
               <a
-                href="#"
+                href="https://vk.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="ВКонтакте"
                 className="mt-2 md:mt-[20px] inline-block text-cream transition-colors duration-150 ease-out hover:text-brown-button active:text-brown-button [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
               >
@@ -127,18 +129,20 @@ function ContactsPage() {
 
               <div>
                 <span className="block">Телефон:</span>
-                <span>8 952 288 90 99</span>
+                <a href="tel:+79522889099" className="hover:text-brown-button active:text-brown-button transition-colors [-webkit-tap-highlight-color:transparent]">8 952 288 90 99</a>
               </div>
 
               <div>
                 <span className="block">Почта:</span>
-                <span>domcoffee@gmail.ru</span>
+                <a href="mailto:domcoffee@gmail.ru" className="hover:text-brown-button active:text-brown-button transition-colors [-webkit-tap-highlight-color:transparent]">domcoffee@gmail.ru</a>
               </div>
 
               <div>
                 <span className="block">Соцсети:</span>
                 <a
-                  href="#"
+                  href="https://vk.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="ВКонтакте"
                   className="mt-4 inline-block text-cream transition-colors duration-150 ease-out hover:text-brown-button active:text-brown-button [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
                 >

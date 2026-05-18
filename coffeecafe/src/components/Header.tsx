@@ -107,7 +107,7 @@ function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
           aria-label="Закрыть меню"
         >
           {/* 24×24 мобилка, 35×35 планшет (по Figma Menu/Close_LG) */}
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="md:w-[35px] md:h-[35px]">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" className="md:w-[35px] md:h-[35px]">
             <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </button>

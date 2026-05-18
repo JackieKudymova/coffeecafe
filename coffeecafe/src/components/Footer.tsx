@@ -9,9 +9,9 @@ import logo from '../assets/images/logo.svg'
 import VkIcon from './icons/VkIcon'
 
 const navCol1 = [
-  { label: 'Главная', href: '#' },
-  { label: 'О нас', href: '#about' },
-  { label: 'Меню', href: '#menu' },
+  { label: 'Главная', href: '/' },
+  { label: 'О нас', href: '/#about' },
+  { label: 'Меню', href: '/menu' },
 ]
 
 const navCol2 = [
@@ -42,9 +42,9 @@ function Footer() {
           <span className="font-normal">Адрес:</span>
           <span>г. Санкт-Петербург, ул. Лесная, 12</span>
           <span className="font-normal mt-2">Телефон:</span>
-          <span>8 952 288 90 99</span>
+          <a href="tel:+79522889099" className="hover:text-brown-button active:text-brown-button transition-colors [-webkit-tap-highlight-color:transparent]">8 952 288 90 99</a>
           <span className="font-normal mt-2">Почта:</span>
-          <span>domcoffee@gmail.ru</span>
+          <a href="mailto:domcoffee@gmail.ru" className="hover:text-brown-button active:text-brown-button transition-colors [-webkit-tap-highlight-color:transparent]">domcoffee@gmail.ru</a>
         </div>
 
         {/* © мобилка 13, планшет 14 (ps-tablet) */}
@@ -79,21 +79,21 @@ function Footer() {
             <span>Адрес:</span>
             <span className="mt-2">г. Санкт-Петербург, ул. Лесная, 12</span>
             <span className="mt-4">Телефон:</span>
-            <span className="mt-2">8 952 288 90 99</span>
+            <a href="tel:+79522889099" className="mt-2 hover:text-brown-button active:text-brown-button transition-colors">8 952 288 90 99</a>
             <span className="mt-4">Почта:</span>
-            <span className="mt-2">domcoffee@gmail.ru</span>
+            <a href="mailto:domcoffee@gmail.ru" className="mt-2 hover:text-brown-button active:text-brown-button transition-colors">domcoffee@gmail.ru</a>
           </div>
 
           {/* Колонка 8-9: Навигация 1. Между ссылками 32px */}
           <nav className="col-start-8 col-span-2 flex flex-col gap-8 text-cream font-medium text-lg">
             {navCol1.map((link) => (
-              <a
+              <NavLink
                 key={link.label}
-                href={link.href}
+                to={link.href}
                 className="transition-colors hover:text-brown-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
               >
                 {link.label}
-              </a>
+              </NavLink>
             ))}
           </nav>
 
