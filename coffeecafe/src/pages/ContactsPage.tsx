@@ -39,7 +39,7 @@ function ContactsPage() {
 
         {/* Мобилка + планшет: одна колонка */}
         <div className="lg:hidden pb-[50px] md:pb-14">
-          <h1 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-tight">
+          <h1 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-tight uppercase">
             Контакты
           </h1>
 
