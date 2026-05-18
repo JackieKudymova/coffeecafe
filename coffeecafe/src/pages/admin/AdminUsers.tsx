@@ -9,8 +9,6 @@ const PAGE_SIZE = 20
 
 /**
  * Учёт зарегистрированных пользователей.
- * Админ заходит сюда, чтобы по 6-значному коду клиента найти владельца
- * и сверить, что скидка применяется правильному человеку.
  */
 export default function AdminUsers() {
   const [page, setPage] = useState(1)
@@ -61,10 +59,10 @@ export default function AdminUsers() {
       >
         <div className="min-w-[260px] flex-1 max-w-md">
           <AdminTextField
-            label="Поиск (имя, email, код клиента)"
+            label="Поиск (имя, email)"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Например: 482931"
+            placeholder="Например: Анна или anna@mail.ru"
           />
         </div>
         <button
@@ -107,7 +105,6 @@ export default function AdminUsers() {
                 <th className="p-3 font-medium">ID</th>
                 <th className="p-3 font-medium">Имя</th>
                 <th className="p-3 font-medium">Email</th>
-                <th className="p-3 font-medium whitespace-nowrap">Код клиента</th>
                 <th className="p-3 font-medium">Скидка, %</th>
                 <th className="p-3 font-medium whitespace-nowrap">Регистрация</th>
               </tr>
@@ -118,8 +115,6 @@ export default function AdminUsers() {
                   <td className="p-3 text-cream">{u.id}</td>
                   <td className="p-3 text-cream">{u.name}</td>
                   <td className="p-3 text-cream-dark break-all">{u.email}</td>
-                  {/* Моноширинный код клиента - удобнее сверять на кассе. */}
-                  <td className="p-3 text-cream font-mono tracking-wider">{u.client_code}</td>
                   <td className="p-3 text-cream-dark">{u.discount}</td>
                   <td className="p-3 text-cream-dark text-sm whitespace-nowrap">
                     {formatAdminDateTime(u.created_at)}
