@@ -124,7 +124,7 @@ function ContactsPage() {
 
               <div>
                 <span className="block">Адрес:</span>
-                <a href="https://yandex.ru/maps/?text=Санкт-Петербург%2C+ул.+Лесная%2C+12" target="_blank" rel="noopener noreferrer" className="hover:text-brown-button active:text-brown-button transition-colors">г. Санкт-Петербург, ул. Лесная, 12</a>
+                <a href="https://yandex.ru/maps/?text=Санкт-Петербург%2C+ул.+Лесная%2C+12" target="_blank" rel="noopener noreferrer" className="hover:text-brown-button active:text-brown-button transition-colors [-webkit-tap-highlight-color:transparent]">г. Санкт-Петербург, ул. Лесная, 12</a>
               </div>
 
               <div>
@@ -144,7 +144,7 @@ function ContactsPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="ВКонтакте"
-                  className="mt-4 inline-block text-cream transition-colors duration-150 ease-out hover:text-brown-button active:text-brown-button [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm"
+                  className="mt-4 inline-block text-cream transition-colors duration-150 ease-out hover:text-brown-button active:text-brown-button [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:rounded-sm [-webkit-tap-highlight-color:transparent]"
                 >
                   <VkIcon className="h-8 w-8" />
                 </a>

@@ -81,11 +81,11 @@ function Footer() {
           {/* Колонка 4-7: Контакты. Между меткой и значением 8px, между группами 16px */}
           <div className="col-span-4 flex flex-col text-cream font-medium text-lg">
             <span>Адрес:</span>
-            <a href="https://yandex.ru/maps/?text=Санкт-Петербург%2C+ул.+Лесная%2C+12" target="_blank" rel="noopener noreferrer" className="mt-2 hover:text-brown-button active:text-brown-button transition-colors">г. Санкт-Петербург, ул. Лесная, 12</a>
+            <a href="https://yandex.ru/maps/?text=Санкт-Петербург%2C+ул.+Лесная%2C+12" target="_blank" rel="noopener noreferrer" className="mt-2 hover:text-brown-button active:text-brown-button transition-colors [-webkit-tap-highlight-color:transparent]">г. Санкт-Петербург, ул. Лесная, 12</a>
             <span className="mt-4">Телефон:</span>
-            <a href="tel:+79522889099" className="mt-2 hover:text-brown-button active:text-brown-button transition-colors">8 952 288 90 99</a>
+            <a href="tel:+79522889099" className="mt-2 hover:text-brown-button active:text-brown-button transition-colors [-webkit-tap-highlight-color:transparent]">8 952 288 90 99</a>
             <span className="mt-4">Почта:</span>
-            <a href="mailto:domcoffee@gmail.ru" className="mt-2 hover:text-brown-button active:text-brown-button transition-colors">domcoffee@gmail.ru</a>
+            <a href="mailto:domcoffee@gmail.ru" className="mt-2 hover:text-brown-button active:text-brown-button transition-colors [-webkit-tap-highlight-color:transparent]">domcoffee@gmail.ru</a>
           </div>
 
           {/* Колонка 8-9: Навигация 1. Между ссылками 32px */}
