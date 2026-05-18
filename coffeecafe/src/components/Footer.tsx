@@ -10,7 +10,7 @@ import VkIcon from './icons/VkIcon'
 
 const navCol1 = [
   { label: 'Главная', href: '/' },
-  { label: 'О нас', href: '/#about' },
+  { label: 'О нас', href: '/about' },
   { label: 'Меню', href: '/menu' },
 ]
 
