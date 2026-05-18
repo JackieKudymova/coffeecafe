@@ -206,7 +206,8 @@ async def update_item(
     if body.allergen_egg is not None:
         item.allergen_egg = body.allergen_egg
     if body.variants is not None:
-        await db.execute(delete(MenuVariant).where(MenuVariant.item_id == item.id))
+        for old_v in list(item.variants):
+            await db.delete(old_v)
         await db.flush()
         for i, v in enumerate(body.variants):
             db.add(
