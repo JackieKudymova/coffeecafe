@@ -13,22 +13,22 @@ import address from '../assets/images/Address.svg'
 const features = [
   {
     title: 'Качественный кофе',
-    description: 'Мы готовим напитки из тщательно отобранных зерен',
+    description: 'Мы готовим кофе из самых тщательно отобранных зерен',
     icon: coffeeBeans,
   },
   {
     title: 'Уютная атмосфера',
-    description: 'У нас приятно встретиться с друзьями и просто отдохнуть',
+    description: 'У нас можно отдохнуть, встретиться с друзьями',
     icon: armchair,
   },
   {
     title: 'Комфорт для работы',
-    description: 'В кофейне быстрый Wi-Fi и удобные места с розетками',
+    description: 'В кофейне быстрый Wi-Fi, удобные места с розетками',
     icon: laptop,
   },
   {
     title: 'Удобное расположение',
-    description: 'Удобное расположение, чтобы зайти за кофе по пути',
+    description: 'Удобное расположение,\nчтобы зайти за кофе по пути',
     icon: address,
   },
 ]
@@ -55,7 +55,7 @@ function WhyUsSection() {
                 {feature.title}
               </h3>
 
-              <p className="text-cream-dark text-base md:text-[17px] md:leading-[21px] lg:text-sm xl:text-lg lg:leading-[20px] xl:leading-[22px] mt-4 max-w-[240px] md:max-w-[280px] lg:max-w-none mx-auto">
+              <p className="text-cream-dark text-base md:text-[17px] md:leading-[21px] lg:text-sm xl:text-lg lg:leading-[20px] xl:leading-[22px] mt-4 max-w-[240px] md:max-w-[280px] lg:max-w-none mx-auto whitespace-pre-line">
                 {feature.description}
               </p>
             </div>
