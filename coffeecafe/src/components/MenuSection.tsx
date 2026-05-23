@@ -1,4 +1,4 @@
-/*
+﻿/*
   MenuSection - секция «Наше меню».
   Десктоп (lg+): 4 квадратных карточки, кнопка 271×54.
   Мобилки: 2 колонки, увеличенные отступы от краёв.
@@ -11,12 +11,19 @@ import { MENU_CATEGORY_QUERY_KEY, MENU_COFFEE_CATEGORY_ID } from '../types/menu'
 import teaImg from '../assets/images/menu-tea.png'
 import dessertsImg from '../assets/images/menu-desserts.png'
 import bakeryImg from '../assets/images/menu-bakery.png'
+function ArrowIcon({ className }: { className?: string }) {
+  return (
+    <svg width="31" height="15" viewBox="0 0 31 15" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <path d="M30.5873 8.22016C31.1376 7.82245 31.1376 7.17755 30.5873 6.77984L21.6198 0.298285C21.0696 -0.0994283 20.1775 -0.0994283 19.6271 0.298285C19.0769 0.6961 19.0769 1.34089 19.6271 1.73861L27.5982 7.5L19.6271 13.2614C19.0769 13.6591 19.0769 14.3039 19.6271 14.7017C20.1775 15.0994 21.0696 15.0994 21.6198 14.7017L30.5873 8.22016ZM8.82833e-07 7.5V8.51847L29.5909 8.51847V7.5V6.48153L8.82833e-07 6.48153V7.5Z" fill="currentColor" />
+    </svg>
+  )
+}
 
 const menuCategories = [
-  { title: 'Кофе', image: coffeeImg },
-  { title: 'Чай', image: teaImg },
-  { title: 'Десерты', image: dessertsImg },
-  { title: 'Выпечка', image: bakeryImg },
+  { title: 'Кофе', image: coffeeImg, id: 'coffee' },
+  { title: 'Чай', image: teaImg, id: 'tea' },
+  { title: 'Десерты', image: dessertsImg, id: 'desserts' },
+  { title: 'Выпечка', image: bakeryImg, id: 'bakery' },
 ]
 
 function MenuSection() {
@@ -27,23 +34,27 @@ function MenuSection() {
           Наше меню
         </h2>
 
-        {/* Сетка: 2 колонки на мобилках, 2 на планшете, 4 на десктопе.
-            Планшет (md): по Figma Hf_ipad_main - gap 16px по горизонтали, 24px по вертикали. */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-x-4 md:gap-y-6 lg:gap-8 mt-8 md:mt-10 lg:mt-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 mt-8 md:mt-10 lg:mt-16">
           {menuCategories.map((category) => (
-            <div key={category.title} className="text-center">
-              {/* Квадратное фото; на планшете 316px высота под макет */}
-              <div className="aspect-square md:aspect-auto md:h-[316px] overflow-hidden rounded-[10px]">
+            <Link
+              key={category.title}
+              to={`/menu?${MENU_CATEGORY_QUERY_KEY}=${category.id}`}
+              className="group block bg-[#120C09] border border-transparent transition-colors active:border-[#EDC091] lg:hover:border-[#FDD4A9] rounded-[5px]"
+            >
+              <div className="aspect-square md:aspect-[386/311] overflow-hidden py-[40px] md:py-[56px] lg:py-[40px] flex items-center justify-center">
                 <img
                   src={category.image}
                   alt={category.title}
-                  className="w-full h-full object-cover"
+                  className="max-w-full max-h-full object-contain"
                 />
               </div>
-              <p className="text-cream font-normal text-xl md:text-[22px] lg:text-2xl mt-3 md:mt-4 lg:mt-6">
-                {category.title}
-              </p>
-            </div>
+              <div className="flex items-center justify-between px-[13px] pb-4 md:pb-6 md:px-10 lg:px-5">
+                <span className="text-cream font-normal text-[20px] md:text-[22px] lg:text-2xl">
+                  {category.title}
+                </span>
+                <ArrowIcon className="w-[20px] h-[40px] md:w-[31px] md:h-[15px] text-[#EFE7DD] group-active:text-[#EDC091] lg:group-hover:text-[#FDD4A9]" />
+              </div>
+            </Link>
           ))}
         </div>
 
@@ -54,12 +65,12 @@ function MenuSection() {
             className="
               inline-flex items-center justify-center
               bg-brown-button text-brown-dark font-medium
-              rounded-[10px] uppercase tracking-wider
+              uppercase tracking-wider
               transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
               text-base min-h-[67px] w-full
               md:min-h-[67px] md:w-[386px] md:h-[67px]
-              lg:text-lg lg:min-h-0 lg:w-[280px] lg:h-[54px]
+              lg:text-lg lg:min-h-0 lg:w-[280px] lg:h-[54px] rounded-[10px]
             "
           >
             Смотреть меню

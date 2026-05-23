@@ -1,7 +1,7 @@
-/*
+﻿/*
   AuthPromoSection - промо-блок «Личный кабинет» сразу после Hero на главной.
 
-  Тёмно-коричневый фон #4b372b, контент по центру. Блок сужен до ширины из макета:
+  Тёмно-коричневый фон #382a22, контент по центру. Блок сужен до ширины из макета:
     мобилка  - HF_phone_main.news (390×393, блок 358, pad 16/56)
     планшет  - macets_ipad.Hf_ipad_main.Group 1773 (820×311, блок 597, pad 112/40)
     десктоп  - HF_desktop_main.LK (1440×346, блок 825, pad 308/64)
@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom'
 
 function AuthPromoSection() {
   return (
-    <section className="bg-[#4b372b]">
+    <section className="bg-[#382a22]">
       <div className="px-4 md:px-6 lg:px-16 py-14 md:py-10 lg:py-16">
         <div className="mx-auto max-w-[358px] md:max-w-[760px] lg:max-w-[860px] flex flex-col items-center text-center">
           {/* Капс на всех брейкпоинтах (по правке от дизайнера). */}
@@ -33,11 +33,11 @@ function AuthPromoSection() {
             className="
               inline-flex items-center justify-center
               mt-10 md:mt-10 lg:mt-10
-              bg-brown-button text-brown-dark font-medium rounded-[10px]
+              bg-brown-button text-brown-dark font-medium
               uppercase tracking-wider transition-colors
               hover:bg-brown-button-hover active:bg-brown-button-active
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#4b372b]
-              text-base lg:text-lg
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#382a22]
+              text-base lg:text-lg rounded-[10px]
               w-full h-[67px]
               md:w-[386px] md:h-[67px]
               lg:w-[280px] lg:h-[54px]

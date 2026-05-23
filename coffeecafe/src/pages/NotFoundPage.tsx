@@ -1,4 +1,4 @@
-/*
+﻿/*
   NotFoundPage - страница 404.
   Макет: Figma HF_404 (1440×840) и HF_404 mobile (390×767).
   Фон страницы #1f1714; блок контента по центру, max 384px; футер как на остальных страницах.
@@ -48,7 +48,7 @@ function NotFoundPage() {
             to="/"
             className="
               mt-12 lg:mt-16
-              mx-auto flex h-[67px] w-full max-w-[358px] items-center justify-center rounded-[10px]
+              mx-auto flex h-[67px] w-full max-w-[358px] items-center justify-center
               bg-brown-button text-center text-base font-medium uppercase tracking-wider text-brown-dark
               transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50

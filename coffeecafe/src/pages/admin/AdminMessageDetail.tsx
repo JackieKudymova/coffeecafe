@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+﻿import { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { fetchMessage, patchMessageRead, type MessageRow } from '../../services/adminService'
 import AdminCheckbox from '../../components/admin/AdminCheckbox'
@@ -64,7 +64,7 @@ export default function AdminMessageDetail() {
       {loading ? (
         <p className="text-cream-dark">Загрузка…</p>
       ) : row ? (
-        <div className="rounded-[10px] border border-cream/15 bg-[#4b372b] p-6 space-y-4">
+        <div className="rounded-[10px] border border-cream/15 bg-[#382a22] p-6 space-y-4">
           <div className="flex items-center gap-3">
             <AdminCheckbox
               checked={row.is_read}

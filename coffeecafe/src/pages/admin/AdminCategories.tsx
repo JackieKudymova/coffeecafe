@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Раздел «Категории меню» в админке отключён: маршрут /admin/categories и пункт в AdminSidebar не подключены.
  * Чтобы снова включить: импорт AdminCategories в App.tsx, <Route path="categories" element={<AdminCategories />} />,
  * NavLink в AdminSidebar на /admin/categories.
@@ -44,7 +44,7 @@ export default function AdminCategories() {
         <p className="text-cream-dark">Загрузка…</p>
       ) : (
         <AdminTable>
-          <thead className="bg-[#5d483c] text-cream text-sm uppercase tracking-wider">
+          <thead className="bg-[#5a473b] text-cream text-sm uppercase tracking-wider">
             <tr>
               <th className="p-3 font-medium">ID</th>
               <th className="p-3 font-medium">Название</th>

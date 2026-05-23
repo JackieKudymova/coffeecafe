@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+﻿import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { fetchMessages, type MessageRow } from '../../services/adminService'
 import AdminTable from '../../components/admin/AdminTable'
@@ -57,7 +57,7 @@ export default function AdminMessages() {
       ) : (
         <>
           <AdminTable>
-            <thead className="bg-[#5d483c] text-cream text-sm uppercase tracking-wider">
+            <thead className="bg-[#5a473b] text-cream text-sm uppercase tracking-wider">
               <tr>
                 <th className="p-3 font-medium">Дата</th>
                 <th className="p-3 font-medium">Имя</th>

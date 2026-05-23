@@ -17,7 +17,7 @@ interface ContactThanksPanelProps {
 function ThanksCard({ onClose }: { onClose: () => void }) {
   return (
     <div
-      className="w-full max-w-[358px] md:max-w-[567px] lg:max-w-[579px] rounded-[10px] bg-[#cfc6bb] text-brown-dark px-4 py-14 md:px-14 md:py-12 lg:px-12 lg:py-12"
+      className="w-full max-w-[358px] md:max-w-[567px] lg:max-w-[579px] rounded-[10px] bg-[#A6937F] text-brown-dark px-4 py-14 md:px-14 md:py-12 lg:px-12 lg:py-12"
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-thanks-title"
@@ -40,8 +40,7 @@ function ThanksCard({ onClose }: { onClose: () => void }) {
         "
       >
         Спасибо
-        {/* Перенос строки только на мобилке; на md+ заменяется обычным пробелом. */}
-        <br className="md:hidden" />
+                <br className="md:hidden" />
         <span className="hidden md:inline"> </span>
         за обращение!
       </h2>
@@ -53,12 +52,12 @@ function ThanksCard({ onClose }: { onClose: () => void }) {
           type="button"
           onClick={onClose}
           className="
-            inline-flex h-[67px] w-full max-w-[326px] items-center justify-center rounded-[10px]
-            bg-brown-button font-medium text-brown-dark text-base uppercase tracking-wider
+            inline-flex h-[67px] w-full max-w-[326px] items-center justify-center
+            bg-transparent border border-[#FDD4A9] text-[#FDD4A9] font-medium text-base uppercase tracking-wider
             md:max-w-[386px]
             lg:h-[54px] lg:max-w-[280px] lg:text-lg
-            transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brown-dark/30
+            transition-colors hover:border-[#FFC68A] hover:text-[#FFC68A] active:border-[#EDC091] active:text-[#EDC091]
+            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FDD4A9]/30
           "
         >
           понятно

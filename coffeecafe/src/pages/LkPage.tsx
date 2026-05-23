@@ -1,4 +1,4 @@
-/*
+﻿/*
   LkPage - личный кабинет клиента.
   Показывает имя, скидку и 6-значный ID клиента (по нему дают скидку на кассе).
   Данные тянем из /api/auth/me. Маршрут защищён ProtectedUser в App.tsx -
@@ -91,12 +91,12 @@ function LkPage() {
               onClick={handleLogout}
               className="
                 w-full md:w-[386px] lg:w-[340px] h-[67px] md:h-[60px] lg:h-[54px]
-                mt-10 md:mt-14 lg:mt-12 rounded-[10px]
+                mt-10 md:mt-14 lg:mt-12
                 bg-brown-button text-brown-dark font-medium
                 text-base lg:text-lg uppercase tracking-wider
                 transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg
-                cursor-pointer
+                rounded-[10px] cursor-pointer
               "
             >
               Выйти

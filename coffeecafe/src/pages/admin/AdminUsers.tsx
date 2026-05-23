@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+﻿import { useCallback, useEffect, useState } from 'react'
 import { fetchUsers, type UserAdminRow } from '../../services/adminService'
 import AdminTable from '../../components/admin/AdminTable'
 import AdminTextField from '../../components/admin/AdminTextField'
@@ -100,7 +100,7 @@ export default function AdminUsers() {
       ) : (
         <>
           <AdminTable>
-            <thead className="bg-[#5d483c] text-cream text-sm uppercase tracking-wider">
+            <thead className="bg-[#5a473b] text-cream text-sm uppercase tracking-wider">
               <tr>
                 <th className="p-3 font-medium">ID</th>
                 <th className="p-3 font-medium">Имя</th>

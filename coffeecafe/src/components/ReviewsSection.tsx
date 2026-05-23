@@ -1,4 +1,4 @@
-/*
+﻿/*
   ReviewsSection - блок «Отзывы».
   Десктоп (lg+): 3 карточки в ряд.
   До десктопа: карусель scroll-snap с точками + автопрокрутка.
@@ -71,11 +71,11 @@ function ReviewsSection() {
             onScroll={handleScroll}
           >
             {reviews.map((review) => (
-              <div key={review.name} className="snap-center shrink-0 w-full flex flex-col items-center text-center">
+              <div key={review.name} className="snap-center shrink-0 w-full flex flex-col items-center justify-center text-center bg-[#120C09] py-10 px-8 rounded-[5px]">
                 <img
                   src={review.avatar}
                   alt={review.name}
-                  className="w-16 h-16 rounded-full object-cover"
+                  className="w-16 h-16 md:w-24 md:h-24 rounded-full object-cover"
                 />
                 <h3 className="text-cream font-normal text-xl md:text-[22px] mt-6">{review.name}</h3>
                 <p className="text-cream-dark text-base md:text-[17px] leading-[19px] md:leading-[21px] mt-4 max-w-[280px] md:max-w-[303px]">{review.text}</p>
@@ -84,7 +84,7 @@ function ReviewsSection() {
           </div>
 
           {/* Точки-индикаторы */}
-          <div className="flex justify-center gap-2 mt-[35px]">
+          <div className="flex justify-center gap-2 mt-6">
             {reviews.map((review, i) => (
               <button
                 key={review.name}
@@ -104,17 +104,17 @@ function ReviewsSection() {
         </div>
       </div>
 
-      {/* Десктоп: 3 в ряд */}
-      <div className="hidden lg:flex gap-[72px] mt-[72px] px-16 xl:px-28 justify-center">
+      {/* Десктоп: 3 в ряд — та же сетка что и в GallerySection */}
+      <div className="hidden lg:grid grid-cols-3 gap-8 mt-[72px] px-16 xl:px-28">
         {reviews.map((review) => (
-          <div key={review.name} className="flex flex-col items-center text-center w-[308px]">
+          <div key={review.name} className="flex flex-col items-center justify-center text-center bg-[#120C09] py-10 px-8 rounded-[5px]">
             <img
               src={review.avatar}
               alt={review.name}
               className="w-24 h-24 rounded-full object-cover"
             />
-            <h3 className="text-cream font-normal text-2xl mt-8">{review.name}</h3>
-            <p className="text-cream-dark text-lg leading-[22px] mt-4 max-w-[308px]">{review.text}</p>
+            <h3 className="text-cream font-normal text-2xl mt-6">{review.name}</h3>
+            <p className="text-cream-dark text-lg leading-[22px] mt-4">{review.text}</p>
           </div>
         ))}
       </div>
@@ -127,7 +127,7 @@ function ReviewsSection() {
           планшет  - фрейма нет, по аналогии: текст 17/21, кнопка 386×67 (как hero)
           десктоп  - HF_desktop_main.reviews: текст 24/29, кнопка 280×56
       */}
-      <div className="px-4 lg:px-16 xl:px-28 mt-12 lg:mt-[72px] flex flex-col items-center text-center">
+      <div className="px-4 lg:px-16 xl:px-28 mt-12 lg:mt-[62px] flex flex-col items-center text-center">
         {/*
           Планшет (Hf_ipad_main, узел 951:6759): Inter Regular 22/26.625, ширина 416px,
           совпадает со шрифтом имени в карточке отзыва (узел 679:4436). До правки
@@ -143,11 +143,11 @@ function ReviewsSection() {
           className="
             inline-flex items-center justify-center
             mt-8 md:mt-10 lg:mt-9
-            bg-brown-button text-brown-dark font-medium rounded-[10px]
+            bg-brown-button text-brown-dark font-medium
             uppercase tracking-wider transition-colors
             hover:bg-brown-button-hover active:bg-brown-button-active
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
-            text-base lg:text-lg
+            text-base lg:text-lg rounded-[10px]
             w-full h-[67px]
             md:w-[386px] md:h-[67px]
             lg:w-[280px] lg:h-[56px]

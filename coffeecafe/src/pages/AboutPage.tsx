@@ -1,4 +1,4 @@
-/*
+﻿/*
   AboutPage - страница «О нас» (новая версия по макетам Figma).
   Макеты:
     - HF_desktop_about us (1440x1782): 2 колонки + полноширинный баннер
@@ -59,7 +59,7 @@ function AboutPage() {
           <img
             src={freelancersImg}
             alt="Гости в кофейне за работой"
-            className="w-full h-[240px] md:h-[280px] object-cover object-top rounded-[10px] mt-4"
+            className="w-full h-[240px] md:h-[280px] object-cover object-top rounded-[5px] mt-4"
           />
 
           {/* Раздел 2: Кофе и выпечка + параграф + фото барист */}
@@ -73,7 +73,7 @@ function AboutPage() {
           <img
             src={coffeeImg}
             alt="Латте-арт в чашке кофе"
-            className="w-full h-[240px] md:h-[280px] object-cover rounded-[10px] mt-4"
+            className="w-full h-[240px] md:h-[280px] object-cover rounded-[5px] mt-4"
           />
 
           {/* Раздел 3: Внимание к деталям (без отдельного фото - дальше баннер).
@@ -97,7 +97,7 @@ function AboutPage() {
             <img
               src={lavkaImg}
               alt="Интерьер кофейни"
-              className="w-full h-[240px] md:h-[280px] object-cover opacity-50"
+              className="w-full h-[240px] md:h-[280px] object-cover opacity-50 rounded-t-[5px]"
             />
             <div className="absolute inset-0 flex items-center justify-center px-4">
               <p className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-[33px] md:leading-[44px] text-center uppercase max-w-[289px] md:max-w-[597px]">
@@ -127,7 +127,7 @@ function AboutPage() {
               <img
                 src={coffeeImg}
                 alt="Латте-арт в чашке кофе"
-                className="w-full h-[456px] object-cover rounded-[10px] mt-[143px]"
+                className="w-full h-[456px] object-cover rounded-[5px] mt-[143px]"
               />
             </div>
 
@@ -136,7 +136,7 @@ function AboutPage() {
               <img
                 src={freelancersImg}
                 alt="Гости в кофейне за работой"
-                className="w-full h-[287px] object-cover object-top rounded-[10px]"
+                className="w-full h-[287px] object-cover object-top rounded-[5px]"
               />
               {/* Большой gap 151px - чтобы текст опустился ниже фото и выровнялся с левым (по макету) */}
               <h2 className="text-cream font-normal text-2xl leading-[29px] mt-[151px]">
@@ -162,7 +162,7 @@ function AboutPage() {
             <img
               src={lavkaImg}
               alt="Интерьер кофейни"
-              className="w-full h-[462px] object-cover opacity-50"
+              className="w-full h-[462px] object-cover opacity-50 rounded-t-[5px]"
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <p className="font-heading font-normal text-cream text-[36px] leading-[49px] text-center uppercase max-w-[672px]">

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { adminLogin } from '../../services/adminService'
 import AdminTextField from '../../components/admin/AdminTextField'
@@ -41,7 +41,7 @@ export default function AdminLoginPage() {
       <form
         onSubmit={handleSubmit}
         noValidate
-        className="w-full max-w-md rounded-[10px] bg-[#4b372b] px-8 py-10 shadow-lg border border-cream/10"
+        className="w-full max-w-md rounded-[10px] bg-[#382a22] px-8 py-10 shadow-lg border border-cream/10"
       >
         <h1 className="font-heading text-2xl text-cream text-center mb-8">Вход в админку</h1>
         <AdminTextField
@@ -78,7 +78,7 @@ export default function AdminLoginPage() {
           className="
             w-full mt-8 h-[54px] rounded-[10px] bg-brown-button text-brown-dark font-medium uppercase tracking-wider
             transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#4b372b]
+            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#382a22]
             disabled:opacity-60 disabled:cursor-not-allowed
           "
         >

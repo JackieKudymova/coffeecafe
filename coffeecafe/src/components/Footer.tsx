@@ -1,4 +1,4 @@
-/*
+﻿/*
   Footer - подвал сайта.
   Десктоп: 4 колонки (лого+VK, контакты, навигация×2) + копирайт + кнопка наверх.
   Мобилка: одна колонка по центру (лого, VK, контакты, копирайт). Без навигации и кнопки наверх.
@@ -60,7 +60,7 @@ function Footer() {
         Колонки: 1-3 (лого+VK), 4-7 (контакты), 8-9 (нав1), 10-12 (нав2).
         pt/pb по 24px, между контентом и копирайтом 48px, копирайт и кнопка выровнены по низу.
       */}
-      <div className="hidden lg:block px-16 xl:px-28 pt-6 pb-6">
+      <div className="hidden lg:block px-16 xl:px-28 pt-10 pb-10">
         <div className="grid grid-cols-12 gap-x-8">
 
           {/* Колонка 1-3: Лого + VK. items-start чтобы логотип не растягивался */}
@@ -127,15 +127,15 @@ function Footer() {
 
         {/* Нижняя строка: копирайт + кнопка наверх. items-end - выровнены по низу как в макете */}
         <div className="flex justify-between items-end mt-12">
-          <p className="text-cream text-base">
+          <p className="text-cream text-base leading-none self-end">
             © 2026 ДомКофе. Все права защищены
           </p>
-          {/* Кнопка «Наверх» 48×48 - UI-KIT Up: круг #d2a679 → hover #c49567 → active #a68463 (не opacity) */}
+          {/* Кнопка «Наверх» 48×48 - UI-KIT Up: круг #fdd4a9 → hover #ffc68a → active #edc091 (не opacity) */}
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             aria-label="Наверх"
-            className="group cursor-pointer rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-footer"
+            className="group cursor-pointer p-0 self-end leading-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-footer"
           >
             <svg
               width={48}
@@ -147,8 +147,10 @@ function Footer() {
               aria-hidden
             >
               <g clipPath="url(#footerScrollUpClip)">
-                <path
-                  d="M24 48C37.2548 48 48 37.2548 48 24C48 10.7452 37.2548 0 24 0C10.7452 0 0 10.7452 0 24C0 37.2548 10.7452 48 24 48Z"
+                <rect
+                  width="48"
+                  height="48"
+                  rx="5"
                   className="fill-brown-button transition-[fill] duration-150 ease-out group-hover:fill-brown-button-hover group-active:fill-brown-button-active"
                 />
                 <path

@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+﻿/** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -8,7 +8,7 @@ export default {
         cream: '#faf6f0',
         'cream-dark': '#efe7dd',
         brown: {
-          button: '#d2a679',
+          button: '#fdd4a9',
           dark: '#2a1c17',
           bg: '#1f1714',
           footer: '#140f0c',

@@ -1,4 +1,4 @@
-/*
+﻿/*
   NewsPage - список новостей с пагинацией.
   Данные через newsService (моки → позже API).
   Карточка: порядок и отступы как в Figma HF_desktop_news_1 (фото → заголовок → текст → дата #a8a5a1 → кнопка на всю ширину).
@@ -85,7 +85,7 @@ function NewsCard({ article }: { article: NewsArticle }) {
   return (
     <article className="flex flex-col h-full" data-news-card>
       {/* Превью 384×272 в макете → то же соотношение сторон. Планшет: 386×240 */}
-      <div className="aspect-[384/272] md:aspect-[386/240] lg:aspect-[384/272] overflow-hidden rounded-[10px]">
+      <div className="aspect-[384/272] md:aspect-[386/240] lg:aspect-[384/272] rounded-[5px] overflow-hidden">
         <img
           src={article.image}
           alt={article.title}
@@ -117,7 +117,7 @@ function NewsCard({ article }: { article: NewsArticle }) {
 
       <Link
         to={`/news/${encodeURIComponent(article.id)}`}
-        className="mt-8 md:mt-6 lg:mt-[35px] flex w-full min-h-[67px] shrink-0 items-center justify-center rounded-[10px] bg-brown-button px-4 text-center text-base font-medium uppercase tracking-wider text-brown-dark transition-colors hover:bg-brown-button-hover active:bg-brown-button-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg lg:min-h-[54px] lg:w-[calc(75%-12px)] lg:self-start lg:text-lg"
+        className="mt-8 md:mt-6 lg:mt-[35px] flex w-full min-h-[67px] shrink-0 items-center justify-center bg-transparent border border-[#FDD4A9] text-[#FDD4A9] px-4 text-center text-base font-medium uppercase tracking-wider transition-colors hover:border-[#FFC68A] hover:text-[#FFC68A] active:border-[#EDC091] active:text-[#EDC091] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg lg:min-h-[54px] lg:w-full lg:text-lg rounded-[10px]"
       >
         Подробнее
       </Link>

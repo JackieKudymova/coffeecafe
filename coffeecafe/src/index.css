@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 /*
   @theme - конфигурация Tailwind v4 через CSS.
@@ -17,25 +17,25 @@
 
   --color-cream: #faf6f0;
   --color-cream-dark: #efe7dd;
-  --color-brown-button: #d2a679;
+  --color-brown-button: #fdd4a9;
   /* UI-KIT buttons: Group 1473-1476 */
-  --color-brown-button-hover: #c49567;
-  --color-brown-button-active: #a68463;
+  --color-brown-button-hover: #ffc68a;
+  --color-brown-button-active: #edc091;
   --color-brown-dark: #2a1c17;
   --color-brown-bg: #1f1714;
   --color-brown-footer: #140f0c;
 
   /* Поля формы - UI-KIT Input (Frame 1895-1898) */
-  --color-input-bg: #5d483c;
+  --color-input-bg: #5a473b;
   --color-input-bg-hover: #6a5447;
-  --color-input-border-focus: #d2a679;
+  --color-input-border-focus: #fdd4a9;
   --color-input-border-error: #d96b5f;
   --color-placeholder: #cfc6bb;
 
   /* Пагинация - фрейм HF_desktop_news_1 / UI-KIT */
-  --color-pagination-bg: #4b372b;
+  --color-pagination-bg: #382a22;
   --color-pagination-bg-hover: #6d5240;
-  --color-pagination-bg-active: #5d483c;
+  --color-pagination-bg-active: #5a473b;
   --color-pagination-bg-disabled: #2a211c;
   --color-pagination-text-disabled: #7a736d;
   /* Дата в карточке новости */

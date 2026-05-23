@@ -1,4 +1,4 @@
-/*
+﻿/*
   ContactsPage - страница «Контакты».
   Десктоп (lg+): 12-колоночная сетка - контакты + форма.
   «Спасибо» после отправки - одна модалка (портал в body, поверх экрана) на всех ширинах.
@@ -9,9 +9,9 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import ContactThanksPanel from '../components/ContactThanksPanel'
 import VkIcon from '../components/icons/VkIcon'
+import mapImg from '../assets/images/map.png'
 import defaultCheckboxIcon from '../assets/images/default-chckbox-vector.svg'
 import selectedCheckboxIcon from '../assets/images/selected-vector.svg'
-import mapImg from '../assets/images/map.png'
 
 function ContactsPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -87,7 +87,7 @@ function ContactsPage() {
           <img
             src={mapImg}
             alt="Карта расположения кофейни"
-            className="block w-full h-[220px] md:h-[262px] object-cover rounded-[10px] mt-4"
+            className="block w-full h-[220px] md:h-[262px] object-cover rounded-[5px] mt-4"
           />
 
           <div className="mt-4 md:mt-6">
@@ -162,7 +162,7 @@ function ContactsPage() {
               <img
                 src={mapImg}
                 alt="Карта расположения кофейни"
-                className="block w-full h-full object-cover rounded-[10px]"
+                className="block w-full h-full object-cover rounded-[5px]"
               />
             </div>
           </div>
@@ -191,7 +191,7 @@ function ContactsPage() {
 
 /*
   ContactForm - карточка с формой обратной связи.
-  Тёмный фон #4b372b, поля ввода #5d483c, placeholder #cfc6bb.
+  Тёмный фон #382a22, поля ввода #5a473b, placeholder #cfc6bb.
   Кнопка «Отправить» - стандартный стиль brown-button.
 */
 function ContactForm({
@@ -277,7 +277,7 @@ function ContactForm({
       onSubmit={handleSubmit}
       noValidate
       aria-hidden={ariaHidden}
-      className={`bg-[#4b372b] rounded-[10px] px-6 py-6 md:px-6 md:pt-10 md:pb-10 lg:px-14 lg:pt-[96px] lg:pb-[96px] ${className}`}
+      className={`bg-[#382a22] rounded-[5px] px-6 py-6 md:px-6 md:pt-10 md:pb-10 lg:px-14 lg:pt-[96px] lg:pb-[96px] ${className}`}
     >
       {/* Title fs 24 / lh 29 - по Figma HF_desktop_contacts.body.Group 1780.Group 1395 */}
       <h2 className="text-cream font-normal text-xl md:text-[22px] lg:text-2xl leading-[1.2]">
@@ -305,7 +305,7 @@ function ContactForm({
           autoComplete="name"
           aria-invalid={errors.name}
           className="
-            w-full mt-2 h-8 md:h-[49px] lg:h-[51px] px-4 rounded-[10px]
+            w-full mt-2 h-8 md:h-[49px] lg:h-[51px] px-4 rounded-[5px]
             bg-input-bg text-cream placeholder:text-placeholder placeholder:text-[13px] md:placeholder:text-base
             border-2 border-transparent text-[13px] md:text-base outline-none transition-colors
             hover:bg-input-bg-hover
@@ -339,7 +339,7 @@ function ContactForm({
         <span className="text-cream-dark text-base md:text-[17px] lg:text-lg">Сообщение</span>
         <div
           className="
-            mt-2 h-[76px] md:h-[100px] lg:h-[107px] px-4 py-2 md:py-4 rounded-[10px] overflow-hidden
+            mt-2 h-[76px] md:h-[100px] lg:h-[107px] px-4 py-2 md:py-4 rounded-[5px] overflow-hidden
             bg-input-bg border-2 border-transparent transition-colors
             hover:bg-input-bg-hover
             focus-within:border-input-border-focus
@@ -417,12 +417,12 @@ function ContactForm({
           flex items-center justify-center
           -mx-2 w-[calc(100%+16px)] h-[67px]
           md:mx-0 md:w-full lg:h-[54px]
-          mt-[33px] md:mt-10 lg:mt-6 rounded-[10px]
+          mt-[33px] md:mt-10 lg:mt-6
           bg-brown-button text-brown-dark font-medium
           text-base lg:text-lg uppercase tracking-wider
           transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
-          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#4b372b]
-          cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed
+          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#382a22]
+          rounded-[10px] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed
         "
       >
         {isSubmitting ? 'Отправка…' : 'Отправить'}
@@ -502,7 +502,7 @@ function PhoneInput({
       placeholder={PHONE_PLACEHOLDER_EXAMPLE}
       aria-invalid={invalid === true}
       className="
-        w-full mt-2 h-8 md:h-[49px] lg:h-[51px] px-4 rounded-[10px]
+        w-full mt-2 h-8 md:h-[49px] lg:h-[51px] px-4
         bg-input-bg text-cream placeholder:text-placeholder placeholder:text-[13px] md:placeholder:text-base
         border-2 border-transparent text-[13px] md:text-base outline-none transition-colors
         hover:bg-input-bg-hover

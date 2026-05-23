@@ -1,4 +1,4 @@
-/*
+﻿/*
   RegisterPage - страница «Регистрация».
   Карточка по центру: Имя, Email, Пароль, кнопка «Создать аккаунт».
   По успеху - JWT в localStorage и переход в /lk.
@@ -90,7 +90,7 @@ function RegisterPage() {
           noValidate
           className="
             w-full max-w-[592px] md:max-w-[788px] lg:max-w-[592px]
-            bg-[#4b372b] rounded-[10px]
+            bg-[#382a22] rounded-[5px]
             px-6 py-8 md:px-10 md:py-10 lg:px-14 lg:py-10
           "
         >
@@ -119,7 +119,7 @@ function RegisterPage() {
               placeholder="Введите свое имя"
               aria-invalid={errors.name}
               className="
-                w-full mt-2 h-8 md:h-[49px] lg:h-[51px] px-4 rounded-[10px]
+                w-full mt-2 h-8 md:h-[49px] lg:h-[51px] px-4 rounded-[5px]
                 bg-input-bg text-cream placeholder:text-placeholder placeholder:text-[13px] md:placeholder:text-base
                 border-2 border-transparent text-[13px] md:text-base outline-none transition-colors
                 hover:bg-input-bg-hover
@@ -154,7 +154,7 @@ function RegisterPage() {
               placeholder="example@email.com"
               aria-invalid={Boolean(errors.email)}
               className="
-                w-full mt-2 h-8 md:h-[49px] lg:h-[51px] px-4 rounded-[10px]
+                w-full mt-2 h-8 md:h-[49px] lg:h-[51px] px-4 rounded-[5px]
                 bg-input-bg text-cream placeholder:text-placeholder placeholder:text-[13px] md:placeholder:text-base
                 border-2 border-transparent text-[13px] md:text-base outline-none transition-colors
                 hover:bg-input-bg-hover
@@ -189,7 +189,7 @@ function RegisterPage() {
               placeholder="Введите свой пароль"
               aria-invalid={Boolean(errors.password)}
               className="
-                w-full mt-2 h-8 md:h-[49px] lg:h-[51px] px-4 rounded-[10px]
+                w-full mt-2 h-8 md:h-[49px] lg:h-[51px] px-4 rounded-[5px]
                 bg-input-bg text-cream placeholder:text-placeholder placeholder:text-[13px] md:placeholder:text-base
                 border-2 border-transparent text-[13px] md:text-base outline-none transition-colors
                 hover:bg-input-bg-hover
@@ -262,12 +262,12 @@ function RegisterPage() {
             className="
               flex items-center justify-center
               w-full h-[67px] md:h-[60px] lg:h-[54px]
-              mt-8 rounded-[10px]
+              mt-8
               bg-brown-button text-brown-dark font-medium
               text-base lg:text-lg uppercase tracking-wider
               transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#4b372b]
-              cursor-pointer disabled:opacity-60 disabled:cursor-wait
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#382a22]
+              rounded-[10px] cursor-pointer disabled:opacity-60 disabled:cursor-wait
             "
           >
             {isSubmitting ? 'Регистрируем...' : 'Зарегистрироваться'}

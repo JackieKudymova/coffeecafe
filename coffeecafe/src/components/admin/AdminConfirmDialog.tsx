@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+﻿import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 
 type Props = {
@@ -79,7 +79,7 @@ export default function AdminConfirmDialog({
         onClick={onCancel}
       />
       <div
-        className="relative w-full max-w-md rounded-[10px] border border-cream/15 bg-[#4b372b] px-6 py-6 shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
+        className="relative w-full max-w-md rounded-[10px] border border-cream/15 bg-[#382a22] px-6 py-6 shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
         onClick={(e) => e.stopPropagation()}
       >
         <h2 id="admin-confirm-title" className="font-heading text-xl text-cream">

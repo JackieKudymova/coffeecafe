@@ -1,4 +1,4 @@
-/*
+﻿/*
   AboutSection - секция «О нас» на главной.
   Десктоп: 12-колоночная сетка - фото (кол. 1-6), текст + кнопка (кол. 8-12).
   Мобилки: фото сверху, текст снизу.
@@ -17,7 +17,7 @@ function AboutSection() {
         <img
           src={aboutImg}
           alt="Бариста готовит кофе"
-          className="w-full h-[300px] md:h-[338px] object-cover rounded-[10px]"
+          className="w-full h-[300px] md:h-[338px] object-cover rounded-[5px]"
         />
 
         <h2 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-tight mt-8 uppercase">
@@ -35,11 +35,11 @@ function AboutSection() {
             to="/about"
             className="
               inline-flex items-center justify-center
-              bg-brown-button text-brown-dark font-medium
-              rounded-[10px] uppercase tracking-wider
-              transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
+              bg-transparent border border-[#FDD4A9] text-[#FDD4A9] font-medium
+              uppercase tracking-wider
+              transition-colors hover:border-[#FFC68A] hover:text-[#FFC68A] active:border-[#EDC091] active:text-[#EDC091]
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
-              text-base min-h-[67px] w-full
+              text-base min-h-[67px] w-full rounded-[10px]
               md:min-h-[67px] md:w-[386px] md:h-[67px]
             "
           >
@@ -59,7 +59,7 @@ function AboutSection() {
           <img
             src={aboutImg}
             alt="Бариста готовит кофе"
-            className="w-full h-auto object-contain rounded-[10px]"
+            className="w-full h-auto object-contain rounded-[5px]"
           />
         </div>
 
@@ -89,11 +89,11 @@ function AboutSection() {
               to="/about"
               className="
                 inline-flex items-center justify-center
-                bg-brown-button text-brown-dark font-medium
-                rounded-[10px] uppercase tracking-wider
-                transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
+                bg-transparent border border-[#FDD4A9] text-[#FDD4A9] font-medium
+                uppercase tracking-wider
+                transition-colors hover:border-[#FFC68A] hover:text-[#FFC68A] active:border-[#EDC091] active:text-[#EDC091]
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
-                text-lg w-[280px] h-[54px]
+                text-lg w-[280px] h-[54px] rounded-[10px]
               "
             >
               Подробнее

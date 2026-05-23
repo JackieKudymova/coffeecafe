@@ -1,4 +1,4 @@
-/*
+﻿/*
   MenuPage - страница «Меню».
   Полное меню кофейни с табами по разделам и фильтром по аллергенам.
   Данные загружаются через menuService (сейчас моковые, потом из API).
@@ -26,8 +26,16 @@ import milkIcon from '../assets/images/Milk Bottle.png'
 import glutenIcon from '../assets/images/Gluten.png'
 import eggIcon from '../assets/images/Egg.png'
 
+const SLUG_TO_NAME: Record<string, string> = {
+  coffee: 'Кофе',
+  tea: 'Чай',
+  desserts: 'Десерты',
+  bakery: 'Выпечка',
+}
+
 function MenuPage() {
   const [searchParams] = useSearchParams()
+  const categoryId = searchParams.get(MENU_CATEGORY_QUERY_KEY)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [categories, setCategories] = useState<MenuCategory[]>([])
   const [activeTab, setActiveTab] = useState(0)
@@ -35,15 +43,16 @@ function MenuPage() {
   const [allergens, setAllergens] = useState<Allergen[]>([])
 
   useEffect(() => {
-    const categoryId = searchParams.get(MENU_CATEGORY_QUERY_KEY)
     fetchMenu().then((data) => {
       setCategories(data)
-      if (categoryId) {
-        const idx = data.findIndex((c) => c.id === categoryId)
-        if (idx >= 0) setActiveTab(idx)
-      }
+      const idx = categoryId
+        ? data.findIndex(
+            (c) => c.id === categoryId || c.name === SLUG_TO_NAME[categoryId],
+          )
+        : -1
+      setActiveTab(idx >= 0 ? idx : 0)
     })
-  }, [searchParams])
+  }, [categoryId])
 
   const activeCategory = categories[activeTab]
 
@@ -87,7 +96,7 @@ function MenuPage() {
         {categories.length > 0 && (
           <div className="mt-8 md:mt-8 lg:mt-12 overflow-x-auto scrollbar-hide">
             {/* Базовая линия - border контейнера; золотая полоска активного таба - span, на узком экране удлинена в половину gap-x-4 */}
-            <div className="flex w-max min-w-full min-[520px]:w-full gap-x-4 min-[520px]:gap-0 border-b-2 border-[#4b372b]">
+            <div className="flex w-max min-w-full min-[520px]:w-full gap-x-4 min-[520px]:gap-0 border-b-2 border-[#382a22]">
               {categories.map((cat, i) => (
                 <button
                   key={cat.id}
@@ -98,7 +107,7 @@ function MenuPage() {
                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg
                     ${i === activeTab
                       ? 'text-cream font-medium border-transparent z-[1]'
-                      : 'text-cream font-normal border-transparent hover:border-[#4b372b] hover:font-medium active:text-cream'
+                      : 'text-cream font-normal border-transparent hover:border-[#382a22] hover:font-medium active:text-cream'
                     }
                   `}
                 >
@@ -107,7 +116,7 @@ function MenuPage() {
                     <span
                       aria-hidden
                       className={[
-                        'pointer-events-none absolute -bottom-0.5 z-[1] h-0.5 bg-[#c49a6c]',
+                        'pointer-events-none absolute -bottom-0.5 z-[1] h-0.5 bg-[#FDD4A9]',
                         'min-[520px]:left-0 min-[520px]:right-0',
                         i > 0 ? 'max-[519px]:-left-2' : 'max-[519px]:left-0',
                         i < categories.length - 1 ? 'max-[519px]:-right-2' : 'max-[519px]:right-0',
@@ -178,7 +187,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
         На тач-устройствах состав показывается через состояние tapOpen.
       */}
       <div
-        className="group/photo relative aspect-[3/2] overflow-hidden rounded-[10px]"
+        className="group/photo relative aspect-[3/2] rounded-[5px] overflow-hidden"
         onClick={() => {
           if (hasIngredients) setTapOpen((v) => !v)
         }}
@@ -203,7 +212,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
         {hasIngredients && (
           <div
             className={`
-              absolute inset-0 bg-[#cfc6bb] rounded-[10px] flex flex-col p-4 lg:p-6
+              absolute inset-0 bg-[#A6937F] rounded-[10px] flex flex-col p-4 lg:p-6
               overflow-y-auto transition-opacity duration-200
               ${tapOpen ? 'opacity-100' : 'opacity-0'}
               lg:opacity-0 lg:group-hover/photo:opacity-100

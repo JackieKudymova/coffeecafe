@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+﻿import { useCallback, useEffect, useState } from 'react'
 import {
   createItem,
   deleteItem,
@@ -279,7 +279,7 @@ export default function AdminItems() {
           key={editingId}
           onSubmit={(e) => void saveItem(e)}
           noValidate
-          className="mb-8 rounded-[10px] border border-cream/15 bg-[#4b372b] p-6 space-y-4"
+          className="mb-8 rounded-[10px] border border-cream/15 bg-[#382a22] p-6 space-y-4"
         >
           <p className="text-cream text-2xl leading-[29px]">
             {editingId === 'new' ? 'Новая позиция' : 'Редактирование'}
@@ -415,7 +415,7 @@ export default function AdminItems() {
           <p className="text-cream-dark">Загрузка…</p>
         ) : (
           <AdminTable>
-            <thead className="bg-[#5d483c] text-cream text-sm uppercase tracking-wider">
+            <thead className="bg-[#5a473b] text-cream text-sm uppercase tracking-wider">
               <tr>
                 <th className="p-3 font-medium">ID</th>
                 <th className="p-3 font-medium">Название</th>

@@ -1,4 +1,4 @@
-/*
+﻿/*
   GallerySection - блок «Ждем вас в гости».
   Десктоп: сетка 3×2.
   480-1024: сетка 2×3.
@@ -63,7 +63,7 @@ function GallerySection() {
 
       {/* Мобилка < 480px: scroll-snap карусель */}
       <div className="min-[480px]:hidden mt-8 px-4">
-        <div className="relative rounded-[10px] overflow-hidden">
+        <div className="relative overflow-hidden">
           <div
             ref={scrollRef}
             className="overflow-x-auto snap-x snap-mandatory scrollbar-hide flex"
@@ -74,7 +74,7 @@ function GallerySection() {
                 key={photo.alt}
                 src={photo.src}
                 alt={photo.alt}
-                className="snap-center shrink-0 w-full h-[240px] object-cover"
+                className="snap-center shrink-0 w-full h-[240px] object-cover rounded-[5px]"
               />
             ))}
           </div>
@@ -100,28 +100,39 @@ function GallerySection() {
         </div>
       </div>
 
-      {/* 480-1024px: сетка 2×3. На планшете (md+) карточки 386×480, gap 16 (как в Figma) */}
+      {/* 480-1024px: 2 колонки с кастомными пропорциями */}
       <div className="hidden min-[480px]:grid lg:hidden grid-cols-2 gap-4 mt-8 px-4">
-        {photos.map((photo) => (
-          <img
-            key={photo.alt}
-            src={photo.src}
-            alt={photo.alt}
-            className="w-full aspect-[1/1] md:aspect-[386/480] object-cover rounded-[10px]"
-          />
-        ))}
+        {/* Колонка 1 */}
+        <div className="flex flex-col gap-4">
+          <img src={galleryEspresso} alt="Приготовление эспрессо" className="w-full aspect-[386/537] object-cover rounded-[5px]" />
+          <img src={galleryCroissants} alt="Круассаны и кофе" className="w-full aspect-[386/362] object-cover rounded-[5px]" />
+          <img src={galleryLatte} alt="Латте-арт" className="w-full aspect-[386/541] object-cover rounded-[5px]" />
+        </div>
+        {/* Колонка 2 */}
+        <div className="flex flex-col gap-4">
+          <img src={galleryInterior} alt="Интерьер кафе" className="w-full aspect-[386/256] object-cover rounded-[5px]" />
+          <img src={galleryBarista} alt="Бариста" className="w-full aspect-[386/447] object-cover rounded-[5px]" />
+          <img src={galleryCounter} alt="Барная стойка" className="w-full aspect-[386/737] object-cover rounded-[5px]" />
+        </div>
       </div>
 
-      {/* Десктоп: сетка 3×2 */}
-      <div className="hidden lg:grid grid-cols-3 gap-8 mt-[72px] px-16 xl:px-28">
-        {photos.map((photo) => (
-          <img
-            key={photo.alt}
-            src={photo.src}
-            alt={photo.alt}
-            className="w-full aspect-[384/480] object-cover rounded-[10px]"
-          />
-        ))}
+      {/* Десктоп: 3 колонки, у каждой фото свои пропорции */}
+      <div className="hidden lg:grid grid-cols-3 gap-4 mt-[72px] px-16 xl:px-28">
+        {/* Колонка 1 */}
+        <div className="flex flex-col gap-4">
+          <img src={galleryEspresso} alt="Приготовление эспрессо" className="w-full aspect-[384/320] object-cover rounded-[5px]" />
+          <img src={galleryBarista} alt="Бариста" className="w-full aspect-[384/668] object-cover rounded-[5px]" />
+        </div>
+        {/* Колонка 2 */}
+        <div className="flex flex-col gap-4">
+          <img src={galleryInterior} alt="Интерьер кафе" className="w-full aspect-[384/582] object-cover rounded-[5px]" />
+          <img src={galleryCroissants} alt="Круассаны и кофе" className="w-full aspect-[384/406] object-cover rounded-[5px]" />
+        </div>
+        {/* Колонка 3 */}
+        <div className="flex flex-col gap-4">
+          <img src={galleryLatte} alt="Латте-арт" className="w-full aspect-[384/494] object-cover rounded-[5px]" />
+          <img src={galleryCounter} alt="Барная стойка" className="w-full aspect-[384/494] object-cover rounded-[5px]" />
+        </div>
       </div>
     </section>
   )
