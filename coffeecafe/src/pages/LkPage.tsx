@@ -59,7 +59,7 @@ function LkPage() {
       */}
       <main className="px-4 lg:px-16 xl:px-28 pt-[57px] md:pt-[67px] lg:pt-[77px] min-h-[calc(100vh-57px)] md:min-h-screen lg:min-h-screen flex flex-col items-center justify-center text-center">
         <div className="w-full flex flex-col items-center">
-        <h1 className="font-heading font-normal text-cream text-[24px] md:text-[40px] lg:text-[36px] leading-tight uppercase">
+        <h1 className="font-heading font-normal text-cream text-[24px] md:text-[40px] lg:text-[36px] leading-tight uppercase tracking-[0.02em]">
           Личный кабинет
         </h1>
 
@@ -73,7 +73,7 @@ function LkPage() {
               Ваш QR-код для скидки
             </p>
 
-            <div className="bg-white rounded-[10px] p-4 mt-3 md:mt-4 lg:mt-4">
+            <div className="bg-white rounded-[5px] p-4 mt-3 md:mt-4 lg:mt-4">
               <QRCode
                 value={user.client_code}
                 size={180}
@@ -96,7 +96,7 @@ function LkPage() {
                 text-base lg:text-lg uppercase tracking-wider
                 transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg
-                rounded-[10px] cursor-pointer
+                rounded-[5px] cursor-pointer
               "
             >
               Выйти

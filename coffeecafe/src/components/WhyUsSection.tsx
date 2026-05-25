@@ -37,7 +37,7 @@ function WhyUsSection() {
   return (
     <section className="bg-brown-bg pt-12 lg:pt-24">
       <div className="px-6 md:px-4 lg:px-16 xl:px-28">
-        <h2 className="font-heading font-normal text-cream text-[24px] md:text-[32px] lg:text-[36px] leading-tight text-center md:text-left uppercase">
+        <h2 className="font-heading font-normal text-cream text-[24px] md:text-[32px] lg:text-[36px] leading-tight text-center md:text-left uppercase tracking-[0.02em]">
           Почему мы
         </h2>
 

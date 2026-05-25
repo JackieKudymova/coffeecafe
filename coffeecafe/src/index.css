@@ -1,5 +1,12 @@
 ﻿@import "tailwindcss";
 
+@font-face {
+  font-family: 'ArticaPro';
+  src: url('./assets/fonts/ArticaPro.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /*
   @theme - конфигурация Tailwind v4 через CSS.
   Здесь определяем кастомные цвета и шрифты проекта из макета Figma.
@@ -13,7 +20,7 @@
     нет публичной версии с кириллицей. Nunito - бесплатный открытый
     шрифт с полной поддержкой кириллицы и аналогичным округлым гротеском.
   */
-  --font-heading: 'Nunito', sans-serif;
+  --font-heading: 'ArticaPro', sans-serif;
 
   --color-cream: #faf6f0;
   --color-cream-dark: #efe7dd;

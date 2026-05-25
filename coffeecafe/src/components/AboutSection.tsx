@@ -20,7 +20,7 @@ function AboutSection() {
           className="w-full h-[300px] md:h-[338px] object-cover rounded-[5px]"
         />
 
-        <h2 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-tight mt-8 uppercase">
+        <h2 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-tight mt-8 uppercase tracking-[0.02em]">
           О нас
         </h2>
 
@@ -39,7 +39,7 @@ function AboutSection() {
               uppercase tracking-wider
               transition-colors hover:border-[#FFC68A] hover:text-[#FFC68A] active:border-[#EDC091] active:text-[#EDC091]
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
-              text-base min-h-[67px] w-full rounded-[10px]
+              text-base min-h-[67px] w-full rounded-[5px]
               md:min-h-[67px] md:w-[386px] md:h-[67px]
             "
           >
@@ -66,7 +66,7 @@ function AboutSection() {
         {/* Текст + кнопка - оставшиеся 6 колонок, по вертикальному центру картинки */}
         <div className="col-span-6 self-center">
           {/* На десктопе по макету - заглавными буквами (на планшете/мобилке обычно) */}
-          <h2 className="font-heading font-normal text-cream text-[36px] leading-tight uppercase">
+          <h2 className="font-heading font-normal text-cream text-[36px] leading-tight uppercase tracking-[0.02em]">
             О нас
           </h2>
 
@@ -93,7 +93,7 @@ function AboutSection() {
                 uppercase tracking-wider
                 transition-colors hover:border-[#FFC68A] hover:text-[#FFC68A] active:border-[#EDC091] active:text-[#EDC091]
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
-                text-lg w-[280px] h-[54px] rounded-[10px]
+                text-lg w-[280px] h-[54px] rounded-[5px]
               "
             >
               Подробнее

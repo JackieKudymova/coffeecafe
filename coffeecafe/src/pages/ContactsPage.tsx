@@ -39,7 +39,7 @@ function ContactsPage() {
 
         {/* Мобилка + планшет: одна колонка */}
         <div className="lg:hidden pb-[50px] md:pb-14">
-          <h1 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-tight uppercase">
+          <h1 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-tight uppercase tracking-[0.02em]">
             Контакты
           </h1>
 
@@ -112,7 +112,7 @@ function ContactsPage() {
             формы - карта остаётся 225px (макет Figma).
           */}
           <div className="col-span-6 flex flex-col">
-            <h1 className="font-heading font-normal text-cream text-[36px] leading-tight uppercase">
+            <h1 className="font-heading font-normal text-cream text-[36px] leading-tight uppercase tracking-[0.02em]">
               Контакты
             </h1>
 
@@ -422,7 +422,7 @@ function ContactForm({
           text-base lg:text-lg uppercase tracking-wider
           transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#382a22]
-          rounded-[10px] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed
+          rounded-[5px] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed
         "
       >
         {isSubmitting ? 'Отправка…' : 'Отправить'}

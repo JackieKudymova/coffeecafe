@@ -88,7 +88,7 @@ function MenuPage() {
 
       <main className="px-4 lg:px-16 xl:px-28 pt-[88px] md:pt-[97px] lg:pt-[149px] pb-12 lg:pb-[97px]">
         {/* Заголовок */}
-        <h1 className="font-heading font-normal text-cream text-[24px] md:text-[32px] lg:text-[36px] leading-tight uppercase">
+        <h1 className="font-heading font-normal text-cream text-[24px] md:text-[32px] lg:text-[36px] leading-tight uppercase tracking-[0.02em]">
           Меню
         </h1>
 
@@ -212,7 +212,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
         {hasIngredients && (
           <div
             className={`
-              absolute inset-0 bg-[#A6937F] rounded-[10px] flex flex-col p-4 lg:p-6
+              absolute inset-0 bg-[#A6937F] rounded-[5px] flex flex-col p-4 lg:p-6
               overflow-y-auto transition-opacity duration-200
               ${tapOpen ? 'opacity-100' : 'opacity-0'}
               lg:opacity-0 lg:group-hover/photo:opacity-100

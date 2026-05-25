@@ -150,7 +150,7 @@ function Footer() {
                 <rect
                   width="48"
                   height="48"
-                  rx="5"
+                  rx="2"
                   className="fill-brown-button transition-[fill] duration-150 ease-out group-hover:fill-brown-button-hover group-active:fill-brown-button-active"
                 />
                 <path

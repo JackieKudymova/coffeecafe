@@ -68,7 +68,7 @@ export default function AdminUsers() {
         <button
           type="submit"
           className="
-            h-10 px-6 rounded-[10px] bg-brown-button text-brown-dark font-medium uppercase text-sm tracking-wider
+            h-10 px-6 rounded-[5px] bg-brown-button text-brown-dark font-medium uppercase text-sm tracking-wider
             transition-colors hover:bg-brown-button-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50
           "
         >
@@ -83,7 +83,7 @@ export default function AdminUsers() {
               setPage(1)
             }}
             className="
-              h-10 px-6 rounded-[10px] border border-cream/30 text-cream text-sm
+              h-10 px-6 rounded-[5px] border border-cream/30 text-cream text-sm
               transition-colors hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/25
             "
           >

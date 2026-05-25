@@ -179,7 +179,7 @@ export default function AdminNews() {
           type="button"
           onClick={startCreate}
           className="
-            mb-6 h-10 px-6 rounded-[10px] bg-brown-button text-brown-dark font-medium uppercase text-sm tracking-wider
+            mb-6 h-10 px-6 rounded-[5px] bg-brown-button text-brown-dark font-medium uppercase text-sm tracking-wider
             transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50
           "
@@ -193,7 +193,7 @@ export default function AdminNews() {
           key={editingId}
           onSubmit={(e) => void save(e)}
           noValidate
-          className="mb-8 rounded-[10px] border border-cream/15 bg-[#382a22] p-6 space-y-4"
+          className="mb-8 rounded-[5px] border border-cream/15 bg-[#382a22] p-6 space-y-4"
         >
           <p className="text-cream text-2xl leading-[29px]">{editingId === 'new' ? 'Новая новость' : 'Редактирование'}</p>
           <div>
@@ -251,7 +251,7 @@ export default function AdminNews() {
             <button
               type="submit"
               className="
-                h-11 px-6 rounded-[10px] bg-brown-button text-brown-dark font-medium uppercase text-sm
+                h-11 px-6 rounded-[5px] bg-brown-button text-brown-dark font-medium uppercase text-sm
                 transition-colors hover:bg-brown-button-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50
               "
             >
@@ -261,7 +261,7 @@ export default function AdminNews() {
               type="button"
               onClick={cancelEdit}
               className="
-                h-11 px-6 rounded-[10px] border border-cream/30 text-cream text-sm
+                h-11 px-6 rounded-[5px] border border-cream/30 text-cream text-sm
                 transition-colors hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/25
               "
             >

@@ -25,7 +25,7 @@ function HeroSection() {
 
       {/* Контент — центрируется в пространстве под шапкой */}
       <div className="relative z-10 px-4 lg:px-16 xl:px-28 w-full flex-1 flex flex-col justify-center md:justify-end md:pb-[104px]">
-        <h1 className="font-heading font-normal text-cream text-[34px] leading-[1.33] md:text-[40px] md:leading-[53px] lg:text-[48px] lg:leading-[64px] tracking-[0.68px] md:tracking-[0.8px] lg:tracking-[0.96px] uppercase text-center min-[480px]:text-left max-w-[358px] md:max-w-none mx-auto min-[480px]:mx-0">
+        <h1 className="font-heading font-normal text-cream text-[34px] leading-[1.33] md:text-[40px] md:leading-[53px] lg:text-[56px] lg:leading-[70px] tracking-[0.02em] uppercase text-center min-[480px]:text-left max-w-[358px] md:max-w-none mx-auto min-[480px]:mx-0">
           Больше, чем просто кофе
         </h1>
 
@@ -44,7 +44,7 @@ function HeroSection() {
               text-base leading-[19px] py-6 w-full max-w-[358px]
               md:inline-flex md:items-center md:justify-center md:py-0 md:leading-normal md:w-[386px] md:max-w-none md:h-[67px]
               lg:inline-flex lg:items-center lg:justify-center
-              lg:text-lg lg:py-0 lg:w-[280px] lg:h-[54px] rounded-[10px]
+              lg:text-lg lg:py-0 lg:w-[280px] lg:h-[54px] rounded-[5px]
             "
           >
             Смотреть меню

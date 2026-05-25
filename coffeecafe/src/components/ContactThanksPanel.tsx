@@ -17,7 +17,7 @@ interface ContactThanksPanelProps {
 function ThanksCard({ onClose }: { onClose: () => void }) {
   return (
     <div
-      className="w-full max-w-[358px] md:max-w-[567px] lg:max-w-[579px] rounded-[10px] bg-[#A6937F] text-brown-dark px-4 py-14 md:px-14 md:py-12 lg:px-12 lg:py-12"
+      className="w-full max-w-[358px] md:max-w-[567px] lg:max-w-[579px] rounded-[5px] bg-[#A6937F] text-brown-dark px-4 py-14 md:px-14 md:py-12 lg:px-12 lg:py-12"
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-thanks-title"
@@ -58,6 +58,7 @@ function ThanksCard({ onClose }: { onClose: () => void }) {
             lg:h-[54px] lg:max-w-[280px] lg:text-lg
             transition-colors hover:border-[#FFC68A] hover:text-[#FFC68A] active:border-[#EDC091] active:text-[#EDC091]
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FDD4A9]/30
+            rounded-[5px]
           "
         >
           понятно

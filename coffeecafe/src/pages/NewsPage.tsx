@@ -54,7 +54,7 @@ function NewsPage() {
       />
 
       <main className="px-4 lg:px-16 xl:px-28 pt-[88px] lg:pt-[149px] pb-12 md:pb-14 lg:pb-[97px]">
-        <h1 className="font-heading font-normal text-cream text-[24px] lg:text-[36px] leading-tight uppercase">
+        <h1 className="font-heading font-normal text-cream text-[24px] lg:text-[36px] leading-tight uppercase tracking-[0.02em]">
           Новости и акции
         </h1>
 
@@ -117,7 +117,7 @@ function NewsCard({ article }: { article: NewsArticle }) {
 
       <Link
         to={`/news/${encodeURIComponent(article.id)}`}
-        className="mt-8 md:mt-6 lg:mt-[35px] flex w-full min-h-[67px] shrink-0 items-center justify-center bg-transparent border border-[#FDD4A9] text-[#FDD4A9] px-4 text-center text-base font-medium uppercase tracking-wider transition-colors hover:border-[#FFC68A] hover:text-[#FFC68A] active:border-[#EDC091] active:text-[#EDC091] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg lg:min-h-[54px] lg:w-full lg:text-lg rounded-[10px]"
+        className="mt-8 md:mt-6 lg:mt-[35px] flex w-full min-h-[67px] shrink-0 items-center justify-center bg-transparent border border-[#FDD4A9] text-[#FDD4A9] px-4 text-center text-base font-medium uppercase tracking-wider transition-colors hover:border-[#FFC68A] hover:text-[#FFC68A] active:border-[#EDC091] active:text-[#EDC091] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg lg:min-h-[54px] lg:w-full lg:text-lg rounded-[5px]"
       >
         Подробнее
       </Link>

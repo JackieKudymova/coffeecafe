@@ -19,7 +19,7 @@ function AuthPromoSection() {
       <div className="px-4 md:px-6 lg:px-16 py-14 md:py-10 lg:py-16">
         <div className="mx-auto max-w-[358px] md:max-w-[760px] lg:max-w-[860px] flex flex-col items-center text-center">
           {/* Капс на всех брейкпоинтах (по правке от дизайнера). */}
-          <h2 className="font-heading font-normal text-cream uppercase text-[24px] leading-[31px] md:text-[32px] md:leading-[42px] lg:text-[36px] lg:leading-[47px]">
+          <h2 className="font-heading font-normal text-cream uppercase text-[24px] leading-[31px] md:text-[32px] md:leading-[42px] lg:text-[36px] lg:leading-[48px] tracking-[0.02em]">
             Личный кабинет с постоянной скидкой
           </h2>
 
@@ -37,7 +37,7 @@ function AuthPromoSection() {
               uppercase tracking-wider transition-colors
               hover:bg-brown-button-hover active:bg-brown-button-active
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#382a22]
-              text-base lg:text-lg rounded-[10px]
+              text-base lg:text-lg rounded-[5px]
               w-full h-[67px]
               md:w-[386px] md:h-[67px]
               lg:w-[280px] lg:h-[54px]

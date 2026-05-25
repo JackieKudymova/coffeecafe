@@ -37,7 +37,7 @@ function NotFoundPage() {
           "
         >
         <div className="mx-auto w-full max-w-[384px] text-center lg:pb-5">
-          <h1 className="font-heading text-[24px] font-normal leading-[31px] text-cream lg:text-[36px] lg:leading-[48px] uppercase">
+          <h1 className="font-heading text-[24px] font-normal leading-[31px] text-cream lg:text-[36px] lg:leading-[48px] uppercase tracking-[0.02em]">
             Ошибка 404
           </h1>
           <p className="mt-4 text-base font-normal leading-[19px] text-cream-dark lg:mt-8 lg:text-lg lg:leading-[22px]">

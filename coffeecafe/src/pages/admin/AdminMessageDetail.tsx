@@ -7,7 +7,7 @@ function DetailField({ label, children }: { label: string; children: React.React
   return (
     <div>
       <span className="block text-sm text-cream-dark leading-[22px]">{label}</span>
-      <div className="mt-2 min-h-[51px] rounded-[10px] border-2 border-transparent bg-input-bg px-4 py-3 text-base text-cream">
+      <div className="mt-2 min-h-[51px] rounded-[5px] border-2 border-transparent bg-input-bg px-4 py-3 text-base text-cream">
         {children}
       </div>
     </div>
@@ -64,7 +64,7 @@ export default function AdminMessageDetail() {
       {loading ? (
         <p className="text-cream-dark">Загрузка…</p>
       ) : row ? (
-        <div className="rounded-[10px] border border-cream/15 bg-[#382a22] p-6 space-y-4">
+        <div className="rounded-[5px] border border-cream/15 bg-[#382a22] p-6 space-y-4">
           <div className="flex items-center gap-3">
             <AdminCheckbox
               checked={row.is_read}
@@ -85,7 +85,7 @@ export default function AdminMessageDetail() {
             </DetailField>
             <div>
               <span className="block text-sm text-cream-dark leading-[22px]">Сообщение</span>
-              <div className="mt-2 min-h-[120px] rounded-[10px] border-2 border-transparent bg-input-bg px-4 py-3 text-base leading-[22px] text-cream whitespace-pre-wrap break-words">
+              <div className="mt-2 min-h-[120px] rounded-[5px] border-2 border-transparent bg-input-bg px-4 py-3 text-base leading-[22px] text-cream whitespace-pre-wrap break-words">
                 {row.message?.trim() ? row.message : '-'}
               </div>
             </div>
@@ -96,7 +96,7 @@ export default function AdminMessageDetail() {
               type="button"
               onClick={() => navigate('/admin/messages')}
               className="
-                h-11 px-6 rounded-[10px] border border-cream/30 text-sm text-cream
+                h-11 px-6 rounded-[5px] border border-cream/30 text-sm text-cream
                 transition-colors hover:bg-white/[0.06]
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/25
               "

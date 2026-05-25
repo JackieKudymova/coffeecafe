@@ -44,7 +44,7 @@ function AboutPage() {
 
         {/* === Мобилка / планшет: однопотоково === */}
         <div className="lg:hidden">
-          <h1 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-[33px] md:leading-[44px] uppercase">
+          <h1 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-[33px] md:leading-[44px] uppercase tracking-[0.02em]">
             О нас
           </h1>
 
@@ -113,7 +113,7 @@ function AboutPage() {
 
             {/* Левая колонка: h1 «О нас» + раздел 1 + большое фото латте-арт */}
             <div className="flex-1">
-              <h1 className="font-heading font-normal text-cream text-[36px] leading-[49px] uppercase">
+              <h1 className="font-heading font-normal text-cream text-[36px] leading-[48px] uppercase tracking-[0.02em]">
                 О нас
               </h1>
               <h2 className="text-cream font-normal text-2xl leading-[29px] mt-[46px]">
@@ -165,7 +165,7 @@ function AboutPage() {
               className="w-full h-[462px] object-cover opacity-50 rounded-t-[5px]"
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <p className="font-heading font-normal text-cream text-[36px] leading-[49px] text-center uppercase max-w-[672px]">
+              <p className="font-heading font-normal text-cream text-[36px] leading-[48px] text-center uppercase tracking-[0.02em] max-w-[672px]">
                 ДомКофе - пауза в ритме города
               </p>
             </div>

@@ -2,7 +2,7 @@
 import { clearAdminToken } from '../../services/adminService'
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
-  `block rounded-[10px] px-4 py-3 text-sm lg:text-base transition-colors ${
+  `block rounded-[5px] px-4 py-3 text-sm lg:text-base transition-colors ${
     isActive
       ? 'bg-brown-button text-brown-dark font-medium'
       : 'text-cream-dark hover:bg-[#5a473b] hover:text-cream'
@@ -58,7 +58,7 @@ export default function AdminSidebar({ mobileOpen, onMobileClose }: Props) {
       <button
         type="button"
         onClick={logout}
-        className="mt-6 mx-4 shrink-0 rounded-[10px] border border-cream/25 px-4 py-3 text-sm text-cream-dark transition-colors hover:bg-[#5a473b] hover:text-cream lg:mt-10 w-[calc(100%-2rem)]"
+        className="mt-6 mx-4 shrink-0 rounded-[5px] border border-cream/25 px-4 py-3 text-sm text-cream-dark transition-colors hover:bg-[#5a473b] hover:text-cream lg:mt-10 w-[calc(100%-2rem)]"
       >
         Выйти
       </button>

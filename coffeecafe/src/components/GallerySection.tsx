@@ -56,7 +56,7 @@ function GallerySection() {
   return (
     <section className="pt-12 pb-6 lg:pt-24 lg:pb-12">
       <div className="px-4 lg:px-16 xl:px-28">
-        <h2 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-tight text-center min-[480px]:text-left lg:text-[36px] lg:leading-[48px] uppercase">
+        <h2 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-tight text-center min-[480px]:text-left lg:text-[36px] lg:leading-[48px] uppercase tracking-[0.02em]">
           Ждем вас в гости
         </h2>
       </div>

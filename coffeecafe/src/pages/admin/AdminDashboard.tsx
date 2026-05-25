@@ -3,7 +3,7 @@ import { fetchAdminStats, type AdminStats } from '../../services/adminService'
 
 function StatCard({ title, value }: { title: string; value: number }) {
   return (
-    <div className="rounded-[10px] bg-[#382a22] border border-cream/15 px-6 py-6">
+    <div className="rounded-[5px] bg-[#382a22] border border-cream/15 px-6 py-6">
       <p className="text-cream-dark text-sm uppercase tracking-wider">{title}</p>
       <p className="font-heading text-4xl text-cream mt-2">{value}</p>
     </div>

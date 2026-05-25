@@ -79,7 +79,7 @@ export default function AdminConfirmDialog({
         onClick={onCancel}
       />
       <div
-        className="relative w-full max-w-md rounded-[10px] border border-cream/15 bg-[#382a22] px-6 py-6 shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
+        className="relative w-full max-w-md rounded-[5px] border border-cream/15 bg-[#382a22] px-6 py-6 shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
         onClick={(e) => e.stopPropagation()}
       >
         <h2 id="admin-confirm-title" className="font-heading text-xl text-cream">
@@ -93,7 +93,7 @@ export default function AdminConfirmDialog({
             type="button"
             onClick={onCancel}
             className="
-              h-11 min-w-[120px] rounded-[10px] border border-cream/30 px-5 text-sm text-cream
+              h-11 min-w-[120px] rounded-[5px] border border-cream/30 px-5 text-sm text-cream
               transition-colors hover:bg-white/[0.06]
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/25
             "
@@ -104,7 +104,7 @@ export default function AdminConfirmDialog({
             type="button"
             onClick={onConfirm}
             className="
-              h-11 min-w-[120px] rounded-[10px] bg-[#8b3d36] px-5 text-sm font-medium text-cream
+              h-11 min-w-[120px] rounded-[5px] bg-[#8b3d36] px-5 text-sm font-medium text-cream
               transition-colors hover:bg-[#a34d45]
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/30
             "

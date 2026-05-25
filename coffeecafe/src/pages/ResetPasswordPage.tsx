@@ -86,7 +86,7 @@ function ResetPasswordPage() {
               <Link
                 to="/login"
                 className="
-                  inline-flex items-center justify-center rounded-[10px] mt-8 md:mt-10 lg:mt-8
+                  inline-flex items-center justify-center rounded-[5px] mt-8 md:mt-10 lg:mt-8
                   w-full lg:w-[280px] h-[67px] md:h-[60px] lg:h-[54px]
                   bg-brown-button text-brown-dark font-medium
                   text-base lg:text-lg uppercase tracking-wider
@@ -154,7 +154,7 @@ function ResetPasswordPage() {
                   text-base lg:text-lg uppercase tracking-wider
                   transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#382a22]
-                  rounded-[10px] cursor-pointer disabled:opacity-60 disabled:cursor-wait
+                  rounded-[5px] cursor-pointer disabled:opacity-60 disabled:cursor-wait
                 "
               >
                 {isSubmitting ? 'Отправляем...' : 'Отправить'}

@@ -57,7 +57,7 @@ function ReviewsSection() {
   return (
     <section className="pt-6 pb-[45px] md:pb-[56px] lg:pt-12 lg:pb-24">
       <div className="px-4 lg:px-16 xl:px-28">
-        <h2 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-tight text-center min-[480px]:text-left lg:text-[36px] lg:leading-[48px] uppercase">
+        <h2 className="font-heading font-normal text-cream text-[24px] md:text-[32px] leading-tight text-center min-[480px]:text-left lg:text-[36px] lg:leading-[48px] uppercase tracking-[0.02em]">
           Отзывы
         </h2>
       </div>
@@ -147,7 +147,7 @@ function ReviewsSection() {
             uppercase tracking-wider transition-colors
             hover:bg-brown-button-hover active:bg-brown-button-active
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
-            text-base lg:text-lg rounded-[10px]
+            text-base lg:text-lg rounded-[5px]
             w-full h-[67px]
             md:w-[386px] md:h-[67px]
             lg:w-[280px] lg:h-[56px]

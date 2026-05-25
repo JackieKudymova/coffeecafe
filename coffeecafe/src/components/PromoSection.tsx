@@ -43,7 +43,7 @@ function PromoSection() {
           mt-6 на параграфе = ровно 24px от низа заголовка независимо
           от того, в одну он строку или в две (по макету Figma).
         */}
-        <h2 className="font-heading font-normal text-cream text-[24px] leading-[33px] md:text-[32px] md:leading-tight lg:text-[36px] lg:leading-[48px] uppercase break-words">
+        <h2 className="font-heading font-normal text-cream text-[24px] leading-[33px] md:text-[32px] md:leading-tight lg:text-[36px] lg:leading-[48px] uppercase tracking-[0.02em] break-words">
           {promo.title}
         </h2>
 
@@ -57,7 +57,7 @@ function PromoSection() {
             className="inline-block bg-transparent border border-[#FDD4A9] text-[#FDD4A9] font-medium text-center uppercase tracking-wider transition-colors hover:border-[#FFC68A] hover:text-[#FFC68A] active:border-[#EDC091] active:text-[#EDC091] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
               text-base leading-[19px] py-6 w-full
               min-[480px]:text-lg min-[480px]:leading-normal min-[480px]:py-0 min-[480px]:w-[280px] min-[480px]:h-[54px] min-[480px]:inline-flex min-[480px]:items-center min-[480px]:justify-center
-              md:text-base md:w-[386px] md:h-[67px] lg:text-lg lg:w-[280px] lg:h-[54px] rounded-[10px]"
+              md:text-base md:w-[386px] md:h-[67px] lg:text-lg lg:w-[280px] lg:h-[54px] rounded-[5px]"
           >
             Подробнее
           </a>

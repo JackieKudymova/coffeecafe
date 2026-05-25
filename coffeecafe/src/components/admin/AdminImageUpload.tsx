@@ -68,7 +68,7 @@ export default function AdminImageUpload({
         <label
           htmlFor={inputId}
           className={`
-            flex w-full cursor-pointer flex-col overflow-hidden rounded-[10px] border-2 border-dashed
+            flex w-full cursor-pointer flex-col overflow-hidden rounded-[5px] border-2 border-dashed
             bg-input-bg/80 aspect-video min-h-[100px] items-center justify-center text-center text-sm text-cream-dark
             transition-colors hover:bg-input-bg
             ${error ? 'border-input-border-error hover:border-input-border-error' : 'border-cream/20 hover:border-cream/35'}
@@ -91,7 +91,7 @@ export default function AdminImageUpload({
           disabled={uploading}
           onClick={openPicker}
           className="
-            h-11 min-w-[160px] rounded-[10px] bg-brown-button px-6 text-sm font-medium uppercase tracking-wider
+            h-11 min-w-[160px] rounded-[5px] bg-brown-button px-6 text-sm font-medium uppercase tracking-wider
             text-brown-dark transition-colors hover:bg-brown-button-hover active:bg-brown-button-active
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 disabled:cursor-not-allowed disabled:opacity-60
           "
@@ -104,7 +104,7 @@ export default function AdminImageUpload({
             disabled={uploading}
             onClick={() => onChange(null)}
             className="
-              h-11 rounded-[10px] border border-cream/30 px-6 text-sm font-medium uppercase tracking-wider text-cream transition-colors
+              h-11 rounded-[5px] border border-cream/30 px-6 text-sm font-medium uppercase tracking-wider text-cream transition-colors
               hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/25
               disabled:opacity-60
             "

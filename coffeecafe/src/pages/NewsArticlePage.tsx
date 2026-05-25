@@ -78,13 +78,13 @@ function NewsArticleBody({ id }: { id: string }) {
   return (
     <article className="md:grid md:grid-cols-12 md:gap-x-8">
       {/* Заголовок раздела */}
-      <h2 className="m-0 font-heading font-normal text-cream text-[24px] md:text-[32px] lg:text-[36px] leading-tight md:col-span-12 uppercase">
+      <h2 className="m-0 font-heading font-normal text-cream text-[24px] md:text-[32px] lg:text-[36px] leading-tight md:col-span-12 uppercase tracking-[0.02em]">
         Новости и акции
       </h2>
 
       {/* Фото: мобилка — aspect 358/240; планшет и десктоп — 12 колонок */}
       <div className="mt-[32px] md:mt-10 lg:mt-12 md:col-span-12">
-        <div className="aspect-[358/240] md:aspect-auto md:h-[380px] lg:h-[500px] rounded-[10px] overflow-hidden">
+        <div className="aspect-[358/240] md:aspect-auto md:h-[380px] lg:h-[500px] rounded-[5px] overflow-hidden">
           <img
             src={article.image}
             alt={article.title}
@@ -129,7 +129,7 @@ function NewsArticleBody({ id }: { id: string }) {
       <div className="md:col-span-12">
         <Link
           to="/news"
-          className="mt-[33px] md:mt-10 inline-flex w-full min-h-[67px] text-base shrink-0 items-center justify-center bg-brown-button px-6 text-center font-medium uppercase tracking-wider text-brown-dark transition-colors hover:bg-brown-button-hover active:bg-brown-button-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg md:max-w-[386px] md:min-h-[67px] lg:max-w-[280px] lg:min-h-[54px] lg:text-lg rounded-[10px]"
+          className="mt-[33px] md:mt-10 inline-flex w-full min-h-[67px] text-base shrink-0 items-center justify-center bg-brown-button px-6 text-center font-medium uppercase tracking-wider text-brown-dark transition-colors hover:bg-brown-button-hover active:bg-brown-button-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brown-bg md:max-w-[386px] md:min-h-[67px] lg:max-w-[280px] lg:min-h-[54px] lg:text-lg rounded-[5px]"
         >
           Назад
         </Link>

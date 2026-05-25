@@ -9,7 +9,7 @@ export default function AdminTable({
 }) {
   return (
     <div
-      className={`overflow-x-auto rounded-[10px] border border-cream/15 bg-[#382a22] ${className}`}
+      className={`overflow-x-auto rounded-[5px] border border-cream/15 bg-[#382a22] ${className}`}
     >
       <table className="w-full min-w-[640px] text-left text-cream-dark text-sm lg:text-base">
         {children}
