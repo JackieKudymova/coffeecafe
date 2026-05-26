@@ -502,7 +502,7 @@ function PhoneInput({
       placeholder={PHONE_PLACEHOLDER_EXAMPLE}
       aria-invalid={invalid === true}
       className="
-        w-full mt-2 h-8 md:h-[49px] lg:h-[51px] px-4
+        w-full mt-2 h-8 md:h-[49px] lg:h-[51px] px-4 rounded-[5px]
         bg-input-bg text-cream placeholder:text-placeholder placeholder:text-[13px] md:placeholder:text-base
         border-2 border-transparent text-[13px] md:text-base outline-none transition-colors
         hover:bg-input-bg-hover

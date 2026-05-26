@@ -165,7 +165,7 @@ function AboutPage() {
               className="w-full h-[462px] object-cover opacity-50 rounded-t-[5px]"
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <p className="font-heading font-normal text-cream text-[36px] leading-[48px] text-center uppercase tracking-[0.02em] max-w-[672px]">
+              <p className="font-heading font-normal text-cream text-[36px] leading-[48px] text-center uppercase tracking-[0.02em] whitespace-nowrap">
                 ДомКофе - пауза в ритме города
               </p>
             </div>
